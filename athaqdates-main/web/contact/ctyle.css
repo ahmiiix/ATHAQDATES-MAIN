@@ -1,0 +1,16 @@
+.top-icons {
+  display: flex;
+  justify-content: flex-end;
+   border: 50px solid red;
+  gap: 50px;   /* 👈 clearly visible gap */
+  padding: 20px;
+}
+
+.icon {
+  font-size: 22px;
+  color: #004232;
+  cursor: pointer;
+}
+body.arabic {
+  direction: rtl;
+}

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATHAQ Admin Settings</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>ATHAQ</h2>
+            <span>Admin Panel</span>
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="../../index.html">
+                    <span class="material-icons-outlined">dashboard</span>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="../product/index.html">
+                    <span class="material-icons-outlined">inventory_2</span>
+                    Products
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <span class="material-icons-outlined">photo_library</span>
+                    Gallery
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="index.html">
+                    <span class="material-icons-outlined">settings</span>
+                    Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="../../login/index.html">
+                    <span class="material-icons-outlined">logout</span>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+    <main class="content">
+
+        <div class="header">
+
+            <h1>Settings</h1>
+
+            <button id="saveBtn">
+                Save Changes
+            </button>
+
+        </div>
+
+
+        <div class="grid">
+
+            <div class="card">
+
+                <h2>Profile</h2>
+
+                <div class="form-group">
+                    <label>Admin Name</label>
+                    <input type="text" id="name" value="ATHAQ ADMIN">
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email">
+                </div>
+
+                <div class="form-group">
+                    <label>Company</label>
+                    <input type="text" value="ATHAQ Dates Factory">
+                </div>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <h2>Appearance</h2>
+
+                <div class="theme-box">
+
+                    <button class="theme light" data-theme="light">
+                        Light
+                    </button>
+
+                    <button class="theme dark" data-theme="dark">
+                        Dark
+                    </button>
+
+                    <button class="theme green active" data-theme="green">
+                        Green Glass
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <h2>Language</h2>
+
+                <select id="language">
+
+                    <option value="en">
+                        English
+                    </option>
+
+                    <option value="ar">
+                        Arabic
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <h2>Notifications</h2>
+
+                <label class="switch">
+
+                    <input type="checkbox" checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+
+
+            <div class="card">
+
+                <h2>Security</h2>
+
+                <div class="form-group">
+                    <label>Current Password</label>
+                    <input type="password">
+                </div>
+
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password">
+                </div>
+
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password">
+                </div>
+
+                <button class="changeBtn">
+                    Change Password
+                </button>
+
+            </div>
+
+
+
+<div class="card">
+
+    <h2>System</h2>
+
+    <button class="danger">
+        Reset Settings
+    </button>
+
+    <button class="logout">
+        Logout
+    </button>
+
+</div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

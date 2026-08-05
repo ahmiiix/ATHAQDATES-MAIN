@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #2c7744);
+  color: white;
+}
+/* Navbar */
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 60px;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #c7d6d2; /* same dark green */
+}
+
+nav a {
+  color: white;
+  margin-left: 25px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #00ff99;
+}
+
+/* Hero */
+.hero h1,
+.hero p {
+  font-family: 'Playfair Display', serif;
+}
+
+.hero {
+    
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 👑 Leader Section */
+.leader {
+  display: flex;
+  justify-content: center;
+   margin-top: 40px;
+}
+
+.leader-card {
+  width: 320px;
+  padding: 25px;
+  text-align: center;
+  border-radius: 15px;
+
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(20px);
+
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(0,0,0,0.6);
+}
+
+.leader-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.leader-card h2 {
+  font-family: 'Playfair Display', serif;
+  margin-top: 15px;
+}
+
+/* 👥 Team */
+.team-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  padding: 30px;
+}
+
+.team-card {
+  width: 240px;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(15px);
+
+  transition: 0.4s;
+}
+
+.team-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}

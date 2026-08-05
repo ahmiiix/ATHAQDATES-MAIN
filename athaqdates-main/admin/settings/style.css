@@ -1,0 +1,293 @@
+/* ==========================
+   ATHAQ SETTINGS PANEL
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    min-height:100vh;
+    color:#fff;
+}
+
+.container{
+    display:flex;
+    min-height:100vh;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:260px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    border-right:1px solid rgba(255,255,255,.15);
+    padding:30px 0;
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.logo h2{
+    color:#6CFF8F;
+    font-size:32px;
+}
+
+.logo span{
+    color:#ccc;
+    font-size:14px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    margin:8px 15px;
+}
+
+.sidebar a{
+    text-decoration:none;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 18px;
+    border-radius:14px;
+    transition:.3s;
+}
+
+.sidebar a:hover,
+.sidebar .active a{
+    background:#22c55e;
+    color:#fff;
+}
+
+/* Content */
+
+.content{
+    flex:1;
+    padding:40px;
+}
+
+/* Header */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.header h1{
+    font-size:34px;
+}
+
+#saveBtn{
+    background:#22c55e;
+    color:white;
+    border:none;
+    padding:14px 28px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:15px;
+    transition:.3s;
+}
+
+#saveBtn:hover{
+    transform:translateY(-2px);
+    background:#16a34a;
+}
+
+/* Grid */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+    gap:25px;
+}
+
+/* Card */
+
+.card{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    backdrop-filter:blur(20px);
+    border-radius:20px;
+    padding:25px;
+}
+
+.card h2{
+    margin-bottom:20px;
+    color:#8effb5;
+}
+
+/* Inputs */
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    color:#ddd;
+}
+
+.form-group input,
+select{
+    width:100%;
+    padding:13px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:rgba(255,255,255,.12);
+    color:#fff;
+}
+
+input::placeholder{
+    color:#ccc;
+}
+
+/* Theme Buttons */
+
+.theme-box{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.theme{
+    flex:1;
+    border:none;
+    cursor:pointer;
+    padding:15px;
+    border-radius:12px;
+    color:#fff;
+    transition:.3s;
+}
+
+.light{
+    background:#64748b;
+}
+
+.dark{
+    background:#111827;
+}
+
+.green{
+    background:#22c55e;
+}
+
+.theme:hover{
+    transform:scale(1.05);
+}
+
+/* Switch */
+
+.switch{
+    position:relative;
+    display:inline-block;
+    width:60px;
+    height:30px;
+}
+
+.switch input{
+    display:none;
+}
+
+.slider{
+    position:absolute;
+    inset:0;
+    background:#666;
+    border-radius:30px;
+    transition:.3s;
+}
+
+.slider::before{
+    content:"";
+    position:absolute;
+    width:24px;
+    height:24px;
+    left:3px;
+    top:3px;
+    background:#fff;
+    border-radius:50%;
+    transition:.3s;
+}
+
+input:checked + .slider{
+    background:#22c55e;
+}
+
+input:checked + .slider::before{
+    transform:translateX(30px);
+}
+
+/* Buttons */
+
+.changeBtn,
+.logout,
+.danger{
+
+    width:100%;
+    border:none;
+    padding:14px;
+    margin-top:12px;
+    border-radius:12px;
+    cursor:pointer;
+    color:white;
+    font-size:15px;
+}
+
+.changeBtn{
+    background:#22c55e;
+}
+
+.logout{
+    background:#2563eb;
+}
+
+.danger{
+    background:#dc2626;
+}
+
+.changeBtn:hover,
+.logout:hover,
+.danger:hover{
+    opacity:.9;
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.container{
+    flex-direction:column;
+}
+
+.sidebar{
+    width:100%;
+}
+
+.content{
+    padding:20px;
+}
+
+.header{
+    flex-direction:column;
+    gap:20px;
+}
+
+.grid{
+    grid-template-columns:1fr;
+}
+
+}

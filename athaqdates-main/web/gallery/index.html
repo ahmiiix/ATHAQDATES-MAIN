@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html lang="en"><head> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gallery | ATHAQ Industrial Factory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100..900&family=IBM+Plex+Sans:wght@100..900&family=Manrope:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-auto-rows: 200px;
+            gap: 24px;
+        }
+        .masonry-item-tall { grid-row: span 3; }
+        .masonry-item-wide { grid-column: span 2; }
+        .masonry-item-square { grid-row: span 2; }
+
+        @media (max-width: 768px) {
+            .masonry-item-wide { grid-column: span 1; }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#241a00",
+                      "error-container": "#ffdad6",
+                      "secondary": "#3e6653",
+                      "on-error-container": "#93000a",
+                      "on-surface-variant": "#3f4944",
+                      "secondary-container": "#c0edd4",
+                      "on-primary-container": "#88d2b6",
+                      "on-secondary-fixed": "#002114",
+                      "inverse-primary": "#8bd5b9",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed": "#c0edd4",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed-variant": "#264e3c",
+                      "surface": "#faf9f4",
+                      "on-tertiary-fixed-variant": "#574500",
+                      "tertiary-fixed-dim": "#e9c349",
+                      "on-secondary-container": "#446d59",
+                      "outline": "#6f7974",
+                      "on-error": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "surface-bright": "#faf9f4",
+                      "outline-variant": "#bec9c3",
+                      "on-primary-fixed-variant": "#00513d",
+                      "on-secondary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "on-tertiary-container": "#4f3e00",
+                      "inverse-surface": "#30312e",
+                      "tertiary-fixed": "#ffe088",
+                      "surface-variant": "#e3e3de",
+                      "surface-tint": "#1b6a53",
+                      "primary-fixed": "#a6f2d4",
+                      "surface-container-low": "#f5f4ef",
+                      "inverse-on-surface": "#f2f1ec",
+                      "background": "#faf9f4",
+                      "surface-dim": "#dbdad5",
+                      "surface-container": "#efeee9",
+                      "surface-container-high": "#e9e8e3",
+                      "on-primary-fixed": "#002117",
+                      "tertiary-container": "#cca830",
+                      "tertiary": "#735c00",
+                      "on-surface": "#1b1c19",
+                      "secondary-fixed-dim": "#a5d0b8",
+                      "primary": "#004232",
+                      "on-background": "#1b1c19",
+                      "primary-container": "#005c46",
+                      "surface-container-highest": "#e3e3de",
+                      "primary-fixed-dim": "#8bd5b9"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "section-gap": "120px",
+                      "unit": "8px",
+                      "container-max": "1280px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "64px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "body-md": ["Manrope"],
+                      "label-sm": ["IBM Plex Sans"],
+                      "headline-md": ["Be Vietnam Pro"],
+                      "body-lg": ["Manrope"],
+                      "display-lg-mobile": ["Be Vietnam Pro"],
+                      "display-lg": ["Be Vietnam Pro"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
+
+  <!-- LEFT (Logo) -->
+  <div class="flex items-center gap-3">
+ <span
+  class="hidden sm:block text-primary dark:text-primary-fixed"
+  data-en="ATHAQ DATES"
+  data-ar="أثاق للتمور"
+  style="
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #1c4d06;
+  "
+>
+  ATHAQ DATES
+</span>
+  </div>
+  </div>
+
+  <!-- CENTER (Menu) -->
+<div class="flex-1 flex justify-center">
+<div class="hidden md:flex items-center gap-8 font-[Poppins] text-headline-md font-bold text-primary dark:text-primary-fixed">
+
+<a href="../../index.html">Home</a>
+<a href="../about/index.html">About</a>
+<a href="../product/index.html">Products</a>
+<a href="../gallery/index.html">Gallery</a>
+<a href="../contact/index.html">Contact</a>
+
+</div>
+</div>
+
+  <!-- RIGHT (Buttons) -->
+   <div class="flex justify-end gap-4 p-5">
+  <div onclick="toggleLanguage()" class="w-10 h-10 rounded-full border flex items-center justify-center cursor-pointer">
+    <i class="fa-solid fa-globe"></i>
+  </div> 
+
+  <div class="flex items-center gap-4 ml-auto">
+<a href="/login/index.html"
+   class="bg-primary text-white px-5 py-2 rounded-lg text-sm inline-block"
+   data-en="Admin Login"
+   data-ar="تسجيل دخول المسؤول">
+   Admin Login
+</a>
+  </div>
+   <div onclick="shareWebsite()" class="w-10 h-10 rounded-full border flex items-center justify-center cursor-pointer">
+    <i class="fa-solid fa-share-nodes"></i>
+  </div> 
+</nav>
+<main class="pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Hero Header -->
+<header class="mb-20 text-center md:text-start">
+<div class="inline-flex items-center gap-2 mb-4 text-tertiary">
+<span class="h-px w-8 bg-tertiary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Visual Archive</span>
+</div>
+<h1 class="font-[Poppins] text-headline-md font-bold md:text-display-lg text-primary mb-6">Our Industrial Journey</h1> 
+<p class="max-w-2xl text-body-lg font-body-lg text-on-surface-variant">Explore the fusion of Saudi heritage and modern manufacturing. From the sun-drenched palm groves to our state-of-the-art packaging facility.</p>
+</header>
+<!-- Category Filters -->
+<div class="flex flex-wrap gap-4 mb-12 border-b border-outline-variant/20 pb-8">
+<button class="px-6 py-2 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">All Highlights</button>
+<button class="px-6 py-2 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant font-label-sm text-label-sm">The Groves</button>
+<button class="px-6 py-2 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant font-label-sm text-label-sm">Factory Precision</button>
+<button class="px-6 py-2 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant font-label-sm text-label-sm">Global Quality</button>
+<button class="px-6 py-2 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant font-label-sm text-label-sm">Our People</button>
+</div>
+<!-- Masonry Grid -->
+<div class="masonry-grid">
+<!-- Item 1: Wide Banner (The Farm) -->
+<div class="masonry-item-wide masonry-item-square relative group overflow-hidden rounded-xl bg-surface-container-highest shadow-sm">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A panoramic, golden-hour view of a lush Saudi date palm grove. Rows of tall palms with vibrant green fronds stretch into the horizon under a soft ivory sky. The lighting is warm and cinematic, emphasizing the natural heritage of Athaq factory's roots. High-end architectural photography style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjiDHJLzPSDP7IoYaPHCOvQykAdxwN9gjPk5adyeslK2qWs8Rjm6puerhSKpXzWlKvm8FsD42G7y8p2opTP923UN33Em6JZfG2A4njl0pTZoq32N9XCGuqPp5tbUKsEiOGbwkLdKxagnDh31pMIOarXUF7oCRqhYk_gHdb0ENi2abqiwqtf2fkDgtrOT1WDOBra-TssiBJimuxVulKZz9d_27ClDj2sSiGjv0Do-pbDYGn81noTnZqkQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+<span class="text-tertiary-fixed font-label-sm text-label-sm mb-2 uppercase">The Beginning</span>
+<h3 class="text-white font-headline-md text-headline-md">Ancestral Groves</h3>
+</div>
+</div>
+<!-- Item 2: Tall (Machinery) -->
+<div class="masonry-item-tall relative group overflow-hidden rounded-xl bg-surface-container-highest shadow-sm">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Close-up of a high-tech industrial date sorting machine. Polished stainless steel surfaces reflect soft ivory laboratory lighting. The machine is precise, clean, and modern, showcasing Athaq's commitment to global manufacturing standards. Metallic gold accents on the machinery frame provide a premium feel." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDI4cxoeJqg8mzDtDSqvxYt-EOeSI4pgNmIlLQSw-Jp6kltItzXtFBSLTU2Aeu5FvJOKiDqYp7ShoNdqm6U-iGFV_a-GrHKBoznMSVG51VVpNZ9WdsqG081QckNv8vkY03blhu339MlJOYGFiHoUZT72uF-5VJ9NHxVjGeOhBcpbtHczFhmRXyXF4vIgcBe4zLvUWWUli0T1Z0pmwQnxrN3vd-JIZC_rOTRiPG8I7faNHHKCsvKWTRmQA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+<span class="text-tertiary-fixed font-label-sm text-label-sm mb-2 uppercase">Precision</span>
+<h3 class="text-white font-headline-md text-headline-md">Automated Sorting</h3>
+</div>
+</div>
+<!-- Item 3: Square (Packaging) -->
+<div class="masonry-item-square relative group overflow-hidden rounded-xl bg-surface-container-highest shadow-sm">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A minimalist overhead shot of premium date packaging boxes. The boxes are forest green with elegant gold embossed calligraphy and logos. They are arranged in a rhythmic pattern on a clean ivory surface. Professional product photography with soft shadows and high-end aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-x5RuFYKdrYqimz7FKzHJNpvLC0Lo3IPQ2tSedKWrAWZfsfTnGB_NDpfLhkbMZBrysVh_5PU318Hg4Y8lIZCUiV25o4KmQKC4TpgoV4ESAF0HD7SIZCoqaW0v8G2JuUM3fheh7_T5WP0Pcr1RlCuo27h8QpjzBI3RE5T77pRfqcjVGSotl_pMMTjb_CQgeQsI4f6VhQENXPq1Z6AfqT-aP5tSTRo9LUVVDChrpo8WQ5YeV9x4uh4o8w')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+<span class="text-tertiary-fixed font-label-sm text-label-sm mb-2 uppercase">Design</span>
+<h3 class="text-white font-headline-md text-headline-md">The Final Touch</h3>
+</div>
+</div>
+<!-- Item 4: Normal (Worker) -->
+<div class="masonry-item-square relative group overflow-hidden rounded-xl bg-surface-container-highest shadow-sm">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A professional factory worker in clean-room attire, including a forest green apron and headgear, inspecting date quality. The lighting is bright and clinical. The worker's expression is focused and proud, representing the human expertise behind the industrial process. Minimalist industrial setting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBY945oCPNGNpk6JiIzoC654vrfdfgvQkoFq1MrZo80w7OGEwdIS8aCwxYe9DfWR6YmUo_4jb_oa5VEpj-dgVzI6luyVcE-OUn-Q0M8VzA-U4UbjfdGsVCgnZ9qEX5b5mW6KYPIF2uL5pAYVAP67xlwjzpUeDYM-0ir0fb2KGbgJZc4NMg1Ffw_i3_Qt8Qz-gjL7JQtS1m-ThNqWruv1vtc95vpKjGetskQAyo6hJ4SWbrGnM7aDVZ1vg')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+<span class="text-tertiary-fixed font-label-sm text-label-sm mb-2 uppercase">Expertise</span>
+<h3 class="text-white font-headline-md text-headline-md">Quality Control</h3>
+</div>
+</div>
+<!-- Item 5: Wide (Warehouse) -->
+<div class="masonry-item-wide relative group overflow-hidden rounded-xl bg-surface-container-highest shadow-sm">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Internal view of a vast, clean industrial warehouse. Tall shelving units are stocked with neatly palletized premium date products. The floor is polished concrete with a subtle reflection of the overhead LED lights. The space feels expansive, organized, and technologically advanced." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCmDfALsgPFXq90e-4zLxb4htMCNLuF-UsRPlrf_Tcfxth7zYievDTyV6BRVhqI_HMtiJxchWiudukFnJidbFz4lzOs7-zuBVPbl1epJnqGOAyPPre-goTPPSt4YMo12rNvypWciN1-Y6w9SNIXtWr7h-JU5Tp7iZadE4OSTNrpFXBuQA3liDwYKS5LyILDPom6pEhKiq_qo0Chc-Rr1nAAOKsKB95Yuczo2oQSyqk8kYHAg95byhu27g')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+<span class="text-tertiary-fixed font-label-sm text-label-sm mb-2 uppercase">Logistics</span>
+<h3 class="text-white font-headline-md text-headline-md">Global Distribution</h3>
+</div>
+</div>
+<!-- Item 6: Square (Details) -->
+<div class="masonry-item-square relative group overflow-hidden rounded-xl bg-surface-container-highest shadow-sm">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Extreme macro shot of a perfect Khalas date. The texture is glistening and rich, showcasing the natural sweetness and high quality. The background is a soft-focus ivory, making the deep amber color of the fruit pop. High-end food photography style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQwdzXk3XUuDjqQjRhxY4Ky6m15evNMP6SxJ-Ak4E33VimmBkur-fobEhFjFyz4w46z9G9eZC14aAqAk74yA8tY7YXpC65ptKRggxj2G1b9qD-MkUGrm19aMfsCDpjg7dEM4LfHSINJWAvio8cmJD_igTht8OydwmRGF_gAfn-u0OT8xmWdpuHW_niCjzejX3hBgB-iuyxqlrYKuQfxRBt2B5jW1Ru134x14S-H9I0rwqO4z2RA_ENPQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+<span class="text-tertiary-fixed font-label-sm text-label-sm mb-2 uppercase">Product</span>
+<h3 class="text-white font-headline-md text-headline-md">Natural Excellence</h3>
+</div>
+</div>
+</div>
+<!-- Call to Action Section -->
+<section class="mt-section-gap bg-primary-container text-on-primary-container rounded-full p-16 relative overflow-hidden">
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+<div class="max-w-xl text-center md:text-start">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 text-on-primary-fixed">Partner with Excellence</h2>
+<p class="text-body-lg font-body-lg opacity-90">We provide industrial-scale date processing and private labeling for global commercial partners. Discover our quality standards.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="px-8 py-4 bg-primary text-white rounded-lg font-bold hover:bg-opacity-90 transition-all active:scale-95 shadow-xl">Inquire Now</button>
+<a href="/catalog/catalog.pdf" download>
+    <button class="px-8 py-4 bg-transparent border border-on-primary-fixed text-on-primary-fixed rounded-lg font-bold hover:bg-white/10 transition-all">Download Catalog</button>
+</a>
+</div>
+</div>
+<!-- Decorative Element -->
+<div class="absolute top-0 right-0 w-64 h-64 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[200px]" style="font-variation-settings: 'FILL' 1;">spa</span>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap px-margin-desktop bg-surface-container-highest dark:bg-surface-dim border-t border-tertiary/20 grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-md text-headline-md text-primary mb-4">ATHAQ</div>
+<p class="text-on-surface-variant font-body-md text-body-md mb-6">Leading the future of Saudi industrial date production with tradition and technology.</p>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white cursor-pointer hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-sm">public</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white cursor-pointer hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-sm">mail</span>
+</div>
+</div>
+</div>
+<div>
+<h4 class="font-headline-md text-[18px] text-primary mb-6">Navigation</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">About Us</a></li>
+<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Industrial Process</a></li>
+<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Product List</a></li>
+<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Sustainability</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-headline-md text-[18px] text-primary mb-6">Legal & Standards</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Quality Standards</a></li>
+<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Certification</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-headline-md text-[18px] text-primary mb-6">Contact Factory</h4>
+<p class="text-on-surface-variant mb-2">Industrial Area Phase 2</p>
+<p class="text-on-surface-variant mb-2">Riyadh, Saudi Arabia</p>
+<p class="text-primary font-bold mt-4">info@athaq.com</p>
+</div>
+<div class="col-span-1 md:col-span-4 border-t border-outline-variant/30 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="text-on-surface-variant font-body-md text-body-md">© 2024 Athaq Industrial Factory. All rights reserved.</span>
+<div class="flex gap-8">
+<span class="material-symbols-outlined text-outline-variant">verified_user</span>
+<span class="material-symbols-outlined text-outline-variant">factory</span>
+<span class="material-symbols-outlined text-outline-variant">eco</span>
+</div>
+</div>
+</footer>
+<!-- Interactive Scripts -->
+<script>
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.masonry-grid > div').forEach(item => {
+            item.classList.add('scroll-reveal');
+            observer.observe(item);
+        });
+
+        // Add index stagger delay
+        document.querySelectorAll('.masonry-grid > div').forEach((item, index) => {
+            item.style.transitionDelay = `${index * 100}ms`;
+        });
+
+        // Hover Parallax Effect for Gallery Items
+        document.querySelectorAll('.masonry-grid > div').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const moveX = (x - centerX) / 25;
+                const moveY = (y - centerY) / 25;
+                
+                const img = card.querySelector('.bg-cover');
+                if (img) {
+                    img.style.transform = `scale(1.1) translate(${moveX}px, ${moveY}px)`;
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                const img = card.querySelector('.bg-cover');
+                if (img) {
+                    img.style.transform = 'scale(1) translate(0, 0)';
+                }
+            });
+        });
+
+        // Simple filter simulation
+        document.querySelectorAll('button.rounded-full').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('button.rounded-full').forEach(b => {
+                    b.classList.remove('bg-secondary-container', 'text-on-secondary-container');
+                    b.classList.add('bg-surface-container', 'text-on-surface-variant');
+                });
+                btn.classList.add('bg-secondary-container', 'text-on-secondary-container');
+                btn.classList.remove('bg-surface-container', 'text-on-surface-variant');
+            });
+        });
+    </script>
+     <script src="script.js"></script>
+</body></html>

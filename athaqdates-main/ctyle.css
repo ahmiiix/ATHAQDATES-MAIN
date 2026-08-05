@@ -1,0 +1,41 @@
+.top-icons {
+  display: flex;
+  justify-content: flex-end;
+   border: 50px solid red;
+  gap: 50px;   /* 👈 clearly visible gap */
+  padding: 20px;
+}
+
+.icon {
+  font-size: 22px;
+  color: #004232;
+  cursor: pointer;
+}
+body.arabic {
+  direction: rtl;
+}
+@media (max-width: 768px) {
+
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+}
