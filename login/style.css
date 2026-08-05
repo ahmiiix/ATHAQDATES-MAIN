@@ -17,19 +17,21 @@ body {
 }
 
 .login-box {
-  width: 320px;
-  padding: 30px;
+  width: 90%;
+  max-width: 420px;
 
-  background: rgba(255, 255, 255, 0.1);
+  padding: 35px;
+
+  background: rgba(255,255,255,0.1);
   backdrop-filter: blur(15px);
 
   border-radius: 15px;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,.2);
 
   text-align: center;
   color: white;
 
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,.3);
 }
 
 .login-box h2 {
@@ -38,19 +40,21 @@ body {
 
 .login-box input {
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
+  padding: 14px;
+  margin: 12px 0;
 
   border: none;
   border-radius: 8px;
-
   outline: none;
+
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
 .login-box button {
   width: 100%;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 14px;
+  margin-top: 15px;
 
   background: #00ff88;
   color: black;
@@ -58,11 +62,31 @@ body {
   border: none;
   border-radius: 8px;
 
+  font-size: 16px;
+  font-weight: bold;
+
   cursor: pointer;
-  transition: 0.3s;
+  transition: .3s;
 }
 
 .login-box button:hover {
   background: #00cc6a;
   transform: scale(1.05);
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .login-box {
+    width: 92%;
+    padding: 30px 20px;
+  }
+
+  .login-box span {
+    display: block !important;
+    font-size: 28px !important;
+    letter-spacing: 2px !important;
+  }
+
 }

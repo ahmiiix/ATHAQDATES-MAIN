@@ -2,10 +2,10 @@
 
 <html class="scroll-smooth" dir="ltr" lang="en"><head>      
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&ampfamily=IBM+Plex+Sans:wght@600&ampfamily=Be+Vietnam+Pro:wght@600;700&ampdisplay=swap" rel="stylesheet"/>
+<link href=https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&display=swap rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&ampdisplay=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&ampdisplay=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -110,16 +110,43 @@
         [dir="rtl"] .rtl-mirror {
             transform: scaleX(-1);
         }
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    width:100%;
+    overflow-x:hidden;
+}
+
+body{
+    width:100%;
+    overflow-x:hidden;
+    -webkit-text-size-adjust:100%;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+    display:block;
+}
+
+video{
+    max-width:100%;
+    height:auto;
+}
+
+button,
+input,
+textarea,
+select{
+    font:inherit;
+}
     </style> 
 </head>
 <body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
-    <h1 
-  data-en="ATHAQ Dates Factory" 
-  data-ar="مصنع أثاق للتمور">
-  ATHAQ Dates Factory
-</h1>
-
-</div>
 <!-- Top Navigation Bar -->
 <nav class="fixed top-0 left-0 w-full z-50 flex items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
 
@@ -141,16 +168,69 @@
 </span>
 </div>
 
+<!-- Mobile Menu Button -->
+<button
+    id="menu-btn"
+    class="md:hidden ml-auto text-primary text-3xl"
+    aria-label="Open Menu">
+    ☰
+</button>
+
+  <!-- Mobile Menu -->
+<div id="mobile-menu"
+class="hidden absolute top-16 left-0 w-full bg-white shadow-xl md:hidden z-50">
+
+    <a href="index.html" class="block px-6 py-4 border-b">
+        Home
+    </a>
+
+    <a href="web/about/index.html" class="block px-6 py-4 border-b">
+        About
+    </a>
+
+    <a href="web/product/index.html" class="block px-6 py-4 border-b">
+        Products
+    </a>
+
+    <a href="web/gallery/index.html" class="block px-6 py-4 border-b">
+        Gallery
+    </a>
+
+    <a href="web/contact/index.html" class="block px-6 py-4 border-b">
+        Contact
+    </a>
+
+    <!-- Admin Login -->
+    <a href="login/index.html"
+       class="block px-6 py-4 border-b bg-primary text-white text-center">
+       Admin Login
+    </a>
+
+    <!-- Language -->
+    <button onclick="toggleLanguage()"
+        class="w-full text-left px-6 py-4 border-b">
+        🌐 Change Language
+    </button>
+
+    <!-- Share -->
+    <button onclick="shareWebsite()"
+        class="w-full text-left px-6 py-4">
+        🔗 Share Website
+    </button>
+
+</div>
+
   <!-- CENTER (Menu) -->
 <div class="flex-1 flex justify-center">
-  <div class="hidden md:flex items-center gap-8 font-[Poppins] text-headline-md font-bold text-primary dark:text-primary-fixed">
+<div class="hidden md:flex items-center gap-8 font-[Poppins] text-headline-md font-bold text-primary dark:text-primary-fixed">
 
-<a href="index.html">Home</a>
-<a href="web/about/index.html">About</a>
-<a href="web/product/index.html">Products</a>
-<a href="web/gallery/index.html">Gallery</a>
-<a href="web/contact/index.html">Contact</a>
-  </div>
+ <a href="/index.html">Home</a>
+<a href="/web/about/index.html">About</a>
+<a href="/web/product/index.html">Products</a>
+<a href="/web/gallery/index.html">Gallery</a>
+<a href="/web/contact/index.html">Contact</a>
+
+</div>
 </div>
 
   <!-- RIGHT (Buttons) -->
@@ -160,7 +240,7 @@
   </div> 
 
   <div class="flex items-center gap-4 ml-auto">
-<a href="login/index.html"
+   <a href="/login/index.html"
    class="bg-primary text-white px-5 py-2 rounded-lg text-sm inline-block"
    data-en="Admin Login"
    data-ar="تسجيل دخول المسؤول">
@@ -170,11 +250,10 @@
    <div onclick="shareWebsite()" class="w-10 h-10 rounded-full border flex items-center justify-center cursor-pointer">
     <i class="fa-solid fa-share-nodes"></i>
   </div> 
-
 </nav>
 <main class="pt-20">
 <!-- Hero Section -->
-<header class="relative w-full min-h-[100vh] flex items-center overflow-hidden mt-140">
+<header class="relative w-full min-h-screen flex items-center overflow-hidden">
 
     <!-- Background Image -->
     <div class="absolute inset-0">
@@ -217,25 +296,17 @@ px-6 md:px-12 lg:px-24 xl:px-32">
             <!-- Buttons -->
 
             <div class="flex flex-col sm:flex-row gap-4">
-  <a href="../web/product/index.html">
-  <button
-class="w-full sm:w-auto bg-primary-fixed text-on-primary-fixed px-8 py-4 rounded-xl font-label-sm text-label-sm flex items-center justify-center gap-2 hover:bg-white transition-all duration-200"
-data-en="Explore Our Products"
-data-ar="استكشف منتجاتنا">
-  
-  <span class="btn-text">Explore Our Products</span>
-  <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-
-</button>
+<a href="../web/product/index.html"
+class="inline-flex items-center justify-center bg-primary-fixed text-on-primary-fixed px-8 py-4 rounded-xl">
+Explore Our Products
 </a>
-<a href="../web/contact/index.html">
-<button
-class="w-full sm:w-auto border border-white/30 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-label-sm text-label-sm hover:bg-white/10 transition-all"
-  data-en="Contact Us"
-  data-ar="اتصل بنا">
-                            Contact Us
-                        </button>
-                        </a>
+<a
+href="../web/contact/index.html"
+class="inline-flex items-center justify-center bg-primary-fixed text-on-primary-fixed px-8 py-4 rounded-xl">
+
+Contact Us
+
+</a>
             </div>
 
         </div>
@@ -337,7 +408,7 @@ class="w-full sm:w-auto border border-white/30 backdrop-blur-sm text-white px-8 
   data-en="At ATHAQ, we don't just process dates; we honor a cultural icon. Our factory bridges the gap between the sacred traditions of the date palm and the rigorous demands of modern food science. Every date undergoes a meticulous journey of selection, cleaning, and packaging."
   data-ar="في أثاق، نحن لا نقوم فقط بمعالجة التمور، بل نكرم رمزًا ثقافيًا عريقًا. يربط مصنعنا بين تقاليد نخيل التمر الأصيلة ومتطلبات علوم الغذاء الحديثة الصارمة. تمر كل تمرة برحلة دقيقة من الاختيار والتنظيف والتعبئة.">
   
-  
+  </p>
 <p 
   class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed"
   data-en="At ATHAQ, we don't just process dates; we honor a cultural icon. Our factory bridges the gap between the sacred traditions of the date palm and the rigorous demands of modern food science. Every date undergoes a meticulous journey of selection, cleaning, and packaging."
@@ -351,7 +422,7 @@ class="w-full sm:w-auto border border-white/30 backdrop-blur-sm text-white px-8 
   class="font-body-md text-body-md text-on-surface-variant/80"
   data-en="From the golden sands of our groves to your table, freshness and taste are the twin pillars of our production line. We utilize state-of-the-art cold storage and vacuum-sealing technologies to ensure that every bite is as vibrant as the day it was harvested."
   data-ar="من الرمال الذهبية لمزارعنا إلى مائدتك، تعتبر النضارة والطعم الركيزتين الأساسيتين في خط إنتاجنا. نستخدم أحدث تقنيات التخزين المبرد والتفريغ الهوائي لضمان أن كل لقمة تحتفظ بجودتها كما لو كانت في يوم حصادها.">
-  
+  </p>
  <p 
   class="font-body-md text-body-md text-on-surface-variant/80"
   data-en="From the golden sands of our groves to your table, freshness and taste are the twin pillars of our production line. We utilize state-of-the-art cold storage and vacuum-sealing technologies to ensure that every bite is as vibrant as the day it was harvested."
@@ -511,11 +582,11 @@ class="w-full sm:w-auto border border-white/30 backdrop-blur-sm text-white px-8 
 <p class="font-body-md text-on-surface-variant/80" data-en="ATHAQ Industrial Factory: Pioneering the future of Saudi agriculture through premium industrial processing." data-ar="مصنع أثاق الصناعي: تطوير مستقبل الزراعة السعودية من خلال المعالجة الصناعية الفاخرة.">ATHAQ Industrial Factory: Pioneering the future of Saudi agriculture through premium industrial processing.</p>
 <div class="flex gap-4">
 
-<div class="flex justify-end gap-4 p-5">
+
 </div>
 </div>
 </div>
-<div>
+
 <h4 class="font-label-sm text-label-sm uppercase text-primary mb-6" data-en="Quick Links" data-ar="روابط سريعة">Quick Links</h4>
 <ul class="space-y-4">
 <li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#" data-en="Our Process" data-ar="عملنا">Our Process</a></li>
@@ -581,10 +652,63 @@ class="w-full sm:w-auto border border-white/30 backdrop-blur-sm text-white px-8 
             });
             
             // Immediate fade in for hero
-            const hero = document.querySelector('section');
+            const hero = document.querySelector('header');
             hero.classList.remove('opacity-0', 'translate-y-10');
             hero.classList.add('opacity-100');
         });
-    </script>
+const menuBtn = document.getElementById("menu-btn");
+const mobileMenu = document.getElementById("mobile-menu");
+
+menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+
+    if (mobileMenu.classList.contains("hidden")) {
+        menuBtn.innerHTML = "☰";
+    } else {
+        menuBtn.innerHTML = "✕";
+    }
+});
+let currentLanguage = "en";
+
+function toggleLanguage() {
+
+    currentLanguage = currentLanguage === "en" ? "ar" : "en";
+
+    document.documentElement.lang = currentLanguage;
+    document.documentElement.dir =
+        currentLanguage === "ar" ? "rtl" : "ltr";
+
+    document.querySelectorAll("[data-en]").forEach(item => {
+
+        item.textContent =
+            item.getAttribute("data-" + currentLanguage);
+
+    });
+
+}
+function shareWebsite() {
+
+    if (navigator.share) {
+
+        navigator.share({
+
+            title: "ATHAQ DATES",
+
+            text: "Visit ATHAQ Dates Industrial Factory",
+
+            url: window.location.href
+
+        });
+
+    } else {
+
+        navigator.clipboard.writeText(window.location.href);
+
+        alert("Website link copied!");
+
+    }
+
+}
+</script>
       <script src="script.js"></script>
 </body></html>
