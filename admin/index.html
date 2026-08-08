@@ -226,10 +226,12 @@ Logout
 <p class="text-on-surface-variant font-label-sm text-label-sm">Manage industrial assets and inventory</p>
 </div>
 <div class="flex items-center gap-gutter">
-<button class="flex items-center gap-2 bg-primary text-on-primary px-6 py-2.5 rounded-lg shadow-sm hover:shadow-md transition-all active:scale-95" onclick="openModal()">
-<span class="material-symbols-outlined" style="font-size: 20px;">add</span>
-<span class="font-label-sm text-label-sm">Add New Product</span>
-</button> 
+<button
+    type="button"
+    onclick="openAddProductModal()"
+    class="px-5 py-3 bg-green-900 text-white rounded-lg">
+    Add Product
+</button>
 <!-- <Button 2 (New) -->
    <div class="flex justify-end gap-4 p-5">
   <div onclick="toggleLanguage()" class="w-10 h-10 rounded-full border flex items-center justify-center cursor-pointer">
@@ -238,13 +240,39 @@ Logout
 </div>
 </div>
 </header>
-<!-- Stats Overview (Bento Grid Style Lite) -->
 <section class="p-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-gutter pb-0">
-<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/20 shadow-sm flex items-center justify-between">
-<div>
-<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Total Products</p>
-<h3 class="font-display-lg text-primary">124</h3>
-</div>
+
+    <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/20 shadow-sm flex items-center justify-between">
+
+        <div>
+
+            <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">
+                Total Products
+            </p>
+
+            <h3
+                id="totalProducts"
+                class="font-display-lg text-primary">
+                0
+            </h3>
+
+        </div>
+
+
+        <!-- PRODUCT LIST BUTTON -->
+
+       <button
+    type="button"
+    onclick="window.location.href='product-list.html'"
+    class="mt-4 bg-primary text-white px-5 py-2 rounded-lg font-semibold hover:opacity-90 transition">
+
+    View Products
+
+</button>
+
+    </div>
+
+</section>
 <div class="p-3 bg-secondary-container rounded-full">
 <span class="material-symbols-outlined text-on-secondary-container" data-icon="inventory">inventory</span>
 </div>
@@ -268,187 +296,9 @@ Logout
 </div>
 </div>
 </section>
-<!-- Product Table Area -->
-<section class="p-margin-desktop flex-1">
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/20 shadow-sm overflow-hidden">
-<div class="p-6 border-b border-outline-variant/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
-<div class="relative w-full md:w-96">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 20px;">search</span>
-<input class="w-full bg-surface-container-low border-none rounded-lg ps-10 py-2.5 text-body-md focus:ring-2 focus:ring-primary/20" placeholder="Search product name, SKU or category..." type="text"/>
-</div>
-<div class="flex items-center gap-2">
-<button class="p-2.5 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container-high transition-colors">
-<span class="material-symbols-outlined">filter_list</span>
-</button>
-<button class="p-2.5 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container-high transition-colors">
-<span class="material-symbols-outlined">download</span>
-</button>
-</div>
-</div>
-<div class="overflow-x-auto">
-<table class="w-full text-start">
-<thead class="bg-surface-container-high/30 border-b border-outline-variant/20">
-<tr>
-<th class="px-6 py-4 text-start font-label-sm text-label-sm text-on-surface-variant">Product Details</th>
-<th class="px-6 py-4 text-start font-label-sm text-label-sm text-on-surface-variant">Category</th>
-<th class="px-6 py-4 text-start font-label-sm text-label-sm text-on-surface-variant">Stock Level</th>
-<th class="px-6 py-4 text-start font-label-sm text-label-sm text-on-surface-variant">Quality Grade</th>
-<th class="px-6 py-4 text-end font-label-sm text-label-sm text-on-surface-variant">Actions</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-outline-variant/10">
-<!-- Product Row 1 -->
-<tr class="hover:bg-surface-container-low/50 transition-colors">
-<td class="px-6 py-5">
-<div class="flex items-center gap-4">
-<div class="h-12 w-12 rounded bg-surface-container-high flex items-center justify-center">
-<span class="material-symbols-outlined text-primary">inventory_2</span>
-</div>
-<div>
-<p class="font-bold text-on-surface">Khalas Premium Large</p>
-<p class="text-label-sm text-on-surface-variant">SKU: ATH-KHL-01</p>
-</div>
-</div>
-</td>
-<td class="px-6 py-5">
-<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-[11px] font-bold uppercase tracking-wider">Premium Dates</span>
-</td>
-<td class="px-6 py-5">
-<div class="flex items-center gap-2">
-<div class="w-24 bg-outline-variant/20 h-1.5 rounded-full overflow-hidden">
-<div class="bg-primary h-full w-[85%]"></div>
-</div>
-<span class="text-label-sm font-bold">85%</span>
-</div>
-</td>
-<td class="px-6 py-5">
-<div class="flex items-center text-tertiary">
-<span class="material-symbols-outlined fill-icon" style="font-size: 16px;">grade</span>
-<span class="material-symbols-outlined fill-icon" style="font-size: 16px;">grade</span>
-<span class="material-symbols-outlined fill-icon" style="font-size: 16px;">grade</span>
-<span class="material-symbols-outlined fill-icon" style="font-size: 16px;">grade</span>
-<span class="material-symbols-outlined fill-icon" style="font-size: 16px;">grade</span>
-</div>
-</td>
-<td class="px-6 py-5 text-end">
-<div class="flex items-center justify-end gap-2">
-<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-container/20 rounded-lg transition-all">
-<span class="material-symbols-outlined">edit</span>
-</button>
-<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/20 rounded-lg transition-all">
-<span class="material-symbols-outlined">delete</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Product Row 2 -->
-<tr class="hover:bg-surface-container-low/50 transition-colors">
-<td class="px-6 py-5">
-<div class="flex items-center gap-4">
-<div class="h-12 w-12 rounded bg-surface-container-high flex items-center justify-center">
-<span class="material-symbols-outlined text-primary">inventory_2</span>
-</div>
-<div>
-<p class="font-bold text-on-surface">Industrial Date Paste</p>
-<p class="text-label-sm text-on-surface-variant">SKU: ATH-PST-45</p>
-</div>
-</div>
-</td>
-<td class="px-6 py-5">
-<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant rounded-full text-[11px] font-bold uppercase tracking-wider">Processed</span>
-</td>
-<td class="px-6 py-5">
-<div class="flex items-center gap-2">
-<div class="w-24 bg-outline-variant/20 h-1.5 rounded-full overflow-hidden">
-<div class="bg-error h-full w-[12%]"></div>
-</div>
-<span class="text-label-sm font-bold text-error">12%</span>
-</div>
-</td>
-<td class="px-6 py-5">
-<div class="flex items-center text-tertiary">
-<span class="material-symbols-outlined fill-icon" style="font-size: 16px;">grade</span>
-<span class="material-symbols-outlined fill-icon" style="font-size: 16px;">grade</span>
-<span class="material-symbols-outlined fill-icon" style="font-size: 16px;">grade</span>
-<span class="material-symbols-outlined" style="font-size: 16px;">grade</span>
-<span class="material-symbols-outlined" style="font-size: 16px;">grade</span>
-</div>
-</td>
-<td class="px-6 py-5 text-end">
-<div class="flex items-center justify-end gap-2">
-<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-container/20 rounded-lg transition-all">
-<span class="material-symbols-outlined">edit</span>
-</button>
-<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/20 rounded-lg transition-all">
-<span class="material-symbols-outlined">delete</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Product Row 3 -->
-<tr class="hover:bg-surface-container-low/50 transition-colors">
-<td class="px-6 py-5">
-<div class="flex items-center gap-4">
-<div class="h-12 w-12 rounded bg-surface-container-high flex items-center justify-center">
-<span class="material-symbols-outlined text-primary">inventory_2</span>
-</div>
-<div>
-<p class="font-bold text-on-surface">Ajwa Royal Grade A</p>
-<p class="text-label-sm text-on-surface-variant">SKU: ATH-AJW-99</p>
-</div>
-</div>
-</td>
-<td class="px-6 py-5">
-<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-[11px] font-bold uppercase tracking-wider">Premium Dates</span>
-</td>
-<td class="px-6 py-5">
-<div class="flex items-center gap-2">
-<div class="w-24 bg-outline-variant/20 h-1.5 rounded-full overflow-hidden">
-<div class="bg-primary h-full w-[45%]"></div>
-</div>
-<span class="text-label-sm font-bold">45%</span>
-</div>
-</td>
-<td class="px-6 py-5">
-<div class="flex items-center text-tertiary">
-<span class="material-symbols-outlined fill-icon" style="font-size: 16px;">grade</span>
-<span class="material-symbols-outlined fill-icon" style="font-size: 16px;">grade</span>
-<span class="material-symbols-outlined fill-icon" style="font-size: 16px;">grade</span>
-<span class="material-symbols-outlined fill-icon" style="font-size: 16px;">grade</span>
-<span class="material-symbols-outlined fill-icon" style="font-size: 16px;">grade</span>
-</div>
-</td>
-<td class="px-6 py-5 text-end">
-<div class="flex items-center justify-end gap-2">
-<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-container/20 rounded-lg transition-all">
-<span class="material-symbols-outlined">edit</span>
-</button>
-<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/20 rounded-lg transition-all">
-<span class="material-symbols-outlined">delete</span>
-</button>
-</div>
-</td>
-</tr>
-</tbody>
+
 </table>
 </div>
-<!-- Pagination -->
-<div class="px-6 py-4 border-t border-outline-variant/10 flex items-center justify-between">
-<p class="font-label-sm text-label-sm text-on-surface-variant">Showing 1 to 3 of 124 products</p>
-<div class="flex items-center gap-1">
-<button class="p-2 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container-high disabled:opacity-50" disabled="">
-<span class="material-symbols-outlined">chevron_left</span>
-</button>
-<button class="w-10 h-10 rounded-lg bg-primary text-on-primary font-bold text-label-sm">1</button>
-<button class="w-10 h-10 rounded-lg hover:bg-surface-container-high font-label-sm text-label-sm">2</button>
-<button class="w-10 h-10 rounded-lg hover:bg-surface-container-high font-label-sm text-label-sm">3</button>
-<button class="p-2 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container-high">
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-</div>
-</div>
-</div>
-</section>
 <!-- Footer Component -->
 <footer class="w-full py-12 px-margin-desktop bg-surface-container-highest/50 border-t border-outline-variant/20 mt-auto">
 <div class="flex flex-col md:flex-row justify-between items-center gap-gutter text-on-surface-variant">
@@ -480,86 +330,39 @@ Logout
 </div>
 </footer>
 </main>
-<!-- Modal for Adding Product (Functional state) -->
-<div class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300" id="addProductModal">
-<div class="absolute inset-0 modal-overlay" onclick="closeModal()"></div>
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden scale-95 transition-transform duration-300" id="modalContainer">
-<div class="p-8 border-b border-outline-variant/20 flex items-center justify-between">
-<div>
-<h3 class="font-headline-md text-headline-md text-primary">Add New Industrial Product</h3>
-<p class="text-on-surface-variant font-label-sm text-label-sm">Enter technical specifications and stock details.</p>
-</div>
-<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full" onclick="closeModal()">
-<span class="material-symbols-outlined">close</span>
-</button>
-</div>
-<form class="p-8 space-y-6">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="space-y-1">
-<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Product Name</label>
-<input class="w-full border-0 border-b-2 border-outline-variant bg-transparent py-2 focus:border-primary focus:ring-0 text-body-md" placeholder="e.g. Deglet Nour Premium" type="text"/>
-</div>
-<div class="space-y-1">
-<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">SKU Identifier</label>
-<input class="w-full border-0 border-b-2 border-outline-variant bg-transparent py-2 focus:border-primary focus:ring-0 text-body-md" placeholder="ATH-XXX-00" type="text"/>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="space-y-1">
-<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Category</label>
-<select class="w-full border-0 border-b-2 border-outline-variant bg-transparent py-2 focus:border-primary focus:ring-0 text-body-md appearance-none">
-<option>Premium Dates</option>
-<option>Processed Paste</option>
-<option>Industrial Packaging</option>
-<option>Date Syrup</option>
-</select>
-</div>
-<div class="space-y-1">
-<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Stock Status (Units)</label>
-<input class="w-full border-0 border-b-2 border-outline-variant bg-transparent py-2 focus:border-primary focus:ring-0 text-body-md" placeholder="0" type="number"/>
-</div>
-</div>
-<div class="space-y-1">
-<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Technical Description</label>
-<textarea class="w-full border-0 border-b-2 border-outline-variant bg-transparent py-2 focus:border-primary focus:ring-0 text-body-md" placeholder="Describe industrial specifications..." rows="3"></textarea>
-</div>
-<div class="pt-4 flex justify-end gap-gutter">
-<button class="px-6 py-3 font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" onclick="closeModal()" type="button">Cancel</button>
-<button class="px-8 py-3 bg-primary text-on-primary rounded-lg font-label-sm text-label-sm shadow-md hover:shadow-lg transition-all active:scale-95" type="submit">Register Product</button>
-</div>
-</form>
-</div>
-</div>
-<script>
-        function openModal() {
-            const modal = document.getElementById('addProductModal');
-            const container = document.getElementById('modalContainer');
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.add('opacity-100');
-                container.classList.remove('scale-95');
-                container.classList.add('scale-100');
-            }, 10);
-        }
 
-        function closeModal() {
-            const modal = document.getElementById('addProductModal');
-            const container = document.getElementById('modalContainer');
-            modal.classList.remove('opacity-100');
-            container.classList.remove('scale-100');
-            container.classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
-        }
+```html
+<div id="addProductModal"
+     class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
 
-        // Search highlight micro-interaction
-        document.querySelector('input[type="text"]').addEventListener('focus', function() {
-            this.parentElement.classList.add('ring-2', 'ring-primary/20');
-        });
-        document.querySelector('input[type="text"]').addEventListener('blur', function() {
-            this.parentElement.classList.remove('ring-2', 'ring-primary/20');
-        });
-    </script>
+    <!-- MODAL BOX -->
+    <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl p-6 max-h-[90vh] overflow-y-auto">
+
+        <!-- HEADER -->
+        <div class="flex justify-between items-center mb-6">
+
+            <div>
+                <h2 class="text-2xl font-bold text-green-900">
+                    Add New Product
+                </h2>
+
+                <p class="text-gray-500 text-sm">
+                    Add product details and image
+                </p>
+            </div>
+
+            <button
+                type="button"
+                onclick="closeAddProductModal()"
+                class="text-2xl text-gray-400 hover:text-red-500">
+                ×
+            </button>
+
+        </div>
+
+
+       
+```
+
     <script src="script.js"></script>
 </body></html>
