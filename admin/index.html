@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ATHAQ Admin Dashboard</title>
-<!-- Fonts & Icons -->
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100..900&family=IBM+Plex+Sans:wght@100..900&family=Manrope:wght@100..900&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<style>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>ATHAQ Admin Dashboard</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&family=Playfair+Display:wght@700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         .fill-icon {
             font-variation-settings: 'FILL' 1;
         }
-        /* Custom scrollbar for premium industrial feel */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -30,874 +31,264 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #6f7974;
         }
-        .modal-overlay {
-            backdrop-filter: blur(4px);
-            background-color: rgba(0, 66, 50, 0.1);
+        @keyframes highlight {
+            0% { box-shadow: 0 0 0 0px rgba(0, 66, 50, 0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(0, 66, 50, 0.2); }
+            100% { box-shadow: 0 0 0 0px rgba(0, 66, 50, 0); }
+        }
+        .highlight-table {
+            animation: highlight 1.5s ease-in-out;
         }
     </style>
-<script id="tailwind-config">
+    
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
-                    "colors": {
-                        "on-tertiary-fixed": "#241a00",
-                        "error-container": "#ffdad6",
-                        "secondary": "#3e6653",
-                        "on-error-container": "#93000a",
-                        "on-surface-variant": "#3f4944",
-                        "secondary-container": "#c0edd4",
-                        "on-primary-container": "#88d2b6",
-                        "on-secondary-fixed": "#002114",
-                        "inverse-primary": "#8bd5b9",
-                        "surface-container-lowest": "#ffffff",
-                        "secondary-fixed": "#c0edd4",
-                        "on-tertiary": "#ffffff",
-                        "on-secondary-fixed-variant": "#264e3c",
-                        "surface": "#faf9f4",
-                        "on-tertiary-fixed-variant": "#574500",
-                        "tertiary-fixed-dim": "#e9c349",
-                        "on-secondary-container": "#446d59",
-                        "outline": "#6f7974",
-                        "on-error": "#ffffff",
-                        "on-primary": "#ffffff",
-                        "surface-bright": "#faf9f4",
-                        "outline-variant": "#bec9c3",
-                        "on-primary-fixed-variant": "#00513d",
-                        "on-secondary": "#ffffff",
-                        "error": "#ba1a1a",
-                        "on-tertiary-container": "#4f3e00",
-                        "inverse-surface": "#30312e",
-                        "tertiary-fixed": "#ffe088",
-                        "surface-variant": "#e3e3de",
-                        "surface-tint": "#1b6a53",
-                        "primary-fixed": "#a6f2d4",
-                        "surface-container-low": "#f5f4ef",
-                        "inverse-on-surface": "#f2f1ec",
-                        "background": "#faf9f4",
-                        "surface-dim": "#dbdad5",
-                        "surface-container": "#efeee9",
-                        "surface-container-high": "#e9e8e3",
-                        "on-primary-fixed": "#002117",
-                        "tertiary-container": "#cca830",
-                        "tertiary": "#735c00",
-                        "on-surface": "#1b1c19",
-                        "secondary-fixed-dim": "#a5d0b8",
+                    colors: {
                         "primary": "#004232",
-                        "on-background": "#1b1c19",
-                        "primary-container": "#005c46",
+                        "primary-fixed": "#a6f2d4",
+                        "secondary": "#3e6653",
+                        "surface": "#faf9f4",
+                        "surface-container-low": "#f5f4ef",
+                        "surface-container-high": "#e9e8e3",
                         "surface-container-highest": "#e3e3de",
-                        "primary-fixed-dim": "#8bd5b9"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.125rem",
-                        "lg": "0.25rem",
-                        "xl": "0.5rem",
-                        "full": "0.75rem"
-                    },
-                    "spacing": {
-                        "section-gap": "120px",
-                        "unit": "8px",
-                        "container-max": "1280px",
-                        "margin-mobile": "16px",
-                        "margin-desktop": "64px",
-                        "gutter": "24px"
-                    },
-                    "fontFamily": {
-                        "body-md": ["Manrope"],
-                        "label-sm": ["IBM Plex Sans"],
-                        "headline-md": ["Be Vietnam Pro"],
-                        "body-lg": ["Manrope"],
-                        "display-lg-mobile": ["Be Vietnam Pro"],
-                        "display-lg": ["Be Vietnam Pro"]
-                    },
-                    "fontSize": {
-                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
-                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                        "on-surface": "#1b1c19",
+                        "on-surface-variant": "#3f4944",
+                        "outline-variant": "#bec9c3"
                     }
-                },
-            },
+                }
+            }
         }
     </script>
 </head>
-<body class="bg-background text-on-surface font-body-md min-h-screen flex overflow-x-hidden">
-<script>
-if (sessionStorage.getItem("isLoggedIn") !== "true") {
-    window.location.href = "../login/index.html";
-}
-</script>
-
-<h1>Admin Panel</h1>
-
-<button onclick="logout()">Logout</button>
-
-<script>
-function logout() {
-    sessionStorage.removeItem("isLoggedIn");
-    window.location.href = "../login/index.html";
-}
-</script>
-<!-- SideNavBar Component -->
-<aside class="hidden md:flex flex-col h-screen w-64 fixed start-0 top-0 bg-surface-container-low border-e border-outline-variant/20 shadow-md py-6 z-40 overflow-y-auto">
-<!-- Logo Section -->
-<div class="px-6 mb-8">
-  <!-- LEFT (Logo) -->
- <div class="flex items-center gap-3">
-  <span
-  class="hidden sm:block text-primary dark:text-primary-fixed"
-  data-en="ATHAQ DATES"
-  data-ar="أثاق للتمور"
-  style="
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #1c4d06;
-  "
->
-  ATHAQ DATES
-</span>
-</div>
-<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Factory Control</p>
-</div>
-<!-- Navigation Links -->
-<nav class="flex-1 space-y-1">
-<a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container rounded-lg px-4 py-3 mx-2 transition-transform active:scale-95" href="#">
-<span class="material-symbols-outlined fill-icon" data-icon="inventory_2">inventory_2</span>
-<span class="font-family: 'Playfair Display', serif;">Product Management</span>
-</a>
-<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-2 transition-all duration-200" href="#">
-<span class="material-symbols-outlined" data-icon="cloud_upload">cloud_upload</span>
-<span class="font-label-sm text-label-sm">Image Uploads</span>
-</a>
-</nav>
-<!-- Footer Section -->
-<div class="mt-auto pt-6 border-t border-outline-variant/20">
-<div class="px-6 mb-6">
-<a href="../index.html" target="_blank" rel="noopener noreferrer">
-    <button class="w-full bg-primary text-on-primary py-2.5 px-4 rounded-lg font-label-sm text-label-sm hover:opacity-90 transition-opacity">
-        View Website
-    </button>
-</a>
-</a>
-</div>
-<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-2 transition-all"
-   href="settings/index.html">
-
-    <span class="material-symbols-outlined">settings</span>
-    <span class="font-label-sm text-label-sm">Settings</span>
-</a>
-<a href="#" onclick="logout()">
-
-<span class="material-symbols-outlined">
-logout
-</span>
-
-Logout
-
-</a>
-</div>
-</aside>
-<!-- Main Content Area -->
-<main class="flex-1 md:ms-64 min-h-screen flex flex-col">
-<!-- Top Header for Context -->
-<header class="h-20 flex items-center justify-between px-margin-desktop bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 sticky top-0 z-30">
-<div>
- <div class="flex items-center gap-3">
-  <span
-  class="hidden sm:block text-primary dark:text-primary-fixed"
-  data-en="ATHAQ DATES"
-  data-ar="أثاق للتمور"
-  style="
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #1c4d06;
-  "
->
- Product Management
-</span>
-<!-- <Button 2 (New) -->
-   <div class="flex justify-end gap-4 p-5">
-  <div onclick="toggleLanguage()" class="w-10 h-10 rounded-full border flex items-center justify-center cursor-pointer">
-    <i class="fa-solid fa-globe"></i>
-  </div> 
-</div>
-</div>
-</header>
-<section class="p-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-gutter pb-0">
-
-        <!-- PRODUCT LIST BUTTON -->
-
-
-    </div>
-
-</section>
-  <!-- ==========================================
-         MAIN
-    =========================================== -->
-
-    <main class="w-full max-w-[1400px] mx-auto px-6 pt-2 pb-9">
-
-        <!-- ======================================
-             STATS
-        ======================================= -->
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-
-
-            <!-- TOTAL PRODUCTS -->
-
-            <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex items-center justify-between">
-
-                <div class="flex items-center justify-between">
-
-                    <div>
-
-                        <p class="text-gray-500 text-sm">
-                            Total Products
-                        </p>
-
-                        <h3
-                            id="totalProducts"
-                            class="text-3xl font-bold text-green-900 mt-2">
-
-                            0
-
-                        </h3>
-
-                    </div>
-
-
-                    <div
-                        class="w-12 h-12 rounded-xl bg-green-100 text-green-900 flex items-center justify-center">
-
-                        <span class="material-symbols-outlined text-2xl">
-                            inventory_2
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- WISHLIST -->
-
-            <div class="bg-white rounded-2xl border shadow-sm w-full overflow-x-auto">
-
-                <div class="flex items-center justify-between">
-
-                    <div>
-
-                        <p class="text-gray-500 text-sm">
-                            Wishlist
-                        </p>
-
-                        <h3
-                            id="wishlistCount"
-                            class="text-3xl font-bold text-green-900 mt-2">
-
-                            0
-
-                        </h3>
-
-                    </div>
-
-
-                    <div
-                        class="w-12 h-12 rounded-xl bg-yellow-100 text-yellow-700 flex items-center justify-center">
-
-                        <span class="material-symbols-outlined text-2xl">
-                            favorite
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- CART -->
-
-            <div class="bg-white rounded-2xl border shadow-sm w-full overflow-x-auto">
-
-                <div class="flex items-center justify-between">
-
-                    <div>
-
-                        <p class="text-gray-500 text-sm">
-                            Cart Items
-                        </p>
-
-                        <h3
-                            id="cartCount"
-                            class="text-3xl font-bold text-green-900 mt-2">
-
-                            0
-
-                        </h3>
-
-                    </div>
-
-
-                    <div
-                        class="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center">
-
-                        <span class="material-symbols-outlined text-2xl">
-                            shopping_cart
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- ======================================
-             PRODUCT TABLE
-        ======================================= -->
-
-        <div class="bg-white rounded-2xl border shadow-sm w-full overflow-x-auto">
-
-
-            <!-- TABLE HEADER -->
-
-            <div
-                class="p-6 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-
-                <div>
-
-                    <h3 class="text-xl font-bold text-green-900">
-                        Product List
-                    </h3>
-
-                    <p class="text-sm text-gray-500 mt-1">
-                        Add, edit or delete products.
-                    </p>
-
-                </div>
-
-
-                <button
-                    onclick="openAddProductModal()"
-                    class="bg-green-900 text-white px-5 py-3 rounded-lg font-semibold hover:bg-green-800 flex items-center justify-center gap-2">
-
-                    <span class="material-symbols-outlined">
-                        add
-                    </span>
-
-                    Add New Product
-
-                </button>
-
-            </div>
-
-
-
-            <!-- TABLE -->
-
-            <div class="overflow-x-auto">
-
-                <table class="w-full border-collapse">
-
-                    <!-- TABLE HEAD -->
-
-                    <thead class="bg-gray-50">
-
-                        <tr>
-
-                            <th
-                                class="text-left px-5 py-4 text-sm font-semibold text-gray-700">
-
-                                Product
-
-                            </th>
-
-
-                            <th
-                                class="text-left px-5 py-4 text-sm font-semibold text-gray-700">
-
-                                Category
-
-                            </th>
-
-
-                            <th
-                                class="text-left px-5 py-4 text-sm font-semibold text-gray-700">
-
-                                Stock
-
-                            </th>
-
-
-                            <th
-                                class="text-left px-5 py-4 text-sm font-semibold text-gray-700">
-
-                                Quality
-
-                            </th>
-
-
-                            <th
-                                class="text-left px-5 py-4 text-sm font-semibold text-gray-700">
-
-                                Price
-
-                            </th>
-
-
-                            <th
-                                class="text-right px-5 py-4 text-sm font-semibold text-gray-700">
-
-                                Actions
-
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-
-                    <!-- ==================================
-                         IMPORTANT PRODUCT LIST
-                    =================================== -->
-
-                    <tbody
-                        id="productList"
-                        class="divide-y divide-gray-100">
-
-                        <!-- JavaScript products will appear here -->
-
-                    </tbody>
-
-
-                </table>
-
-            </div>
-
-        </div>
-
-
-    </main>
-
-
-
-    <!-- ==========================================
-         ADD / EDIT PRODUCT MODAL
-    =========================================== -->
-
-    <div
-        id="addProductModal"
-        class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-
-
-        <!-- MODAL BOX -->
-
-        <div
-            class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl p-6 max-h-[90vh] overflow-y-auto">
-
-
-            <!-- HEADER -->
-
-            <div
-                class="flex justify-between items-center mb-6">
-
-                <div>
-
-                    <h2 class="text-2xl font-bold text-green-900">
-                        Add New Product
-                    </h2>
-
-                    <p class="text-gray-500 text-sm">
-                        Add product details and image
-                    </p>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    onclick="closeAddProductModal()"
-                    class="text-2xl text-gray-400 hover:text-red-500">
-
-                    ×
-
-                </button>
-
-            </div>
-
-
-
-            <!-- ======================================
-                 PRODUCT FORM
-            ======================================= -->
-
-            <form
-                id="productForm"
-                class="grid grid-cols-2 gap-4">
-
-
-                <!-- PRODUCT NAME -->
-
-                <div class="col-span-2">
-
-                    <label
-                        class="block text-sm font-semibold mb-1">
-
-                        Product Name
-
-                    </label>
-
-
-                    <input
-                        id="productName"
-                        type="text"
-                        required
-                        placeholder="e.g. Khalas Premium Dates"
-                        class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-green-700">
-
-                </div>
-
-
-
-                <!-- SKU -->
-
-                <div>
-
-                    <label
-                        class="block text-sm font-semibold mb-1">
-
-                        SKU
-
-                    </label>
-
-
-                    <input
-                        id="productSKU"
-                        type="text"
-                        required
-                        placeholder="ATH-KHL-001"
-                        class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-green-700">
-
-                </div>
-
-
-
-                <!-- CATEGORY -->
-
-                <div>
-
-                    <label
-                        class="block text-sm font-semibold mb-1">
-
-                        Category
-
-                    </label>
-
-
-                    <select
-                        id="productCategory"
-                        class="w-full border rounded-lg px-4 py-3">
-
-                        <option>
-                            Premium Dates
-                        </option>
-
-                        <option>
-                            Processed
-                        </option>
-
-                        <option>
-                            Organic Dates
-                        </option>
-
-                        <option>
-                            Fresh Dates
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-
-                <!-- PRICE -->
-
-                <div>
-
-                    <label
-                        class="block text-sm font-semibold mb-1">
-
-                        Price
-
-                    </label>
-
-
-                    <input
-                        id="productPrice"
-                        type="number"
-                        min="0"
-                        required
-                        placeholder="25"
-                        class="w-full border rounded-lg px-4 py-3">
-
-                </div>
-
-
-
-                <!-- STOCK -->
-
-                <div>
-
-                    <label
-                        class="block text-sm font-semibold mb-1">
-
-                        Stock
-
-                    </label>
-
-
-                    <input
-                        id="productStock"
-                        type="number"
-                        min="0"
-                        required
-                        placeholder="100"
-                        class="w-full border rounded-lg px-4 py-3">
-
-                </div>
-
-
-
-                <!-- QUALITY -->
-
-                <div>
-
-                    <label
-                        class="block text-sm font-semibold mb-1">
-
-                        Quality Grade
-
-                    </label>
-
-
-                    <select
-                        id="productQuality"
-                        class="w-full border rounded-lg px-4 py-3">
-
-                        <option>
-                            ★★★★★
-                        </option>
-
-                        <option>
-                            ★★★★☆
-                        </option>
-
-                        <option>
-                            ★★★☆☆
-                        </option>
-
-                        <option>
-                            ★★☆☆☆
-                        </option>
-
-                        <option>
-                            ★☆☆☆☆
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-
-                <!-- IMAGE -->
-
-                <div>
-
-                    <label
-                        class="block text-sm font-semibold mb-1">
-
-                        Product Image
-
-                    </label>
-
-
-                    <input
-                        id="productImage"
-                        type="file"
-                        accept="image/*"
-                        required
-                        class="w-full border rounded-lg px-3 py-2">
-
-                </div>
-
-
-
-                <!-- DESCRIPTION -->
-
-                <div class="col-span-2">
-
-                    <label
-                        class="block text-sm font-semibold mb-1">
-
-                        Description
-
-                    </label>
-
-
-                    <textarea
-                        id="productDescription"
-                        rows="3"
-                        placeholder="Product description..."
-                        class="w-full border rounded-lg px-4 py-3"></textarea>
-
-                </div>
-
-
-
-                <!-- BUTTONS -->
-
-                <div
-                    class="col-span-2 flex justify-end gap-3 mt-3">
-
-
-                    <button
-                        type="button"
-                        onclick="closeAddProductModal()"
-                        class="px-5 py-3 border rounded-lg hover:bg-gray-50">
-
-                        Cancel
-
-                    </button>
-
-
-                    <button
-                        type="submit"
-                        class="px-6 py-3 bg-green-900 text-white rounded-lg font-semibold hover:bg-green-800">
-
-                        Add Product
-
-                    </button>
-
-                </div>
-
-
-            </form>
-
-        </div>
-
-    </div>
-</section>
-
-</table>
-</div>
-<!-- Footer Component -->
-<footer class="w-full py-12 px-margin-desktop bg-surface-container-highest/50 border-t border-outline-variant/20 mt-auto">
-<div class="flex flex-col md:flex-row justify-between items-center gap-gutter text-on-surface-variant">
-<div class="flex flex-col items-center md:items-start">
-  <!-- LEFT (Logo) -->
- <div class="flex items-center gap-3">
-  <span
-  class="hidden sm:block text-primary dark:text-primary-fixed"
-  data-en="ATHAQ DATES"
-  data-ar="أثاق للتمور"
-  style="
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #1c4d06;
-  "
->
-  ATHAQ DATES
-</span>
-</div>
-<p class="font-label-sm text-label-sm">© 2024 Athaq Industrial Factory. All rights reserved.</p>
-</div>
-<div class="flex flex-wrap justify-center gap-gutter font-label-sm text-label-sm uppercase tracking-wide">
-<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
-<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
-<a class="hover:text-primary transition-colors" href="#">Quality Standards</a>
-</div>
-</div>
-</footer>
-</main>
-
-
-
-    <!-- ==========================================
-         SCRIPT
-    =========================================== -->
-
-    <script src="script.js"></script>
-
-
-    <!-- ==========================================
-         SMALL PAGE COUNTERS
-    =========================================== -->
+<body class="bg-[#faf9f4] text-on-surface font-sans min-h-screen flex flex-col md:flex-row antialiased">
 
     <script>
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            function () {
-
-                const wishlistCount =
-                    document.getElementById("wishlistCount");
-
-                const cartCount =
-                    document.getElementById("cartCount");
-
-
-                if (wishlistCount) {
-
-                    const wishlist =
-                        JSON.parse(
-                            localStorage.getItem("athaqWishlist")
-                        ) || [];
-
-                    wishlistCount.textContent =
-                        wishlist.length;
-                }
-
-
-                if (cartCount) {
-
-                    const cart =
-                        JSON.parse(
-                            localStorage.getItem("athaqCart")
-                        ) || [];
-
-
-                    const totalCartItems =
-                        cart.reduce(
-                            (total, item) =>
-                                total + (item.quantity || 0),
-                            0
-                        );
-
-
-                    cartCount.textContent =
-                        totalCartItems;
-                }
-
-            }
-        );
-
+        if (sessionStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "../login/index.html";
+        }
+        function logout() {
+            sessionStorage.removeItem("isLoggedIn");
+            window.location.href = "../login/index.html";
+        }
     </script>
+
+    <!-- SideNavBar Component -->
+    <aside class="hidden md:flex flex-col h-screen w-64 fixed start-0 top-0 bg-[#f5f4ef] border-e border-gray-200 shadow-sm py-6 z-40 overflow-y-auto">
+        <div class="px-6 mb-8">
+            <span class="text-primary block text-2xl font-bold tracking-wider" style="font-family: 'Playfair Display', serif; color: #1c4d06;">
+                ATHAQ DATES
+            </span>
+            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mt-1">Factory Control</p>
+        </div>
+
+        <nav class="flex-1 space-y-1 px-3">
+            <a class="flex items-center gap-3 bg-green-100 text-green-900 rounded-lg px-4 py-3 font-medium transition-all" href="#">
+                <span class="material-symbols-outlined fill-icon">inventory_2</span>
+                <span>Product Management</span>
+            </a>
+            <a class="flex items-center gap-3 text-gray-600 hover:bg-gray-200/60 rounded-lg px-4 py-3 font-medium transition-all" href="#">
+                <span class="material-symbols-outlined">cloud_upload</span>
+                <span>Image Uploads</span>
+            </a>
+        </nav>
+
+        <div class="mt-auto pt-6 border-t border-gray-200 px-3 space-y-1">
+            <div class="px-3 mb-4">
+                <a href="../index.html" target="_blank" rel="noopener noreferrer">
+                    <button class="w-full bg-[#004232] text-white py-2.5 px-4 rounded-lg text-sm font-semibold hover:bg-green-800 transition-colors">
+                        View Website
+                    </button>
+                </a>
+            </div>
+            <a class="flex items-center gap-3 text-gray-600 hover:bg-gray-200/60 rounded-lg px-4 py-3 font-medium transition-all" href="settings/index.html">
+                <span class="material-symbols-outlined">settings</span>
+                <span>Settings</span>
+            </a>
+            <a class="flex items-center gap-3 text-red-600 hover:bg-red-50 rounded-lg px-4 py-3 font-medium transition-all cursor-pointer" onclick="logout()">
+                <span class="material-symbols-outlined">logout</span>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="flex-1 md:ms-64 flex flex-col min-h-screen w-full">
+        
+        <!-- Header -->
+        <header class="h-20 flex items-center justify-between px-6 md:px-10 bg-[#faf9f4]/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-30">
+            <h1 class="text-2xl font-bold text-[#1c4d06]" style="font-family: 'Playfair Display', serif;">
+                Product Management
+            </h1>
+            
+            <div class="flex items-center gap-4">
+                <button type="button" class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i class="fa-solid fa-globe"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Content -->
+        <main class="flex-1 p-6 md:p-10 w-full space-y-8">
+
+            <!-- Clickable Stats Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <!-- Total Products Card -->
+                <div onclick="scrollToProducts()" class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex items-center justify-between cursor-pointer hover:shadow-md transition-all active:scale-[0.99]">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">Total Products</p>
+                        <h3 id="totalProducts" class="text-3xl font-bold text-green-900 mt-1">0</h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-green-50 text-green-800 flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-2xl">inventory_2</span>
+                    </div>
+                </div>
+
+                <!-- Wishlist Card -->
+                <div onclick="openWishlistModal()" class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex items-center justify-between cursor-pointer hover:shadow-md transition-all active:scale-[0.99]">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">Wishlist</p>
+                        <h3 id="wishlistCount" class="text-3xl font-bold text-green-900 mt-1">0</h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-2xl">favorite</span>
+                    </div>
+                </div>
+
+                <!-- Cart Items Card -->
+                <div onclick="openCartViewModal()" class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex items-center justify-between cursor-pointer hover:shadow-md transition-all active:scale-[0.99]">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">Cart Items</p>
+                        <h3 id="cartCount" class="text-3xl font-bold text-green-900 mt-1">0</h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-2xl">shopping_cart</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full-Width Product Table Section -->
+            <div id="productTableContainer" class="bg-white rounded-2xl border border-gray-100 shadow-sm w-full overflow-hidden transition-all duration-300">
+                <div class="p-6 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-green-900">Product List</h2>
+                        <p class="text-sm text-gray-500 mt-0.5">Manage, add, edit or remove products from inventory.</p>
+                    </div>
+                    <button type="button" onclick="openAddProductModal()" class="bg-[#004232] text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-green-800 flex items-center justify-center gap-2 transition-colors shrink-0">
+                        <span class="material-symbols-outlined text-xl">add</span>
+                        Add New Product
+                    </button>
+                </div>
+
+                <!-- Product Table -->
+                <div class="overflow-x-auto w-full">
+                    <table class="w-full border-collapse text-left min-w-[800px]">
+                        <thead class="bg-gray-50/80 border-b border-gray-100">
+                            <tr>
+                                <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Product</th>
+                                <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Category</th>
+                                <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Stock</th>
+                                <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Quality</th>
+                                <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Price</th>
+                                <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productList" class="divide-y divide-gray-100 text-sm">
+                            <!-- Rendered via script.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="w-full py-8 px-6 md:px-10 bg-[#e9e8e3]/40 border-t border-gray-200 mt-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-sm">
+                <div>
+                    <span class="font-bold text-green-900 block" style="font-family: 'Playfair Display', serif;">ATHAQ DATES</span>
+                    <p>© 2024 Athaq Industrial Factory. All rights reserved.</p>
+                </div>
+                <div class="flex flex-wrap gap-6 uppercase text-xs font-semibold tracking-wider">
+                    <a class="hover:text-green-900 transition-colors" href="#">Privacy Policy</a>
+                    <a class="hover:text-green-900 transition-colors" href="#">Terms of Service</a>
+                    <a class="hover:text-green-900 transition-colors" href="#">Quality Standards</a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- ADD / EDIT PRODUCT MODAL -->
+    <div id="addProductModal" class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl w-full max-w-lg p-6 shadow-xl relative max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4 pb-3 border-b border-gray-100">
+                <h2 class="text-2xl font-bold text-green-900">Add New Product</h2>
+                <button type="button" onclick="closeAddProductModal()" class="text-gray-400 hover:text-gray-600 text-2xl font-bold">&times;</button>
+            </div>
+            <p class="text-sm text-gray-500 -mt-3 mb-4">Add product details and image</p>
+            
+            <form id="productForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Product Name</label>
+                    <input type="text" id="productName" required class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-green-800 focus:border-green-800 text-sm">
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">SKU</label>
+                        <input type="text" id="productSKU" required class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-green-800 focus:border-green-800 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Category</label>
+                        <select id="productCategory" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-green-800 focus:border-green-800 text-sm">
+                            <option value="Premium Dates">Premium Dates</option>
+                            <option value="Processed">Processed</option>
+                            <option value="Gift Pack">Gift Pack</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Price ($)</label>
+                        <input type="number" step="0.01" id="productPrice" required class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-green-800 focus:border-green-800 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Stock</label>
+                        <input type="number" id="productStock" required class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-green-800 focus:border-green-800 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Quality</label>
+                        <select id="productQuality" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-green-800 focus:border-green-800 text-sm">
+                            <option value="★★★★★">★★★★★</option>
+                            <option value="★★★★☆">★★★★☆</option>
+                            <option value="★★★☆☆">★★★☆☆</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Description</label>
+                    <textarea id="productDescription" rows="3" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-green-800 focus:border-green-800 text-sm"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Product Image</label>
+                    <input type="file" id="productImage" accept="image/*" class="w-full border border-gray-300 rounded-lg p-2 text-sm text-gray-500">
+                </div>
+
+                <div class="pt-4 flex gap-3">
+                    <button type="button" onclick="closeAddProductModal()" class="w-1/2 py-2.5 border border-gray-300 rounded-lg text-sm font-semibold text-gray-600 hover:bg-gray-50">Cancel</button>
+                    <button type="submit" class="w-1/2 py-2.5 bg-[#004232] text-white rounded-lg text-sm font-semibold hover:bg-green-800">Add Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="script.js"></script>
-</body></html>
+</body>
+</html>

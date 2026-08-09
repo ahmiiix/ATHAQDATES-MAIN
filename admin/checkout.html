@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Checkout - ATHAQ DATES</title>
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet"/>
+    
+    <!-- Moyasar Payment Gateway Styles -->
+    <link rel="stylesheet" href="https://cdn.moyasar.com/mpf/1.14.0/moyasar.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#004232",
+                        "primary-hover": "#002e23",
+                        "accent": "#d4af37",
+                        "surface": "#faf9f4",
+                        "surface-card": "#ffffff"
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Manrope', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#faf9f4] text-gray-800 font-sans min-h-screen flex flex-col justify-between antialiased">
+
+    <!-- Header Navigation -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <span class="text-2xl font-bold font-serif text-[#004232] tracking-wider">ATHAQ DATES</span>
+            </a>
+            
+            <div class="flex items-center gap-2 text-xs md:text-sm font-semibold text-gray-500">
+                <a href="index.html" class="hover:text-[#004232] transition-colors">Store</a>
+                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                <span class="text-[#004232]">Secure Checkout</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 flex-1 w-full">
+        
+        <div class="mb-8">
+            <h1 class="text-3xl md:text-4xl font-extrabold font-serif text-[#004232]">Complete Your Order</h1>
+            <p class="text-sm text-gray-500 mt-1">Review your selected items and provide delivery info.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+            
+            <!-- Left Side: Shipping & Payment Form (7 Cols) -->
+            <div class="lg:col-span-7 space-y-6">
+                
+                <form id="checkoutForm" class="space-y-6">
+                    
+                    <!-- Customer Information -->
+                    <div class="bg-white rounded-2xl p-6 md:p-8 border border-gray-200/80 shadow-sm">
+                        <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
+                            <span class="w-8 h-8 rounded-full bg-[#004232] text-white flex items-center justify-center font-bold text-sm">1</span>
+                            <h2 class="text-xl font-bold text-gray-900">Customer Details</h2>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Full Name *</label>
+                                <input type="text" id="custName" required placeholder="John Doe" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-[#004232] focus:border-[#004232] outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Phone Number *</label>
+                                <input type="text" id="custPhone" required placeholder="+966 50 000 0000" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-[#004232] focus:border-[#004232] outline-none">
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Email Address (Optional)</label>
+                                <input type="email" id="custEmail" placeholder="john@example.com" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-[#004232] focus:border-[#004232] outline-none">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Address -->
+                    <div class="bg-white rounded-2xl p-6 md:p-8 border border-gray-200/80 shadow-sm">
+                        <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
+                            <span class="w-8 h-8 rounded-full bg-[#004232] text-white flex items-center justify-center font-bold text-sm">2</span>
+                            <h2 class="text-xl font-bold text-gray-900">Shipping Address</h2>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Street Address *</label>
+                                <input type="text" id="custAddress" required placeholder="Building No, District, Street" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-[#004232] focus:border-[#004232] outline-none">
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-gray-600 mb-1">City *</label>
+                                    <input type="text" id="custCity" required placeholder="Riyadh / Jeddah" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-[#004232] focus:border-[#004232] outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Postal Code</label>
+                                    <input type="text" id="custPostal" placeholder="12211" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-[#004232] focus:border-[#004232] outline-none">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Method Selection -->
+                    <div class="bg-white rounded-2xl p-6 md:p-8 border border-gray-200/80 shadow-sm">
+                        <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
+                            <span class="w-8 h-8 rounded-full bg-[#004232] text-white flex items-center justify-center font-bold text-sm">3</span>
+                            <h2 class="text-xl font-bold text-gray-900">Payment Method</h2>
+                        </div>
+
+                        <div class="space-y-3">
+                            <!-- Card / MADA Option -->
+                            <label class="flex items-center justify-between p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-[#004232] transition-all bg-gray-50/50">
+                                <div class="flex items-center gap-3">
+                                    <input type="radio" name="paymentMethod" value="CARD" checked onchange="togglePaymentMethod('CARD')" class="text-[#004232] focus:ring-[#004232]">
+                                    <div>
+                                        <span class="font-bold text-sm text-gray-900 block">Credit Card / MADA / Apple Pay</span>
+                                        <span class="text-xs text-gray-500">Pay securely using your bank card</span>
+                                    </div>
+                                </div>
+                                <div class="flex gap-1 text-[#004232]">
+                                    <i class="fa-solid fa-credit-card text-xl"></i>
+                                </div>
+                            </label>
+
+                            <!-- COD Option -->
+                            <label class="flex items-center justify-between p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-[#004232] transition-all bg-gray-50/50">
+                                <div class="flex items-center gap-3">
+                                    <input type="radio" name="paymentMethod" value="COD" onchange="togglePaymentMethod('COD')" class="text-[#004232] focus:ring-[#004232]">
+                                    <div>
+                                        <span class="font-bold text-sm text-gray-900 block">Cash on Delivery (COD)</span>
+                                        <span class="text-xs text-gray-500">Pay cash upon delivery</span>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-money-bill-wave text-green-700 text-xl"></i>
+                            </label>
+                        </div>
+
+                        <!-- Card Inputs Container -->
+                        <div id="cardPaymentContainer" class="mt-6 pt-4 border-t border-gray-100 space-y-4">
+                            <p class="text-xs font-semibold text-gray-500"><i class="fa-solid fa-lock text-green-600"></i> Encrypted 256-Bit Card Checkout</p>
+                            
+                            <!-- Moyasar SDK mount point -->
+                            <div class="mysr-form"></div>
+
+                            <!-- Native Fallback Inputs (Shows if SDK Key is Pending) -->
+                            <div id="customCardFields" class="space-y-3">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-600 mb-1">Cardholder Name</label>
+                                    <input type="text" id="cardHolderName" placeholder="Name on Card" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-[#004232] outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-600 mb-1">Card Number</label>
+                                    <input type="text" id="cardNumber" maxlength="19" placeholder="4000 0000 0000 0000" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-[#004232] outline-none">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-600 mb-1">Expiry (MM/YY)</label>
+                                        <input type="text" id="cardExpiry" maxlength="5" placeholder="MM/YY" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-[#004232] outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-600 mb-1">CVV / CVC</label>
+                                        <input type="password" id="cardCvv" maxlength="4" placeholder="123" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-[#004232] outline-none">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Confirm Order Button -->
+                    <button type="submit" id="submitOrderBtn" class="flex w-full bg-[#004232] text-white py-4 px-6 rounded-2xl font-bold text-base hover:bg-[#002e23] transition-all shadow-lg shadow-[#004232]/20 items-center justify-center gap-3 cursor-pointer">
+                        <i class="fa-solid fa-lock"></i>
+                        <span id="submitBtnText">Confirm & Pay with Card</span>
+                    </button>
+                </form>
+
+            </div>
+
+            <!-- Right Side: Order Summary (5 Cols) -->
+            <div class="lg:col-span-5">
+                <div class="bg-white rounded-2xl p-6 md:p-8 border border-gray-200/80 shadow-sm sticky top-28">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 pb-3 border-b border-gray-100">Order Summary</h3>
+                    
+                    <div id="checkoutItemsList" class="divide-y divide-gray-100 max-h-80 overflow-y-auto mb-6">
+                        <!-- Items rendered via JS -->
+                    </div>
+
+                    <div class="space-y-3 pt-4 border-t border-gray-100 text-sm">
+                        <div class="flex justify-between text-gray-600">
+                            <span>Subtotal</span>
+                            <span id="summarySubtotal" class="font-semibold text-gray-900">SAR 0.00</span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>Shipping Standard</span>
+                            <span class="font-semibold text-green-700">FREE</span>
+                        </div>
+                        <div class="flex justify-between text-lg font-extrabold text-gray-900 pt-3 border-t border-gray-200">
+                            <span>Total Amount</span>
+                            <span id="summaryTotal" class="text-[#004232]">SAR 0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Success Order Invoice Modal -->
+    <div id="orderSuccessModal" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl w-full max-w-md p-6 md:p-8 text-center shadow-2xl relative">
+            <div class="w-16 h-16 bg-green-100 text-green-800 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            
+            <h2 class="text-2xl font-extrabold font-serif text-[#004232] mb-1">Order Placed Successfully!</h2>
+            <p class="text-xs text-gray-500 mb-6">Order Reference: <span id="invoiceId" class="font-mono font-bold text-gray-800">#ATH-0000</span></p>
+
+            <div class="bg-gray-50 rounded-2xl p-4 text-left text-xs space-y-2 mb-6 border border-gray-100">
+                <div class="flex justify-between">
+                    <span class="text-gray-500">Customer Name:</span>
+                    <span id="invName" class="font-bold text-gray-800">---</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-500">Phone:</span>
+                    <span id="invPhone" class="font-bold text-gray-800">---</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-500">Address:</span>
+                    <span id="invAddress" class="font-bold text-gray-800 truncate max-w-[180px]">---</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-500">Payment Status:</span>
+                    <span id="invStatus" class="font-bold text-green-700">Paid (Online Card)</span>
+                </div>
+                <div class="flex justify-between pt-2 border-t border-gray-200 font-bold text-sm">
+                    <span class="text-gray-700">Total Paid:</span>
+                    <span id="invTotal" class="text-[#004232]">SAR 0.00</span>
+                </div>
+            </div>
+
+            <button type="button" onclick="finishOrder()" class="w-full bg-[#004232] text-white py-3.5 rounded-xl font-bold text-sm hover:bg-[#002e23] transition-colors cursor-pointer">
+                Back to Store
+            </button>
+        </div>
+    </div>
+
+    <!-- Moyasar Payment Gateway JavaScript SDK -->
+    <script src="https://cdn.moyasar.com/mpf/1.14.0/moyasar.js"></script>
+    <!-- JavaScript File -->
+    <script src="checkout.js"></script>
+</body>
+</html>

@@ -1,478 +1,323 @@
 // ==========================================
-// ATHAQ DATES - PRODUCT MANAGEMENT SYSTEM
+// ATHAQ ADMIN DASHBOARD - SCRIPT ENGINE (UPDATED)
 // ==========================================
 
 let products = JSON.parse(localStorage.getItem("athaqProducts")) || [];
-let wishlist = JSON.parse(localStorage.getItem("athaqWishlist")) || [];
-let cart = JSON.parse(localStorage.getItem("athaqCart")) || [];
+let editingIndex = null;
 
-let editingProductId = null;
+// Page load initialization
+document.addEventListener("DOMContentLoaded", function () {
+    renderProducts();
+    updateStats();
+    
+    const form = document.getElementById("productForm");
+    if (form) {
+        form.addEventListener("submit", handleFormSubmit);
+    }
+});
 
-
-// ==========================================
-// ADD PRODUCT MODAL
-// ==========================================
-
+// 1. ADD / EDIT MODAL OPEN FUNCTION
 function openAddProductModal() {
-    editingProductId = null;
-    const modal = document.getElementById("addProductModal");
+    editingIndex = null; // Reset edit mode
+    
+    const modalTitle = document.getElementById("modalTitle");
+    const submitBtn = document.getElementById("submitBtn");
+    if (modalTitle) modalTitle.textContent = "Add New Product";
+    if (submitBtn) submitBtn.textContent = "Add Product";
 
-    if (!modal) return;
-
-    modal.classList.remove("hidden");
-    modal.classList.add("flex");
-
+    // Clear Form Fields
     const form = document.getElementById("productForm");
     if (form) form.reset();
 
-    const heading = modal.querySelector("h2");
-    const description = modal.querySelector("h2 + p");
-    const submitButton = modal.querySelector('button[type="submit"]');
-
-    if (heading) heading.textContent = "Add New Product";
-    if (description) description.textContent = "Add product details and image";
-    if (submitButton) submitButton.textContent = "Add Product";
-
-    const imageInput = document.getElementById("productImage");
-    if (imageInput) imageInput.required = true;
+    // Show Modal
+    const modal = document.getElementById("addProductModal");
+    if (modal) {
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+    }
 }
 
-
-// ==========================================
-// CLOSE ADD / EDIT PRODUCT MODAL
-// ==========================================
-
+// 2. CLOSE MODAL FUNCTION
 function closeAddProductModal() {
     const modal = document.getElementById("addProductModal");
-    if (!modal) return;
-
-    modal.classList.add("hidden");
-    modal.classList.remove("flex");
-
-    editingProductId = null;
-
-    const form = document.getElementById("productForm");
-    if (form) form.reset();
-
-    const heading = modal.querySelector("h2");
-    const description = modal.querySelector("h2 + p");
-    const submitButton = modal.querySelector('button[type="submit"]');
-
-    if (heading) heading.textContent = "Add New Product";
-    if (description) description.textContent = "Add product details and image";
-    if (submitButton) submitButton.textContent = "Add Product";
-
-    const imageInput = document.getElementById("productImage");
-    if (imageInput) imageInput.required = true;
+    if (modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+    }
 }
 
-
-// ==========================================
-// ADD / EDIT PRODUCT FORM SUBMIT
-// ==========================================
-
-document.getElementById("productForm")?.addEventListener("submit", function (e) {
+// 3. HANDLE FORM SUBMIT (ADD / EDIT LOGIC)
+function handleFormSubmit(e) {
     e.preventDefault();
 
-    const name = document.getElementById("productName").value.trim();
-    const sku = document.getElementById("productSKU").value.trim();
-    const category = document.getElementById("productCategory").value;
-    const price = Number(document.getElementById("productPrice").value);
-    const stock = Number(document.getElementById("productStock").value);
-    const quality = document.getElementById("productQuality").value;
-    const description = document.getElementById("productDescription").value.trim();
+    const name = document.getElementById("productName")?.value || "";
+    const sku = document.getElementById("productSKU")?.value || "";
+    const category = document.getElementById("productCategory")?.value || "";
+    const price = document.getElementById("productPrice")?.value || 0;
+    const stock = document.getElementById("productStock")?.value || 0;
+    const quality = document.getElementById("productQuality")?.value || "★★★★★";
+    const description = document.getElementById("productDescription")?.value || "";
     const imageInput = document.getElementById("productImage");
-    const imageFile = imageInput?.files[0];
 
-    // EDIT EXISTING PRODUCT
-    if (editingProductId !== null) {
-        const product = products.find(p => p.id === editingProductId);
-
-        if (!product) {
-            alert("Product not found.");
-            return;
-        }
-
-        product.name = name;
-        product.sku = sku;
-        product.category = category;
-        product.price = price;
-        product.stock = stock;
-        product.quality = quality;
-        product.description = description;
-
-        if (imageFile) {
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                product.image = event.target.result;
-                saveProducts();
-                document.getElementById("productForm").reset();
-                closeAddProductModal();
-                renderProducts();
-                alert("Product updated successfully!");
-            };
-            reader.readAsDataURL(imageFile);
-            return;
-        }
-
-        saveProducts();
-        document.getElementById("productForm").reset();
-        closeAddProductModal();
-        renderProducts();
-        alert("Product updated successfully!");
-        return;
-    }
-
-    // ADD NEW PRODUCT
-    if (!imageFile) {
-        alert("Please select a product image.");
-        return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = function (event) {
-        const newProduct = {
-            id: Date.now(),
+    const processProductData = (imageUrl) => {
+        const productData = {
+            id: editingIndex !== null ? products[editingIndex].id : Date.now(),
             name: name,
             sku: sku,
             category: category,
-            price: price,
-            stock: stock,
+            price: parseFloat(price),
+            stock: parseInt(stock),
             quality: quality,
             description: description,
-            image: event.target.result,
-            createdAt: new Date().toISOString()
+            image: imageUrl || (editingIndex !== null ? products[editingIndex].image : "https://via.placeholder.com/150")
         };
 
-        products.push(newProduct);
-        saveProducts();
-        document.getElementById("productForm").reset();
-        closeAddProductModal();
+        if (editingIndex !== null) {
+            products[editingIndex] = productData;
+        } else {
+            products.unshift(productData);
+        }
+
+        // Save to LocalStorage
+        localStorage.setItem("athaqProducts", JSON.stringify(products));
+
+        // Refresh UI
         renderProducts();
-        alert("Product added successfully!");
+        updateStats();
+        closeAddProductModal();
     };
 
-    reader.readAsDataURL(imageFile);
-});
-
-
-// ==========================================
-// SAVE PRODUCTS
-// ==========================================
-
-function saveProducts() {
-    localStorage.setItem("athaqProducts", JSON.stringify(products));
-}
-
-
-// ==========================================
-// EDIT PRODUCT
-// ==========================================
-
-function editProduct(id) {
-    const product = products.find(p => p.id === id);
-    if (!product) {
-        alert("Product not found.");
-        return;
-    }
-
-    editingProductId = id;
-    const modal = document.getElementById("addProductModal");
-    if (!modal) return;
-
-    modal.classList.remove("hidden");
-    modal.classList.add("flex");
-
-    const heading = modal.querySelector("h2");
-    const description = modal.querySelector("h2 + p");
-    const submitButton = modal.querySelector('button[type="submit"]');
-
-    if (heading) heading.textContent = "Edit Product";
-    if (description) description.textContent = "Update product details and image";
-    if (submitButton) submitButton.textContent = "Update Product";
-
-    document.getElementById("productName").value = product.name || "";
-    document.getElementById("productSKU").value = product.sku || "";
-    document.getElementById("productCategory").value = product.category || "Premium Dates";
-    document.getElementById("productPrice").value = product.price ?? "";
-    document.getElementById("productStock").value = product.stock ?? "";
-    document.getElementById("productQuality").value = product.quality || "★★★★★";
-    document.getElementById("productDescription").value = product.description || "";
-
-    const imageInput = document.getElementById("productImage");
-    if (imageInput) {
-        imageInput.required = false;
-        imageInput.value = "";
+    // Handle Image File Conversion
+    if (imageInput && imageInput.files && imageInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            processProductData(e.target.result);
+        };
+        reader.readAsDataURL(imageInput.files[0]);
+    } else {
+        processProductData(null);
     }
 }
 
-
-// ==========================================
-// RENDER PRODUCTS
-// ==========================================
-
+// 4. RENDER PRODUCTS TABLE
 function renderProducts() {
-    const container = document.getElementById("productList");
-
-    if (!container) {
-        updateProductCount();
-        return;
-    }
-
-    container.innerHTML = "";
+    const tbody = document.getElementById("productList");
+    if (!tbody) return;
 
     if (products.length === 0) {
-        container.innerHTML = `
+        tbody.innerHTML = `
             <tr>
-                <td colspan="6" class="text-center py-12 text-gray-400">
-                    No products added yet.
+                <td colspan="6" class="px-6 py-8 text-center text-gray-400 font-medium">
+                    No products added yet. Click "Add New Product" to get started.
                 </td>
             </tr>
         `;
-        updateProductCount();
         return;
     }
 
-    products.forEach(product => {
-        const stock = Number(product.stock) || 0;
-        const stockColor = stock <= 10 ? "bg-red-600" : "bg-green-900";
-
-        const row = document.createElement("tr");
-        row.className = "border-b hover:bg-gray-50 transition-colors";
-
-        row.innerHTML = `
-            <!-- PRODUCT -->
-            <td class="px-6 py-5">
-                <div class="flex items-center gap-4">
-                    <img
-                        src="${product.image || ""}"
-                        class="w-14 h-14 rounded-xl object-cover border shadow-sm"
-                        alt="${escapeHTML(product.name)}">
-                    <div>
-                        <div class="font-bold text-gray-900 text-base">
-                            ${escapeHTML(product.name)}
-                        </div>
-                        <div class="text-xs text-gray-500 font-medium">
-                            SKU: ${escapeHTML(product.sku)}
-                        </div>
-                    </div>
+    tbody.innerHTML = products.map((product, index) => `
+        <tr class="hover:bg-gray-50/50 transition-colors">
+            <td class="px-6 py-4 flex items-center gap-3">
+                <img src="${product.image}" class="w-12 h-12 rounded-lg object-cover border border-gray-200" alt="${escapeHTML(product.name)}">
+                <div>
+                    <div class="font-bold text-gray-800">${escapeHTML(product.name)}</div>
+                    <div class="text-xs text-gray-400">SKU: ${escapeHTML(product.sku)}</div>
                 </div>
             </td>
-
-            <!-- CATEGORY -->
-            <td class="px-6 py-5">
-                <span class="px-3.5 py-1.5 rounded-full bg-green-100 text-green-800 text-xs font-semibold">
-                    ${escapeHTML(product.category)}
-                </span>
+            <td class="px-6 py-4 text-gray-600">${escapeHTML(product.category)}</td>
+            <td class="px-6 py-4 font-semibold ${product.stock > 0 ? 'text-green-700' : 'text-red-600'}">
+                ${product.stock > 0 ? product.stock + ' in stock' : 'Out of Stock'}
             </td>
+            <td class="px-6 py-4 text-amber-500">${product.quality}</td>
+            <td class="px-6 py-4 font-bold text-green-900">$${Number(product.price).toFixed(2)}</td>
+            <td class="px-6 py-4 text-right space-x-1 whitespace-nowrap">
+                <button onclick="adminBuyNow(${index})" title="Buy Now" class="bg-emerald-700 hover:bg-emerald-800 text-white px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all inline-flex items-center gap-1 cursor-pointer">
+                    <i class="fa-solid fa-bolt"></i> Buy
+                </button>
 
-            <!-- STOCK -->
-            <td class="px-6 py-5">
-                <div class="flex items-center gap-3">
-                    <div class="w-24 h-2.5 bg-gray-200 rounded-full overflow-hidden">
-                        <div
-                            class="${stockColor} h-full"
-                            style="width:${Math.min(stock, 100)}%">
-                        </div>
-                    </div>
-                    <span class="text-sm font-semibold text-gray-700">
-                        ${stock}
-                    </span>
-                </div>
+                <button onclick="adminAddToWishlist(${index})" title="Add to Wishlist" class="bg-amber-100 hover:bg-amber-200 text-amber-800 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all inline-flex items-center gap-1 cursor-pointer">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+
+                <button onclick="editProduct(${index})" title="Edit Product" class="bg-blue-50 hover:bg-blue-100 text-blue-700 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer">
+                    Edit
+                </button>
+
+                <button onclick="deleteProduct(${index})" title="Delete Product" class="bg-red-50 hover:bg-red-100 text-red-600 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer">
+                    Delete
+                </button>
             </td>
-
-            <!-- QUALITY -->
-            <td class="px-6 py-5 text-yellow-500 text-base">
-                ${escapeHTML(product.quality)}
-            </td>
-
-            <!-- PRICE -->
-            <td class="px-6 py-5 font-bold text-gray-900 text-base">
-                $${Number(product.price || 0).toFixed(2)}
-            </td>
-
-            <!-- ACTIONS -->
-            <td class="px-6 py-5">
-                <div class="flex gap-2.5 justify-end items-center">
-                    <!-- EDIT -->
-                    <button
-                        onclick="editProduct(${product.id})"
-                        title="Edit Product"
-                        class="px-3 py-2 border border-blue-200 text-blue-600 rounded-lg hover:bg-blue-50 transition-all">
-                        ✏️
-                    </button>
-
-                    <!-- WISHLIST -->
-                    <button
-                        onclick="addToWishlist(${product.id})"
-                        title="Wishlist"
-                        class="px-3 py-2 border border-gray-200 rounded-lg hover:bg-yellow-50 transition-all">
-                        ♡
-                    </button>
-
-                    <!-- BUY -->
-                    <button
-                        onclick="buyNow(${product.id})"
-                        class="px-4 py-2 bg-green-900 text-white font-medium rounded-lg hover:bg-green-800 transition-all">
-                        Buy
-                    </button>
-
-                    <!-- DELETE -->
-                    <button
-                        onclick="deleteProduct(${product.id})"
-                        title="Delete Product"
-                        class="px-3 py-2 border border-red-200 text-red-600 rounded-lg hover:bg-red-50 transition-all">
-                        🗑
-                    </button>
-                </div>
-            </td>
-        `;
-
-        container.appendChild(row);
-    });
-
-    updateProductCount();
+        </tr>
+    `).join("");
 }
 
+// 5. BUY NOW ACTION
+function adminBuyNow(index) {
+    const product = products[index];
 
-// ==========================================
-// ESCAPE HTML
-// ==========================================
+    if (Number(product.stock || 0) <= 0) {
+        alert("This item is out of stock!");
+        return;
+    }
 
-function escapeHTML(value) {
+    const itemToBuy = [{
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        sku: product.sku,
+        quantity: 1
+    }];
+
+    localStorage.setItem("athaqCart", JSON.stringify(itemToBuy));
+
+    // Redirect to Checkout (Relative Path Adjusted)
+    window.location.href = "/admin/checkout.html"; 
+}
+
+// 6. ADD TO WISHLIST ACTION
+function adminAddToWishlist(index) {
+    const product = products[index];
+    let wishlist = JSON.parse(localStorage.getItem("athaqWishlist")) || [];
+
+    const exists = wishlist.some(item => String(item.id) === String(product.id));
+
+    if (!exists) {
+        wishlist.push(product);
+        localStorage.setItem("athaqWishlist", JSON.stringify(wishlist));
+        updateStats();
+        alert(`"${product.name}" added to Wishlist!`);
+    } else {
+        alert(`"${product.name}" is already in Wishlist!`);
+    }
+}
+
+// 7. EDIT PRODUCT FUNCTION
+function editProduct(index) {
+    editingIndex = index;
+    const prod = products[index];
+
+    if (document.getElementById("productName")) document.getElementById("productName").value = prod.name;
+    if (document.getElementById("productSKU")) document.getElementById("productSKU").value = prod.sku;
+    if (document.getElementById("productCategory")) document.getElementById("productCategory").value = prod.category;
+    if (document.getElementById("productPrice")) document.getElementById("productPrice").value = prod.price;
+    if (document.getElementById("productStock")) document.getElementById("productStock").value = prod.stock;
+    if (document.getElementById("productQuality")) document.getElementById("productQuality").value = prod.quality;
+    if (document.getElementById("productDescription")) document.getElementById("productDescription").value = prod.description || "";
+
+    const modalTitle = document.getElementById("modalTitle");
+    const submitBtn = document.getElementById("submitBtn");
+    if (modalTitle) modalTitle.textContent = "Edit Product";
+    if (submitBtn) submitBtn.textContent = "Save Changes";
+
+    const modal = document.getElementById("addProductModal");
+    if (modal) {
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+    }
+}
+
+// 8. DELETE PRODUCT FUNCTION
+function deleteProduct(index) {
+    if (confirm("Are you sure you want to delete this product?")) {
+        products.splice(index, 1);
+        localStorage.setItem("athaqProducts", JSON.stringify(products));
+        renderProducts();
+        updateStats();
+    }
+}
+
+// 9. STATS & MODAL CONTROLLERS
+function updateStats() {
+    const totalElem = document.getElementById("totalProducts");
+    if (totalElem) totalElem.textContent = products.length;
+
+    const cartItems = JSON.parse(localStorage.getItem("athaqCart")) || [];
+    const wishlistItems = JSON.parse(localStorage.getItem("athaqWishlist")) || [];
+
+    const cartElem = document.getElementById("cartCount");
+    const wishElem = document.getElementById("wishlistCount");
+
+    if (cartElem) cartElem.textContent = cartItems.length;
+    if (wishElem) wishElem.textContent = wishlistItems.length;
+}
+
+function scrollToProducts() {
+    const table = document.getElementById("productTableContainer");
+    if (table) {
+        table.scrollIntoView({ behavior: 'smooth' });
+        table.classList.add("highlight-table");
+        setTimeout(() => table.classList.remove("highlight-table"), 1500);
+    }
+}
+
+function openWishlistModal() {
+    const modal = document.getElementById("wishlistModal");
+    const container = document.getElementById("wishlistContainer");
+    const wishlist = JSON.parse(localStorage.getItem("athaqWishlist")) || [];
+
+    if (container) {
+        container.innerHTML = wishlist.length ? wishlist.map(item => `
+            <div class="p-3 border rounded-lg flex justify-between items-center bg-gray-50">
+                <div class="flex items-center gap-3">
+                    <img src="${item.image || 'https://via.placeholder.com/40'}" class="w-10 h-10 rounded object-cover border border-gray-200">
+                    <span class="font-bold text-gray-800">${escapeHTML(item.name)}</span>
+                </div>
+                <span class="text-green-800 font-bold">$${Number(item.price).toFixed(2)}</span>
+            </div>
+        `).join('') : '<p class="text-gray-400 text-center py-4">No wishlist items</p>';
+    }
+
+    if (modal) {
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+    }
+}
+
+function closeWishlistModal() {
+    const modal = document.getElementById("wishlistModal");
+    if (modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+    }
+}
+
+function openCartViewModal() {
+    const modal = document.getElementById("cartModal");
+    const container = document.getElementById("cartContainer");
+    const cart = JSON.parse(localStorage.getItem("athaqCart")) || [];
+
+    if (container) {
+        container.innerHTML = cart.length ? cart.map(item => `
+            <div class="p-3 border rounded-lg flex justify-between items-center bg-gray-50">
+                <div class="flex items-center gap-3">
+                    <img src="${item.image || 'https://via.placeholder.com/40'}" class="w-10 h-10 rounded object-cover border border-gray-200">
+                    <div>
+                        <div class="font-bold text-gray-800">${escapeHTML(item.name)}</div>
+                        <div class="text-xs text-gray-500">Qty: ${item.quantity || 1}</div>
+                    </div>
+                </div>
+                <span class="text-green-800 font-bold">$${Number(item.price).toFixed(2)}</span>
+            </div>
+        `).join('') : '<p class="text-gray-400 text-center py-4">Cart is empty</p>';
+    }
+
+    if (modal) {
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+    }
+}
+
+function closeCartModal() {
+    const modal = document.getElementById("cartModal");
+    if (modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+    }
+}
+
+function escapeHTML(str) {
     const div = document.createElement("div");
-    div.textContent = value ?? "";
+    div.textContent = str ?? "";
     return div.innerHTML;
 }
-
-
-// ==========================================
-// DELETE PRODUCT
-// ==========================================
-
-function deleteProduct(id) {
-    if (!confirm("Are you sure you want to delete this product?")) return;
-
-    products = products.filter(p => p.id !== id);
-    saveProducts();
-    renderProducts();
-}
-
-
-// ==========================================
-// WISHLIST & CART & CHECKOUT
-// ==========================================
-
-function addToWishlist(id) {
-    const product = products.find(p => p.id === id);
-    if (!product) return;
-
-    if (wishlist.some(item => item.id === id)) {
-        alert("Product is already in your wishlist.");
-        return;
-    }
-
-    wishlist.push(product);
-    localStorage.setItem("athaqWishlist", JSON.stringify(wishlist));
-    alert("Product added to wishlist ❤️");
-}
-
-function buyNow(id) {
-    const product = products.find(p => p.id === id);
-    if (!product) return;
-
-    if (product.stock <= 0) {
-        alert("This product is out of stock.");
-        return;
-    }
-
-    cart = [{ ...product, quantity: 1 }];
-    localStorage.setItem("athaqCart", JSON.stringify(cart));
-    openCheckout();
-}
-
-function openCheckout() {
-    const existingModal = document.getElementById("checkoutModal");
-    if (existingModal) existingModal.remove();
-
-    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const items = cart.map(item => `
-        <div class="flex items-center gap-3 border-b py-3">
-            <img src="${item.image}" class="w-14 h-14 rounded-lg object-cover">
-            <div class="flex-1">
-                <div class="font-semibold">${escapeHTML(item.name)}</div>
-                <div class="text-sm text-gray-500">Quantity: ${item.quantity}</div>
-            </div>
-            <div class="font-semibold">$${(item.price * item.quantity).toFixed(2)}</div>
-        </div>
-    `).join("");
-
-    const checkoutHTML = `
-        <div id="checkoutModal" class="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4">
-            <div class="bg-white rounded-2xl w-full max-w-lg p-6">
-                <div class="flex justify-between items-center mb-5">
-                    <h2 class="text-2xl font-bold text-green-900">Checkout</h2>
-                    <button onclick="closeCheckout()" class="text-2xl">&times;</button>
-                </div>
-                <div class="max-h-60 overflow-y-auto">${items}</div>
-                <div class="flex justify-between text-xl font-bold mt-5">
-                    <span>Total</span>
-                    <span class="text-green-900">$${total.toFixed(2)}</span>
-                </div>
-                <div class="mt-5 space-y-3">
-                    <input id="customerName" placeholder="Full Name" class="w-full border rounded-lg px-4 py-3">
-                    <input id="customerPhone" placeholder="Phone Number" class="w-full border rounded-lg px-4 py-3">
-                    <input id="customerAddress" placeholder="Delivery Address" class="w-full border rounded-lg px-4 py-3">
-                </div>
-                <button onclick="placeOrder()" class="w-full mt-5 bg-green-900 text-white py-3 rounded-lg font-bold">
-                    Confirm Order
-                </button>
-            </div>
-        </div>
-    `;
-
-    document.body.insertAdjacentHTML("beforeend", checkoutHTML);
-}
-
-function closeCheckout() {
-    document.getElementById("checkoutModal")?.remove();
-}
-
-function placeOrder() {
-    const name = document.getElementById("customerName")?.value.trim();
-    const phone = document.getElementById("customerPhone")?.value.trim();
-    const address = document.getElementById("customerAddress")?.value.trim();
-
-    if (!name || !phone || !address) {
-        alert("Please complete all checkout fields.");
-        return;
-    }
-
-    cart.forEach(cartItem => {
-        const product = products.find(p => p.id === cartItem.id);
-        if (product) {
-            product.stock = Math.max(0, product.stock - cartItem.quantity);
-        }
-    });
-
-    saveProducts();
-    cart = [];
-    localStorage.removeItem("athaqCart");
-    closeCheckout();
-    renderProducts();
-    alert("Order placed successfully! Thank you for shopping with ATHAQ DATES.");
-}
-
-function updateProductCount() {
-    const count = document.getElementById("totalProducts");
-    if (count) count.textContent = products.length;
-}
-
-// ==========================================
-// INITIAL LOAD
-// ==========================================
-
-document.addEventListener("DOMContentLoaded", function () {
-    renderProducts();
-    updateProductCount();
-});

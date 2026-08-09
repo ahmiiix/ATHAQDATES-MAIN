@@ -1,361 +1,524 @@
 <!DOCTYPE html>
+<html class="scroll-smooth" dir="ltr" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>ATHAQ | Nature's Finest, Crafted with Excellence</title>
 
-<html class="scroll-smooth" dir="ltr" lang="en"><head> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ATHAQ | Nature's Finest, Crafted with Excellence</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&ampfamily=IBM+Plex+Sans:wght@600&ampfamily=Be+Vietnam+Pro:wght@600;700&ampdisplay=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&ampdisplay=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&ampdisplay=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "on-tertiary-fixed": "#241a00",
-                    "error-container": "#ffdad6",
-                    "secondary": "#3e6653",
-                    "on-error-container": "#93000a",
-                    "on-surface-variant": "#3f4944",
-                    "secondary-container": "#c0edd4",
-                    "on-primary-container": "#88d2b6",
-                    "on-secondary-fixed": "#002114",
-                    "inverse-primary": "#8bd5b9",
-                    "surface-container-lowest": "#ffffff",
-                    "secondary-fixed": "#c0edd4",
-                    "on-tertiary": "#ffffff",
-                    "on-secondary-fixed-variant": "#264e3c",
-                    "surface": "#faf9f4",
-                    "on-tertiary-fixed-variant": "#574500",
-                    "tertiary-fixed-dim": "#e9c349",
-                    "on-secondary-container": "#446d59",
-                    "outline": "#6f7974",
-                    "on-error": "#ffffff",
-                    "on-primary": "#ffffff",
-                    "surface-bright": "#faf9f4",
-                    "outline-variant": "#bec9c3",
-                    "on-primary-fixed-variant": "#00513d",
-                    "on-secondary": "#ffffff",
-                    "error": "#ba1a1a",
-                    "on-tertiary-container": "#4f3e00",
-                    "inverse-surface": "#30312e",
-                    "tertiary-fixed": "#ffe088",
-                    "surface-variant": "#e3e3de",
-                    "surface-tint": "#1b6a53",
-                    "primary-fixed": "#a6f2d4",
-                    "surface-container-low": "#f5f4ef",
-                    "inverse-on-surface": "#f2f1ec",
-                    "background": "#faf9f4",
-                    "surface-dim": "#dbdad5",
-                    "surface-container": "#efeee9",
-                    "surface-container-high": "#e9e8e3",
-                    "on-primary-fixed": "#002117",
-                    "tertiary-container": "#cca830",
-                    "tertiary": "#735c00",
-                    "on-surface": "#1b1c19",
-                    "secondary-fixed-dim": "#a5d0b8",
-                    "primary": "#004232",
-                    "on-background": "#1b1c19",
-                    "primary-container": "#005c46",
-                    "surface-container-highest": "#e3e3de",
-                    "primary-fixed-dim": "#8bd5b9"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.125rem",
-                    "lg": "0.25rem",
-                    "xl": "0.5rem",
-                    "full": "0.75rem"
-            },
-            "spacing": {
-                    "section-gap": "120px",
-                    "unit": "8px",
-                    "container-max": "1280px",
-                    "margin-mobile": "16px",
-                    "margin-desktop": "64px",
-                    "gutter": "24px"
-            },
-            "fontFamily": {
-                    "body-md": ["Manrope"],
-                    "label-sm": ["IBM Plex Sans"],
-                    "headline-md": ["Be Vietnam Pro"],
-                    "body-lg": ["Manrope"],
-                    "display-lg-mobile": ["Be Vietnam Pro"],
-                    "display-lg": ["Be Vietnam Pro"]
-            },
-            "fontSize": {
-                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
-                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
-            }
-          },
-        },
-      }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .hero-overlay {
-            background: linear-gradient(rgba(0, 66, 50, 0.4), rgba(0, 66, 50, 0.7));
-        }
-        .glass-panel {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        [dir="rtl"] .rtl-mirror {
-            transform: scaleX(-1);
-        }
-    </style> 
-      <!-- Font Awesome (Share Icon ke liye) -->
+  <!-- Icons & Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
-  <!-- CSS File -->
-  <link rel="stylesheet" href="style.css">
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#004232",
+            "primary-hover": "#002e23",
+            "secondary": "#3e6653",
+            "surface": "#faf9f4",
+            "on-surface-variant": "#3f4944",
+            "outline-variant": "#bec9c3",
+            "secondary-container": "#c0edd4",
+            "on-secondary-container": "#446d59",
+            "tertiary": "#735c00"
+          },
+          spacing: {
+            "section-gap": "120px",
+            "container-max": "1280px",
+            "margin-mobile": "16px",
+            "margin-desktop": "64px",
+            "gutter": "24px"
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .wishlist-btn.active .fa-heart {
+      color: #e11d48 !important;
+      font-weight: 900;
+    }
+    /* Prevent layout shifting */
+    body {
+      overflow-y: scroll;
+    }
+  </style>
 </head>
-<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+<body class="bg-[#faf9f4] text-[#1b1c19] font-sans antialiased">
+
 <!-- Top Navigation Bar -->
-<nav class="fixed top-0 left-0 w-full z-50 flex items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
+<nav class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
+    <!-- LEFT (Logo) -->
+    <div class="flex items-center gap-3">
+        <a href="../index.html" class="text-primary dark:text-primary-fixed" style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; letter-spacing: 1px; color: #004232;">
+            ATHAQ
+        </a>
+    </div>
 
-  <!-- LEFT (Logo) -->
- <div class="flex items-center gap-3">
-  <span
-  class="hidden sm:block text-primary dark:text-primary-fixed"
-  data-en="ATHAQ DATES"
-  data-ar="أثاق للتمور"
-  style="
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #1c4d06;
-  "
->
-  ATHAQ 
-</span>
-</div>
+    <!-- CENTER (Desktop Menu) -->
+    <div class="hidden md:flex items-center gap-6 font-headline-md text-sm font-semibold text-primary">
+        <a href="/index.html" class="hover:text-secondary transition-colors">Home</a>
+        <a href="/web/about/index.html" class="hover:text-secondary transition-colors">About</a>
+        <a href="/web/product/index.html" class="hover:text-secondary transition-colors">Products</a>
+        <a href="/web/gallery/index.html" class="hover:text-secondary transition-colors">Gallery</a>
+        <a href="/web/contact/index.html" class="hover:text-secondary transition-colors">Contact</a>
+    </div>
 
-  <!-- CENTER (Menu) -->
-<div class="flex-1 flex justify-center">
-<div class="hidden md:flex items-center gap-8 font-[Poppins] text-headline-md font-bold text-primary dark:text-primary-fixed">
-<a href="../../index.html">Home</a>
-<a href="../about/index.html">About</a>
-<a href="../product/index.html">Products</a>
-<a href="../gallery/index.html">Gallery</a>
-<a href="../contact/index.html">Contact</a>
+    <!-- RIGHT (Actions & Stable Icons) -->
+    <div class="flex items-center gap-2 md:gap-3">
+        <!-- Language Toggle -->
+        <div onclick="toggleLanguage()" class="w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0" title="Change Language">
+            <i class="fa-solid fa-globe text-primary"></i>
+        </div> 
+        
+        <!-- Search Trigger Button -->
+        <button onclick="openSearchModal()" class="w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center relative hover:bg-surface-variant transition-colors flex-shrink-0" title="Search">
+            <i class="fa-solid fa-magnifying-glass text-primary"></i>
+        </button>
 
-</div>
-</div>
+        <!-- Wishlist Link -->
+        <a href="/web/wishlist.html" class="w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center relative hover:bg-surface-variant transition-colors flex-shrink-0" title="Wishlist">
+            <i class="fa-regular fa-heart text-primary"></i>
+            <span id="wishlistCount" class="absolute -top-1 -right-1 bg-rose-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+        </a>
 
-  <!-- RIGHT (Buttons) -->
-   <div class="flex justify-end gap-4 p-5">
-  <div onclick="toggleLanguage()" class="w-10 h-10 rounded-full border flex items-center justify-center cursor-pointer">
-    <i class="fa-solid fa-globe"></i>
-  </div> 
+        <!-- Cart Link -->
+        <a href="/admin/checkout.html" class="w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center relative hover:bg-surface-variant transition-colors flex-shrink-0" title="Cart">
+            <i class="fa-solid fa-cart-shopping text-primary"></i>
+            <span id="cartCount" class="absolute -top-1 -right-1 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+        </a>
 
-  <div class="flex items-center gap-4 ml-auto">
-<a href="/login/index.html"
-   class="bg-primary text-white px-5 py-2 rounded-lg text-sm inline-block"
-   data-en="Admin Login"
-   data-ar="تسجيل دخول المسؤول">
-   Admin Login
-</a>
-  </div>
-   <div onclick="shareWebsite()" class="w-10 h-10 rounded-full border flex items-center justify-center cursor-pointer">
-    <i class="fa-solid fa-share-nodes"></i>
-  </div> 
+        <!-- Share Website -->
+        <div onclick="shareWebsite()" class="w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0" title="Share">
+            <i class="fa-solid fa-share-nodes text-primary"></i>
+        </div> 
+    </div>
 </nav>
-<main class="pt-32 pb-section-gap">
-<!-- Hero Section -->
-<header class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-16">
-<div class="flex flex-col md:flex-row justify-between items-end gap-6">
-<div class="max-w-2xl">
-<span class="font-label-sm text-label-sm text-secondary uppercase tracking-[0.2em] mb-4 block">Premium Selection</span>
-<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-6">Our Harvest Portfolio</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant">Exploring the intersection of Saudi heritage and industrial precision. Each date variety is processed with global quality standards to preserve its natural essence.</p>
-</div>
-<div class="flex gap-4">
-<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors">
-<span class="material-symbols-outlined text-[20px]">filter_list</span>
-<span class="font-label-sm text-label-sm">Filter</span>
-</button>
-<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors">
-<span class="material-symbols-outlined text-[20px]">sort</span>
-<span class="font-label-sm text-label-sm">Sort By</span>
-</button>
-</div>
-</div>
-<div class="w-full h-px bg-outline-variant/30 mt-12"></div>
-</header>
-<!-- Product Grid -->
-<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-<!-- Featured Card - Uses reference image -->
-<div class="col-span-1 lg:col-span-2 group relative overflow-hidden rounded-xl bg-white premium-shadow transition-all duration-500 product-card border border-transparent">
-<div class="flex flex-col md:flex-row h-full">
-<div class="md:w-1/2 overflow-hidden h-64 md:h-full">
-<img alt="Premium selection of Ajwa, Khalas, and Sukkary dates" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH7jlhj9vVAGtVeQWfnLCQaD-CYs7ghpUu6J9F7PwKStRpOBs6iNVWdscl_SnsHZhk66ltbYD2F8UYb_OnFvXjfqfywiZY9KWsSmSpUOjprlpJp3DhL_Osw-G6PBHzkCrKOc7aj_giXbE52sBu_NsrwVffAfXvBM-WZVj5IkGCxGtLqpKUqxGpmi9FZBJpClm2JJkc0RUyS-GR-d8wxkEmJYcUEVDBrlnrriEBJm855l0JKWSyyB3AmA"/>
-</div>
-<div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-white gold-accent">
-<span class="font-label-sm text-label-sm text-tertiary-container uppercase mb-2">Featured Variety</span>
-<h2 class="font-headline-md text-headline-md text-primary mb-4">The Royal Assortment</h2>
-<p class="font-body-md text-body-md text-on-surface-variant mb-8">A curated selection of our finest harvests. From the intense caramel of Sukkary to the medicinal luxury of Ajwa, experience the spectrum of texture and flavor.</p>
-<div class="flex items-center gap-4">
-<button class="bg-primary text-white px-8 py-3 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary-container transition-colors">Inquiry</button>
-<button class="text-primary font-bold border-b border-primary/30 hover:border-primary transition-all font-label-sm text-label-sm">Tech Specs</button>
-</div>
-</div>
-</div>
-</div>
-<!-- Product Card: Sukkary -->
-<div class="bg-white rounded-xl premium-shadow product-card border border-transparent transition-all duration-300 flex flex-col group">
-<div class="relative aspect-square overflow-hidden rounded-t-xl">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up studio shot of golden Sukkary dates with a soft, moist texture. The lighting is warm and directional, highlighting the translucent crystalline skin. Set against a minimalist dark green industrial background with soft shadows. Premium commercial food photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6d6L6xCje4iZnUq4eERix-e9zOaJN3GAjLJ4VmklC6FSvYTF3DiOaq4tsGOVbY20RjE2VtR3QNPKiARNGIPAAffzKp2XrLGrhT5uylU8_DHY97bZi1CNEd-93JJDpiaBsP8XSQnxiApgd_R2rMwcafV2jPuw9OtrblDRmhVEVWqAhcccmodCbau7kHqgO4iGt8aK3b3kcMtbeTGNfAVBBkxXYCUs6dGsw-USzseQE7SxSOU2KH4o3LQ"/>
-<div class="absolute top-4 start-4 bg-primary/90 text-white px-3 py-1 rounded text-[10px] font-bold uppercase tracking-tighter">Premium Grade</div>
-</div>
-<div class="p-6 flex-grow flex flex-col">
-<h3 class="font-headline-md text-[20px] text-primary mb-2">Sukkary Gold</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-6">Crisp exterior with a melt-in-the-mouth sugary core. Notes of honey and brown butter.</p>
-<div class="mt-auto pt-6 border-t border-outline-variant/20 flex justify-between items-center">
-<span class="text-primary font-bold font-label-sm">Export Ready</span>
-<button class="text-secondary hover:text-primary transition-colors">
-<span class="material-symbols-outlined">arrow_forward</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Product Card: Ajwa -->
-<div class="bg-white rounded-xl premium-shadow product-card border border-transparent transition-all duration-300 flex flex-col group">
-<div class="relative aspect-square overflow-hidden rounded-t-xl">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="High-contrast photography of dark, almost black Ajwa dates with fine wrinkly skin texture. The composition is elegant and minimalist, focusing on the unique organic shapes. Soft sage green accents in the background evoke a modern industrial feel. Professional high-end packaging context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb88OWBX_BwkRaOUmOpbMlykITyyGelGU0QmZ6B_PyobSmYHbeTm_nU5tQkxJtbszRkuzv3d4oQjhHRMk4I6t2NaRIj3ca5htlL1bpFcXtLDJiKit5bwwelr7sd-UGHYBLp9VwJ7xKis-2dtozUxOEnYPxs2g9nUfK6sOZr6ilW09XW21DOBfZCGBLcR0OknfW5roa0c3RF_JTln0HeXrjSd_FY5WfSrDrIgD5J-fJx4vONFSi42qxZw"/>
-<div class="absolute top-4 start-4 bg-tertiary text-white px-3 py-1 rounded text-[10px] font-bold uppercase tracking-tighter">Limited Harvest</div>
-</div>
-<div class="p-6 flex-grow flex flex-col">
-<h3 class="font-headline-md text-[20px] text-primary mb-2">Ajwa Al-Madinah</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-6">Fine, silky texture with a deep, fruity complexity. Revered for its unique nutritional profile.</p>
-<div class="mt-auto pt-6 border-t border-outline-variant/20 flex justify-between items-center">
-<span class="text-primary font-bold font-label-sm">Medicinal Grade</span>
-<button class="text-secondary hover:text-primary transition-colors">
-<span class="material-symbols-outlined">arrow_forward</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Product Card: Khalas -->
-<div class="bg-white rounded-xl premium-shadow product-card border border-transparent transition-all duration-300 flex flex-col group">
-<div class="relative aspect-square overflow-hidden rounded-t-xl">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up of Khalas dates, showcasing their sticky, glossy amber surface and tender flesh. The dates are arranged rhythmically on a brushed brass surface. Subtle forest green lighting creates a high-end industrial laboratory aesthetic. Professional culinary photography with macro focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKATL3LuvNdZ3fBDO1eJ6E9chrxGkgmIjH1UWsmpTpmrZl7diZkx6Crlrpx_T0N6Fr57gvIzbCncUAfrr8efiYvazdLbLuPeq-E3wq0sGHE5cVDHwjxzqzCBoalu02_QkwwlS2d1KwcEp9RHL3Ntd2wJXo8HBNOKNCor9-5TdmRoiS_m3ku6-7ko5TOHeO_U1ylSiz8CSghgo3FIW-oAbHGZl3C_jkYwMxMpIlHCuFBzQv9to3o4IRxw"/>
-</div>
-<div class="p-6 flex-grow flex flex-col">
-<h3 class="font-headline-md text-[20px] text-primary mb-2">Khalas Al-Ahsa</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-6">The definitive everyday luxury. Sticky, caramelly, and perfectly balanced sweetness.</p>
-<div class="mt-auto pt-6 border-t border-outline-variant/20 flex justify-between items-center">
-<span class="text-primary font-bold font-label-sm">Standard Choice</span>
-<button class="text-secondary hover:text-primary transition-colors">
-<span class="material-symbols-outlined">arrow_forward</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Product Card: Sagai -->
-<div class="bg-white rounded-xl premium-shadow product-card border border-transparent transition-all duration-300 flex flex-col group">
-<div class="relative aspect-square overflow-hidden rounded-t-xl">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern food photography featuring Sagai dates with their characteristic two-tone color—golden at the base and light brown at the tip. The setting is a clean, ivory-colored minimalist space with sharp, rhythmic shadows. The style is premium, technical, and high-fashion industrial." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa_aO1ID9d77Zh9EJrvOjoxik05zw0UiRGSDMP7EIUjGQElgMvoHoimkXgZjtuQXBs03nCnuGlFG9go8de5eucBV38DioomY6qHDAh3myVAO3Nb3iv6zMvvVJ0gd7Smerjb4c4sMheOlN33Bys5Zkn1sXFOgmkved3WNTiW7ij8Ojt6GUa_Jymz7HeLzmdMF_GXru5D4uvSajQWNmVZxoxO2RjoW04yeTp0iRaUIQVR3-_bMlBnM5jHg"/>
-</div>
-<div class="p-6 flex-grow flex flex-col">
-<h3 class="font-headline-md text-[20px] text-primary mb-2">Sagai Selection</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-6">Distinctive firm base with a soft tip. A textured journey from crunch to cream.</p>
-<div class="mt-auto pt-6 border-t border-outline-variant/20 flex justify-between items-center">
-<span class="text-primary font-bold font-label-sm">Specialty Harvest</span>
-<button class="text-secondary hover:text-primary transition-colors">
-<span class="material-symbols-outlined">arrow_forward</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- CTAs / Newsletter -->
-<section class="mt-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-<div class="bg-secondary-container rounded-3xl p-8 md:p-20 text-center relative overflow-hidden">
-<!-- Subtle background decoration -->
-<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-<div class="absolute -bottom-24 -left-24 w-64 h-64 bg-tertiary-fixed/10 rounded-full blur-3xl"></div>
-<div class="relative z-10 max-w-2xl mx-auto">
-<h2 class="font-display-lg text-display-lg-mobile md:text-[36px] text-on-secondary-container mb-6">Bulk Industrial Inquiries</h2>
-<p class="font-body-md text-body-md text-on-secondary-fixed-variant mb-10">We specialize in white-label production and international supply chains. Connect with our logistics team for technical specifications and volume pricing.</p>
-<div class="flex flex-col sm:flex-row justify-center gap-4">
-<input class="px-6 py-3 rounded-lg border-b-2 border-secondary bg-transparent focus:outline-none focus:border-primary transition-colors min-w-[300px]" placeholder="Business Email Address" type="email"/>
-<button class="bg-primary text-white px-8 py-3 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary-container transition-all active:scale-95 shadow-lg">Request Catalog</button>
-</div>
-</div>
-</div>
-</section>
+
+<main class="pt-28 pb-20">
+  <!-- Hero Header -->
+  <header class="px-4 md:px-16 max-w-7xl mx-auto mb-12">
+    <div class="flex flex-col md:flex-row justify-between items-end gap-6">
+      <div class="max-w-2xl">
+        <span class="text-xs font-bold text-emerald-800 uppercase tracking-[0.2em] mb-2 block">Premium Selection</span>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-[#004232] mb-4">Our Harvest Portfolio</h1>
+        <p class="text-base text-gray-600">Exploring the intersection of Saudi heritage and industrial precision. Each date variety is processed with global quality standards.</p>
+      </div>
+      <div class="flex gap-3 relative">
+        <!-- Filter Button Container -->
+        <div class="relative">
+          <button onclick="toggleFilterMenu()" class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-white transition-colors text-xs font-bold">
+            <span class="material-symbols-outlined text-sm">filter_list</span>
+            <span>Filter</span>
+          </button>
+          <!-- Filter Dropdown -->
+          <div id="filterDropdown" class="hidden absolute top-12 left-0 bg-white shadow-xl rounded-xl border border-gray-100 p-3 z-30 w-40 text-xs font-semibold text-gray-700">
+            <div onclick="filterProducts('all')" class="p-2 hover:bg-gray-50 rounded cursor-pointer">All Products</div>
+            <div onclick="filterProducts('premium')" class="p-2 hover:bg-gray-50 rounded cursor-pointer">Premium Grade</div>
+            <div onclick="filterProducts('limited')" class="p-2 hover:bg-gray-50 rounded cursor-pointer">Limited Harvest</div>
+          </div>
+        </div>
+
+        <!-- Sort By Button Container -->
+        <div class="relative">
+          <button onclick="toggleSortMenu()" class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-white transition-colors text-xs font-bold">
+            <span class="material-symbols-outlined text-sm">sort</span>
+            <span>Sort By</span>
+          </button>
+          <!-- Sort Dropdown -->
+          <div id="sortDropdown" class="hidden absolute top-12 right-0 bg-white shadow-xl rounded-xl border border-gray-100 p-3 z-30 w-44 text-xs font-semibold text-gray-700">
+            <div onclick="sortProducts('low-high')" class="p-2 hover:bg-gray-50 rounded cursor-pointer">Price: Low to High</div>
+            <div onclick="sortProducts('high-low')" class="p-2 hover:bg-gray-50 rounded cursor-pointer">Price: High to Low</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full h-px bg-gray-200 mt-8"></div>
+  </header>
+
+  <!-- Product Grid -->
+  <section class="px-4 md:px-16 max-w-7xl mx-auto">
+    <div id="productGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Featured Card -->
+      <div class="product-card col-span-1 lg:col-span-2 group relative overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-md transition-all duration-500" data-id="p_featured" data-price="250" data-category="limited">
+        <div class="flex flex-col md:flex-row h-full">
+          <div class="md:w-1/2 overflow-hidden h-64 md:h-full relative">
+            <img alt="The Royal Assortment" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH7jlhj9vVAGtVeQWfnLCQaD-CYs7ghpUu6J9F7PwKStRpOBs6iNVWdscl_SnsHZhk66ltbYD2F8UYb_OnFvXjfqfywiZY9KWsSmSpUOjprlpJp3DhL_Osw-G6PBHzkCrKOc7aj_giXbE52sBu_NsrwVffAfXvBM-WZVj5IkGCxGtLqpKUqxGpmi9FZBJpClm2JJkc0RUyS-GR-d8wxkEmJYcUEVDBrlnrriEBJm855l0JKWSyyB3AmA"/>
+            <!-- Wishlist Button -->
+            <button onclick="toggleWishlist(event, 'p_featured', 'The Royal Assortment', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAH7jlhj9vVAGtVeQWfnLCQaD-CYs7ghpUu6J9F7PwKStRpOBs6iNVWdscl_SnsHZhk66ltbYD2F8UYb_OnFvXjfqfywiZY9KWsSmSpUOjprlpJp3DhL_Osw-G6PBHzkCrKOc7aj_giXbE52sBu_NsrwVffAfXvBM-WZVj5IkGCxGtLqpKUqxGpmi9FZBJpClm2JJkc0RUyS-GR-d8wxkEmJYcUEVDBrlnrriEBJm855l0JKWSyyB3AmA', 250)" class="wishlist-btn absolute top-4 left-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-gray-700 shadow-md hover:bg-white transition-all">
+              <i class="fa-regular fa-heart text-lg"></i>
+            </button>
+          </div>
+          <div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-between bg-white">
+            <div>
+              <span class="text-xs font-bold text-amber-700 uppercase tracking-widest mb-2 block">Featured Variety</span>
+              <h2 class="text-2xl md:text-3xl font-extrabold text-[#004232] mb-3">The Royal Assortment</h2>
+              <p class="text-sm text-gray-600 mb-6">A curated selection of our finest harvests. Experience the full spectrum of texture and flavor.</p>
+              <span class="product-price text-xl font-bold text-[#004232] mb-6 block">SAR 250.00</span>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3">
+              <button onclick="buyNow('p_featured', 'The Royal Assortment', 250, 'https://lh3.googleusercontent.com/aida-public/AB6AXuAH7jlhj9vVAGtVeQWfnLCQaD-CYs7ghpUu6J9F7PwKStRpOBs6iNVWdscl_SnsHZhk66ltbYD2F8UYb_OnFvXjfqfywiZY9KWsSmSpUOjprlpJp3DhL_Osw-G6PBHzkCrKOc7aj_giXbE52sBu_NsrwVffAfXvBM-WZVj5IkGCxGtLqpKUqxGpmi9FZBJpClm2JJkc0RUyS-GR-d8wxkEmJYcUEVDBrlnrriEBJm855l0JKWSyyB3AmA')" class="flex-1 bg-[#004232] text-white py-3 px-4 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-[#002e23] transition-colors flex items-center justify-center gap-2 shadow-md">
+                <i class="fa-solid fa-bolt"></i> Buy Now
+              </button>
+              <button onclick="addToCart('p_featured', 'The Royal Assortment', 250, 'https://lh3.googleusercontent.com/aida-public/AB6AXuAH7jlhj9vVAGtVeQWfnLCQaD-CYs7ghpUu6J9F7PwKStRpOBs6iNVWdscl_SnsHZhk66ltbYD2F8UYb_OnFvXjfqfywiZY9KWsSmSpUOjprlpJp3DhL_Osw-G6PBHzkCrKOc7aj_giXbE52sBu_NsrwVffAfXvBM-WZVj5IkGCxGtLqpKUqxGpmi9FZBJpClm2JJkc0RUyS-GR-d8wxkEmJYcUEVDBrlnrriEBJm855l0JKWSyyB3AmA')" class="p-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors text-gray-700">
+                <i class="fa-solid fa-cart-shopping"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 1: Sukkary -->
+      <div class="product-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group overflow-hidden" data-id="p_sukkary" data-price="95" data-category="premium">
+        <div class="relative aspect-square overflow-hidden bg-gray-50">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6d6L6xCje4iZnUq4eERix-e9zOaJN3GAjLJ4VmklC6FSvYTF3DiOaq4tsGOVbY20RjE2VtR3QNPKiARNGIPAAffzKp2XrLGrhT5uylU8_DHY97bZi1CNEd-93JJDpiaBsP8XSQnxiApgd_R2rMwcafV2jPuw9OtrblDRmhVEVWqAhcccmodCbau7kHqgO4iGt8aK3b3kcMtbeTGNfAVBBkxXYCUs6dGsw-USzseQE7SxSOU2KH4o3LQ" alt="Sukkary Gold"/>
+          <span class="absolute top-4 left-4 bg-[#004232] text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Premium Grade</span>
+          
+          <!-- Wishlist Button -->
+          <button onclick="toggleWishlist(event, 'p_sukkary', 'Sukkary Gold', 'https://lh3.googleusercontent.com/aida-public/AB6AXuA6d6L6xCje4iZnUq4eERix-e9zOaJN3GAjLJ4VmklC6FSvYTF3DiOaq4tsGOVbY20RjE2VtR3QNPKiARNGIPAAffzKp2XrLGrhT5uylU8_DHY97bZi1CNEd-93JJDpiaBsP8XSQnxiApgd_R2rMwcafV2jPuw9OtrblDRmhVEVWqAhcccmodCbau7kHqgO4iGt8aK3b3kcMtbeTGNfAVBBkxXYCUs6dGsw-USzseQE7SxSOU2KH4o3LQ', 95)" class="wishlist-btn absolute top-4 right-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center text-gray-700 shadow-md hover:bg-white transition-all">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+        </div>
+
+        <div class="p-6 flex-grow flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold text-[#004232]">Sukkary Gold</h3>
+              <span class="product-price font-extrabold text-[#004232]">SAR 95.00</span>
+            </div>
+            <p class="text-xs text-gray-500 mb-6 line-clamp-2">Crisp exterior with a melt-in-the-mouth sugary core. Notes of honey and brown butter.</p>
+          </div>
+
+          <!-- Card Actions -->
+          <div class="flex items-center gap-2 pt-4 border-t border-gray-100">
+            <button onclick="buyNow('p_sukkary', 'Sukkary Gold', 95, 'https://lh3.googleusercontent.com/aida-public/AB6AXuA6d6L6xCje4iZnUq4eERix-e9zOaJN3GAjLJ4VmklC6FSvYTF3DiOaq4tsGOVbY20RjE2VtR3QNPKiARNGIPAAffzKp2XrLGrhT5uylU8_DHY97bZi1CNEd-93JJDpiaBsP8XSQnxiApgd_R2rMwcafV2jPuw9OtrblDRmhVEVWqAhcccmodCbau7kHqgO4iGt8aK3b3kcMtbeTGNfAVBBkxXYCUs6dGsw-USzseQE7SxSOU2KH4o3LQ')" class="flex-1 bg-[#004232] text-white py-2.5 px-3 rounded-xl text-xs font-bold uppercase hover:bg-[#002e23] transition-colors flex items-center justify-center gap-2">
+              <i class="fa-solid fa-bolt"></i> Buy Now
+            </button>
+            <button onclick="addToCart('p_sukkary', 'Sukkary Gold', 95, 'https://lh3.googleusercontent.com/aida-public/AB6AXuA6d6L6xCje4iZnUq4eERix-e9zOaJN3GAjLJ4VmklC6FSvYTF3DiOaq4tsGOVbY20RjE2VtR3QNPKiARNGIPAAffzKp2XrLGrhT5uylU8_DHY97bZi1CNEd-93JJDpiaBsP8XSQnxiApgd_R2rMwcafV2jPuw9OtrblDRmhVEVWqAhcccmodCbau7kHqgO4iGt8aK3b3kcMtbeTGNfAVBBkxXYCUs6dGsw-USzseQE7SxSOU2KH4o3LQ')" class="p-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 text-gray-700">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 2: Ajwa -->
+      <div class="product-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group overflow-hidden" data-id="p_ajwa" data-price="140" data-category="limited">
+        <div class="relative aspect-square overflow-hidden bg-gray-50">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb88OWBX_BwkRaOUmOpbMlykITyyGelGU0QmZ6B_PyobSmYHbeTm_nU5tQkxJtbszRkuzv3d4oQjhHRMk4I6t2NaRIj3ca5htlL1bpFcXtLDJiKit5bwwelr7sd-UGHYBLp9VwJ7xKis-2dtozUxOEnYPxs2g9nUfK6sOZr6ilW09XW21DOBfZCGBLcR0OknfW5roa0c3RF_JTln0HeXrjSd_FY5WfSrDrIgD5J-fJx4vONFSi42qxZw" alt="Ajwa Al-Madinah"/>
+          <span class="absolute top-4 left-4 bg-amber-700 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Limited Harvest</span>
+          
+          <!-- Wishlist Button -->
+          <button onclick="toggleWishlist(event, 'p_ajwa', 'Ajwa Al-Madinah', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAb88OWBX_BwkRaOUmOpbMlykITyyGelGU0QmZ6B_PyobSmYHbeTm_nU5tQkxJtbszRkuzv3d4oQjhHRMk4I6t2NaRIj3ca5htlL1bpFcXtLDJiKit5bwwelr7sd-UGHYBLp9VwJ7xKis-2dtozUxOEnYPxs2g9nUfK6sOZr6ilW09XW21DOBfZCGBLcR0OknfW5roa0c3RF_JTln0HeXrjSd_FY5WfSrDrIgD5J-fJx4vONFSi42qxZw', 140)" class="wishlist-btn absolute top-4 right-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center text-gray-700 shadow-md hover:bg-white transition-all">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+        </div>
+
+        <div class="p-6 flex-grow flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold text-[#004232]">Ajwa Al-Madinah</h3>
+              <span class="product-price font-extrabold text-[#004232]">SAR 140.00</span>
+            </div>
+            <p class="text-xs text-gray-500 mb-6 line-clamp-2">Fine, silky texture with a deep, fruity complexity. Revered for its unique nutritional profile.</p>
+          </div>
+
+          <!-- Card Actions -->
+          <div class="flex items-center gap-2 pt-4 border-t border-gray-100">
+            <button onclick="buyNow('p_ajwa', 'Ajwa Al-Madinah', 140, 'https://lh3.googleusercontent.com/aida-public/AB6AXuAb88OWBX_BwkRaOUmOpbMlykITyyGelGU0QmZ6B_PyobSmYHbeTm_nU5tQkxJtbszRkuzv3d4oQjhHRMk4I6t2NaRIj3ca5htlL1bpFcXtLDJiKit5bwwelr7sd-UGHYBLp9VwJ7xKis-2dtozUxOEnYPxs2g9nUfK6sOZr6ilW09XW21DOBfZCGBLcR0OknfW5roa0c3RF_JTln0HeXrjSd_FY5WfSrDrIgD5J-fJx4vONFSi42qxZw')" class="flex-1 bg-[#004232] text-white py-2.5 px-3 rounded-xl text-xs font-bold uppercase hover:bg-[#002e23] transition-colors flex items-center justify-center gap-2">
+              <i class="fa-solid fa-bolt"></i> Buy Now
+            </button>
+            <button onclick="addToCart('p_ajwa', 'Ajwa Al-Madinah', 140, 'https://lh3.googleusercontent.com/aida-public/AB6AXuAb88OWBX_BwkRaOUmOpbMlykITyyGelGU0QmZ6B_PyobSmYHbeTm_nU5tQkxJtbszRkuzv3d4oQjhHRMk4I6t2NaRIj3ca5htlL1bpFcXtLDJiKit5bwwelr7sd-UGHYBLp9VwJ7xKis-2dtozUxOEnYPxs2g9nUfK6sOZr6ilW09XW21DOBfZCGBLcR0OknfW5roa0c3RF_JTln0HeXrjSd_FY5WfSrDrIgD5J-fJx4vONFSi42qxZw')" class="p-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 text-gray-700">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 3: Khalas -->
+      <div class="product-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group overflow-hidden" data-id="p_khalas" data-price="80" data-category="premium">
+        <div class="relative aspect-square overflow-hidden bg-gray-50">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKATL3LuvNdZ3fBDO1eJ6E9chrxGkgmIjH1UWsmpTpmrZl7diZkxCrlrpx_T0N6Fr57gvIzbCncUAfrr8efiYvazdLbLuPeq-E3wq0sGHE5cVDHwjxzqzCBoalu02_QkwwlS2d1KwcEp9RHL3Ntd2wJXo8HBNOKNCor9-5TdmRoiS_m3ku6-7ko5TOHeO_U1ylSiz8CSghgo3FIW-oAbHGZl3C_jkYwMxMpIlHCuFBzQv9to3o4IRxw" alt="Khalas Al-Ahsa"/>
+          
+          <!-- Wishlist Button -->
+          <button onclick="toggleWishlist(event, 'p_khalas', 'Khalas Al-Ahsa', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAKATL3LuvNdZ3fBDO1eJ6E9chrxGkgmIjH1UWsmpTpmrZl7diZkxCrlrpx_T0N6Fr57gvIzbCncUAfrr8efiYvazdLbLuPeq-E3wq0sGHE5cVDHwjxzqzCBoalu02_QkwwlS2d1KwcEp9RHL3Ntd2wJXo8HBNOKNCor9-5TdmRoiS_m3ku6-7ko5TOHeO_U1ylSiz8CSghgo3FIW-oAbHGZl3C_jkYwMxMpIlHCuFBzQv9to3o4IRxw', 80)" class="wishlist-btn absolute top-4 right-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center text-gray-700 shadow-md hover:bg-white transition-all">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+        </div>
+
+        <div class="p-6 flex-grow flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold text-[#004232]">Khalas Al-Ahsa</h3>
+              <span class="product-price font-extrabold text-[#004232]">SAR 80.00</span>
+            </div>
+            <p class="text-xs text-gray-500 mb-6 line-clamp-2">The definitive everyday luxury. Sticky, caramelly, and perfectly balanced sweetness.</p>
+          </div>
+
+          <!-- Card Actions -->
+          <div class="flex items-center gap-2 pt-4 border-t border-gray-100">
+            <button onclick="buyNow('p_khalas', 'Khalas Al-Ahsa', 80, 'https://lh3.googleusercontent.com/aida-public/AB6AXuAKATL3LuvNdZ3fBDO1eJ6E9chrxGkgmIjH1UWsmpTpmrZl7diZkxCrlrpx_T0N6Fr57gvIzbCncUAfrr8efiYvazdLbLuPeq-E3wq0sGHE5cVDHwjxzqzCBoalu02_QkwwlS2d1KwcEp9RHL3Ntd2wJXo8HBNOKNCor9-5TdmRoiS_m3ku6-7ko5TOHeO_U1ylSiz8CSghgo3FIW-oAbHGZl3C_jkYwMxMpIlHCuFBzQv9to3o4IRxw')" class="flex-1 bg-[#004232] text-white py-2.5 px-3 rounded-xl text-xs font-bold uppercase hover:bg-[#002e23] transition-colors flex items-center justify-center gap-2">
+              <i class="fa-solid fa-bolt"></i> Buy Now
+            </button>
+            <button onclick="addToCart('p_khalas', 'Khalas Al-Ahsa', 80, 'https://lh3.googleusercontent.com/aida-public/AB6AXuAKATL3LuvNdZ3fBDO1eJ6E9chrxGkgmIjH1UWsmpTpmrZl7diZkxCrlrpx_T0N6Fr57gvIzbCncUAfrr8efiYvazdLbLuPeq-E3wq0sGHE5cVDHwjxzqzCBoalu02_QkwwlS2d1KwcEp9RHL3Ntd2wJXo8HBNOKNCor9-5TdmRoiS_m3ku6-7ko5TOHeO_U1ylSiz8CSghgo3FIW-oAbHGZl3C_jkYwMxMpIlHCuFBzQv9to3o4IRxw')" class="p-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 text-gray-700">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 4: Sagai -->
+      <div class="product-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group overflow-hidden" data-id="p_sagai" data-price="110" data-category="premium">
+        <div class="relative aspect-square overflow-hidden bg-gray-50">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa_aO1ID9d77Zh9EJrvOjoxik05zw0UiRGSDMP7EIUjGQElgMvoHoimkXgZjtuQXBs03nCnuGlFG9go8de5eucBV38DioomY6qHDAh3myVAO3Nb3iv6zMvvVJ0gd7Smerjb4c4sMheOlN33Bys5Zkn1sXFOgmkved3WNTiW7ij8Ojt6GUa_Jymz7HeLzmdMF_GXru5D4uvSajQWNmVZxoxO2RjoW04yeTp0iRaUIQVR3-_bMlBnM5jHg" alt="Sagai Selection"/>
+          
+          <!-- Wishlist Button -->
+          <button onclick="toggleWishlist(event, 'p_sagai', 'Sagai Selection', 'https://lh3.googleusercontent.com/aida-public/AB6AXuCa_aO1ID9d77Zh9EJrvOjoxik05zw0UiRGSDMP7EIUjGQElgMvoHoimkXgZjtuQXBs03nCnuGlFG9go8de5eucBV38DioomY6qHDAh3myVAO3Nb3iv6zMvvVJ0gd7Smerjb4c4sMheOlN33Bys5Zkn1sXFOgmkved3WNTiW7ij8Ojt6GUa_Jymz7HeLzmdMF_GXru5D4uvSajQWNmVZxoxO2RjoW04yeTp0iRaUIQVR3-_bMlBnM5jHg', 110)" class="wishlist-btn absolute top-4 right-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center text-gray-700 shadow-md hover:bg-white transition-all">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+        </div>
+
+        <div class="p-6 flex-grow flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold text-[#004232]">Sagai Selection</h3>
+              <span class="product-price font-extrabold text-[#004232]">SAR 110.00</span>
+            </div>
+            <p class="text-xs text-gray-500 mb-6 line-clamp-2">Distinctive firm base with a soft tip. A textured journey from crunch to cream.</p>
+          </div>
+
+          <!-- Card Actions -->
+          <div class="flex items-center gap-2 pt-4 border-t border-gray-100">
+            <button onclick="buyNow('p_sagai', 'Sagai Selection', 110, 'https://lh3.googleusercontent.com/aida-public/AB6AXuCa_aO1ID9d77Zh9EJrvOjoxik05zw0UiRGSDMP7EIUjGQElgMvoHoimkXgZjtuQXBs03nCnuGlFG9go8de5eucBV38DioomY6qHDAh3myVAO3Nb3iv6zMvvVJ0gd7Smerjb4c4sMheOlN33Bys5Zkn1sXFOgmkved3WNTiW7ij8Ojt6GUa_Jymz7HeLzmdMF_GXru5D4uvSajQWNmVZxoxO2RjoW04yeTp0iRaUIQVR3-_bMlBnM5jHg')" class="flex-1 bg-[#004232] text-white py-2.5 px-3 rounded-xl text-xs font-bold uppercase hover:bg-[#002e23] transition-colors flex items-center justify-center gap-2">
+              <i class="fa-solid fa-bolt"></i> Buy Now
+            </button>
+            <button onclick="addToCart('p_sagai', 'Sagai Selection', 110, 'https://lh3.googleusercontent.com/aida-public/AB6AXuCa_aO1ID9d77Zh9EJrvOjoxik05zw0UiRGSDMP7EIUjGQElgMvoHoimkXgZjtuQXBs03nCnuGlFG9go8de5eucBV38DioomY6qHDAh3myVAO3Nb3iv6zMvvVJ0gd7Smerjb4c4sMheOlN33Bys5Zkn1sXFOgmkved3WNTiW7ij8Ojt6GNUa_Jymz7HeLzmdMF_GXru5D4uvSajQWNmVZxoxO2RjoW04yeTp0iRaUIQVR3-_bMlBnM5jHg')" class="p-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 text-gray-700">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Newsletter / Bulk Inquiries -->
+  <section class="mt-24 px-4 md:px-16 max-w-7xl mx-auto">
+    <div class="bg-emerald-100/60 rounded-3xl p-8 md:p-16 text-center relative overflow-hidden border border-emerald-200">
+      <div class="relative z-10 max-w-2xl mx-auto">
+        <h2 class="text-2xl md:text-4xl font-extrabold text-[#004232] mb-4">Bulk Industrial Inquiries</h2>
+        <p class="text-sm text-gray-600 mb-8">We specialize in white-label production and international supply chains. Connect with our team for volume pricing.</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-3">
+          <input class="px-5 py-3 rounded-xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#004232] text-sm min-w-[280px]" placeholder="Business Email Address" type="email"/>
+          <button class="bg-[#004232] text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#002e23] transition-all shadow-md">Request Catalog</button>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
+
 <!-- Footer -->
-<footer class="w-full py-section-gap px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter bg-surface-container-highest border-t border-tertiary/20">
-<div class="col-span-1 md:col-span-1">
-<div class="font-headline-md text-headline-md text-primary mb-4">ATHAQ</div>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">Pioneering the industrial future of Saudi dates with heritage and precision.</p>
-</div>
-<div>
-<h4 class="font-label-sm text-label-sm text-primary uppercase mb-6 tracking-widest">Navigation</h4>
-<ul class="space-y-4">
-<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Industrial Process</a></li>
-<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Certifications</a></li>
-<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Sustainability</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-label-sm text-label-sm text-primary uppercase mb-6 tracking-widest">Legal</h4>
-<ul class="space-y-4">
-<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Privacy Policy</a></li>
-<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Terms of Service</a></li>
-<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Quality Standards</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-label-sm text-label-sm text-primary uppercase mb-6 tracking-widest">Contact</h4>
-<ul class="space-y-4 text-on-surface-variant">
-<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">location_on</span> Riyadh Industrial City</li>
-<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">mail</span> inquiry@athaq.sa</li>
-</ul>
-</div>
-<div class="col-span-1 md:col-span-4 mt-12 pt-8 border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center gap-4">
-<p class="font-body-md text-body-md text-on-surface-variant/60">© 2024 Athaq Industrial Factory. All rights reserved.</p>
-
-</div>
+<footer class="w-full py-16 px-4 md:px-16 grid grid-cols-1 md:grid-cols-4 gap-8 bg-gray-200/50 border-t border-gray-200">
+  <div>
+    <div class="text-2xl font-bold font-serif text-[#004232] mb-3">ATHAQ</div>
+    <p class="text-xs text-gray-600">Pioneering the industrial future of Saudi dates with heritage and precision.</p>
+  </div>
+  <div>
+    <h4 class="text-xs font-bold text-[#004232] uppercase mb-4 tracking-widest">Navigation</h4>
+    <ul class="space-y-2 text-xs text-gray-600">
+      <li><a class="hover:text-amber-800 transition-colors" href="#">Industrial Process</a></li>
+      <li><a class="hover:text-amber-800 transition-colors" href="#">Certifications</a></li>
+      <li><a class="hover:text-amber-800 transition-colors" href="#">Sustainability</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="text-xs font-bold text-[#004232] uppercase mb-4 tracking-widest">Legal</h4>
+    <ul class="space-y-2 text-xs text-gray-600">
+      <li><a class="hover:text-amber-800 transition-colors" href="#">Privacy Policy</a></li>
+      <li><a class="hover:text-amber-800 transition-colors" href="#">Terms of Service</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="text-xs font-bold text-[#004232] uppercase mb-4 tracking-widest">Contact</h4>
+    <ul class="space-y-2 text-xs text-gray-600">
+      <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">location_on</span> Riyadh Industrial City</li>
+      <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">mail</span> inquiry@athaq.sa</li>
+    </ul>
+  </div>
 </footer>
-<script>
-        // Micro-interaction for navigation scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 20) {
-                nav.classList.add('h-16');
-                nav.classList.remove('h-20');
-            } else {
-                nav.classList.add('h-20');
-                nav.classList.remove('h-16');
-            }
-        });
 
-        // Simple Fade-in animation on load
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.product-card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    card.style.transition = 'all 0.6s ease-out';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 100 * index);
-            });
-        });
-    </script>
-  <script src="script.js"></script>
-</body></html>
+<!-- Search Modal HTML -->
+<div id="searchModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-lg font-bold text-[#004232]">Search Products</h3>
+      <button onclick="closeSearchModal()" class="text-gray-500 hover:text-gray-700 font-bold">&times;</button>
+    </div>
+    <div class="flex items-center gap-2 border border-gray-300 rounded-xl px-3 py-2">
+      <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
+      <input type="text" id="searchInput" placeholder="Type to search dates..." class="w-full focus:outline-none text-sm" oninput="handleSearch(this.value)">
+    </div>
+  </div>
+</div>
+
+<!-- Scripts for Wishlist, Cart, Filter & Sort -->
+<script>
+  let wishlist = JSON.parse(localStorage.getItem('athaqWishlist')) || [];
+  let cart = JSON.parse(localStorage.getItem('athaqCart')) || [];
+
+  document.addEventListener('DOMContentLoaded', () => {
+    updateWishlistUI();
+    updateCartUI();
+  });
+
+  // Toggle Wishlist Function
+  function toggleWishlist(event, id, name, image, price) {
+    event.stopPropagation();
+    const index = wishlist.findIndex(item => item.id === id);
+    
+    if (index > -1) {
+      wishlist.splice(index, 1);
+    } else {
+      wishlist.push({ id, name, image, price });
+    }
+    
+    localStorage.setItem('athaqWishlist', JSON.stringify(wishlist));
+    updateWishlistUI();
+  }
+
+  // Update Wishlist UI and Icon States
+  function updateWishlistUI() {
+    const badge = document.getElementById('wishlistCount');
+    if (badge) {
+      badge.innerText = wishlist.length;
+      badge.style.display = wishlist.length > 0 ? 'flex' : 'none';
+    }
+
+    // Update active state of hearts on product cards
+    document.querySelectorAll('.product-card').forEach(card => {
+      const id = card.getAttribute('data-id');
+      const btn = card.querySelector('.wishlist-btn');
+      if (btn) {
+        const isFav = wishlist.some(item => item.id === id);
+        const icon = btn.querySelector('i');
+        if (isFav) {
+          btn.classList.add('active');
+          icon.classList.remove('fa-regular');
+          icon.classList.add('fa-solid');
+        } else {
+          btn.classList.remove('active');
+          icon.classList.remove('fa-solid');
+          icon.classList.add('fa-regular');
+        }
+      }
+    });
+  }
+
+  // Add to Cart Function
+  function addToCart(id, name, price, image) {
+    const existing = cart.find(item => item.id === id);
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({ id, name, price, image, quantity: 1 });
+    }
+    localStorage.setItem('athaqCart', JSON.stringify(cart));
+    updateCartUI();
+    alert(name + " has been added to your cart!");
+  }
+
+  // Buy Now Function
+  function buyNow(id, name, price, image) {
+    addToCart(id, name, price, image);
+    window.location.href = '../checkout.html';
+  }
+
+  // Update Cart UI Counter
+  function updateCartUI() {
+    const cartBadge = document.getElementById('cartCount');
+    if (cartBadge) {
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartBadge.innerText = totalItems;
+      cartBadge.style.display = totalItems > 0 ? 'flex' : 'none';
+    }
+  }
+
+  // Search Modal Functions
+  function openSearchModal() {
+    document.getElementById('searchModal').classList.remove('hidden');
+    document.getElementById('searchInput').focus();
+  }
+
+  function closeSearchModal() {
+    document.getElementById('searchModal').classList.add('hidden');
+  }
+
+  function handleSearch(query) {
+    const term = query.toLowerCase();
+    const cards = document.querySelectorAll('.product-card');
+    cards.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      card.style.display = text.includes(term) ? 'flex' : 'none';
+    });
+  }
+
+  // Toggle Filter Dropdown Menu
+  function toggleFilterMenu() {
+    const dropdown = document.getElementById('filterDropdown');
+    const sortDropdown = document.getElementById('sortDropdown');
+    sortDropdown.classList.add('hidden');
+    dropdown.classList.toggle('hidden');
+  }
+
+  // Toggle Sort Dropdown Menu
+  function toggleSortMenu() {
+    const dropdown = document.getElementById('sortDropdown');
+    const filterDropdown = document.getElementById('filterDropdown');
+    filterDropdown.classList.add('hidden');
+    dropdown.classList.toggle('hidden');
+  }
+
+  // Filter Products Function
+  function filterProducts(category) {
+    const cards = document.querySelectorAll('.product-card');
+    cards.forEach(card => {
+      const cat = card.getAttribute('data-category');
+      if (category === 'all' || cat === category) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    toggleFilterMenu();
+  }
+
+  // Sort Products Function
+  function sortProducts(order) {
+    const grid = document.getElementById('productGrid');
+    const cardsArray = Array.from(grid.getElementsByClassName('product-card'));
+    
+    cardsArray.sort((a, b) => {
+      const priceA = parseFloat(a.getAttribute('data-price'));
+      const priceB = parseFloat(b.getAttribute('data-price'));
+      return order === 'low-high' ? priceA - priceB : priceB - priceA;
+    });
+
+    cardsArray.forEach(card => grid.appendChild(card));
+    toggleSortMenu();
+  }
+</script>
+
+</body>
+</html>

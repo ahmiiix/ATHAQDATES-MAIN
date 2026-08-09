@@ -1,212 +1,237 @@
 <!DOCTYPE html>
+<html class="scroll-smooth" dir="ltr" lang="en">
+<head> 
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>ATHAQ | Nature's Finest, Crafted with Excellence</title>
 
-<html class="scroll-smooth" dir="ltr" lang="en"><head> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ATHAQ | Nature's Finest, Crafted with Excellence</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&ampfamily=IBM+Plex+Sans:wght@600&ampfamily=Be+Vietnam+Pro:wght@600;700&ampdisplay=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&ampdisplay=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&ampdisplay=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+  <!-- Icons & Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <script id="tailwind-config">
       tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "on-tertiary-fixed": "#241a00",
-                    "error-container": "#ffdad6",
-                    "secondary": "#3e6653",
-                    "on-error-container": "#93000a",
-                    "on-surface-variant": "#3f4944",
-                    "secondary-container": "#c0edd4",
-                    "on-primary-container": "#88d2b6",
-                    "on-secondary-fixed": "#002114",
-                    "inverse-primary": "#8bd5b9",
-                    "surface-container-lowest": "#ffffff",
-                    "secondary-fixed": "#c0edd4",
-                    "on-tertiary": "#ffffff",
-                    "on-secondary-fixed-variant": "#264e3c",
-                    "surface": "#faf9f4",
-                    "on-tertiary-fixed-variant": "#574500",
-                    "tertiary-fixed-dim": "#e9c349",
-                    "on-secondary-container": "#446d59",
-                    "outline": "#6f7974",
-                    "on-error": "#ffffff",
-                    "on-primary": "#ffffff",
-                    "surface-bright": "#faf9f4",
-                    "outline-variant": "#bec9c3",
-                    "on-primary-fixed-variant": "#00513d",
-                    "on-secondary": "#ffffff",
-                    "error": "#ba1a1a",
-                    "on-tertiary-container": "#4f3e00",
-                    "inverse-surface": "#30312e",
-                    "tertiary-fixed": "#ffe088",
-                    "surface-variant": "#e3e3de",
-                    "surface-tint": "#1b6a53",
-                    "primary-fixed": "#a6f2d4",
-                    "surface-container-low": "#f5f4ef",
-                    "inverse-on-surface": "#f2f1ec",
-                    "background": "#faf9f4",
-                    "surface-dim": "#dbdad5",
-                    "surface-container": "#efeee9",
-                    "surface-container-high": "#e9e8e3",
-                    "on-primary-fixed": "#002117",
-                    "tertiary-container": "#cca830",
-                    "tertiary": "#735c00",
-                    "on-surface": "#1b1c19",
-                    "secondary-fixed-dim": "#a5d0b8",
-                    "primary": "#004232",
-                    "on-background": "#1b1c19",
-                    "primary-container": "#005c46",
-                    "surface-container-highest": "#e3e3de",
-                    "primary-fixed-dim": "#8bd5b9"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.125rem",
-                    "lg": "0.25rem",
-                    "xl": "0.5rem",
-                    "full": "0.75rem"
-            },
-            "spacing": {
-                    "section-gap": "120px",
-                    "unit": "8px",
-                    "container-max": "1280px",
-                    "margin-mobile": "16px",
-                    "margin-desktop": "64px",
-                    "gutter": "24px"
-            },
-            "fontFamily": {
-                    "body-md": ["Manrope"],
-                    "label-sm": ["IBM Plex Sans"],
-                    "headline-md": ["Be Vietnam Pro"],
-                    "body-lg": ["Manrope"],
-                    "display-lg-mobile": ["Be Vietnam Pro"],
-                    "display-lg": ["Be Vietnam Pro"]
-            },
-            "fontSize": {
-                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
-                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
-            }
-          },
-        },
+          darkMode: "class",
+          theme: {
+              extend: {
+                  "colors": {
+                      "on-tertiary-fixed": "#241a00",
+                      "error-container": "#ffdad6",
+                      "secondary": "#3e6653",
+                      "on-error-container": "#93000a",
+                      "on-surface-variant": "#3f4944",
+                      "secondary-container": "#c0edd4",
+                      "on-primary-container": "#88d2b6",
+                      "on-secondary-fixed": "#002114",
+                      "inverse-primary": "#8bd5b9",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed": "#c0edd4",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed-variant": "#264e3c",
+                      "surface": "#faf9f4",
+                      "on-tertiary-fixed-variant": "#574500",
+                      "tertiary-fixed-dim": "#e9c349",
+                      "on-secondary-container": "#446d59",
+                      "outline": "#6f7974",
+                      "on-error": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "surface-bright": "#faf9f4",
+                      "outline-variant": "#bec9c3",
+                      "on-primary-fixed-variant": "#00513d",
+                      "on-secondary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "on-tertiary-container": "#4f3e00",
+                      "inverse-surface": "#30312e",
+                      "tertiary-fixed": "#ffe088",
+                      "surface-variant": "#e3e3de",
+                      "surface-tint": "#1b6a53",
+                      "primary-fixed": "#a6f2d4",
+                      "surface-container-low": "#f5f4ef",
+                      "inverse-on-surface": "#f2f1ec",
+                      "background": "#faf9f4",
+                      "surface-dim": "#dbdad5",
+                      "surface-container": "#efeee9",
+                      "surface-container-high": "#e9e8e3",
+                      "on-primary-fixed": "#002117",
+                      "tertiary-container": "#cca830",
+                      "tertiary": "#735c00",
+                      "on-surface": "#1b1c19",
+                      "secondary-fixed-dim": "#a5d0b8",
+                      "primary": "#004232",
+                      "on-background": "#1b1c19",
+                      "primary-container": "#005c46",
+                      "surface-container-highest": "#e3e3de",
+                      "primary-fixed-dim": "#8bd5b9"
+                  },
+                  "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+                  },
+                  "spacing": {
+                      "section-gap": "120px",
+                      "unit": "8px",
+                      "container-max": "1280px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "64px",
+                      "gutter": "24px"
+                  },
+                  "fontFamily": {
+                      "body-md": ["Manrope"],
+                      "label-sm": ["IBM Plex Sans"],
+                      "headline-md": ["Be Vietnam Pro"],
+                      "body-lg": ["Manrope"],
+                      "display-lg": ["Be Vietnam Pro"]
+                  },
+                  "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                  }
+              }
+          }
       }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .hero-overlay {
-            background: linear-gradient(rgba(0, 66, 50, 0.4), rgba(0, 66, 50, 0.7));
-        }
-        .glass-panel {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        [dir="rtl"] .rtl-mirror {
-            transform: scaleX(-1);
-        }
-    </style> 
+  </script>
+  <style>
+      .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .hero-overlay {
+          background: rgba(0,66,50,0.18);
+      }
+      .glass-panel {
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+      }
+      [dir="rtl"] .rtl-mirror {
+          transform: scaleX(-1);
+      }
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      html {
+          width: 100%;
+          overflow-x: hidden;
+      }
+      body {
+          width: 100%;
+          overflow-x: hidden;
+          -webkit-text-size-adjust: 100%;
+      }
+      img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+      }
+  </style> 
 </head>
+
 <body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+
 <!-- Top Navigation Bar -->
-<nav class="fixed top-0 left-0 w-full z-50 flex items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
+<nav class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
+    
+    <!-- LEFT: Logo (Fixed Width taake hilay nahi) -->
+    <div class="flex items-center gap-3 w-[160px] flex-shrink-0">
+        <a href="/index.html" class="text-primary dark:text-primary-fixed" style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; letter-spacing: 1px; color: #004232;">
+            ATHAQ
+        </a>
+    </div>
 
-  <!-- LEFT (Logo) -->
-  <div class="flex items-center gap-3">
-  <span
-  class="hidden sm:block text-primary dark:text-primary-fixed"
-  data-en="ATHAQ DATES"
-  data-ar="أثاق للتمور"
-  style="
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #1c4d06;
-  "
->
-  ATHAQ 
-</span>
-  </div>
+    <!-- CENTER: Desktop Menu (Flexible space) -->
+    <div class="hidden md:flex items-center justify-center gap-6 font-headline-md text-sm font-semibold text-primary flex-grow px-4">
+        <a href="/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Home</a>
+        <a href="/web/about/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">About</a>
+        <a href="/web/product/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Products</a>
+        <a href="/web/gallery/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Gallery</a>
+        <a href="/web/contact/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Contact</a>
+    </div>
 
-  <!-- CENTER (Menu) -->
-<div class="flex-1 flex justify-center">
-<div class="hidden md:flex items-center gap-8 font-[Poppins] text-headline-md font-bold text-primary dark:text-primary-fixed">
+    <!-- RIGHT: Actions & Stable Icon Container (Rigid Wrapper Width w-[320px]) -->
+    <div class="flex items-center justify-end gap-2 md:gap-2.5 w-[320px] flex-shrink-0">
+        <!-- Language Toggle -->
+        <div onclick="toggleLanguage()" class="w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0" title="Change Language">
+            <i class="fa-solid fa-globe text-primary text-xs"></i>
+        </div> 
+        
+        <!-- Search Trigger Button -->
+        <button onclick="openSearchModal()" class="w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center relative hover:bg-surface-variant transition-colors flex-shrink-0" title="Search">
+            <i class="fa-solid fa-magnifying-glass text-primary text-xs"></i>
+        </button>
 
- <a href="../../index.html">Home</a>
-<a href="../about/index.html">About</a>
-<a href="../product/index.html">Products</a>
-<a href="../gallery/index.html">Gallery</a>
-<a href="../contact/index.html">Contact</a>
+        <!-- Wishlist Link -->
+        <a href="../wishlist/index.html" class="w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center relative hover:bg-surface-variant transition-colors flex-shrink-0" title="Wishlist">
+            <i class="fa-regular fa-heart text-primary text-xs"></i>
+            <span id="wishlistCount" class="absolute -top-1 -right-1 bg-rose-600 text-white text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">0</span>
+        </a>
 
-</div>
-</div>
+        <!-- Cart Link -->
+        <a href="../checkout.html" class="w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center relative hover:bg-surface-variant transition-colors flex-shrink-0" title="Cart">
+            <i class="fa-solid fa-cart-shopping text-primary text-xs"></i>
+            <span id="cartCount" class="absolute -top-1 -right-1 bg-primary text-white text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">0</span>
+        </a>
 
-  <!-- RIGHT (Buttons) -->
-   <div class="flex justify-end gap-4 p-5">
-  <div onclick="toggleLanguage()" class="w-10 h-10 rounded-full border flex items-center justify-center cursor-pointer">
-    <i class="fa-solid fa-globe"></i>
-  </div> 
+        <!-- Share Website -->
+        <div onclick="shareWebsite()" class="w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0" title="Share">
+            <i class="fa-solid fa-share-nodes text-primary text-xs"></i>
+        </div> 
 
-  <div class="flex items-center gap-4 ml-auto">
-   <a href="/login/index.html"
-   class="bg-primary text-white px-5 py-2 rounded-lg text-sm inline-block"
-   data-en="Admin Login"
-   data-ar="تسجيل دخول المسؤول">
-   Admin Login
-</a>
-  </div>
-   <div onclick="shareWebsite()" class="w-10 h-10 rounded-full border flex items-center justify-center cursor-pointer">
-    <i class="fa-solid fa-share-nodes"></i>
-  </div> 
+        <!-- Dynamic Auth Button container -->
+        <div id="authHeaderBtn" class="flex items-center justify-center flex-shrink-0"></div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center text-primary text-lg focus:outline-none hover:bg-surface-variant transition-colors flex-shrink-0" aria-label="Open Menu">
+            ☰
+        </button>
+    </div>
 </nav>
-<main class="pt-20">
+
+<main class="pt-16">
 <!-- Hero Section -->
 <header class="relative w-full h-[70vh] flex items-center overflow-hidden bg-primary-container">
 <div class="absolute inset-0 z-0">
-<div class="w-full h-full bg-cover bg-center opacity-40 mix-blend-overlay" data-alt="A cinematic, wide-angle shot of a serene Saudi date palm plantation at sunrise. The soft morning light filters through the green fronds, creating a rhythmic pattern of shadows on the sandy ground. The aesthetic is high-end and premium, utilizing deep forest greens and warm ivory tones to evoke a sense of heritage and precision. The atmosphere is calm and authoritative, reflecting the roots of the Athaq Industrial Factory." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB7BXNm3JWHAbbrwulbjfMyNi1NRaXsvpRLCaxiOWRf4_HferYo3r3p67MgfFS1Pi47I26yx5Tm9CeSPtUnJHsQd2ZRq2XVOhS44V_RxCxm1JxBWAjHuNpxbS0EAiAo45qWOA9u6EOxtAxPxHACO3U28HZJp_G2Kr9hf5r7gmSHl_ijgu1ByA5U0CbAQFHTd0EWilD74L57rlZ6iv-6KGkCtdnY40AYKvAgiy23fe_iv2YN5RrFQizMDA')"></div>
+<div class="w-full h-full bg-cover bg-center opacity-40 mix-blend-overlay" data-alt="A cinematic, wide-angle shot of a serene Saudi date palm plantation at sunrise..." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB7BXNm3JWHAbbrwulbjfMyNi1NRaXsvpRLCaxiOWRf4_HferYo3r3p67MgfFS1Pi47I26yx5Tm9CeSPtUnJHsQd2ZRq2XVOhS44V_RxCxm1JxBWAjHuNpxbS0EAiAo45qWOA9u6EOxtAxPxHACO3U28HZJp_G2Kr9hf5r7gmSHl_ijgu1ByA5U0CbAQFHTd0EWilD74L57rlZ6iv-6KGkCtdnY40AYKvAgiy23fe_iv2YN5RrFQizMDA')"></div>
 </div>
-<div class="relative z-10 px-margin-desktop max-w-container-max">
+<div class="relative z-10 px-6 md:px-12 lg:px-24 xl:px-32 max-w-container-max mx-auto">
 <div class="inline-block px-3 py-1 bg-tertiary text-on-tertiary rounded-sm font-label-sm mb-6">ESTABLISHED 1994</div>
 <h1 class="font-display-lg text-display-lg text-surface-bright mb-4 max-w-3xl">Pioneering Industrial Precision in the Heart of Saudi Arabia</h1>
 <p class="font-body-lg text-body-lg text-on-primary-container max-w-2xl">Bridging traditional values with world-class manufacturing standards to deliver excellence across global markets.</p>
 </div>
 <div class="absolute bottom-0 left-0 w-full gold-line"></div>
 </header>
+
 <!-- Company Overview: Bento Grid -->
-<section class="py-section-gap px-margin-desktop max-w-container-max mx-auto scroll-reveal">
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto scroll-reveal">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <!-- Main Text Block -->
 <div class="md:col-span-7 flex flex-col justify-center">
 <span class="text-primary font-label-sm tracking-[0.2em] uppercase mb-4">Our Legacy</span>
 <h2 class="font-display-lg text-display-lg mb-8 text-primary">Decades of Industrial Leadership</h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-6 leading-relaxed">
-                        Athaq Industrial Factory stands as a beacon of modern manufacturing, rooted in the rich soil of Saudi Arabian heritage. We don't just build products; we craft solutions that empower industries.
-                    </p>
+    Athaq Industrial Factory stands as a beacon of modern manufacturing, rooted in the rich soil of Saudi Arabian heritage. We don't just build products; we craft solutions that empower industries.
+</p>
 <p class="font-body-md text-body-md text-on-surface-variant mb-8">
-                        Our journey began with a vision to integrate the resilience of the local landscape with the precision of global engineering. Today, we operate one of the region's most advanced facilities, specializing in high-performance industrial components that meet rigorous international quality standards.
-                    </p>
-<div class="flex gap-4">   
-    <a href="/web/about/broucher.pdf " download>
-        <button class="bg-primary text-on-primary px-8 py-4 rounded-lg font-label-sm hover:shadow-lg transition-all">Download Brochure</button>
-    </a>
-    <a href="/web/meet-team/meet-team.html">
-        <button class="border border-secondary text-secondary px-8 py-4 rounded-lg font-label-sm hover:bg-secondary/5 transition-all">Meet the Team</button>
-    </a>
+    Our journey began with a vision to integrate the resilience of the local landscape with the precision of global engineering. Today, we operate one of the region's most advanced facilities, specializing in high-performance industrial components that meet rigorous international quality standards.
+</p>
+<div class="flex flex-col sm:flex-row gap-4">   
+    <a href="/web/about/broucher.pdf" download class="inline-flex items-center justify-center bg-primary text-on-primary px-8 py-4 rounded-xl font-semibold hover:bg-primary-container transition-all shadow-lg">Download Brochure</a>
+    <a href="/web/meet-team/meet-team.html" class="inline-flex items-center justify-center border border-secondary text-secondary px-8 py-4 rounded-xl font-semibold hover:bg-secondary/5 transition-all">Meet the Team</a>
 </div>
 </div>
 <!-- Visual Accent -->
 <div class="md:col-span-5 grid grid-cols-2 gap-4">
 <div class="bg-white p-2 rounded-xl premium-shadow h-64 overflow-hidden border border-outline-variant/20">
-<div class="w-full h-full bg-cover bg-center rounded-lg" data-alt="A close-up, macro photograph of high-precision metallic gears and machinery parts within the Athaq Industrial Factory. The lighting is cold and clinical, emphasizing the brushed steel textures and perfect alignment of the components. The scene uses a palette of forest green reflections on metallic surfaces with ivory highlights, conveying technical mastery and a premium industrial feel." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCOHbmcELcTRm5jdpBnnS4mtVr9gwZPCbpMm2h0Hmb9DNwAJgxFL6Brhl5v3nC6pSR-6gfQBqkvrMDJP7TdZVdguS-Ua7rrTtEnMQqaK8bbqqJ7j9YkuoM1-iEhuMJqT22qbsif0NYi4CLqBts-URCGczxiR-1V5I_ioBTnZe4-o6rSGhjuEcuZ_YDClYoyPcyrlcTv17-bjeuwegJ7xr4IXI6Yatws5e3UTSay-JbjN9WuOPA_sJXzTQ')"></div>
+<div class="w-full h-full bg-cover bg-center rounded-lg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCOHbmcELcTRm5jdpBnnS4mtVr9gwZPCbpMm2h0Hmb9DNwAJgxFL6Brhl5v3nC6pSR-6gfQBqkvrMDJP7TdZVdguS-Ua7rrTtEnMQqaK8bbqqJ7j9YkuoM1-iEhuMJqT22qbsif0NYi4CLqBts-URCGczxiR-1V5I_ioBTnZe4-o6rSGhjuEcuZ_YDClYoyPcyrlcTv17-bjeuwegJ7xr4IXI6Yatws5e3UTSay-JbjN9WuOPA_sJXzTQ')"></div>
 </div>
 <div class="bg-white p-2 rounded-xl premium-shadow h-80 -mt-8 overflow-hidden border border-outline-variant/20">
-<div class="w-full h-full bg-cover bg-center rounded-lg" data-alt="An architectural shot of the Athaq Industrial Factory exterior during the golden hour. The building features modern, clean lines with glass and steel elements that reflect the surrounding landscape. The sunset creates a warm gold glow against the ivory walls, while the deep green shadows maintain the brand's sophisticated identity. The mood is one of institutional strength and professional reliability." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCp8xaq9zuCIXOPalwzwoJCSAwTx6Tegg74WQp_Q28Lj3jymR2uyzzxJ8cHQvf8SO3lHx3piug0XdnKxN5yRFnQBLUjnXhpykAYmQXV3P37nWm8i0vUnAks9ajv00qnTxtIBwRnjb4XCed2WSXtK_sim55ty67SkMCHCXTZ5FJ9J4PW1kLQCiRrzs6VaR5QJP3UkapuVDgEu_C5NcMMK5isQ7bm2A9rkhE41DthJo6N9e9wXPiYqZW2A')"></div>
+<div class="w-full h-full bg-cover bg-center rounded-lg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCp8xaq9zuCIXOPalwzwoJCSAwTx6Tegg74WQp_Q28Lj3jymR2uyzzxJ8cHQvf8SO3lHx3piug0XdnKxN5yRFnQBLUjnXhpykAYmQXV3P37nWm8i0vUnAks9ajv00qnTxtIBwRnjb4XCed2WSXtK_sim55ty67SkMCHCXTZ5FJ9J4PW1kLQCiRrzs6VaR5QJP3UkapuVDgEu_C5NcMMK5isQ7bm2A9rkhE41DthJo6N9e9wXPiYqZW2A')"></div>
 </div>
 <div class="bg-secondary-container/30 col-span-2 p-8 rounded-xl flex flex-col justify-end relative overflow-hidden">
 <span class="material-symbols-outlined text-primary text-5xl mb-4" data-icon="factory">factory</span>
@@ -216,9 +241,10 @@
 </div>
 </div>
 </section>
+
 <!-- Mission & Vision Section -->
 <section class="bg-surface-container-low py-section-gap">
-<div class="px-margin-desktop max-w-container-max mx-auto">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
 <div class="flex flex-col md:flex-row gap-gutter">
 <!-- Mission Card -->
 <div class="flex-1 bg-white p-12 rounded-xl premium-shadow border-t-4 border-tertiary hover:-translate-y-2 transition-transform duration-300">
@@ -227,8 +253,8 @@
 </div>
 <h3 class="font-display-lg text-3xl mb-6 text-primary">Our Mission</h3>
 <p class="font-body-lg text-on-surface-variant leading-relaxed">
-                            To deliver superior industrial products through innovative engineering, sustainable practices, and a relentless commitment to precision, ensuring our partners achieve unparalleled operational efficiency.
-                        </p>
+    To deliver superior industrial products through innovative engineering, sustainable practices, and a relentless commitment to precision, ensuring our partners achieve unparalleled operational efficiency.
+</p>
 </div>
 <!-- Vision Card -->
 <div class="flex-1 bg-white p-12 rounded-xl premium-shadow border-t-4 border-primary hover:-translate-y-2 transition-transform duration-300">
@@ -237,14 +263,15 @@
 </div>
 <h3 class="font-display-lg text-3xl mb-6 text-primary">Our Vision</h3>
 <p class="font-body-lg text-on-surface-variant leading-relaxed">
-                            To be the global benchmark for industrial manufacturing, where Saudi Arabian heritage meets the cutting edge of technological advancement, fostering a future of industrial self-sufficiency.
-                        </p>
+    To be the global benchmark for industrial manufacturing, where Saudi Arabian heritage meets the cutting edge of technological advancement, fostering a future of industrial self-sufficiency.
+</p>
 </div>
 </div>
 </div>
 </section>
+
 <!-- Factory Details & Tech Specs -->
-<section class="py-section-gap px-margin-desktop max-w-container-max mx-auto scroll-reveal">
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto scroll-reveal">
 <div class="text-center mb-16">
 <span class="text-secondary font-label-sm tracking-[0.2em] uppercase mb-4">Technical Prowess</span>
 <h2 class="font-display-lg text-display-lg text-primary">Inside the ATHAQ Hub</h2>
@@ -280,7 +307,8 @@
 <div class="p-8 bg-surface-container-high">
 <h3 class="font-headline-md text-primary">Facility Specifications</h3>
 </div>
-<table class="w-full text-left font-body-md">
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-md min-w-[600px]">
 <thead>
 <tr class="bg-surface-container-low border-b border-outline-variant/30">
 <th class="p-6 text-on-surface-variant font-label-sm uppercase">Category</th>
@@ -296,7 +324,7 @@
 </tr>
 <tr class="bg-secondary-container/5 border-b border-outline-variant/10 hover:bg-secondary-container/10 transition-colors">
 <td class="p-6 font-bold text-primary">Surface Treatment</td>
-<td class="p-6">Anodic Oxidation &amp Coating</td>
+<td class="p-6">Anodic Oxidation &amp; Coating</td>
 <td class="p-6">Automated Electro-Statics</td>
 </tr>
 <tr class="border-b border-outline-variant/10 hover:bg-surface-container-lowest transition-colors">
@@ -305,28 +333,29 @@
 <td class="p-6">CMM Precision Metrology</td>
 </tr>
 <tr class="bg-secondary-container/5 hover:bg-secondary-container/10 transition-colors">
-<td class="p-6 font-bold text-primary">Logistics &amp Storage</td>
+<td class="p-6 font-bold text-primary">Logistics &amp; Storage</td>
 <td class="p-6">Smart ASRS System</td>
 <td class="p-6">SAP Integrated Warehouse</td>
 </tr>
 </tbody>
 </table>
 </div>
+</div>
 </section>
-<!-- CTA Section -->
-<section class="py-section-gap relative overflow-hidden bg-primary">
 
-<div class="relative z-10 px-margin-desktop max-w-container-max mx-auto text-center">
+<!-- CTA Section -->
+<section class="py-section-gap relative overflow-hidden bg-primary px-margin-mobile md:px-margin-desktop">
+<div class="relative z-10 max-w-container-max mx-auto text-center">
 <h2 class="font-display-lg text-display-lg text-white mb-8">Ready to Build the Future Together?</h2>
 <p class="font-body-lg text-on-primary-container max-w-2xl mx-auto mb-10">Connect with our technical team to discuss how Athaq's precision can elevate your industrial projects.</p>
-<div class="flex justify-center gap-6">
-<a href="https://wa.me/+966581818482">
-    <button class="bg-surface-bright text-primary px-10 py-4 rounded-lg font-bold hover:scale-105 transition-transform">Inquire Now</button> </a>
-<button class="border border-white text-white px-10 py-4 rounded-lg font-bold hover:bg-white/10 transition-all">Our Certifications</button>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<a href="https://wa.me/+966581818482" class="inline-flex items-center justify-center bg-surface-bright text-primary px-10 py-4 rounded-xl font-bold hover:scale-105 transition-transform">Inquire Now</a>
+<button class="inline-flex items-center justify-center border border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white/10 transition-all">Our Certifications</button>
 </div>
 </div>
 </section>
 </main>
+
 <!-- Footer -->
 <footer class="bg-surface-container-highest dark:bg-surface-dim border-t border-tertiary/20 pt-20 pb-12 px-margin-mobile md:px-margin-desktop">
 <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter mb-20">
@@ -334,10 +363,10 @@
 <div class="font-headline-md text-headline-md text-primary">ATHAQ DATES INDUSTRY</div>
 <p class="font-body-md text-on-surface-variant/80">ATHAQ Industrial Factory: Pioneering the future of Saudi agriculture through premium industrial processing.</p>
 <div class="flex gap-4">
-<a class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="https://mail.google.com/mail/u/0/?fs=1&to=aathaqq3@gmail.com&su=Inquiry%20about%20your%20products&body=Hello,%20I%20would%20like%20to%20learn%20more%20about%20your%20date%20products.">
+<a class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="mailto:aathaqq3@gmail.com" title="Email Us">
     <span class="material-symbols-outlined text-[20px]">mail</span>
 </a>
-<a class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="https://facebook.com/aathaqq3">
+<a class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="https://facebook.com/aathaqq3" target="_blank" title="Facebook">
     <span class="material-symbols-outlined text-[20px]">public</span>
 </a>
 </div>
@@ -345,10 +374,11 @@
 <div>
 <h4 class="font-label-sm text-label-sm uppercase text-primary mb-6">Quick Links</h4>
 <ul class="space-y-4">
-<li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Our Process</a></li>
-<li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Sustainability</a></li>
-<li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Global Export</a></li>
-<li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Factory Tours</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="/web/about/index.html">Our Process</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="/web/product/index.html">Products</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="/web/customers/index.html">Customers</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="/web/gallery/index.html">Gallery</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="/web/contact/index.html">Factory Tours</a></li>
 </ul>
 </div>
 <div>
@@ -362,61 +392,98 @@
 <div>
     <h4 class="font-label-sm text-label-sm uppercase text-primary mb-6">Contact</h4>
 <ul class="space-y-4">
-<li class="flex gap-3 text-on-surface-variant">
-    <a href="https://maps.app.goo.gl/zmrbzJ5zmcY7iMbT8"
-<button class="material-symbols-outlined text-primary">location_on</button> </a>
-<span class="font-body-md">مصنع اعذاق للتمور، King Salman Road, Al Bukayriyah</span>
+<li class="flex gap-3 text-on-surface-variant items-center">
+    <a href="https://maps.app.goo.gl/zmrbzJ5zmcY7iMbT8" target="_blank" class="text-primary hover:text-tertiary"><span class="material-symbols-outlined">location_on</span></a>
+    <span class="font-body-md">مصنع اعذاق للتمور، King Salman Road, Al Bukayriyah</span>
 </li>
-<li class="flex gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-primary">call</span>
-<a href="tel:+966581818482">
-  <button>Contact now </button>
-</a>
+<li class="flex gap-3 text-on-surface-variant items-center">
+    <span class="material-symbols-outlined text-primary">call</span>
+    <a href="tel:+966581818482" class="hover:text-tertiary font-body-md">+966 58 181 8482</a>
 </li>
-<li class="flex gap-3 text-on-surface-variant">
-    <a href="https://mail.google.com/mail/u/0/?fs=1&to=aathaqq3@gmail.com&su=Inquiry%20about%20your%20products&body=Hello,%20I%20would%20like%20to%20learn%20more%20about%20your%20date%20products.">
-        <button class="material-symbols-outlined text-primary">mail</button>
-    </a>
-    <span class="font-body-md">aathqq3@gmail.com</span>
+<li class="flex gap-3 text-on-surface-variant items-center">
+    <span class="material-symbols-outlined text-primary">mail</span>
+    <a href="mailto:aathaqq3@gmail.com" class="hover:text-tertiary font-body-md">aathaqq3@gmail.com</a>
 </li>
 </ul>
 </div>
 </div>
 <div class="pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-4">
-<p class="font-body-md text-on-surface-variant/60 text-[14px]">© 2023 Athaq Industrial Factory. All rights reserved.</p>
+<p class="font-body-md text-on-surface-variant/60 text-[14px]">&copy; 2026 ATHAQ Dates Industry. All rights reserved.</p>
 <div class="flex gap-6">
 <span class="font-label-sm text-label-sm text-on-surface-variant/60">ISO 22000 Certified</span>
 <span class="font-label-sm text-label-sm text-on-surface-variant/60">HACCP Approved</span>
 </div>
 </div>
 </footer>
+
 <script>
-        // Simple Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1
-        };
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
+    menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        menuBtn.innerHTML = mobileMenu.classList.contains("hidden") ? "☰" : "✕";
+    });
 
-        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    // Language Toggle
+    let currentLanguage = "en";
+    function toggleLanguage() {
+        currentLanguage = currentLanguage === "en" ? "ar" : "en";
+        document.documentElement.lang = currentLanguage;
+        document.documentElement.dir = currentLanguage === "ar" ? "rtl" : "ltr";
 
-        // Sticky Nav subtle effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('h-16');
-                nav.classList.remove('h-20');
-            } else {
-                nav.classList.add('h-20');
-                nav.classList.remove('h-16');
+        document.querySelectorAll("[data-en]").forEach(item => {
+            const translatedText = item.getAttribute("data-" + currentLanguage);
+            if (translatedText) {
+                item.textContent = translatedText;
             }
         });
-    </script>
-     <script src="script.js"></script>
-</body></html>
+    }
+
+    // Share Website
+    function shareWebsite() {
+        if (navigator.share) {
+            navigator.share({
+                title: "ATHAQ DATES",
+                text: "Visit ATHAQ Dates Industrial Factory",
+                url: window.location.href
+            }).catch(() => {});
+        } else {
+            navigator.clipboard.writeText(window.location.href);
+            alert("Website link copied to clipboard!");
+        }
+    }
+
+    // Dynamic Auth Header Script (Matches Home Page)
+    document.addEventListener("DOMContentLoaded", () => {
+        const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+        const userRole = sessionStorage.getItem("userRole");
+        const userName = sessionStorage.getItem("userName") || "My Profile";
+        const authContainer = document.getElementById("authHeaderBtn");
+
+        if (isLoggedIn === "true") {
+            if (userRole === "admin") {
+                authContainer.innerHTML = `
+                    <a href="/admin/index.html" class="flex items-center gap-1.5 bg-[#004232] text-white px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider hover:bg-[#002e23] transition-colors flex-shrink-0 whitespace-nowrap">
+                        <i class="fa-solid fa-gauge"></i> Admin
+                    </a>
+                `;
+            } else {
+                authContainer.innerHTML = `
+                    <a href="/customer-profile/profile.html" class="flex items-center gap-1.5 bg-emerald-50 text-[#004232] border border-emerald-200 px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider hover:bg-emerald-100 transition-colors flex-shrink-0 whitespace-nowrap">
+                        <i class="fa-regular fa-user"></i> ${userName}
+                    </a>
+                `;
+            }
+        } else {
+            authContainer.innerHTML = `
+                <a href="/login/index.html" class="w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0" title="Login">
+                    <i class="fa-regular fa-user text-primary text-xs"></i>
+                </a>
+            `;
+        }
+    });
+</script>
+</body>
+</html>

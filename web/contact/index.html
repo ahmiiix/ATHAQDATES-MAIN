@@ -1,170 +1,187 @@
 <!DOCTYPE html>
-
-<html class="scroll-smooth" dir="ltr" lang="en"><head> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<html class="scroll-smooth" dir="ltr" lang="en">
+<head> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>ATHAQ | Nature's Finest, Crafted with Excellence</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&ampfamily=IBM+Plex+Sans:wght@600&ampfamily=Be+Vietnam+Pro:wght@600;700&ampdisplay=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&ampdisplay=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&ampdisplay=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&amp;family=IBM+Plex+Sans:wght@600&amp;family=Be+Vietnam+Pro:wght@600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-      tailwind.config = {
+    tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
             "colors": {
-                    "on-tertiary-fixed": "#241a00",
-                    "error-container": "#ffdad6",
-                    "secondary": "#3e6653",
-                    "on-error-container": "#93000a",
-                    "on-surface-variant": "#3f4944",
-                    "secondary-container": "#c0edd4",
-                    "on-primary-container": "#88d2b6",
-                    "on-secondary-fixed": "#002114",
-                    "inverse-primary": "#8bd5b9",
-                    "surface-container-lowest": "#ffffff",
-                    "secondary-fixed": "#c0edd4",
-                    "on-tertiary": "#ffffff",
-                    "on-secondary-fixed-variant": "#264e3c",
-                    "surface": "#faf9f4",
-                    "on-tertiary-fixed-variant": "#574500",
-                    "tertiary-fixed-dim": "#e9c349",
-                    "on-secondary-container": "#446d59",
-                    "outline": "#6f7974",
-                    "on-error": "#ffffff",
-                    "on-primary": "#ffffff",
-                    "surface-bright": "#faf9f4",
-                    "outline-variant": "#bec9c3",
-                    "on-primary-fixed-variant": "#00513d",
-                    "on-secondary": "#ffffff",
-                    "error": "#ba1a1a",
-                    "on-tertiary-container": "#4f3e00",
-                    "inverse-surface": "#30312e",
-                    "tertiary-fixed": "#ffe088",
-                    "surface-variant": "#e3e3de",
-                    "surface-tint": "#1b6a53",
-                    "primary-fixed": "#a6f2d4",
-                    "surface-container-low": "#f5f4ef",
-                    "inverse-on-surface": "#f2f1ec",
-                    "background": "#faf9f4",
-                    "surface-dim": "#dbdad5",
-                    "surface-container": "#efeee9",
-                    "surface-container-high": "#e9e8e3",
-                    "on-primary-fixed": "#002117",
-                    "tertiary-container": "#cca830",
-                    "tertiary": "#735c00",
-                    "on-surface": "#1b1c19",
-                    "secondary-fixed-dim": "#a5d0b8",
-                    "primary": "#004232",
-                    "on-background": "#1b1c19",
-                    "primary-container": "#005c46",
-                    "surface-container-highest": "#e3e3de",
-                    "primary-fixed-dim": "#8bd5b9"
+                "on-tertiary-fixed": "#241a00",
+                "error-container": "#ffdad6",
+                "secondary": "#3e6653",
+                "on-error-container": "#93000a",
+                "on-surface-variant": "#3f4944",
+                "secondary-container": "#c0edd4",
+                "on-primary-container": "#88d2b6",
+                "on-secondary-fixed": "#002114",
+                "inverse-primary": "#8bd5b9",
+                "surface-container-lowest": "#ffffff",
+                "secondary-fixed": "#c0edd4",
+                "on-tertiary": "#ffffff",
+                "on-secondary-fixed-variant": "#264e3c",
+                "surface": "#faf9f4",
+                "on-tertiary-fixed-variant": "#574500",
+                "tertiary-fixed-dim": "#e9c349",
+                "on-secondary-container": "#446d59",
+                "outline": "#6f7974",
+                "on-error": "#ffffff",
+                "on-primary": "#ffffff",
+                "surface-bright": "#faf9f4",
+                "outline-variant": "#bec9c3",
+                "on-primary-fixed-variant": "#00513d",
+                "on-secondary": "#ffffff",
+                "error": "#ba1a1a",
+                "on-tertiary-container": "#4f3e00",
+                "inverse-surface": "#30312e",
+                "tertiary-fixed": "#ffe088",
+                "surface-variant": "#e3e3de",
+                "surface-tint": "#1b6a53",
+                "primary-fixed": "#a6f2d4",
+                "surface-container-low": "#f5f4ef",
+                "inverse-on-surface": "#f2f1ec",
+                "background": "#faf9f4",
+                "surface-dim": "#dbdad5",
+                "surface-container": "#efeee9",
+                "surface-container-high": "#e9e8e3",
+                "on-primary-fixed": "#002117",
+                "tertiary-container": "#cca830",
+                "tertiary": "#735c00",
+                "on-surface": "#1b1c19",
+                "secondary-fixed-dim": "#a5d0b8",
+                "primary": "#004232",
+                "on-background": "#1b1c19",
+                "primary-container": "#005c46",
+                "surface-container-highest": "#e3e3de",
+                "primary-fixed-dim": "#8bd5b9"
             },
             "borderRadius": {
-                    "DEFAULT": "0.125rem",
-                    "lg": "0.25rem",
-                    "xl": "0.5rem",
-                    "full": "0.75rem"
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
             },
             "spacing": {
-                    "section-gap": "120px",
-                    "unit": "8px",
-                    "container-max": "1280px",
-                    "margin-mobile": "16px",
-                    "margin-desktop": "64px",
-                    "gutter": "24px"
+                "section-gap": "120px",
+                "unit": "8px",
+                "container-max": "1280px",
+                "margin-mobile": "16px",
+                "margin-desktop": "64px",
+                "gutter": "24px"
             },
             "fontFamily": {
-                    "body-md": ["Manrope"],
-                    "label-sm": ["IBM Plex Sans"],
-                    "headline-md": ["Be Vietnam Pro"],
-                    "body-lg": ["Manrope"],
-                    "display-lg-mobile": ["Be Vietnam Pro"],
-                    "display-lg": ["Be Vietnam Pro"]
+                "body-md": ["Manrope"],
+                "label-sm": ["IBM Plex Sans"],
+                "headline-md": ["Be Vietnam Pro"],
+                "body-lg": ["Manrope"],
+                "display-lg": ["Be Vietnam Pro"]
             },
             "fontSize": {
-                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
-                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
             }
-          },
-        },
-      }
-    </script>
+          }
+        }
+    }
+</script>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .hero-overlay {
-            background: linear-gradient(rgba(0, 66, 50, 0.4), rgba(0, 66, 50, 0.7));
-        }
-        .glass-panel {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        [dir="rtl"] .rtl-mirror {
-            transform: scaleX(-1);
-        }
-    </style> 
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .hero-overlay {
+        background: linear-gradient(rgba(0, 66, 50, 0.4), rgba(0, 66, 50, 0.7));
+    }
+    .glass-panel {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+    [dir="rtl"] .rtl-mirror {
+        transform: scaleX(-1);
+    }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    html, body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+</style> 
 </head>
+
 <body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
-<!-- Top Navigation Bar --><nav class="fixed top-0 left-0 w-full z-50 flex items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
 
-  <!-- LEFT (Logo) -->
-  <div class="flex items-center gap-3">
- <span
-  class="hidden sm:block text-primary dark:text-primary-fixed"
-  data-en="ATHAQ DATES"
-  data-ar="أثاق للتمور"
-  style="
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #1c4d06;
-  "
->
-  ATHAQ 
-</span>
-  </div>
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
+    
+    <!-- LEFT: Logo (Fixed Width taake hilay nahi) -->
+    <div class="flex items-center gap-3 w-[160px] flex-shrink-0">
+        <a href="/index.html" class="text-primary dark:text-primary-fixed" style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; letter-spacing: 1px; color: #004232;">
+            ATHAQ
+        </a>
+    </div>
 
-  <!-- CENTER (Menu) -->
-<div class="flex-1 flex justify-center">
-<div class="hidden md:flex items-center gap-8 font-[Poppins] text-headline-md font-bold text-primary dark:text-primary-fixed">
+    <!-- CENTER: Desktop Menu (Flexible space) -->
+    <div class="hidden md:flex items-center justify-center gap-6 font-headline-md text-sm font-semibold text-primary flex-grow px-4">
+        <a href="/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Home</a>
+        <a href="/web/about/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">About</a>
+        <a href="/web/product/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Products</a>
+        <a href="/web/gallery/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Gallery</a>
+        <a href="/web/contact/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Contact</a>
+    </div>
 
-<a href="../../index.html">Home</a>
-<a href="../about/index.html">About</a>
-<a href="../product/index.html">Products</a>
-<a href="../gallery/index.html">Gallery</a>
-<a href="../contact/index.html">Contact</a>
+    <!-- RIGHT: Actions & Stable Icon Container (Rigid Wrapper Width w-[320px]) -->
+    <div class="flex items-center justify-end gap-2 md:gap-2.5 w-[320px] flex-shrink-0">
+        <!-- Language Toggle -->
+        <div onclick="toggleLanguage()" class="w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0" title="Change Language">
+            <i class="fa-solid fa-globe text-primary text-xs"></i>
+        </div> 
+        
+        <!-- Search Trigger Button -->
+        <button onclick="openSearchModal()" class="w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center relative hover:bg-surface-variant transition-colors flex-shrink-0" title="Search">
+            <i class="fa-solid fa-magnifying-glass text-primary text-xs"></i>
+        </button>
 
-</div>
-</div>
+        <!-- Wishlist Link -->
+        <a href="../wishlist/index.html" class="w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center relative hover:bg-surface-variant transition-colors flex-shrink-0" title="Wishlist">
+            <i class="fa-regular fa-heart text-primary text-xs"></i>
+            <span id="wishlistCount" class="absolute -top-1 -right-1 bg-rose-600 text-white text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">0</span>
+        </a>
 
-  <!-- RIGHT (Buttons) -->
-   <div class="flex justify-end gap-4 p-5">
-  <div onclick="toggleLanguage()" class="w-10 h-10 rounded-full border flex items-center justify-center cursor-pointer">
-    <i class="fa-solid fa-globe"></i>
-  </div> 
+        <!-- Cart Link -->
+        <a href="../checkout.html" class="w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center relative hover:bg-surface-variant transition-colors flex-shrink-0" title="Cart">
+            <i class="fa-solid fa-cart-shopping text-primary text-xs"></i>
+            <span id="cartCount" class="absolute -top-1 -right-1 bg-primary text-white text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">0</span>
+        </a>
 
-  <div class="flex items-center gap-4 ml-auto">
-   <a href="/login/index.html"
-   class="bg-primary text-white px-5 py-2 rounded-lg text-sm inline-block"
-   data-en="Admin Login"
-   data-ar="تسجيل دخول المسؤول">
-   Admin Login
-</a>
-  </div>
-   <div onclick="shareWebsite()" class="w-10 h-10 rounded-full border flex items-center justify-center cursor-pointer">
-    <i class="fa-solid fa-share-nodes"></i>
-  </div> 
+        <!-- Share Website -->
+        <div onclick="shareWebsite()" class="w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0" title="Share">
+            <i class="fa-solid fa-share-nodes text-primary text-xs"></i>
+        </div> 
+
+        <!-- Dynamic Auth Button container -->
+        <div id="authHeaderBtn" class="flex items-center justify-center flex-shrink-0"></div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center text-primary text-lg focus:outline-none hover:bg-surface-variant transition-colors flex-shrink-0" aria-label="Open Menu">
+            ☰
+        </button>
+    </div>
 </nav>
-<main class="pt-32 pb-section-gap page-fade-in">
+
+<main class="pt-24 pb-section-gap page-fade-in">
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
 <!-- Header Section -->
 <div class="mb-16">
@@ -182,20 +199,20 @@
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 <div class="relative group">
 <label class="font-label-sm text-on-surface-variant block mb-1">Full Name</label>
-<input class="w-full input-underline bg-transparent border-outline-variant focus:border-primary py-3 text-body-md placeholder:text-outline-variant/50" placeholder="Touseef Ahmad" type="text"/>
+<input class="w-full input-underline bg-transparent border-outline-variant focus:border-primary py-3 text-body-md placeholder:text-outline-variant/50 outline-none border-b" placeholder="Touseef Ahmad" type="text"/>
 </div>
 <div class="relative group">
 <label class="font-label-sm text-on-surface-variant block mb-1">Email Address</label>
-<input class="w-full input-underline bg-transparent border-outline-variant focus:border-primary py-3 text-body-md placeholder:text-outline-variant/50" placeholder="aathaqq3@gmail.com" type="email"/>
+<input class="w-full input-underline bg-transparent border-outline-variant focus:border-primary py-3 text-body-md placeholder:text-outline-variant/50 outline-none border-b" placeholder="aathaqq3@gmail.com" type="email"/>
 </div>
 </div>
 <div class="relative group">
 <label class="font-label-sm text-on-surface-variant block mb-1">Subject</label>
-<input class="w-full input-underline bg-transparent border-outline-variant focus:border-primary py-3 text-body-md placeholder:text-outline-variant/50" placeholder="Wholesale Inquiry" type="text"/>
+<input class="w-full input-underline bg-transparent border-outline-variant focus:border-primary py-3 text-body-md placeholder:text-outline-variant/50 outline-none border-b" placeholder="Wholesale Inquiry" type="text"/>
 </div>
 <div class="relative group">
 <label class="font-label-sm text-on-surface-variant block mb-1">Message</label>
-<textarea class="w-full input-underline bg-transparent border-outline-variant focus:border-primary py-3 text-body-md placeholder:text-outline-variant/50 resize-none" placeholder="How can we help your business today?" rows="4"></textarea>
+<textarea class="w-full input-underline bg-transparent border-outline-variant focus:border-primary py-3 text-body-md placeholder:text-outline-variant/50 resize-none outline-none border-b" placeholder="How can we help your business today?" rows="4"></textarea>
 </div>
 <div class="pt-4">
 <button class="bg-primary text-on-primary w-full md:w-auto px-10 py-4 rounded-lg font-label-sm text-label-sm flex items-center justify-center gap-3 hover:bg-primary-container transition-all group active:scale-[0.98]" type="submit">
@@ -210,14 +227,14 @@
 <div>
 <span class="material-symbols-outlined text-primary text-3xl mb-4 group-hover:scale-110 transition-transform block">phone_in_talk</span>
 <h3 class="font-headline-md text-headline-md text-primary mb-2">Phone</h3>
-<p class="text-on-surface-variant font-body-md">+966 058 181 8482 </p>
-<p class="text-on-surface-variant/70 font-body-md">Fridy off </p>
+<p class="text-on-surface-variant font-body-md">+966 058 181 8482</p>
+<p class="text-on-surface-variant/70 font-body-md">Friday off</p>
 </div>
 </div>
 <div class="bg-surface-container-low p-8 rounded-xl border border-outline-variant/10 flex flex-col justify-between hover:border-secondary transition-colors group">
 <div>
 <span class="material-symbols-outlined text-primary text-3xl mb-4 group-hover:scale-110 transition-transform block">mail</span>
-<h3 class="font-headline-md text-headline-md text-primary mb-2">mail</h3>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Mail</h3>
 <p class="text-on-surface-variant font-body-md">aathaqq3@gmail.com</p>
 <p class="text-on-surface-variant/70 font-body-md">Support within 24h</p>
 </div>
@@ -228,15 +245,15 @@
 <!-- Map Section -->
 <div class="bg-white rounded-xl overflow-hidden premium-shadow border border-outline-variant/10 relative h-[400px] lg:h-[500px]">
 <div class="absolute inset-0 bg-surface-variant flex items-center justify-center">
-<img class="w-full h-full object-cover grayscale-[0.5] opacity-80" data-alt="A professional high-angle satellite map view showing a clean, modern industrial complex located in Riyadh Industrial City. The map features a minimalist palette with subtle greens for landscaping and soft grays for buildings, following the ATHAQ premium industrial aesthetic. A custom Forest Green map pin marks the factory location. The lighting is bright and clear, emphasizing professionalism and accessibility." data-location="https://maps.app.goo.gl/zmrbzJ5zmcY7iMbT8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0HrGbsKI3lhKVj_1vkUOnAS7lRbjRvgPtdd-VRtrDNGRf19VfeXcEwcnT0muHXy7BaCA_iws0DfbLwIrC7EB_F4d-9j24Ityj0rCxVn7feEWqn2AlBEinDyMnbKoBOcd3of-XG0EZLBtJH6eXM9dAFPcQFtDSxDpuJBrFbMiJsSebgzEWc2lHkkV-qRWmKfWR33h2tYOpcR7enOcXfK6k-QvQEvtgx9kR9UyMuhKtJYX8apG7RX8Oyw"/>
+<img class="w-full h-full object-cover grayscale-[0.5] opacity-80" data-alt="A professional high-angle satellite map view showing a clean, modern industrial complex located in Riyadh Industrial City." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0HrGbsKI3lhKVj_1vkUOnAS7lRbjRvgPtdd-VRtrDNGRf19VfeXcEwcnT0muHXy7BaCA_iws0DfbLwIrC7EB_F4d-9j24Ityj0rCxVn7feEWqn2AlBEinDyMnbKoBOcd3of-XG0EZLBtJH6eXM9dAFPcQFtDSxDpuJBrFbMiJsSebgzEWc2lHkkV-qRWmKfWR33h2tYOpcR7enOcXfK6k-QvQEvtgx9kR9UyMuhKtJYX8apG7RX8Oyw"/>
 <div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
 <!-- Custom Map Marker Overlay -->
 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
 <div class="bg-primary text-white p-3 rounded-full shadow-lg animate-bounce">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">location_oN</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">location_on</span>
 </div>
 <div class="bg-white px-4 py-2 rounded-lg shadow-md mt-2 border border-primary/20">
-<p class="font-label-sm text-primary">ATHAQ INDUSTRIAL FACTORY </p>
+<p class="font-label-sm text-primary">ATHAQ INDUSTRIAL FACTORY</p>
 </div>
 </div>
 </div>
@@ -244,14 +261,13 @@
 <h4 class="font-headline-md text-headline-md text-primary mb-2">Al Bukayriyah Industrial City</h4>
 <p class="text-on-surface-variant text-body-md mb-4">مصنع اعذاق للتمور ,King Salman Road, Al Bukayriyah</p>
 <a class="text-primary font-bold font-label-sm border-b border-primary pb-0.5 hover:text-tertiary hover:border-tertiary transition-colors flex items-center w-fit gap-2" href="https://maps.app.goo.gl/2xr8cy6nbb7knATL7">
-                                GET DIRECTIONS
-                                <span class="material-symbols-outlined text-sm">open_in_new</span>
+                                    GET DIRECTIONS
+                                    <span class="material-symbols-outlined text-sm">open_in_new</span>
 </a>
 </div>
 </div>
 <!-- Factory Statistics/CTA -->
 <div class="bg-primary text-on-primary p-8 rounded-xl relative overflow-hidden">
-
 <div class="relative z-10">
 <h3 class="font-headline-md text-headline-md mb-4">Quality First</h3>
 <p class="text-on-primary-container text-body-md mb-6">Experience the precision of Athaq’s advanced manufacturing facilities firsthand. Schedule a site visit today.</p>
@@ -262,10 +278,11 @@
 </div>
 </div>
 </main>
+
 <!-- Footer -->
 <footer class="w-full py-section-gap px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter bg-surface-container-highest dark:bg-surface-dim border-t border-tertiary/20">
-<div class="md:col-span-1">
-<div class="font-headline-md text-headline-md text-primary mb-4">ATHAQ DATES </div>
+<div class="md:col-span-1 space-y-4">
+<div class="font-headline-md text-headline-md text-primary mb-2">ATHAQ DATES</div>
 <p class="text-on-surface-variant text-body-md max-w-xs">Rooted in heritage, driven by innovation. Saudi Arabia's premier industrial partner.</p>
 </div>
 <div>
@@ -279,37 +296,51 @@
 <div>
 <h4 class="font-label-sm text-primary uppercase tracking-widest mb-6">Contact</h4>
 <ul class="space-y-3">
-<li class="text-on-surface-variant text-body-md">aathaqq3@gmail.com</li>
-<li class="text-on-surface-variant text-body-md">+966 58 181 8482 </li>
+<li><a href="mailto:aathaqq3@gmail.com" class="text-on-surface-variant hover:text-tertiary transition-colors text-body-md">aathaqq3@gmail.com</a></li>
+<li><a href="tel:+966581818482" class="text-on-surface-variant hover:text-tertiary transition-colors text-body-md">+966 58 181 8482</a></li>
 </ul>
 </div>
 <div>
 <h4 class="font-label-sm text-primary uppercase tracking-widest mb-6">Newsletter</h4>
 <div class="flex">
-<input class="bg-surface-container border-none focus:ring-1 focus:ring-primary rounded-s-lg px-4 py-2 w-full text-body-md" placeholder="your" type="email"/>
-<button class="bg-primary text-on-primary px-4 py-2 rounded-e-lg">
+<input class="bg-surface-container border-none focus:ring-1 focus:ring-primary rounded-s-lg px-4 py-2 w-full text-body-md outline-none" placeholder="Your Email" type="email"/>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-e-lg hover:bg-primary-container transition-colors">
 <span class="material-symbols-outlined">send</span>
 </button>
 </div>
-<p class="mt-8 text-on-surface-variant/60 text-label-sm">© 2023 Athaq Industrial Factory. All rights reserved.</p>
+<p class="mt-8 text-on-surface-variant/60 text-label-sm">© 2026 ATHAQ Dates Industry. All rights reserved.</p>
 </div>
 </footer>
-<script>
-        // Micro-interactions for form inputs
-        const inputs = document.querySelectorAll('.input-underline');
-        inputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                input.previousElementSibling.classList.add('text-primary');
-            });
-            input.addEventListener('blur', () => {
-                input.previousElementSibling.classList.remove('text-primary');
-            });
-        });
 
-        // Form submission animation simulation
-        document.getElementById('contactForm').addEventListener('submit', (e) => {
+<script>
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    if(menuBtn && mobileMenu) {
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+            menuBtn.innerHTML = mobileMenu.classList.contains("hidden") ? "☰" : "✕";
+        });
+    }
+
+    // Micro-interactions for form inputs
+    const inputs = document.querySelectorAll('.input-underline');
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            if(input.previousElementSibling) input.previousElementSibling.classList.add('text-primary');
+        });
+        input.addEventListener('blur', () => {
+            if(input.previousElementSibling) input.previousElementSibling.classList.remove('text-primary');
+        });
+    });
+
+    // Form submission animation simulation
+    const contactForm = document.getElementById('contactForm');
+    if(contactForm) {
+        contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const btn = e.target.querySelector('button');
+            const btn = e.target.querySelector('button[type="submit"]');
             const originalContent = btn.innerHTML;
             btn.innerHTML = 'SENDING...';
             btn.classList.add('opacity-50', 'pointer-events-none');
@@ -326,18 +357,37 @@
                 }, 3000);
             }, 1500);
         });
+    }
 
-        // Sticky Navbar effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('h-16', 'shadow-md');
-                nav.classList.remove('h-20', 'shadow-sm');
-            } else {
-                nav.classList.add('h-20', 'shadow-sm');
-                nav.classList.remove('h-16', 'shadow-md');
+    // Language Toggle Functionality
+    let currentLanguage = "en";
+    function toggleLanguage() {
+        currentLanguage = currentLanguage === "en" ? "ar" : "en";
+        document.documentElement.lang = currentLanguage;
+        document.documentElement.dir = currentLanguage === "ar" ? "rtl" : "ltr";
+
+        document.querySelectorAll("[data-en]").forEach(item => {
+            const translatedText = item.getAttribute("data-" + currentLanguage);
+            if (translatedText) {
+                item.textContent = translatedText;
             }
         });
-    </script>
-     <script src="script.js"></script>
-</body></html>
+    }
+
+    // Share Website API
+    function shareWebsite() {
+        if (navigator.share) {
+            navigator.share({
+                title: "ATHAQ DATES",
+                text: "Visit ATHAQ Dates Industrial Factory",
+                url: window.location.href
+            }).catch(() => {});
+        } else {
+            navigator.clipboard.writeText(window.location.href);
+            alert("Website link copied to clipboard!");
+        }
+    }
+</script>
+<script src="script.js"></script>
+</body>
+</html>

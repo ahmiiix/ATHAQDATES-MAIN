@@ -1,714 +1,346 @@
 <!DOCTYPE html>
-
-<html class="scroll-smooth" dir="ltr" lang="en"><head>      
-  <meta charset="UTF-8">
+<html class="scroll-smooth" dir="ltr" lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href=https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&display=swap rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&ampdisplay=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&ampdisplay=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "on-tertiary-fixed": "#241a00",
-                    "error-container": "#ffdad6",
-                    "secondary": "#3e6653",
-                    "on-error-container": "#93000a",
-                    "on-surface-variant": "#3f4944",
-                    "secondary-container": "#c0edd4",
-                    "on-primary-container": "#88d2b6",
-                    "on-secondary-fixed": "#002114",
-                    "inverse-primary": "#8bd5b9",
-                    "surface-container-lowest": "#ffffff",
-                    "secondary-fixed": "#c0edd4",
-                    "on-tertiary": "#ffffff",
-                    "on-secondary-fixed-variant": "#264e3c",
-                    "surface": "#faf9f4",
-                    "on-tertiary-fixed-variant": "#574500",
-                    "tertiary-fixed-dim": "#e9c349",
-                    "on-secondary-container": "#446d59",
-                    "outline": "#6f7974",
-                    "on-error": "#ffffff",
-                    "on-primary": "#ffffff",
-                    "surface-bright": "#faf9f4",
-                    "outline-variant": "#bec9c3",
-                    "on-primary-fixed-variant": "#00513d",
-                    "on-secondary": "#ffffff",
-                    "error": "#ba1a1a",
-                    "on-tertiary-container": "#4f3e00",
-                    "inverse-surface": "#30312e",
-                    "tertiary-fixed": "#ffe088",
-                    "surface-variant": "#e3e3de",
-                    "surface-tint": "#1b6a53",
-                    "primary-fixed": "#a6f2d4",
-                    "surface-container-low": "#f5f4ef",
-                    "inverse-on-surface": "#f2f1ec",
-                    "background": "#faf9f4",
-                    "surface-dim": "#dbdad5",
-                    "surface-container": "#efeee9",
-                    "surface-container-high": "#e9e8e3",
-                    "on-primary-fixed": "#002117",
-                    "tertiary-container": "#cca830",
-                    "tertiary": "#735c00",
-                    "on-surface": "#1b1c19",
-                    "secondary-fixed-dim": "#a5d0b8",
-                    "primary": "#004232",
-                    "on-background": "#1b1c19",
-                    "primary-container": "#005c46",
-                    "surface-container-highest": "#e3e3de",
-                    "primary-fixed-dim": "#8bd5b9"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.125rem",
-                    "lg": "0.25rem",
-                    "xl": "0.5rem",
-                    "full": "0.75rem"
-            },
-            "spacing": {
-                    "section-gap": "120px",
-                    "unit": "8px",
-                    "container-max": "1280px",
-                    "margin-mobile": "16px",
-                    "margin-desktop": "64px",
-                    "gutter": "24px"
-            },
-            "fontFamily": {
-                    "body-md": ["Manrope"],
-                    "label-sm": ["IBM Plex Sans"],
-                    "headline-md": ["Be Vietnam Pro"],
-                    "body-lg": ["Manrope"],
-                    "display-lg-mobile": ["Be Vietnam Pro"],
-                    "display-lg": ["Be Vietnam Pro"]
-            },
-            "fontSize": {
-                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
-                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-fixed": "#241a00",
+                        "error-container": "#ffdad6",
+                        "secondary": "#3e6653",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#3f4944",
+                        "secondary-container": "#c0edd4",
+                        "on-primary-container": "#88d2b6",
+                        "on-secondary-fixed": "#002114",
+                        "inverse-primary": "#8bd5b9",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#c0edd4",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#264e3c",
+                        "surface": "#faf9f4",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "on-secondary-container": "#446d59",
+                        "outline": "#6f7974",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#faf9f4",
+                        "outline-variant": "#bec9c3",
+                        "on-primary-fixed-variant": "#00513d",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#4f3e00",
+                        "inverse-surface": "#30312e",
+                        "tertiary-fixed": "#ffe088",
+                        "surface-variant": "#e3e3de",
+                        "surface-tint": "#1b6a53",
+                        "primary-fixed": "#a6f2d4",
+                        "surface-container-low": "#f5f4ef",
+                        "inverse-on-surface": "#f2f1ec",
+                        "background": "#faf9f4",
+                        "surface-dim": "#dbdad5",
+                        "surface-container": "#efeee9",
+                        "surface-container-high": "#e9e8e3",
+                        "on-primary-fixed": "#002117",
+                        "tertiary-container": "#cca830",
+                        "tertiary": "#735c00",
+                        "on-surface": "#1b1c19",
+                        "secondary-fixed-dim": "#a5d0b8",
+                        "primary": "#004232",
+                        "on-background": "#1b1c19",
+                        "primary-container": "#005c46",
+                        "surface-container-highest": "#e3e3de",
+                        "primary-fixed-dim": "#8bd5b9"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "section-gap": "120px",
+                        "unit": "8px",
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px"
+                    },
+                    fontFamily: {
+                        "body-md": ["Manrope"],
+                        "label-sm": ["IBM Plex Sans"],
+                        "headline-md": ["Be Vietnam Pro"],
+                        "body-lg": ["Manrope"],
+                        "display-lg": ["Be Vietnam Pro"]
+                    },
+                    fontSize: {
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
             }
-          },
-        },
-      }
+        }
     </script>
-<style>
+    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-.hero-overlay{
-    background: rgba(0,66,50,0.18);
-}
-        .glass-panel {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        [dir="rtl"] .rtl-mirror {
-            transform: scaleX(-1);
+        html {
+            width: 100%;
+            overflow-x: hidden;
         }
-        *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    width:100%;
-    overflow-x:hidden;
-}
-
-body{
-    width:100%;
-    overflow-x:hidden;
-    -webkit-text-size-adjust:100%;
-}
-
-img{
-    max-width:100%;
-    height:auto;
-    display:block;
-}
-
-video{
-    max-width:100%;
-    height:auto;
-}
-
-button,
-input,
-textarea,
-select{
-    font:inherit;
-}
-    </style> 
+        body {
+            width: 100%;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
 </head>
 <body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+
 <!-- Top Navigation Bar -->
-<nav class="fixed top-0 left-0 w-full z-50 flex items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
+<nav class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
+    <!-- LEFT (Logo) -->
+    <div class="flex items-center gap-3 w-[160px] flex-shrink-0">
+        <a href="/index.html" class="text-primary dark:text-primary-fixed" style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; letter-spacing: 1px; color: #004232;" data-en="ATHAQ" data-ar="أثاق">
+            ATHAQ
+        </a>
+    </div>
 
-  <!-- LEFT (Logo) -->
- <div class="flex items-center gap-3">
-  <span
-  class="hidden sm:block text-primary dark:text-primary-fixed"
-  data-en="ATHAQ DATES"
-  data-ar="أثاق للتمور"
-  style="
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #1c4d06;
-  "
->
-  ATHAQ 
-</span>
-</div>
+    <!-- CENTER (Desktop Menu) -->
+    <div class="hidden md:flex items-center justify-center gap-6 font-headline-md text-sm font-semibold text-primary flex-grow px-4">
+        <a href="/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Home</a>
+        <a href="/web/about/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">About</a>
+        <a href="/web/product/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Products</a>
+        <a href="/web/gallery/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Gallery</a>
+        <a href="/web/contact/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Contact</a>
+    </div>
 
-<!-- Mobile Menu Button -->
-<button
-    id="menu-btn"
-    class="md:hidden ml-auto text-primary text-3xl"
-    aria-label="Open Menu">
-    ☰
-</button>
+    <!-- RIGHT (Actions) -->
+    <div class="flex items-center justify-end gap-2 md:gap-3 w-[260px] flex-shrink-0">
+        <!-- Language Toggle -->
+        <div onclick="toggleLanguage()" class="w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0" title="Change Language">
+            <i class="fa-solid fa-globe text-primary"></i>
+        </div> 
+        
+        <!-- Dynamic Auth Button container -->
+        <div id="authHeaderBtn" class="flex items-center justify-center flex-shrink-0"></div>
 
-  <!-- Mobile Menu -->
-<div id="mobile-menu"
-class="hidden absolute top-16 left-0 w-full bg-white shadow-xl md:hidden z-50">
+        <!-- Share Website -->
+        <div onclick="shareWebsite()" class="w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0" title="Share Website">
+            <i class="fa-solid fa-share-nodes text-primary"></i>
+        </div> 
 
-    <a href="index.html" class="block px-6 py-4 border-b">
-        Home
-    </a>
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center text-primary text-xl focus:outline-none hover:bg-surface-variant transition-colors flex-shrink-0" aria-label="Open Menu">
+            ☰
+        </button>
+    </div>
 
-    <a href="web/about/index.html" class="block px-6 py-4 border-b">
-        About
-    </a>
-
-    <a href="web/product/index.html" class="block px-6 py-4 border-b">
-        Products
-    </a>
-
-    <a href="web/gallery/index.html" class="block px-6 py-4 border-b">
-        Gallery
-    </a>
-
-    <a href="web/contact/index.html" class="block px-6 py-4 border-b">
-        Contact
-    </a>
-
-    <!-- Admin Login -->
-    <a href="login/index.html"
-       class="block px-6 py-4 border-b bg-primary text-white text-center">
-       Admin Login
-    </a>
-
-    <!-- Language -->
-    <button onclick="toggleLanguage()"
-        class="w-full text-left px-6 py-4 border-b">
-        🌐 Change Language
-    </button>
-
-    <!-- Share -->
-    <button onclick="shareWebsite()"
-        class="w-full text-left px-6 py-4">
-        🔗 Share Website
-    </button>
-
-</div>
-
-  <!-- CENTER (Menu) -->
-<div class="flex-1 flex justify-center">
-<div class="hidden md:flex items-center gap-8 font-[Poppins] text-headline-md font-bold text-primary dark:text-primary-fixed">
-
- <a href="/index.html">Home</a>
-<a href="/web/about/index.html">About</a>
-<a href="/web/product/index.html">Products</a>
-<a href="/web/gallery/index.html">Gallery</a>
-<a href="/web/contact/index.html">Contact</a>
-
-</div>
-</div>
-
-  <!-- RIGHT (Buttons) -->
-   <div class="flex justify-end gap-4 p-5">
-  <div onclick="toggleLanguage()" class="w-10 h-10 rounded-full border flex items-center justify-center cursor-pointer">
-    <i class="fa-solid fa-globe"></i>
-  </div> 
-
-  <div class="flex items-center gap-4 ml-auto">
-   <a href="/login/index.html"
-   class="bg-primary text-white px-5 py-2 rounded-lg text-sm inline-block"
-   data-en="Admin Login"
-   data-ar="تسجيل دخول المسؤول">
-   Admin Login
-</a>
-  </div>
-   <div onclick="shareWebsite()" class="w-10 h-10 rounded-full border flex items-center justify-center cursor-pointer">
-    <i class="fa-solid fa-share-nodes"></i>
-  </div> 
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu" class="hidden absolute top-16 left-0 w-full bg-surface border-b border-outline-variant/30 shadow-xl md:hidden z-50">
+        <a href="/index.html" class="block px-6 py-4 border-b border-outline-variant/10 font-medium">Home</a>
+        <a href="/web/about/index.html" class="block px-6 py-4 border-b border-outline-variant/10 font-medium">About</a>
+        <a href="/web/product/index.html" class="block px-6 py-4 border-b border-outline-variant/10 font-medium">Products</a>
+        <a href="/web/gallery/index.html" class="block px-6 py-4 border-b border-outline-variant/10 font-medium">Gallery</a>
+        <a href="/web/contact/index.html" class="block px-6 py-4 border-b border-outline-variant/10 font-medium">Contact</a>
+    </div>
 </nav>
-<main class="pt-20">
-<!-- Hero Section -->
-<header class="relative w-full min-h-screen flex items-center overflow-hidden">
 
-    <!-- Background Image -->
-    <div class="absolute inset-0">
-        <div class="absolute inset-0 bg-cover bg-center"
-            style="background-image:url('./background.jpg');">
+<main class="pt-16">
+    <!-- Hero Section -->
+    <header class="relative w-full min-h-[calc(100vh-4rem)] flex items-center overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('./background.jpg');"></div>
+            <div class="absolute inset-0 bg-primary/50"></div>
         </div>
 
-        <!-- Light Overlay -->
-        <div class="absolute inset-0 bg-primary/40"></div>
-    </div>
-
-    <!-- Content -->
-<div class="relative z-10 w-full flex justify-start items-center
-px-6 md:px-12 lg:px-24 xl:px-32">
-
-    <div class="w-full max-w-[560px]">
-
-            <div class="inline-block px-4 py-2 bg-white/20 backdrop-blur-md rounded-lg text-white text-sm font-semibold mb-6">
-                ESTABLISHED 2023
-            </div>
-
-          <h1 class="text-surface-bright mb-4 max-w-3xl uppercase" style="font-family: Georgia, 'Times New Roman', serif; font-size: 3.5rem; font-weight: 700; letter-spacing: 0.08em;"> ATHAQ DATES
-  <br>
-  <span
-    class="text-2xl md:text-3xl lg:text-4xl font-normal">
-    INDUSTRIAL FACTORY
-  </span>
-</h1>
-
-            <p
-                class="text-lg md:text-xl text-white/90 max-w-2xl leading-relaxed mb-10"
-                data-en="The heartbeat of Saudi industrial prowess, delivering premium dates with the precision of high-end manufacturing and the soul of heritage."
-                data-ar="قلب الصناعة السعودية، نقدم تمورًا فاخرة بدقة التصنيع العالي وروح التراث.">
-
-                Premium Dates. Modern Manufacturing. Trusted Quality.
-
-            </p>
-
-            <!-- Buttons -->
-
-            <div class="flex flex-col sm:flex-row gap-4">
-<a href="../web/product/index.html"
-class="inline-flex items-center justify-center bg-primary-fixed text-on-primary-fixed px-8 py-4 rounded-xl">
-Explore Our Products
-</a>
-<a
-href="../web/contact/index.html"
-class="inline-flex items-center justify-center bg-primary-fixed text-on-primary-fixed px-8 py-4 rounded-xl">
-
-Contact Us
-
-</a>
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- Floating Stats -->
-
-    <div class="hidden lg:block absolute bottom-10 right-10">
-
-        <div class="bg-white/15 backdrop-blur-lg border border-white/20 rounded-2xl px-8 py-6 flex gap-8 shadow-xl">
-
-            <div>
-
-                <h3 class="text-4xl font-bold text-white">
-                    50k+
-                </h3>
-
-                <p class="text-white/80 text-sm">
-                    Annual Tonnage
+        <div class="relative z-10 w-full px-6 md:px-12 lg:px-24 xl:px-32 py-20">
+            <div class="w-full max-w-[640px]">
+                <div class="inline-block px-4 py-1.5 bg-white/25 backdrop-blur-md rounded-lg text-white text-xs font-bold tracking-wider mb-6">
+                    ESTABLISHED 2023
+                </div>
+                <h1 class="text-surface-bright mb-6 uppercase" style="font-family: Georgia, serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.1; letter-spacing: 0.05em;">
+                    ATHAQ DATES
+                    <br>
+                    <span class="text-xl md:text-2xl lg:text-3xl font-normal tracking-normal lowercase opacity-90">
+                        industrial factory
+                    </span>
+                </h1>
+                <p class="text-lg md:text-xl text-white/95 max-w-xl leading-relaxed mb-10" data-en="The heartbeat of Saudi industrial prowess, delivering premium dates with the precision of high-end manufacturing and the soul of heritage." data-ar="قلب الصناعة السعودية، نقدم تمورًا فاخرة بدقة التصنيع العالي وروح التراث.">
+                    Premium Dates. Modern Manufacturing. Trusted Quality.
                 </p>
-
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="./web/product/index.html" class="inline-flex items-center justify-center bg-primary-fixed text-on-primary-fixed font-semibold px-8 py-4 rounded-xl hover:bg-white transition-colors shadow-lg">
+                        Explore Our Products
+                    </a>
+                    <a href="./web/contact/index.html" class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-8 py-4 rounded-xl backdrop-blur-md transition-colors">
+                        Contact Us
+                    </a>
+                </div>
             </div>
-
-            <div class="w-px bg-white/30"></div>
-
-            <div>
-
-                <h3 class="text-4xl font-bold text-white">
-                    ISO
-                </h3>
-
-                <p class="text-white/80 text-sm">
-                    Certified Standards
-                </p>
-
-            </div>
-
         </div>
+    </header>
 
-    </div>
+    <!-- Legacy of Quality Section -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="order-2 lg:order-1 relative">
+                <div class="aspect-[4/5] bg-surface-container-high rounded-3xl overflow-hidden shadow-2xl relative">
+                    <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRbI84PJff2fOScyyKkU58Dsa-5KovXQ3Ug-Ww5rNkV3FV3gBwxyO8RsfrJojuXaGtxQvj1uTHkCumD1-2ZW5iiuPhNTqhMS7pgzKi4RGPx1egqPdNcDJOwQeVmb3XJXTrUcYr5I-HS3F0j0c5cWAkiGALYL15HGmRl64ZwM8rTYbogqupBz91x4OkRc4j_RVXANHGu3dbfY2feydaLw9uXqNxKzO3OpxZksToxLpnosr5ta2YTNQ5xQ" alt="Factory Sorting Facility"/>
+                    <div class="absolute top-8 left-8 bg-white p-6 rounded-2xl shadow-xl border border-secondary/10">
+                        <span class="material-symbols-outlined text-primary text-[40px] mb-2">verified</span>
+                        <p class="font-headline-md text-primary leading-tight">
+                            <span>100%</span><br/>
+                            <span class="text-on-surface-variant font-normal text-[14px]">Freshness Guaranteed</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-</header>
-<!-- A Legacy of Quality Section -->
-<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
-<div class="order-2 lg:order-1">
-<div class="relative">
-<div class="aspect-[4/5] bg-surface-container-high rounded-3xl overflow-hidden shadow-2xl relative">
-<img class="w-full h-full object-cover" data-alt="A cinematic, high-detail photograph of a modern date palm sorting facility within a Saudi factory. High-tech machinery with steel components is contrasted against warm wooden textures and the rich deep brown of high-quality dates. Soft, golden natural light filters from clerestory windows, highlighting the clean ivory-colored walls and sophisticated forest green accents. The composition is clean and rhythmic, emphasizing industrial precision and food safety excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRbI84PJff2fOScyyKkU58Dsa-5KovXQ3Ug-Ww5rNkV3FV3gBwxyO8RsfrJojuXaGtxQvj1uTHkCumD1-2ZW5iiuPhNTqhMS7pgzKi4RGPx1egqPdNcDJOwQeVmb3XJXTrUcYr5I-HS3F0j0c5cWAkiGALYL15HGmRl64ZwM8rTYbogqupBz91x4OkRc4j_RVXANHGu3dbfY2feydaLw9uXqNxKzO3OpxZksToxLpnosr5ta2YTNQ5xQ"/>
-<!-- Overlay badge -->
-<div class="absolute top-8 left-8 bg-white p-6 rounded-2xl shadow-xl border border-secondary/10">
-<span class="material-symbols-outlined text-primary text-[40px] mb-2" data-weight="fill">
-  verified
-</span>
+            <div class="order-1 lg:order-2 space-y-6">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-secondary-container/50 text-on-secondary-container rounded-full">
+                    <span class="material-symbols-outlined text-[20px]">workspace_premium</span>
+                    <span class="font-label-sm text-label-sm">Established Heritage</span>
+                </div>
 
-<p class="font-headline-md text-headline-md text-primary leading-tight">
-  
-  <span>100%</span><br/>
-
-  <span 
-    class="text-on-surface-variant font-body-md text-[14px]"
-    data-en="Freshness Guaranteed"
-    data-ar="نضمن النضارة">
-    Freshness Guaranteed
-  </span>
-
-</p>
-</div>
-</div>
-<div class="absolute -bottom-8 -right-8 w-64 h-64 bg-secondary-container/30 rounded-full blur-3xl -z-10"></div>
-</div>
-</div>
-<div class="order-1 lg:order-2 space-y-8">
-<div class="inline-flex items-center gap-2 px-4 py-2 bg-secondary-container/50 text-on-secondary-container rounded-full">
-
-<span class="material-symbols-outlined text-[20px]">
-  workspace_premium
-</span>
-
-<span 
-  class="font-label-sm text-label-sm"
-  data-en="Established Heritage"
-  data-ar="إرث عريق">
-  Established Heritage
-</span>
-
-</div>
-
-<h2 
-  class="font-display-lg text-display-lg text-primary"
-  data-en="A Legacy of Quality"
-  data-ar="إرث من الجودة">
-  A Legacy of Quality
-</h2>
-
-<p 
-  class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed"
-  data-en="At ATHAQ, we don't just process dates; we honor a cultural icon. Our factory bridges the gap between the sacred traditions of the date palm and the rigorous demands of modern food science. Every date undergoes a meticulous journey of selection, cleaning, and packaging."
-  data-ar="في أثاق، نحن لا نقوم فقط بمعالجة التمور، بل نكرم رمزًا ثقافيًا عريقًا. يربط مصنعنا بين تقاليد نخيل التمر الأصيلة ومتطلبات علوم الغذاء الحديثة الصارمة. تمر كل تمرة برحلة دقيقة من الاختيار والتنظيف والتعبئة.">
-  
-  </p>
-<p 
-  class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed"
-  data-en="At ATHAQ, we don't just process dates; we honor a cultural icon. Our factory bridges the gap between the sacred traditions of the date palm and the rigorous demands of modern food science. Every date undergoes a meticulous journey of selection, cleaning, and packaging."
-  data-ar="في أثاق، نحن لا نقوم فقط بمعالجة التمور، بل نكرم رمزًا ثقافيًا عريقًا. يربط مصنعنا بين تقاليد نخيل التمر الأصيلة ومتطلبات علوم الغذاء الحديثة الصارمة. تمر كل تمرة برحلة دقيقة من الاختيار والتنظيف والتعبئة.">
-  
-  At ATHAQ, we don't just process dates; we honor a cultural icon. Our factory bridges the gap between the sacred traditions of the date palm and the rigorous demands of modern food science. Every date undergoes a meticulous journey of selection, cleaning, and packaging.
-
-</p>
-
-<p 
-  class="font-body-md text-body-md text-on-surface-variant/80"
-  data-en="From the golden sands of our groves to your table, freshness and taste are the twin pillars of our production line. We utilize state-of-the-art cold storage and vacuum-sealing technologies to ensure that every bite is as vibrant as the day it was harvested."
-  data-ar="من الرمال الذهبية لمزارعنا إلى مائدتك، تعتبر النضارة والطعم الركيزتين الأساسيتين في خط إنتاجنا. نستخدم أحدث تقنيات التخزين المبرد والتفريغ الهوائي لضمان أن كل لقمة تحتفظ بجودتها كما لو كانت في يوم حصادها.">
-  </p>
- <p 
-  class="font-body-md text-body-md text-on-surface-variant/80"
-  data-en="From the golden sands of our groves to your table, freshness and taste are the twin pillars of our production line. We utilize state-of-the-art cold storage and vacuum-sealing technologies to ensure that every bite is as vibrant as the day it was harvested."
-  data-ar="من الرمال الذهبية لمزارعنا إلى مائدتك، تُعد النضارة والطعم الركيزتين الأساسيتين في خط إنتاجنا. نستخدم أحدث تقنيات التخزين المبرد والتفريغ الهوائي لضمان أن كل لقمة تحتفظ بجودتها كما لو كانت في يوم حصادها.">
-  
-  From the golden sands of our groves to your table, freshness and taste are the twin pillars of our production line. We utilize state-of-the-art cold storage and vacuum-sealing technologies to ensure that every bite is as vibrant as the day it was harvested.
-
-</p>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6">
-<div class="flex items-start gap-4 p-4 border border-outline-variant/30 rounded-xl hover:border-primary/30 transition-colors">
-<div class="bg-primary-container/20 p-3 rounded-lg">
-<span class="material-symbols-outlined text-primary">eco</span>
-</div>
-<div>
-<h4 
-  class="font-headline-md text-[18px] text-primary mb-1"
-  data-en="Sustainable Growth"
-  data-ar="النمو المستدام">
-  Sustainable Growth
-</h4>
-
-<p 
-  class="font-body-md text-[14px] text-on-surface-variant"
-  data-en="Eco-conscious farming and processing methods."
-  data-ar="أساليب زراعة ومعالجة صديقة للبيئة.">
-  Eco-conscious farming and processing methods.
-</p>
-</div>
-</div>
-<div class="flex items-start gap-4 p-4 border border-outline-variant/30 rounded-xl hover:border-primary/30 transition-colors">
-<div class="bg-primary-container/20 p-3 rounded-lg">
-<span class="material-symbols-outlined text-primary">biotech</span>
-</div>
-<div>
-<h4 
-  class="font-headline-md text-[18px] text-primary mb-1"
-  data-en="Tech-Driven Safety"
-  data-ar="السلامة المدعومة بالتقنية">
-  Tech-Driven Safety
-</h4>
-<p 
-  class="font-body-md text-[14px] text-on-surface-variant"
-  data-en="Advanced laser-sorting for zero-defect quality."
-  data-ar="التصنيف الليزر المتقدم لضمان جودة بلا عيوب.">
-  Advanced laser-sorting for zero-defect quality.
-</p>
-</div>
-</div>
-</div>
-<a 
-  class="inline-flex items-center gap-2 font-label-sm text-label-sm text-primary border-b border-primary/40 pb-1 hover:border-primary transition-all" 
-  href="./web/about/index.html"
-  data-en="Learn more about our standards"
-  data-ar="تعرف على المزيد حول معاييرنا">
-  
-  Learn more about our standards
-  
-  <span class="material-symbols-outlined text-[18px]">chevron_right</span>
-</a>
-</div>
-</div>
-</section>
-<!-- Bento Grid Products Feature -->
-<section class="bg-surface-container-low py-section-gap">
-<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-<div class="text-center mb-16 space-y-4">
-<h2 
-  class="font-display-lg text-display-lg text-primary"
-  data-en="The ATHAQ Selection"
-  data-ar="مختارات أثاق">
-  The ATHAQ Selection
-</h2>
-
-<p 
-  class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto"
-  data-en="Discover our range of premium date varieties, expertly processed for global standards."
-  data-ar="اكتشف مجموعتنا من أجود أنواع التمور، المعالجة باحترافية وفقًا للمعايير العالمية.">
-  
-  Discover our range of premium date varieties, expertly processed for global standards.
-</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-auto md:h-[600px]">
-<!-- Large Feature -->
-<div class="md:col-span-2 group relative rounded-3xl overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-300">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A premium commercial product shot of Ajwa dates presented on a sleek gold-trimmed ceramic plate. The background is a minimalist, slightly blurred industrial kitchen with stainless steel accents. The lighting is warm and directional, making the deep black-purple dates glisten with natural oils. The aesthetic is sophisticated, luxury-food focused, with a palette of forest greens, warm golds, and deep blacks. 8k resolution, professional studio lighting." src="./premiumajwadate.jpg"/>
-<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex flex-col justify-end p-8 text-white">
-<span 
-  class="font-label-sm text-label-sm text-primary-fixed mb-2"
-  data-en="Signature Variety"
-  data-ar="الصنف المميز">
-  Signature Variety
-</span>
-
-<h3 
-  class="font-display-lg text-[32px] mb-2"
-  data-en="Premium Ajwa Dates"
-  data-ar="تمر عجوة فاخر">
-  Premium Ajwa Dates
-</h3>
-
-<p 
-  class="font-body-md text-body-md text-white/80 max-w-md"
-  data-en="Renowned for their distinct flavor and health benefits, harvested from the heart of Al-Madinah."
-  data-ar="تشتهر بنكهتها المميزة وفوائدها الصحية، ويتم حصادها من قلب المدينة المنورة.">
-  
-  Renowned for their distinct flavor and health benefits, harvested from the heart of Al-Madinah.
-</p>
-</div>
-</div>
-<!-- Small Column -->
-<div class="flex flex-col gap-6">
-<div class="flex-1 group relative rounded-3xl overflow-hidden bg-white shadow-sm">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A modern, high-end packaging design for Khalas dates. The box is a deep forest green with embossed gold lettering and a minimalist palm tree icon. The setting is a clean, bright, contemporary living room with soft lighting. The image conveys premium retail readiness and gift-level quality. Aesthetic is minimalist, industrial-luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAvh89c8cy5WwYrSYwIJIFD2MByIaxMrUNoSMonf_nZNt-706TLHNq-jOLt3zWFNf4Vb_IYytcl2Fwa_jEV8xe9icmhDWQcKdygDClz1PEalK5WavHIv-idoldE-rxqeJdcKXbMRlTPBRtvPNXDsOlgGiY4cqTUDYwJxBL3h1QszlBSpCrZfwrjBojZbf-cwpJw7F3n37hTcYdjBbtkwknCKRFTlXA1Lf45YrTZMXi62A5ClASyxbjmw"/>
-<div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
-<h3 class="text-white font-headline-md text-headline-md" data-en="Khalas Selection" data-ar="مختارات الخلاص">Khalas Selection</h3>
-</div>
-</div>
-<div class="flex-1 group relative rounded-3xl overflow-hidden bg-white shadow-sm">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A diverse arrangement of date products including date paste, syrup, and vacuum-sealed pitted dates. The products are displayed on a white marble surface with a sprig of a date palm for texture. Lighting is bright, airy, and professional. The style is clean food-service industrial. The colors are dominated by rich browns, forest greens, and ivory whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0xrkueqkgFoGKUEGKwjkodO6l9U_6qfEBzyBLw9c8DjRQE_83XfxWfrIdO0L0ax5ODPRubeDFUm0l1U-s3NaL5u0rCTu4gwHyVAYTT_KY42e6l8s_dSwXEwcXPlfT97dbXTHkb2dJP9AEmyf_UvS4rV10QctMwAde02V7m2L27Uv7bVCzrIP1UYoj77tlZauCeWzIJEP-07iuKZq_KG8D_GO0oAdqH7iO1aaV586NDu6kYC0LfxRITw"/>
-<div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
-<h3 class="text-white font-headline-md text-headline-md" data-en="Industrial Bulk" data-ar="البيع بالجملة الصناعي">Industrial Bulk</h3>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Newsletter / CTA -->
-<section class="py-section-gap px-margin-mobile md:px-margin-desktop overflow-hidden">
-<div class="bg-primary rounded-[2rem] p-12 md:p-24 relative">
-<div class="absolute top-0 right-0 w-1/3 h-full opacity-10 rtl:left-0 rtl:right-auto">
-<svg class="w-full h-full text-white fill-current" viewbox="0 0 400 400">
-<path d="M200 0C89.5 0 0 89.5 0 200s89.5 200 200 200 200-89.5 200-200S310.5 0 200 0zm0 360c-88.4 0-160-71.6-160-160S111.6 40 200 40s160 71.6 160 160-71.6 160-160 160z"></path>
-<path d="M200 100c-55.2 0-100 44.8-100 100s44.8 100 100 100 100-44.8 100-100-44.8-100-100-100z"></path>
-</svg>
-</div>
-<div class="relative z-10 max-w-3xl">
-<h2 class="font-display-lg text-[40px] md:text-[56px] text-white mb-6" data-en="Partner with Saudi Arabia's Industrial Leader" data-ar="شارك مع الرائد الصناعي في المملكة العربية السعودية">Partner with Saudi Arabia's Industrial Leader</h2>
-
-<p class="font-body-lg text-body-lg text-on-primary-container opacity-90 mb-10 max-w-xl" data-en="Whether you're looking for retail distribution or bulk industrial supply, ATHAQ delivers excellence consistently." data-ar="سواء كنت تبحث عن التوزيع بالتجزئة أو التوريد الصناعي بالجملة، تقدم أثاق التميز باستمرار.">Whether you're looking for retail distribution or bulk industrial supply, ATHAQ delivers excellence consistently.</p>
-<div class="flex flex-col sm:flex-row gap-4">
-<a href="https://wa.me/+966581818482">
-<button class="bg-primary-fixed text-on-primary-fixed px-10 py-5 rounded-2xl font-label-sm text-label-sm hover:shadow-lg transition-all" data-en="Become a Partner" data-ar="كن شريكًا">Become a Partner</button> </a>
-
-<a href="/catalog/index.html">
-<button class="border border-white/20 bg-white/5 text-white px-10 py-5 rounded-2xl font-label-sm text-label-sm hover:bg-white/10 transition-all" data-en="Download Catalog" data-ar="تحميل الكتالوج">Download Catalog</button></a>
-</div>
-</div>
-</div>
-</section>
+                <h2 class="font-display-lg text-display-lg text-primary">A Legacy of Quality</h2>
+                <p class="font-body-lg text-on-surface-variant leading-relaxed">
+                    At ATHAQ, we don't just process dates; we honor a cultural icon. Our factory bridges the gap between the sacred traditions of the date palm and the rigorous demands of modern food science.
+                </p>
+                <div class="pt-4">
+                    <a class="inline-flex items-center gap-2 font-label-sm text-primary border-b border-primary/40 pb-1 hover:border-primary transition-all font-semibold" href="./web/about/index.html">
+                        Learn more about our standards
+                        <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
+
 <!-- Footer -->
-<footer class="bg-surface-container-highest dark:bg-surface-dim border-t border-tertiary/20 pt-20 pb-12 px-margin-mobile md:px-margin-desktop">
-<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter mb-20">
-<div class="space-y-6">
-<div class="font-headline-md text-headline-md text-primary">ATHAQ DATES INDUSTRY</div>
-<p class="font-body-md text-on-surface-variant/80">ATHAQ Industrial Factory: Pioneering the future of Saudi agriculture through premium industrial processing.</p>
-<div class="flex gap-4">
-<a class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="https://mail.google.com/mail/u/0/?fs=1&to=aathaqq3@gmail.com&su=Inquiry%20about%20your%20products&body=Hello,%20I%20would%20like%20to%20learn%20more%20about%20your%20date%20products.">
-    <span class="material-symbols-outlined text-[20px]">mail</span>
-</a>
-<a class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="https://facebook.com/aathaqq3">
-    <span class="material-symbols-outlined text-[20px]">public</span>
-</a>
-</div>
-</div>
-<div>
-<h4 class="font-label-sm text-label-sm uppercase text-primary mb-6">Quick Links</h4>
-<ul class="space-y-4">
-<li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Our Process</a></li>
-<li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Sustainability</a></li>
-<li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Global Export</a></li>
-<li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Factory Tours</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-label-sm text-label-sm uppercase text-primary mb-6">Legal</h4>
-<ul class="space-y-4">
-<li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Privacy Policy</a></li>
-<li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Terms of Service</a></li>
-<li><a class="font-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Quality Standards</a></li>
-</ul>
-</div>
-<div>
-    <h4 class="font-label-sm text-label-sm uppercase text-primary mb-6">Contact</h4>
-<ul class="space-y-4">
-<li class="flex gap-3 text-on-surface-variant">
-    <a href="https://maps.app.goo.gl/zmrbzJ5zmcY7iMbT8"
-<button class="material-symbols-outlined text-primary">location_on</button> </a>
-<span class="font-body-md">مصنع اعذاق للتمور، King Salman Road, Al Bukayriyah</span>
-</li>
-<li class="flex gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-primary">call</span>
-<a href="tel:+966581818482">
-  <button>Contact now </button>
-</a>
-</li>
-<li class="flex gap-3 text-on-surface-variant">
-    <a href="https://mail.google.com/mail/u/0/?fs=1&to=aathaqq3@gmail.com&su=Inquiry%20about%20your%20products&body=Hello,%20I%20would%20like%20to%20learn%20more%20about%20your%20date%20products.">
-        <button class="material-symbols-outlined text-primary">mail</button>
-    </a>
-    <span class="font-body-md">aathqq3@gmail.com</span>
-</li>
-</ul>
-</div>
-</div>
+<footer class="bg-surface-container-highest border-t border-tertiary/20 pt-16 pb-12 px-margin-mobile md:px-margin-desktop">
+    <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-16">
+        <div class="space-y-4">
+            <div class="font-headline-md text-lg font-bold text-primary">ATHAQ DATES INDUSTRY</div>
+            <p class="font-body-md text-on-surface-variant/80 text-sm">Pioneering the future of Saudi agriculture through premium industrial processing.</p>
+        </div>
+        <div>
+            <h4 class="font-label-sm uppercase text-primary mb-4 font-bold">Quick Links</h4>
+            <ul class="space-y-3">
+                <li><a class="text-on-surface-variant hover:text-primary text-sm" href="/web/about/index.html">Our Process</a></li>
+                <li><a class="text-on-surface-variant hover:text-primary text-sm" href="/web/product/index.html">Products</a></li>
+                <li><a class="text-on-surface-variant hover:text-primary text-sm" href="/web/customers/index.html">Customers</a></li>
+                <li><a class="text-on-surface-variant hover:text-primary text-sm" href="/web/contact/index.html">Contact</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-label-sm uppercase text-primary mb-4 font-bold">Legal</h4>
+            <ul class="space-y-3">
+                <li><a class="text-on-surface-variant text-sm" href="#">Privacy Policy</a></li>
+                <li><a class="text-on-surface-variant text-sm" href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-label-sm uppercase text-primary mb-4 font-bold">Contact</h4>
+            <ul class="space-y-3 text-on-surface-variant text-sm">
+                <li>King Salman Road, Al Bukayriyah</li>
+                <li>+966 58 181 8482</li>
+            </ul>
+        </div>
+    </div>
+    <div class="max-w-container-max mx-auto text-center border-t border-outline-variant/20 pt-6 text-xs text-on-surface-variant">
+        &copy; 2026 ATHAQ Dates Industry. All rights reserved.
+    </div>
+</footer>
+
 <script>
-        // Micro-interactions and subtle effects
-        document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                threshold: 0.1
-            };
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('opacity-100');
-                        entry.target.classList.remove('opacity-0', 'translate-y-10');
-                    }
-                });
-            }, observerOptions);
-
-            // Add basic fade-in classes to sections
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
-                observer.observe(section);
-            });
-            
-            // Immediate fade in for hero
-            const hero = document.querySelector('header');
-            hero.classList.remove('opacity-0', 'translate-y-10');
-            hero.classList.add('opacity-100');
-        });
-const menuBtn = document.getElementById("menu-btn");
-const mobileMenu = document.getElementById("mobile-menu");
-
-menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-
-    if (mobileMenu.classList.contains("hidden")) {
-        menuBtn.innerHTML = "☰";
-    } else {
-        menuBtn.innerHTML = "✕";
-    }
-});
-let currentLanguage = "en";
-
-function toggleLanguage() {
-
-    currentLanguage = currentLanguage === "en" ? "ar" : "en";
-
-    document.documentElement.lang = currentLanguage;
-    document.documentElement.dir =
-        currentLanguage === "ar" ? "rtl" : "ltr";
-
-    document.querySelectorAll("[data-en]").forEach(item => {
-
-        item.textContent =
-            item.getAttribute("data-" + currentLanguage);
-
+    menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        menuBtn.innerHTML = mobileMenu.classList.contains("hidden") ? "☰" : "✕";
     });
 
-}
-function shareWebsite() {
+    let currentLanguage = "en";
+    function toggleLanguage() {
+        currentLanguage = currentLanguage === "en" ? "ar" : "en";
+        document.documentElement.lang = currentLanguage;
+        document.documentElement.dir = currentLanguage === "ar" ? "rtl" : "ltr";
 
-    if (navigator.share) {
-
-        navigator.share({
-
-            title: "ATHAQ DATES",
-
-            text: "Visit ATHAQ Dates Industrial Factory",
-
-            url: window.location.href
-
+        document.querySelectorAll("[data-en]").forEach(item => {
+            const translatedText = item.getAttribute("data-" + currentLanguage);
+            if (translatedText) {
+                item.textContent = translatedText;
+            }
         });
-
-    } else {
-
-        navigator.clipboard.writeText(window.location.href);
-
-        alert("Website link copied!");
-
     }
 
-}
+    function shareWebsite() {
+        if (navigator.share) {
+            navigator.share({
+                title: "ATHAQ DATES",
+                text: "Visit ATHAQ Dates Industrial Factory",
+                url: window.location.href
+            }).catch(() => {});
+        } else {
+            navigator.clipboard.writeText(window.location.href);
+            alert("Website link copied to clipboard!");
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+        const userRole = sessionStorage.getItem("userRole");
+        const userName = sessionStorage.getItem("userName") || "My Profile";
+        const authContainer = document.getElementById("authHeaderBtn");
+
+        if (isLoggedIn === "true") {
+            if (userRole === "admin") {
+                authContainer.innerHTML = `
+                    <a href="/admin/index.html" class="flex items-center gap-2 bg-[#004232] text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#002e23] transition-colors whitespace-nowrap">
+                        <i class="fa-solid fa-gauge"></i> Admin
+                    </a>
+                `;
+            } else {
+                authContainer.innerHTML = `
+                    <a href="/customer-profile/profile.html" class="flex items-center gap-2 bg-emerald-50 text-[#004232] border border-emerald-200 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-emerald-100 transition-colors whitespace-nowrap">
+                        <i class="fa-regular fa-user"></i> ${userName}
+                    </a>
+                `;
+            }
+        } else {
+            authContainer.innerHTML = `
+                <a href="./login/index.html" class="w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0" title="Login">
+                    <i class="fa-regular fa-user text-primary"></i>
+                </a>
+            `;
+        }
+    });
 </script>
-      <script src="script.js"></script>
-</body></html>
+</body>
+</html>
