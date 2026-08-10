@@ -20,7 +20,7 @@
         <a href="/index.html" class="font-['Playfair_Display',serif] text-2xl font-bold text-[#004232]">ATHAQ</a>
         <div class="flex items-center gap-4">
             <span id="navUserName" class="text-sm font-semibold text-[#004232]"></span>
-            <button onclick="logoutUser()" class="bg-red-50 text-red-600 hover:bg-red-100 px-4 py-2 rounded-xl text-xs font-bold transition-colors">
+            <button onclick="logoutUser()" class="bg-red-50 text-red-600 hover:bg-red-100 px-4 py-2 rounded-xl text-xs font-bold transition-colors cursor-pointer">
                 <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
             </button>
         </div>
@@ -65,7 +65,7 @@
                 <div class="space-y-4">
                     <div>
                         <label class="text-xs text-gray-400 uppercase font-semibold">Phone Number</label>
-                        <p class="font-medium text-gray-800" id="profilePhone">+966 50 123 4567</p>
+                        <p class="font-medium text-gray-800" id="profilePhone">+9660571475140</p>
                     </div>
                     <div>
                         <label class="text-xs text-gray-400 uppercase font-semibold">Member Since</label>
@@ -93,7 +93,7 @@
                         </a>
                     </div>
                     
-                    <!-- Orders Container (Pending orders will have Checkout option) -->
+                    <!-- Orders Container -->
                     <div id="ordersContainer" class="space-y-4">
                         <!-- Dynamic orders load here -->
                     </div>
@@ -115,8 +115,18 @@
 
     <!-- Footer -->
     <footer class="text-center py-6 text-xs text-gray-500 border-t border-gray-200 bg-white">
-        &copy; 2026 ATHAQ Dates Industry. All rights reserved.
+        &copy; 2023 ATHAQ Dates Industry. All rights reserved.
     </footer>
+
+    <!-- Inline/External Logout Handler Script -->
+    <script>
+        function logoutUser() {
+            // Clear user session storage data
+            sessionStorage.clear();
+            // Redirect back to the home screen
+            window.location.href = "/index.html";
+        }
+    </script>
 
     <!-- Separate JavaScript File -->
     <script src="profile.js"></script>

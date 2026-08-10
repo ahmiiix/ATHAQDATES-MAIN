@@ -135,62 +135,135 @@
 
 <body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
 
-<!-- Top Navigation Bar -->
-<nav class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
-    
-    <!-- LEFT: Logo (Fixed Width taake hilay nahi) -->
-    <div class="flex items-center gap-3 w-[160px] flex-shrink-0">
-        <a href="/index.html" class="text-primary dark:text-primary-fixed" style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; letter-spacing: 1px; color: #004232;">
-            ATHAQ
-        </a>
+<!-- NAVBAR -->
+<nav class="absolute top-0 left-0 w-full z-50">
+
+    <div class="w-full h-20 px-6 md:px-10 lg:px-16 flex items-center">
+
+        <!-- LEFT -->
+        <!-- YAHAN APNA ORIGINAL LOGO CODE SAME RAKHO -->
+        <div class="w-[220px] flex-shrink-0">
+            <a href="/index.html"
+               class="flex items-center gap-2 whitespace-nowrap">
+
+                <!-- YOUR ORIGINAL LOGO / BRAND -->
+
+            </a>
+        </div>
+
+
+        <!-- CENTER (Desktop Menu) -->
+        <div class="hidden md:flex items-center justify-center gap-6 font-headline-md text-sm font-semibold text-primary flex-grow px-4">
+
+            <a href="/index.html"
+               class="hover:text-secondary transition-colors whitespace-nowrap">
+                Home
+            </a>
+
+            <a href="/web/about/index.html"
+               class="hover:text-secondary transition-colors whitespace-nowrap">
+                About
+            </a>
+
+            <a href="/web/product/index.html"
+               class="hover:text-secondary transition-colors whitespace-nowrap">
+                Products
+            </a>
+
+            <a href="/web/gallery/index.html"
+               class="hover:text-secondary transition-colors whitespace-nowrap">
+                Gallery
+            </a>
+
+            <a href="/web/contact/index.html"
+               class="hover:text-secondary transition-colors whitespace-nowrap">
+                Contact
+            </a>
+
+        </div>
+
+
+        <!-- RIGHT (Actions) -->
+        <div class="flex items-center justify-end gap-2 md:gap-3 w-[260px] flex-shrink-0">
+
+            <!-- Language Toggle -->
+            <div
+                onclick="toggleLanguage()"
+                class="w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0"
+                title="Change Language">
+
+                <i class="fa-solid fa-globe text-primary"></i>
+
+            </div>
+
+
+
+
+
+            <!-- Share Website -->
+            <div
+                onclick="shareWebsite()"
+                class="w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0"
+                title="Share Website">
+
+                <i class="fa-solid fa-share-nodes text-primary"></i>
+
+            </div>
+
+
+            <!-- Mobile Menu Button -->
+            <button
+                id="menu-btn"
+                type="button"
+                class="md:hidden w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center text-primary text-xl focus:outline-none hover:bg-surface-variant transition-colors flex-shrink-0"
+                aria-label="Open Menu">
+
+                ☰
+
+            </button>
+
+        </div>
+
     </div>
 
-    <!-- CENTER: Desktop Menu (Flexible space) -->
-    <div class="hidden md:flex items-center justify-center gap-6 font-headline-md text-sm font-semibold text-primary flex-grow px-4">
-        <a href="/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Home</a>
-        <a href="/web/about/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">About</a>
-        <a href="/web/product/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Products</a>
-        <a href="/web/gallery/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Gallery</a>
-        <a href="/web/contact/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Contact</a>
-    </div>
 
-    <!-- RIGHT: Actions & Stable Icon Container (Rigid Wrapper Width w-[320px]) -->
-    <div class="flex items-center justify-end gap-2 md:gap-2.5 w-[320px] flex-shrink-0">
-        <!-- Language Toggle -->
-        <div onclick="toggleLanguage()" class="w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0" title="Change Language">
-            <i class="fa-solid fa-globe text-primary text-xs"></i>
-        </div> 
-        
-        <!-- Search Trigger Button -->
-        <button onclick="openSearchModal()" class="w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center relative hover:bg-surface-variant transition-colors flex-shrink-0" title="Search">
-            <i class="fa-solid fa-magnifying-glass text-primary text-xs"></i>
-        </button>
+    <!-- Mobile Menu Dropdown -->
+    <div
+        id="mobile-menu"
+        class="hidden absolute top-16 left-0 w-full bg-surface border-b border-outline-variant/30 shadow-xl md:hidden z-50">
 
-        <!-- Wishlist Link -->
-        <a href="../wishlist/index.html" class="w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center relative hover:bg-surface-variant transition-colors flex-shrink-0" title="Wishlist">
-            <i class="fa-regular fa-heart text-primary text-xs"></i>
-            <span id="wishlistCount" class="absolute -top-1 -right-1 bg-rose-600 text-white text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">0</span>
+        <a
+            href="/index.html"
+            class="block px-6 py-4 border-b border-outline-variant/10 font-medium">
+            Home
         </a>
 
-        <!-- Cart Link -->
-        <a href="../checkout.html" class="w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center relative hover:bg-surface-variant transition-colors flex-shrink-0" title="Cart">
-            <i class="fa-solid fa-cart-shopping text-primary text-xs"></i>
-            <span id="cartCount" class="absolute -top-1 -right-1 bg-primary text-white text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">0</span>
+        <a
+            href="/web/about/index.html"
+            class="block px-6 py-4 border-b border-outline-variant/10 font-medium">
+            About
         </a>
 
-        <!-- Share Website -->
-        <div onclick="shareWebsite()" class="w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0" title="Share">
-            <i class="fa-solid fa-share-nodes text-primary text-xs"></i>
-        </div> 
+        <a
+            href="/web/product/index.html"
+            class="block px-6 py-4 border-b border-outline-variant/10 font-medium">
+            Products
+        </a>
 
-        <!-- Dynamic Auth Button container -->
-        <div id="authHeaderBtn" class="flex items-center justify-center flex-shrink-0"></div>
+        <a
+            href="/web/gallery/index.html"
+            class="block px-6 py-4 border-b border-outline-variant/10 font-medium">
+            Gallery
+        </a>
 
-        <!-- Mobile Menu Button -->
-        <button id="menu-btn" class="md:hidden w-9 h-9 rounded-full border border-outline-variant/40 flex items-center justify-center text-primary text-lg focus:outline-none hover:bg-surface-variant transition-colors flex-shrink-0" aria-label="Open Menu">
-            ☰
-        </button>
+        <a
+            href="/web/contact/index.html"
+            class="block px-6 py-4 border-b border-outline-variant/10 font-medium">
+            Contact
+        </a>
+
     </div>
+
 </nav>
 
 <main class="pt-16">
