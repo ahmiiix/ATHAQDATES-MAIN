@@ -26,3 +26,21 @@ function shareWebsite() {
     alert("Link copied! Now share it 👍");
   }
 }
+<!-- Instant & Zero-Lag JavaScript Toggle Function -->
+    function toggleSidebar() {
+        const sidebar = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('sidebar-overlay');
+        
+        // Check if menu is currently closed
+        if (sidebar.classList.contains('translate-x-full')) {
+            // Open Instantly
+            sidebar.classList.remove('translate-x-full');
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+            overlay.classList.add('opacity-100');
+        } else {
+            // Close Instantly
+            sidebar.classList.add('translate-x-full');
+            overlay.classList.remove('opacity-100');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+        }
+    }

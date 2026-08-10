@@ -124,7 +124,7 @@ function logoutUser() {
 
 // Edit Profile Handler
 function openEditModal() {
-    const newName = prompt("Enter your new name:", sessionStorage.getItem("userName") || "");
+    const newName = prompt("Enter your new name:", sessionStorage.getItem("ahmad") || "");
     if (newName && newName.trim() !== "") {
         sessionStorage.setItem("userName", newName.trim());
         document.getElementById("profileFullName").textContent = newName.trim();

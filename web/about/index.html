@@ -137,135 +137,57 @@
 
 <!-- NAVBAR -->
 <nav class="absolute top-0 left-0 w-full z-50">
+    <div class="w-full h-20 px-6 md:px-10 lg:px-16 flex items-center justify-between">
 
-    <div class="w-full h-20 px-6 md:px-10 lg:px-16 flex items-center">
-
-        <!-- LEFT -->
-        <!-- YAHAN APNA ORIGINAL LOGO CODE SAME RAKHO -->
+        <!-- LEFT (Logo) -->
         <div class="w-[220px] flex-shrink-0">
-            <a href="/index.html"
-               class="flex items-center gap-2 whitespace-nowrap">
-
+            <a href="/index.html" class="flex items-center gap-2 whitespace-nowrap">
                 <!-- YOUR ORIGINAL LOGO / BRAND -->
-
             </a>
         </div>
 
-
-        <!-- CENTER (Desktop Menu) -->
+        <!-- CENTER (Desktop Menu Bar Options) -->
         <div class="hidden md:flex items-center justify-center gap-6 font-headline-md text-sm font-semibold text-primary flex-grow px-4">
-
-            <a href="/index.html"
-               class="hover:text-secondary transition-colors whitespace-nowrap">
-                Home
-            </a>
-
-            <a href="/web/about/index.html"
-               class="hover:text-secondary transition-colors whitespace-nowrap">
-                About
-            </a>
-
-            <a href="/web/product/index.html"
-               class="hover:text-secondary transition-colors whitespace-nowrap">
-                Products
-            </a>
-
-            <a href="/web/gallery/index.html"
-               class="hover:text-secondary transition-colors whitespace-nowrap">
-                Gallery
-            </a>
-
-            <a href="/web/contact/index.html"
-               class="hover:text-secondary transition-colors whitespace-nowrap">
-                Contact
-            </a>
-
+            <a href="/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Home</a>
+            <a href="/web/about/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">About</a>
+            <a href="/web/product/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Products</a>
+            <a href="/web/gallery/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Gallery</a>
+            <a href="/web/contact/index.html" class="hover:text-secondary transition-colors whitespace-nowrap">Contact</a>
         </div>
 
+        <!-- RIGHT (Actions & Icons) -->
+        <div class="flex items-center justify-end gap-2 md:gap-3 flex-shrink-0">
 
-        <!-- RIGHT (Actions) -->
-        <div class="flex items-center justify-end gap-2 md:gap-3 w-[260px] flex-shrink-0">
-
-            <!-- Language Toggle -->
-            <div
-                onclick="toggleLanguage()"
-                class="w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0"
-                title="Change Language">
-
+            <!-- Language Toggle Icon -->
+            <div onclick="toggleLanguage()" class="w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0" title="Change Language">
                 <i class="fa-solid fa-globe text-primary"></i>
-
             </div>
 
 
 
-
-
-            <!-- Share Website -->
-            <div
-                onclick="shareWebsite()"
-                class="w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0"
-                title="Share Website">
-
+            <!-- Share Website Icon -->
+            <div onclick="shareWebsite()" class="w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors flex-shrink-0" title="Share Website">
                 <i class="fa-solid fa-share-nodes text-primary"></i>
-
             </div>
 
-
-            <!-- Mobile Menu Button -->
-            <button
-                id="menu-btn"
-                type="button"
-                class="md:hidden w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center text-primary text-xl focus:outline-none hover:bg-surface-variant transition-colors flex-shrink-0"
-                aria-label="Open Menu">
-
+            <!-- Mobile Menu Toggle Button -->
+            <button id="menu-btn" type="button" class="md:hidden w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center text-primary text-xl focus:outline-none hover:bg-surface-variant transition-colors flex-shrink-0" aria-label="Open Menu">
                 ☰
-
             </button>
 
         </div>
 
     </div>
 
-
-    <!-- Mobile Menu Dropdown -->
-    <div
-        id="mobile-menu"
-        class="hidden absolute top-16 left-0 w-full bg-surface border-b border-outline-variant/30 shadow-xl md:hidden z-50">
-
-        <a
-            href="/index.html"
-            class="block px-6 py-4 border-b border-outline-variant/10 font-medium">
-            Home
-        </a>
-
-        <a
-            href="/web/about/index.html"
-            class="block px-6 py-4 border-b border-outline-variant/10 font-medium">
-            About
-        </a>
-
-        <a
-            href="/web/product/index.html"
-            class="block px-6 py-4 border-b border-outline-variant/10 font-medium">
-            Products
-        </a>
-
-        <a
-            href="/web/gallery/index.html"
-            class="block px-6 py-4 border-b border-outline-variant/10 font-medium">
-            Gallery
-        </a>
-
-        <a
-            href="/web/contact/index.html"
-            class="block px-6 py-4 border-b border-outline-variant/10 font-medium">
-            Contact
-        </a>
-
+    <!-- Mobile Menu Dropdown Bar -->
+    <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-surface border-b border-outline-variant/30 shadow-xl md:hidden z-50">
+        <a href="/index.html" class="block px-6 py-4 border-b border-outline-variant/10 font-medium text-primary">Home</a>
+        <a href="/web/about/index.html" class="block px-6 py-4 border-b border-outline-variant/10 font-medium text-primary">About</a>
+        <a href="/web/product/index.html" class="block px-6 py-4 border-b border-outline-variant/10 font-medium text-primary">Products</a>
+        <a href="/web/gallery/index.html" class="block px-6 py-4 border-b border-outline-variant/10 font-medium text-primary">Gallery</a>
+        <a href="/web/contact/index.html" class="block px-6 py-4 font-medium text-primary">Contact</a>
     </div>
-
 </nav>
-
 <main class="pt-16">
 <!-- Hero Section -->
 <header class="relative w-full h-[70vh] flex items-center overflow-hidden bg-primary-container">
@@ -557,6 +479,23 @@
             `;
         }
     });
+</script>
+<!-- JavaScript for Smooth Sidebar Toggle -->
+<script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('sidebar-overlay');
+        
+        if (sidebar.classList.contains('translate-x-full')) {
+            sidebar.classList.remove('translate-x-full');
+            overlay.classList.remove('hidden');
+            setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+        } else {
+            sidebar.classList.add('translate-x-full');
+            overlay.classList.add('opacity-0');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+        }
+    }
 </script>
 </body>
 </html>
