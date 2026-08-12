@@ -45,172 +45,278 @@ html = r'''<!DOCTYPE html>
     body { -webkit-text-size-adjust: 100%; }
     img { max-width: 100%; height: auto; display: block; }
 
-    /* ================= PREMIUM RIGHT SIDEBAR ================= */
+    /* =====================================================
+       PREMIUM SIDEBAR
+    ===================================================== */
+
     #sidebar-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.48);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      z-index: 9998;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 300ms ease, visibility 300ms ease;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.48);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        z-index: 9998;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+            opacity 300ms ease,
+            visibility 300ms ease;
     }
 
     #sidebar-overlay.active {
-      opacity: 1;
-      visibility: visible;
+        opacity: 1;
+        visibility: visible;
     }
 
-    #side-menu {
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: auto;
-      width: min(390px, 88vw);
-      height: 100dvh;
-      background: linear-gradient(180deg, rgba(250,249,244,.99) 0%, rgba(245,244,239,.99) 100%);
-      z-index: 9999;
-      transform: translateX(105%);
-      transition: transform 320ms cubic-bezier(.4,0,.2,1);
-      box-shadow: -18px 0 55px rgba(0,0,0,.18);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      will-change: transform;
-    }
+/* =====================================================
+   PREMIUM RIGHT SIDEBAR
+===================================================== */
 
-    #side-menu.active { transform: translateX(0); }
+#side-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
 
+    width: min(390px, 88vw);
+    height: 100dvh;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(250, 249, 244, 0.99) 0%,
+            rgba(245, 244, 239, 0.99) 100%
+        );
+
+    z-index: 9999;
+
+    /* CLOSED = outside RIGHT */
+    transform: translateX(105%);
+
+    transition:
+        transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    box-shadow:
+        -18px 0 55px rgba(0, 0, 0, 0.18);
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    will-change: transform;
+}
+
+/* OPEN = RIGHT SIDE */
+#side-menu.active {
+    transform: translateX(0);
+}
     .sidebar-scroll {
-      flex: 1;
-      overflow-y: auto;
-      overflow-x: hidden;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(0,66,50,.25) transparent;
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 66, 50, 0.25) transparent;
     }
 
-    .sidebar-scroll::-webkit-scrollbar { width: 4px; }
-    .sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
+    .sidebar-scroll::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .sidebar-scroll::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
     .sidebar-scroll::-webkit-scrollbar-thumb {
-      background: rgba(0,66,50,.25);
-      border-radius: 20px;
+        background: rgba(0, 66, 50, 0.25);
+        border-radius: 20px;
     }
 
     .sidebar-link {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-height: 52px;
-      padding: 0 16px;
-      color: #3f4944;
-      border-radius: 14px;
-      transition: background 200ms ease, color 200ms ease, transform 200ms ease;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        min-height: 52px;
+        padding: 0 16px;
+        color: #3f4944;
+        border-radius: 14px;
+        transition:
+            background 200ms ease,
+            color 200ms ease,
+            transform 200ms ease;
     }
 
     .sidebar-link:hover {
-      background: rgba(192,237,212,.55);
-      color: #004232;
-      transform: translateX(4px);
+        background: rgba(192, 237, 212, 0.55);
+        color: #004232;
+        transform: translateX(4px);
     }
 
     .sidebar-link.active {
-      background: #004232;
-      color: white;
-      box-shadow: 0 8px 20px rgba(0,66,50,.16);
+        background: #004232;
+        color: white;
+        box-shadow: 0 8px 20px rgba(0, 66, 50, 0.16);
     }
 
     .sidebar-link.active:hover {
-      background: #00513d;
-      color: white;
+        background: #00513d;
+        color: white;
+    }
+
+    /* Sidebar main navigation — matches the reference menu */
+    .sidebar-nav-link {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        min-height: 52px;
+        padding: 0 16px;
+        color: #3f4944;
+        border-radius: 14px;
+        text-decoration: none;
+        transition:
+            background 200ms ease,
+            color 200ms ease,
+            transform 200ms ease;
+    }
+
+    .sidebar-nav-link:hover {
+        background: rgba(192, 237, 212, 0.55);
+        color: #004232;
+        transform: translateX(4px);
+    }
+
+    .sidebar-nav-link.active {
+        background: #004232;
+        color: white;
+        box-shadow: 0 8px 20px rgba(0, 66, 50, 0.16);
+    }
+
+    .sidebar-nav-link.active:hover {
+        background: #00513d;
+        color: white;
+    }
+
+    .sidebar-nav-icon {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 66, 50, 0.07);
+        transition: 200ms ease;
+    }
+
+    .sidebar-nav-link.active .sidebar-nav-icon {
+        background: rgba(255, 255, 255, 0.14);
     }
 
     .sidebar-link-icon {
-      width: 38px;
-      height: 38px;
-      min-width: 38px;
-      border-radius: 11px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,66,50,.07);
-      transition: 200ms ease;
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 66, 50, 0.07);
+        transition: 200ms ease;
     }
 
     .sidebar-link.active .sidebar-link-icon {
-      background: rgba(255,255,255,.14);
+        background: rgba(255, 255, 255, 0.14);
     }
 
     .sidebar-action {
-      min-height: 64px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 0 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(190,201,195,.45);
-      background: rgba(255,255,255,.55);
-      transition: transform 200ms ease, background 200ms ease, border-color 200ms ease;
+        min-height: 64px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 0 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(190, 201, 195, 0.45);
+        background: rgba(255, 255, 255, 0.55);
+        transition:
+            transform 200ms ease,
+            background 200ms ease,
+            border-color 200ms ease;
     }
 
     .sidebar-action:hover {
-      transform: translateY(-2px);
-      background: white;
-      border-color: rgba(0,66,50,.18);
+        transform: translateY(-2px);
+        background: white;
+        border-color: rgba(0, 66, 50, 0.18);
     }
 
     .sidebar-action-icon {
-      width: 42px;
-      height: 42px;
-      min-width: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 12px;
-      background: rgba(0,66,50,.07);
-      color: #004232;
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: rgba(0, 66, 50, 0.07);
+        color: #004232;
     }
 
     .counter-badge {
-      min-width: 21px;
-      height: 21px;
-      padding: 0 6px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #004232;
-      color: white;
-      font-size: 10px;
-      line-height: 1;
-      font-weight: 800;
+        min-width: 21px;
+        height: 21px;
+        padding: 0 6px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #004232;
+        color: white;
+        font-size: 10px;
+        line-height: 1;
+        font-weight: 800;
     }
 
     .sidebar-divider {
-      height: 1px;
-      background: rgba(190,201,195,.45);
+        height: 1px;
+        background: rgba(190, 201, 195, 0.45);
+    }
+
+    .menu-toggle {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .menu-toggle i {
+        transition:
+            transform 250ms ease,
+            opacity 200ms ease;
     }
 
     .sidebar-logo-mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 13px;
-      background: #004232;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 20px rgba(0,66,50,.20);
+        width: 44px;
+        height: 44px;
+        border-radius: 13px;
+        background: #004232;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 20px rgba(0, 66, 50, 0.20);
     }
 
-    body.menu-open { overflow: hidden; }
-
-    @media (max-width: 480px) {
-      #side-menu { width: 88vw; max-width: 360px; }
+  @media (max-width: 480px) {
+    #side-menu {
+        width: 88vw;
+        max-width: 360px;
     }
-  </style>
+}
+
+    /* Prevent page movement while sidebar is open */
+    body.menu-open {
+        overflow: hidden;
+    }
+</style>
 </head>
 <body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
 
@@ -219,98 +325,45 @@ html = r'''<!DOCTYPE html>
 ========================================================= -->
 
 <!-- ================= PREMIUM NAVBAR ================= -->
-<nav class="absolute top-0 left-0 w-full z-[100]" style="height:80px;">
+<nav class="fixed top-0 left-0 w-full z-[100] bg-white/85 backdrop-blur-xl border-b border-[#bec9c3]/20"
+     style="height:80px;">
+
     <div class="w-full h-20 px-5 sm:px-6 md:px-10 lg:px-16 flex items-center justify-between">
 
         <!-- ================= LEFT : LOGO ================= -->
         <div class="flex items-center flex-shrink-0">
+
             <a href="/index.html"
                class="flex items-center gap-3 group"
                aria-label="ATHAQ Home">
 
-                <div class="w-10 h-10 rounded-xl bg-[#004232] text-white
-                            flex items-center justify-center
-                            shadow-md shadow-[#004232]/20
-                            group-hover:scale-105 transition-transform duration-300">
-                    <span class="font-headline text-lg font-extrabold">A</span>
-                </div>
+          <!-- COMPLETE ATHAQ LOGO -->
+<div class="w-[200px] h-[70px] flex items-center justify-center overflow-visible group-hover:scale-[1.03] transition-transform duration-300">
 
-                <div class="hidden sm:block leading-none">
-                    <div class="text-xl md:text-2xl font-extrabold
-                                tracking-[0.16em] text-[#004232] font-headline">
-                        ATHAQ
-                    </div>
+  <img 
+    src="/logo.png"
+    alt="ATHAQ Industrial Factory"
+    class="w-full h-full object-contain"
+  >
 
-                    <div class="text-[8px] uppercase tracking-[0.28em]
-                                text-[#3f4944]/70 mt-1">
-                        Premium Dates
-                    </div>
-                </div>
-            </a>
+</div>
+
+</a>
+
         </div>
 
 
-        <!-- ================= CENTER : DESKTOP MENU ================= -->
-        <div class="hidden lg:flex items-center justify-center flex-1 px-8">
-
-            <div class="flex items-center gap-1
-                        bg-white/70 backdrop-blur-md
-                        border border-[#bec9c3]/35
-                        rounded-full px-2 py-1.5
-                        shadow-sm">
-
-                <a href="/index.html"
-                   class="px-4 py-2 rounded-full
-                          text-xs font-bold text-[#004232]
-                          hover:bg-[#c0edd4]/50
-                          transition-all duration-200">
-                    Home
-                </a>
-
-                <a href="/web/about/index.html"
-                   class="px-4 py-2 rounded-full
-                          text-xs font-bold text-[#004232]
-                          hover:bg-[#c0edd4]/50
-                          transition-all duration-200">
-                    About
-                </a>
-
-                <a href="/web/product/index.html"
-                   class="px-4 py-2 rounded-full
-                          bg-[#004232] text-white
-                          text-xs font-bold
-                          shadow-sm">
-                    Products
-                </a>
-
-                <a href="/web/gallery/index.html"
-                   class="px-4 py-2 rounded-full
-                          text-xs font-bold text-[#004232]
-                          hover:bg-[#c0edd4]/50
-                          transition-all duration-200">
-                    Gallery
-                </a>
-
-                <a href="/web/contact/index.html"
-                   class="px-4 py-2 rounded-full
-                          text-xs font-bold text-[#004232]
-                          hover:bg-[#c0edd4]/50
-                          transition-all duration-200">
-                    Contact
-                </a>
-
-            </div>
-        </div>
 
 
-        <!-- ================= RIGHT : ACTION ICONS ================= -->
+
+        <!-- ================= RIGHT : MENU BUTTON ================= -->
         <div class="flex items-center justify-end gap-2 flex-shrink-0">
-            <!-- MENU -->
+
             <button id="menu-btn"
                     type="button"
                     class="w-10 h-10 rounded-full
                            border border-[#bec9c3]/45
-                           bg-white/60 backdrop-blur-sm
+                           bg-white/70 backdrop-blur-sm
                            flex items-center justify-center
                            text-[#004232]
                            hover:bg-white
@@ -323,306 +376,515 @@ html = r'''<!DOCTYPE html>
                     aria-expanded="false">
 
                 <i class="fa-solid fa-bars text-sm"></i>
+
             </button>
 
         </div>
 
     </div>
-</nav>
 
+</nav>
 
 
 <!-- =========================================================
      DARK BLUR OVERLAY
 ========================================================= -->
 
-<div id="sidebar-overlay" aria-hidden="true"></div>
+<div id="sidebar-overlay"
+     class="fixed inset-0 bg-black/40 backdrop-blur-[2px] z-[150]
+            opacity-0 invisible transition-all duration-300">
+</div>
+
 
 <!-- =========================================================
-     LEFT SLIDE SIDEBAR
+     RIGHT SLIDE SIDEBAR — REFERENCE MENU
 ========================================================= -->
 
 <aside id="side-menu"
        aria-hidden="true"
-       aria-label="Main Navigation">
+       aria-label="Main Navigation"
+class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
+       bg-[#faf9f4] z-[200]
+       shadow-2xl
+       translate-x-full
+       transition-transform duration-300 ease-out
+       flex flex-col"
 
 
-<!-- SIDEBAR TOP -->
-<div class="px-5 pt-5 pb-4">
+     ================ SIDEBAR TOP ================= -->
 
-    <div class="flex items-center justify-between">
+    <div class="px-5 pt-5 pb-4">
 
-        <!-- LOGO -->
-        <a href="/index.html"
-           onclick="closeSideMenu()"
-           class="flex items-center gap-3">
+        <div class="flex items-center justify-between">
 
-            <div class="sidebar-logo-mark">
-                <span class="font-bold text-sm">
-                    AD
-                </span>
+            <!-- LOGO -->
+
+            <a href="/index.html"
+               onclick="closeSideMenu()"
+               class="flex items-center gap-3">
+
+              <img 
+  src="/logo (2).png"
+  alt="ATHAQ"
+  class="w-10 h-10 object-contain scale-125"
+>
+
+                <div>
+
+                    <div class="text-[#004232] font-bold
+                                tracking-[0.16em] text-sm">
+
+                        ATHAQ DATES
+
+                    </div>
+
+                    <div class="text-[9px] text-[#3f4944]
+                                uppercase tracking-[0.22em] mt-1">
+
+                        Industrial Factory
+
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- CLOSE BUTTON -->
+
+            <button id="close-menu"
+                    type="button"
+                    aria-label="Close Menu"
+                    class="w-10 h-10 rounded-full
+                           border border-[#bec9c3]/50
+                           bg-white
+                           flex items-center justify-center
+                           text-[#004232]
+                           hover:bg-[#e9e8e3]
+                           transition-all duration-200">
+
+                <i class="fa-solid fa-xmark text-lg"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="h-px bg-[#bec9c3]/30 mx-5"></div>
+
+
+    <!-- ================= SIDEBAR CONTENT ================= -->
+
+    <div class="flex-1 overflow-y-auto px-5 py-5">
+
+
+        <!-- ================= QUICK ACCESS ================= -->
+
+        <div class="mb-7">
+
+            <p class="text-[10px] font-bold uppercase
+                      tracking-[0.18em]
+                      text-[#3f4944]/70 mb-3 px-1">
+
+                Quick Access
+
+            </p>
+
+
+            <div class="grid grid-cols-2 gap-3">
+
+
+         
+
+
+                <!-- LANGUAGE -->
+
+                <button type="button"
+                        onclick="toggleLanguage()"
+                        class="sidebar-action text-left">
+
+                    <span class="sidebar-action-icon">
+                        <i class="fa-solid fa-globe"></i>
+                    </span>
+
+                    <span class="min-w-0">
+
+                        <span class="block text-xs font-bold text-[#004232]">
+                            Language
+                        </span>
+
+                        <span id="languageLabel"
+                              class="block text-[10px]
+                                     text-[#3f4944] mt-1">
+
+                            English
+
+                        </span>
+
+                    </span>
+
+                </button>
+
+
+                <!-- WISHLIST -->
+
+                <a href="/web/product/wishlist.html"
+                   onclick="closeSideMenu()"
+                   class="sidebar-action">
+
+                    <span class="sidebar-action-icon">
+                        <i class="fa-regular fa-heart"></i>
+                    </span>
+
+                    <span class="min-w-0 flex-1">
+
+                        <span class="block text-xs font-bold text-[#004232]">
+                            Wishlist
+                        </span>
+
+                        <span class="block text-[10px]
+                                     text-[#3f4944] mt-1">
+
+                            Saved items
+
+                        </span>
+
+                    </span>
+
+                    <span id="sidebarWishlistCount"
+                          class="counter-badge">
+
+                        0
+
+                    </span>
+
+                </a>
+
+
+                <!-- CART -->
+
+                <a href="/admin/checkout.html"
+                   onclick="closeSideMenu()"
+                   class="sidebar-action">
+
+                    <span class="sidebar-action-icon">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </span>
+
+                    <span class="min-w-0 flex-1">
+
+                        <span class="block text-xs font-bold text-[#004232]">
+                            Cart
+                        </span>
+
+                        <span class="block text-[10px]
+                                     text-[#3f4944] mt-1">
+
+                            Your items
+
+                        </span>
+
+                    </span>
+
+                    <span id="sidebarCartCount"
+                          class="counter-badge">
+
+                        0
+
+                    </span>
+
+                </a>
+
+
+                <!-- SHARE -->
+
+                <button type="button"
+                        onclick="shareWebsite()"
+                        class="sidebar-action text-left">
+
+                    <span class="sidebar-action-icon">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </span>
+
+                    <span class="min-w-0">
+
+                        <span class="block text-xs font-bold text-[#004232]">
+                            Share
+                        </span>
+
+                        <span class="block text-[10px]
+                                     text-[#3f4944] mt-1">
+
+                            Share website
+
+                        </span>
+
+                    </span>
+
+                </button>
+
             </div>
+
+        </div>
+
+
+        <!-- ================= DIVIDER ================= -->
+
+        <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
+
+
+        <!-- ================= MAIN NAVIGATION ================= -->
+
+        <div class="mb-7">
+
+            <p class="text-[10px] font-bold uppercase
+                      tracking-[0.18em]
+                      text-[#3f4944]/70 mb-3 px-1">
+
+                Navigation
+
+            </p>
+
+
+            <div class="space-y-2">
+
+
+                <!-- HOME -->
+
+                <a href="/index.html"
+                   onclick="closeSideMenu()"
+                   class="sidebar-nav-link">
+
+                    <span class="sidebar-nav-icon">
+                        <i class="fa-solid fa-house"></i>
+                    </span>
+
+                    <span>Home</span>
+
+                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
+                </a>
+
+
+                <!-- ABOUT -->
+
+                <a href="/web/about/index.html"
+                   onclick="closeSideMenu()"
+                   class="sidebar-nav-link">
+
+                    <span class="sidebar-nav-icon">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </span>
+
+                    <span>About</span>
+
+                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
+                </a>
+
+
+                <!-- PRODUCTS -->
+
+                <a href="/web/product/index.html"
+                   onclick="closeSideMenu()"
+                   class="sidebar-nav-link active">
+
+                    <span class="sidebar-nav-icon">
+                        <i class="fa-solid fa-box-open"></i>
+                    </span>
+
+                    <span>Products</span>
+
+                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
+                </a>
+
+
+                <!-- GALLERY -->
+
+                <a href="/web/gallery/index.html"
+                   onclick="closeSideMenu()"
+                   class="sidebar-nav-link">
+
+                    <span class="sidebar-nav-icon">
+                        <i class="fa-solid fa-images"></i>
+                    </span>
+
+                    <span>Gallery</span>
+
+                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
+                </a>
+
+
+                <!-- CONTACT -->
+
+                <a href="/web/contact/index.html"
+                   onclick="closeSideMenu()"
+                   class="sidebar-nav-link">
+
+                    <span class="sidebar-nav-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </span>
+
+                    <span>Contact</span>
+
+                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= CONTACT ================= -->
+
+        <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
+
+        <div class="mb-6">
+
+            <p class="text-[10px] font-bold uppercase
+                      tracking-[0.18em]
+                      text-[#3f4944]/70 mb-3 px-1">
+
+                Contact
+
+            </p>
+
+
+            <div class="space-y-2">
+
+
+                <!-- PHONE -->
+
+                <a href="tel:+966581818482"
+                   class="flex items-center gap-3 px-3 py-3
+                          rounded-xl hover:bg-white
+                          transition-colors">
+
+                    <span class="w-9 h-9 rounded-lg
+                                 bg-[#c0edd4]/60
+                                 text-[#004232]
+                                 flex items-center justify-center">
+
+                        <i class="fa-solid fa-phone text-xs"></i>
+
+                    </span>
+
+                    <span>
+
+                        <span class="block text-[9px]
+                                     uppercase tracking-wider
+                                     text-[#3f4944]">
+
+                            Phone
+
+                        </span>
+
+                        <span class="block text-xs font-semibold
+                                     text-[#004232] mt-0.5">
+
+                            +966 58 181 8482
+
+                        </span>
+
+                    </span>
+
+                </a>
+
+
+                <!-- EMAIL -->
+
+                <a href="mailto:info@athaqdates.com"
+                   class="flex items-center gap-3 px-3 py-3
+                          rounded-xl hover:bg-white
+                          transition-colors">
+
+                    <span class="w-9 h-9 rounded-lg
+                                 bg-[#c0edd4]/60
+                                 text-[#004232]
+                                 flex items-center justify-center">
+
+                        <i class="fa-solid fa-envelope text-xs"></i>
+
+                    </span>
+
+                    <span class="min-w-0">
+
+                        <span class="block text-[9px]
+                                     uppercase tracking-wider
+                                     text-[#3f4944]">
+
+                            Email
+
+                        </span>
+
+                        <span class="block text-xs font-semibold
+                                     text-[#004232] mt-0.5 truncate">
+
+                            info@athaqdates.com
+
+                        </span>
+
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= SIDEBAR FOOTER ================= -->
+
+    <div class="border-t border-[#bec9c3]/30
+                px-5 py-4 bg-white/45">
+
+        <div class="flex items-center justify-between gap-4">
 
             <div>
-                <div class="text-primary font-bold tracking-[0.16em] text-sm">
-                    ATHAQ DATES
-                </div>
 
-                <div class="text-[9px] text-on-surface-variant uppercase tracking-[0.22em] mt-1">
-                    Industrial Factory
-                </div>
+                <p class="text-[9px] uppercase
+                          tracking-[0.16em]
+                          text-[#3f4944]">
+
+                    ATHAQ DATES INDUSTRY
+
+                </p>
+
+                <p class="text-[9px]
+                          text-[#3f4944]/70 mt-1">
+
+                    Premium Saudi Dates
+
+                </p>
+
             </div>
 
-        </a>
+            <div class="text-[#004232]/70
+                        text-[10px] font-semibold
+                        whitespace-nowrap">
 
-        <!-- CLOSE -->
-        <button
-            id="close-menu"
-            type="button"
-            aria-label="Close Menu"
-            class="w-10 h-10 rounded-full border border-outline-variant/50 bg-white flex items-center justify-center text-primary hover:bg-surface-container-high transition-all duration-200">
+                © 2023–2026
 
-            <i class="fa-solid fa-xmark text-lg"></i>
-
-        </button>
-
-    </div>
-
-</div>
-
-
-<div class="sidebar-divider mx-5"></div>
-
-
-<!-- SIDEBAR CONTENT -->
-<div class="sidebar-scroll px-5 py-5">
-
-    <!-- =================================================
-         QUICK ACTIONS
-    ================================================= -->
-
-    <div class="mb-7">
-
-        <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-on-surface-variant/70 mb-3 px-1">
-            Quick Access
-        </p>
-
-        <div class="grid grid-cols-2 gap-3">
-
-              <!-- ACCOUNT -->
-            <div id="sidebarAuthContainer">
-                <!-- JS fills this -->
             </div>
 
-
-
-            <!-- LANGUAGE -->
-            <button
-                type="button"
-                onclick="toggleLanguage()"
-                class="sidebar-action text-left">
-
-                <span class="sidebar-action-icon">
-                    <i class="fa-solid fa-globe"></i>
-                </span>
-
-                <span class="min-w-0">
-                    <span class="block text-xs font-bold text-primary">
-                        Language
-                    </span>
-
-                    <span id="languageLabel"
-                          class="block text-[10px] text-on-surface-variant mt-1">
-                        English
-                    </span>
-                </span>
-
-            </button>
-
-
-            <!-- WISHLIST -->
-            <a href="/web/product/wishlist.html"
-               onclick="closeSideMenu()"
-               class="sidebar-action">
-
-                <span class="sidebar-action-icon">
-                    <i class="fa-regular fa-heart"></i>
-                </span>
-
-                <span class="min-w-0 flex-1">
-                    <span class="block text-xs font-bold text-primary">
-                        Wishlist
-                    </span>
-
-                    <span class="block text-[10px] text-on-surface-variant mt-1">
-                        Saved items
-                    </span>
-                </span>
-
-                <span id="sidebarWishlistCount"
-                      class="counter-badge">
-                    0
-                </span>
-
-            </a>
-
-
-            <!-- CART -->
-            <a href="/admin/checkout.html"
-               onclick="closeSideMenu()"
-               class="sidebar-action">
-
-                <span class="sidebar-action-icon">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                </span>
-
-                <span class="min-w-0 flex-1">
-                    <span class="block text-xs font-bold text-primary">
-                        Cart
-                    </span>
-
-                    <span class="block text-[10px] text-on-surface-variant mt-1">
-                        Your items
-                    </span>
-                </span>
-
-                <span id="sidebarCartCount"
-                      class="counter-badge">
-                    0
-                </span>
-
-            </a>
-
-
-            <!-- SHARE -->
-            <button
-                type="button"
-                onclick="shareWebsite()"
-                class="sidebar-action text-left">
-
-                <span class="sidebar-action-icon">
-                    <i class="fa-solid fa-share-nodes"></i>
-                </span>
-
-                <span class="min-w-0">
-                    <span class="block text-xs font-bold text-primary">
-                        Share
-                    </span>
-
-                    <span class="block text-[10px] text-on-surface-variant mt-1">
-                        Share website
-                    </span>
-                </span>
-
-            </button>
-
-        </div>
-    </div>
-
-
-    <!-- DIVIDER -->
-    <div class="sidebar-divider mb-6"></div>
-
-
-    <!-- =================================================
-         MAIN NAVIGATION
-    ================================================= -->
-
-  
-
-    <!-- DIVIDER -->
-    <div class="sidebar-divider mb-6"></div>
-
-
-    <!-- =================================================
-         CONTACT INFO
-    ================================================= -->
-
-    <div class="mb-6">
-
-        <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-on-surface-variant/70 mb-3 px-1">
-            Contact
-        </p>
-
-        <div class="space-y-2">
-
-            <!-- PHONE -->
-            <a href="tel:+966581818482"
-               class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors">
-
-                <span class="w-9 h-9 rounded-lg bg-secondary-container/60 text-primary flex items-center justify-center">
-                    <i class="fa-solid fa-phone text-xs"></i>
-                </span>
-
-                <span>
-                    <span class="block text-[9px] uppercase tracking-wider text-on-surface-variant">
-                        Phone
-                    </span>
-
-                    <span class="block text-xs font-semibold text-primary mt-0.5">
-                        +966 58 181 8482
-                    </span>
-                </span>
-
-            </a>
-
-
-            <!-- EMAIL -->
-            <a href="mailto:info@athaqdates.com"
-               class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors">
-
-                <span class="w-9 h-9 rounded-lg bg-secondary-container/60 text-primary flex items-center justify-center">
-                    <i class="fa-solid fa-envelope text-xs"></i>
-                </span>
-
-                <span class="min-w-0">
-                    <span class="block text-[9px] uppercase tracking-wider text-on-surface-variant">
-                        Email
-                    </span>
-
-                    <span class="block text-xs font-semibold text-primary mt-0.5 truncate">
-                        info@athaqdates.com
-                    </span>
-                </span>
-
-            </a>
-
-        </div>
-    </div>
-
-</div>
-
-
-<!-- =================================================
-     SIDEBAR FOOTER
-================================================= -->
-
-<div class="border-t border-outline-variant/30 px-5 py-4 bg-white/45">
-
-    <div class="flex items-center justify-between gap-4">
-
-        <div>
-            <p class="text-[9px] uppercase tracking-[0.16em] text-on-surface-variant">
-                ATHAQ DATES INDUSTRY
-            </p>
-
-            <p class="text-[9px] text-on-surface-variant/70 mt-1">
-                Premium Saudi Dates
-            </p>
-        </div>
-
-        <div class="text-primary/70 text-[10px] font-semibold whitespace-nowrap">
-            © 2023–2026
         </div>
 
     </div>
-
-</div>
 
 </aside>
 
-  <!-- ================= MAIN ================= -->
-  <main class="pt-28 pb-20">
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+
+<main class="pt-28 pb-20">
 
     <header class="px-4 md:px-16 max-w-7xl mx-auto mb-12">
       <div class="flex flex-col md:flex-row justify-between items-end gap-6">
@@ -950,7 +1212,16 @@ html = r'''<!DOCTYPE html>
       const closeBtn = document.getElementById("close-menu");
       const overlay = document.getElementById("sidebar-overlay");
 
-      menuBtn?.addEventListener("click", openSideMenu);
+      menuBtn?.addEventListener("click", function (e) {
+        e.preventDefault();
+        const menu = document.getElementById("side-menu");
+        if (menu?.classList.contains("active")) {
+          closeSideMenu();
+        } else {
+          openSideMenu();
+        }
+      });
+
       closeBtn?.addEventListener("click", closeSideMenu);
       overlay?.addEventListener("click", closeSideMenu);
 
@@ -966,9 +1237,12 @@ html = r'''<!DOCTYPE html>
       const menu = document.getElementById("side-menu");
       const overlay = document.getElementById("sidebar-overlay");
       const button = document.getElementById("menu-btn");
+      if (!menu) return;
 
-      menu.classList.add("active");
-      overlay.classList.add("active");
+      menu.classList.remove("translate-x-full");
+      menu.classList.add("translate-x-0", "active");
+      overlay?.classList.remove("opacity-0", "invisible");
+      overlay?.classList.add("opacity-100", "visible", "active");
       document.body.classList.add("menu-open");
       button?.setAttribute("aria-expanded", "true");
       menu.setAttribute("aria-hidden", "false");
@@ -979,8 +1253,10 @@ html = r'''<!DOCTYPE html>
       const overlay = document.getElementById("sidebar-overlay");
       const button = document.getElementById("menu-btn");
 
-      menu?.classList.remove("active");
-      overlay?.classList.remove("active");
+      menu?.classList.remove("translate-x-0", "active");
+      menu?.classList.add("translate-x-full");
+      overlay?.classList.remove("opacity-100", "visible", "active");
+      overlay?.classList.add("opacity-0", "invisible");
       document.body.classList.remove("menu-open");
       button?.setAttribute("aria-expanded", "false");
       menu?.setAttribute("aria-hidden", "true");

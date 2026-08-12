@@ -1,1537 +1,820 @@
 <!DOCTYPE html>
-
 <html class="scroll-smooth" dir="ltr" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ATHAQ Dates Industry — premium Saudi dates, modern processing, trusted quality.">
 
-<link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&family=Playfair+Display:wght@700&display=swap"
-    rel="stylesheet"/>
-
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
-    rel="stylesheet"/>
-
-<script id="tailwind-config">
+  <script>
     tailwind.config = {
-        darkMode: "class",
-        theme: {
-            extend: {
-                colors: {
-                    "on-tertiary-fixed": "#241a00",
-                    "error-container": "#ffdad6",
-                    "secondary": "#3e6653",
-                    "on-error-container": "#93000a",
-                    "on-surface-variant": "#3f4944",
-                    "secondary-container": "#c0edd4",
-                    "on-primary-container": "#88d2b6",
-                    "on-secondary-fixed": "#002114",
-                    "inverse-primary": "#8bd5b9",
-                    "surface-container-lowest": "#ffffff",
-                    "secondary-fixed": "#c0edd4",
-                    "on-tertiary": "#ffffff",
-                    "on-secondary-fixed-variant": "#264e3c",
-                    "surface": "#faf9f4",
-                    "on-tertiary-fixed-variant": "#574500",
-                    "tertiary-fixed-dim": "#e9c349",
-                    "on-secondary-container": "#446d59",
-                    "outline": "#6f7974",
-                    "on-error": "#ffffff",
-                    "on-primary": "#ffffff",
-                    "surface-bright": "#faf9f4",
-                    "outline-variant": "#bec9c3",
-                    "on-primary-fixed-variant": "#00513d",
-                    "on-secondary": "#ffffff",
-                    "error": "#ba1a1a",
-                    "on-tertiary-container": "#4f3e00",
-                    "inverse-surface": "#30312e",
-                    "tertiary-fixed": "#ffe088",
-                    "surface-variant": "#e3e3de",
-                    "surface-tint": "#1b6a53",
-                    "primary-fixed": "#a6f2d4",
-                    "surface-container-low": "#f5f4ef",
-                    "inverse-on-surface": "#f2f1ec",
-                    "background": "#faf9f4",
-                    "surface-dim": "#dbdad5",
-                    "surface-container": "#efeee9",
-                    "surface-container-high": "#e9e8e3",
-                    "on-primary-fixed": "#002117",
-                    "tertiary-container": "#cca830",
-                    "tertiary": "#735c00",
-                    "on-surface": "#1b1c19",
-                    "secondary-fixed-dim": "#a5d0b8",
-                    "primary": "#004232",
-                    "on-background": "#1b1c19",
-                    "primary-container": "#005c46",
-                    "surface-container-highest": "#e3e3de",
-                    "primary-fixed-dim": "#8bd5b9"
-                },
-
-                borderRadius: {
-                    "DEFAULT": "0.125rem",
-                    "lg": "0.25rem",
-                    "xl": "0.5rem",
-                    "full": "0.75rem"
-                },
-
-                spacing: {
-                    "section-gap": "120px",
-                    "unit": "8px",
-                    "container-max": "1280px",
-                    "margin-mobile": "16px",
-                    "margin-desktop": "64px",
-                    "gutter": "24px"
-                },
-
-                fontFamily: {
-                    "body-md": ["Manrope"],
-                    "label-sm": ["IBM Plex Sans"],
-                    "headline-md": ["Be Vietnam Pro"],
-                    "body-lg": ["Manrope"],
-                    "display-lg": ["Be Vietnam Pro"]
-                },
-
-                fontSize: {
-                    "body-md": ["16px", {
-                        "lineHeight": "1.5",
-                        "fontWeight": "400"
-                    }],
-                    "label-sm": ["12px", {
-                        "lineHeight": "1",
-                        "letterSpacing": "0.05em",
-                        "fontWeight": "600"
-                    }],
-                    "headline-md": ["24px", {
-                        "lineHeight": "1.3",
-                        "fontWeight": "600"
-                    }],
-                    "body-lg": ["18px", {
-                        "lineHeight": "1.6",
-                        "fontWeight": "400"
-                    }],
-                    "display-lg": ["48px", {
-                        "lineHeight": "1.1",
-                        "letterSpacing": "-0.02em",
-                        "fontWeight": "700"
-                    }]
-                }
-            }
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#004232",
+            "primary-container": "#005c46",
+            "primary-fixed": "#a6f2d4",
+            "on-primary-fixed": "#002117",
+            secondary: "#3e6653",
+            "secondary-container": "#c0edd4",
+            "on-secondary-container": "#446d59",
+            tertiary: "#735c00",
+            "tertiary-container": "#cca830",
+            surface: "#faf9f4",
+            "surface-container": "#efeee9",
+            "surface-container-high": "#e9e8e3",
+            "surface-container-highest": "#e3e3de",
+            "on-surface": "#1b1c19",
+            "on-surface-variant": "#3f4944",
+            outline: "#6f7974",
+            "outline-variant": "#bec9c3"
+          },
+          spacing: {
+            "section-gap": "120px",
+            "margin-mobile": "16px",
+            "margin-desktop": "64px",
+            "container-max": "1280px"
+          },
+          fontFamily: {
+            body: ["Manrope"],
+            headline: ["Be Vietnam Pro"],
+            label: ["IBM Plex Sans"]
+          }
         }
-    }
-</script>
+      }
+    };
+  </script>
 
-<style>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { width:100%; overflow-x:hidden; }
+    body { -webkit-text-size-adjust:100%; background:#faf9f4; color:#1b1c19; }
+    img { max-width:100%; height:auto; display:block; }
     .material-symbols-outlined {
-        font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 24;
+      font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
     }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    html {
-        width: 100%;
-        overflow-x: hidden;
-    }
-
-    body {
-        width: 100%;
-        overflow-x: hidden;
-        -webkit-text-size-adjust: 100%;
-    }
-
-    img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    /* =====================================================
-       PREMIUM SIDEBAR
-    ===================================================== */
 
     #sidebar-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.48);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        z-index: 9998;
-        opacity: 0;
-        visibility: hidden;
-        transition:
-            opacity 300ms ease,
-            visibility 300ms ease;
+      position:fixed; inset:0; z-index:9998;
+      background:rgba(0,0,0,.48);
+      backdrop-filter:blur(5px);
+      opacity:0; visibility:hidden;
+      transition:opacity .3s ease, visibility .3s ease;
     }
+    #sidebar-overlay.active { opacity:1; visibility:visible; }
 
-    #sidebar-overlay.active {
-        opacity: 1;
-        visibility: visible;
+    #side-menu {
+      position:fixed; top:0; right:0; z-index:9999;
+      width:min(390px,88vw); height:100dvh;
+      background:linear-gradient(180deg,rgba(250,249,244,.99),rgba(245,244,239,.99));
+      transform:translateX(105%);
+      transition:transform .32s cubic-bezier(.4,0,.2,1);
+      box-shadow:-18px 0 55px rgba(0,0,0,.18);
+      display:flex; flex-direction:column; overflow:hidden;
     }
-
-/* =====================================================
-   PREMIUM RIGHT SIDEBAR
-===================================================== */
-
-#side-menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: auto;
-
-    width: min(390px, 88vw);
-    height: 100dvh;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(250, 249, 244, 0.99) 0%,
-            rgba(245, 244, 239, 0.99) 100%
-        );
-
-    z-index: 9999;
-
-    /* CLOSED = outside RIGHT */
-    transform: translateX(105%);
-
-    transition:
-        transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
-
-    box-shadow:
-        -18px 0 55px rgba(0, 0, 0, 0.18);
-
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-
-    will-change: transform;
-}
-
-/* OPEN = RIGHT SIDE */
-#side-menu.active {
-    transform: translateX(0);
-}
-    .sidebar-scroll {
-        flex: 1;
-        overflow-y: auto;
-        overflow-x: hidden;
-        scrollbar-width: thin;
-        scrollbar-color: rgba(0, 66, 50, 0.25) transparent;
-    }
-
-    .sidebar-scroll::-webkit-scrollbar {
-        width: 4px;
-    }
-
-    .sidebar-scroll::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    .sidebar-scroll::-webkit-scrollbar-thumb {
-        background: rgba(0, 66, 50, 0.25);
-        border-radius: 20px;
-    }
-
-    .sidebar-link {
-        position: relative;
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        min-height: 52px;
-        padding: 0 16px;
-        color: #3f4944;
-        border-radius: 14px;
-        transition:
-            background 200ms ease,
-            color 200ms ease,
-            transform 200ms ease;
-    }
-
-    .sidebar-link:hover {
-        background: rgba(192, 237, 212, 0.55);
-        color: #004232;
-        transform: translateX(4px);
-    }
-
-    .sidebar-link.active {
-        background: #004232;
-        color: white;
-        box-shadow: 0 8px 20px rgba(0, 66, 50, 0.16);
-    }
-
-    .sidebar-link.active:hover {
-        background: #00513d;
-        color: white;
-    }
-
-    .sidebar-link-icon {
-        width: 38px;
-        height: 38px;
-        min-width: 38px;
-        border-radius: 11px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(0, 66, 50, 0.07);
-        transition: 200ms ease;
-    }
-
-    .sidebar-link.active .sidebar-link-icon {
-        background: rgba(255, 255, 255, 0.14);
-    }
+    #side-menu.active { transform:translateX(0); }
 
     .sidebar-action {
-        min-height: 64px;
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        padding: 0 14px;
-        border-radius: 14px;
-        border: 1px solid rgba(190, 201, 195, 0.45);
-        background: rgba(255, 255, 255, 0.55);
-        transition:
-            transform 200ms ease,
-            background 200ms ease,
-            border-color 200ms ease;
+      min-height:64px; display:flex; align-items:center; gap:14px;
+      padding:0 14px; border-radius:14px;
+      border:1px solid rgba(190,201,195,.45);
+      background:rgba(255,255,255,.55);
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
     }
-
-    .sidebar-action:hover {
-        transform: translateY(-2px);
-        background: white;
-        border-color: rgba(0, 66, 50, 0.18);
+    .sidebar-action:hover { transform:translateY(-2px); background:#fff; border-color:rgba(0,66,50,.18); }
+    .sidebar-action-icon,.sidebar-nav-icon {
+      width:42px; height:42px; min-width:42px;
+      display:flex; align-items:center; justify-content:center;
+      border-radius:12px; background:rgba(0,66,50,.07); color:#004232;
     }
-
-    .sidebar-action-icon {
-        width: 42px;
-        height: 42px;
-        min-width: 42px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 12px;
-        background: rgba(0, 66, 50, 0.07);
-        color: #004232;
+    .sidebar-nav-icon { width:38px; height:38px; min-width:38px; border-radius:11px; }
+    .sidebar-nav-link {
+      display:flex; align-items:center; gap:14px; min-height:52px;
+      padding:0 16px; color:#3f4944; border-radius:14px;
+      text-decoration:none; transition:background .2s ease,color .2s ease,transform .2s ease;
     }
+    .sidebar-nav-link:hover { background:rgba(192,237,212,.55); color:#004232; transform:translateX(4px); }
+    .sidebar-nav-link.active { background:#004232; color:#fff; box-shadow:0 8px 20px rgba(0,66,50,.16); }
+    .sidebar-nav-link.active .sidebar-nav-icon { background:rgba(255,255,255,.14); color:#fff; }
 
+    .desktop-nav-link.active { background:#004232; color:#fff; box-shadow:0 2px 8px rgba(0,66,50,.10); }
+    .desktop-nav-link.active:hover { background:#00513d; color:#fff; }
     .counter-badge {
-        min-width: 21px;
-        height: 21px;
-        padding: 0 6px;
-        border-radius: 999px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: #004232;
-        color: white;
-        font-size: 10px;
-        line-height: 1;
-        font-weight: 800;
+      min-width:21px; height:21px; padding:0 6px; border-radius:999px;
+      display:inline-flex; align-items:center; justify-content:center;
+      background:#004232; color:#fff; font-size:10px; font-weight:800;
     }
-
-    .sidebar-divider {
-        height: 1px;
-        background: rgba(190, 201, 195, 0.45);
-    }
-
-    .menu-toggle {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .menu-toggle i {
-        transition:
-            transform 250ms ease,
-            opacity 200ms ease;
-    }
-
-    .sidebar-logo-mark {
-        width: 44px;
-        height: 44px;
-        border-radius: 13px;
-        background: #004232;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 8px 20px rgba(0, 66, 50, 0.20);
-    }
-
-  @media (max-width: 480px) {
-    #side-menu {
-        width: 88vw;
-        max-width: 360px;
-    }
-}
-
-    /* Prevent page movement while sidebar is open */
-    body.menu-open {
-        overflow: hidden;
-    }
-</style>
-
-
+    body.menu-open { overflow:hidden; }
+    @media (max-width:480px) { #side-menu { width:88vw; max-width:360px; } }
+  </style>
 </head>
-<nav class="fixed top-0 left-0 w-full z-[100] bg-white/85 backdrop-blur-xl border-b border-[#bec9c3]/20"
-     style="height:80px;">
 
-    <div class="w-full h-20 px-5 sm:px-6 md:px-10 lg:px-16 flex items-center justify-between">
+<body>
+<!-- HEADER -->
+<nav class="fixed top-0 left-0 w-full z-[100] bg-white/85 backdrop-blur-xl border-b border-[#bec9c3]/20" style="height:80px;">
 
-        <!-- ================= LEFT : LOGO ================= -->
-        <div class="flex items-center flex-shrink-0">
+  <div class="w-full h-20 px-5 sm:px-6 md:px-10 lg:px-16 flex items-center justify-between">
 
-            <a href="/index.html"
-               class="flex items-center gap-3 group"
-               aria-label="ATHAQ Home">
-
-                <div class="w-10 h-10 rounded-xl bg-[#004232] text-white
-                            flex items-center justify-center
-                            shadow-md shadow-[#004232]/20
-                            group-hover:scale-105 transition-transform duration-300">
-
-                    <span class="font-headline text-lg font-extrabold">A</span>
-
-                </div>
-
-                <div class="hidden sm:block leading-none">
-
-                    <div class="text-xl md:text-2xl font-extrabold
-                                tracking-[0.16em] text-[#004232] font-headline">
-
-                        ATHAQ
-
-                    </div>
-
-                    <div class="text-[8px] uppercase tracking-[0.28em]
-                                text-[#3f4944]/70 mt-1">
-
-                        Premium Dates
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </div>
-
-
-        <!-- ================= CENTER : DESKTOP MENU ================= -->
-        <div class="hidden lg:flex items-center justify-center flex-1 px-8">
-
-            <div class="flex items-center gap-1
-                        bg-white/80 backdrop-blur-md
-                        border border-[#bec9c3]/35
-                        rounded-full px-2 py-1.5
-                        shadow-sm">
-
-                <a href="/index.html"
-                   class="px-4 py-2 rounded-full
-                          text-xs font-bold text-[#004232]
-                          hover:bg-[#c0edd4]/50
-                          transition-all duration-200">
-
-                    Home
-
-                </a>
-
-
-                <a href="/web/about/index.html"
-                   class="px-4 py-2 rounded-full
-                          text-xs font-bold text-[#004232]
-                          hover:bg-[#c0edd4]/50
-                          transition-all duration-200">
-
-                    About
-
-                </a>
-
-
-                <a href="/web/product/index.html"
-                   class="px-4 py-2 rounded-full
-                          text-xs font-bold text-[#004232]
-                          hover:bg-[#c0edd4]/50
-                          transition-all duration-200">
-
-                    Products
-
-                </a>
-
-
-                <!-- ACTIVE GALLERY -->
-                <a href="/web/gallery/index.html"
-                   class="px-4 py-2 rounded-full
-                          bg-[#004232] text-white
-                          text-xs font-bold
-                          shadow-sm">
-
-                    Gallery
-
-                </a>
-
-
-                <a href="/web/contact/index.html"
-                   class="px-4 py-2 rounded-full
-                          text-xs font-bold text-[#004232]
-                          hover:bg-[#c0edd4]/50
-                          transition-all duration-200">
-
-                    Contact
-
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- ================= RIGHT : MENU BUTTON ================= -->
-        <div class="flex items-center justify-end gap-2 flex-shrink-0">
-
-            <button id="menu-btn"
-                    type="button"
-                    class="w-10 h-10 rounded-full
-                           border border-[#bec9c3]/45
-                           bg-white/70 backdrop-blur-sm
-                           flex items-center justify-center
-                           text-[#004232]
-                           hover:bg-white
-                           hover:border-[#004232]/20
-                           hover:shadow-sm
-                           transition-all duration-200
-                           focus:outline-none"
-                    aria-label="Open Menu"
-                    aria-controls="side-menu"
-                    aria-expanded="false">
-
-                <i class="fa-solid fa-bars text-sm"></i>
-
-            </button>
-
-        </div>
-
-    </div>
-
-</nav>
-
-
-<!-- =========================================================
-     DARK BLUR OVERLAY
-========================================================= -->
-
-<div id="sidebar-overlay"
-     class="fixed inset-0 bg-black/40 backdrop-blur-[2px] z-[150]
-            opacity-0 invisible transition-all duration-300">
+    <a href="/index.html" class="flex items-center group" aria-label="ATHAQ Home">
+      
+<!-- COMPLETE ATHAQ LOGO -->
+<div class="w-[200px] h-[70px] flex items-center justify-center overflow-visible group-hover:scale-[1.03] transition-transform duration-300">
+  <img 
+    src="/LOGO.PNG"
+    alt="ATHAQ Industrial Factory"
+    class="w-full h-full object-contain"
+  >
 </div>
 
+</a>
 
-<!-- =========================================================
-     LEFT SLIDE SIDEBAR
-========================================================= -->
-
-<aside id="side-menu"
-       aria-hidden="true"
-       aria-label="Main Navigation"
-class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
-       bg-[#faf9f4] z-[200]
-       shadow-2xl
-       translate-x-full
-       transition-transform duration-300 ease-out
-       flex flex-col"
-
-
-     ================ SIDEBAR TOP ================= -->
-
-    <div class="px-5 pt-5 pb-4">
-
-        <div class="flex items-center justify-between">
-
-            <!-- LOGO -->
-
-            <a href="/index.html"
-               onclick="closeSideMenu()"
-               class="flex items-center gap-3">
-
-                <div class="w-10 h-10 rounded-xl
-                            bg-[#004232] text-white
-                            flex items-center justify-center
-                            shadow-md">
-
-                    <span class="font-bold text-sm">
-                        AD
-                    </span>
-
-                </div>
-
-                <div>
-
-                    <div class="text-[#004232] font-bold
-                                tracking-[0.16em] text-sm">
-
-                        ATHAQ DATES
-
-                    </div>
-
-                    <div class="text-[9px] text-[#3f4944]
-                                uppercase tracking-[0.22em] mt-1">
-
-                        Industrial Factory
-
-                    </div>
-
-                </div>
-
-            </a>
-
-
-            <!-- CLOSE BUTTON -->
-
-            <button id="close-menu"
-                    type="button"
-                    aria-label="Close Menu"
-                    class="w-10 h-10 rounded-full
-                           border border-[#bec9c3]/50
-                           bg-white
-                           flex items-center justify-center
-                           text-[#004232]
-                           hover:bg-[#e9e8e3]
-                           transition-all duration-200">
-
-                <i class="fa-solid fa-xmark text-lg"></i>
-
-            </button>
-
-        </div>
-
+      <button id="menu-btn" type="button"
+        class="w-10 h-10 rounded-full border border-[#bec9c3]/45 bg-white/70 backdrop-blur-sm flex items-center justify-center text-[#004232] hover:bg-white hover:border-[#004232]/20 hover:shadow-sm transition-all focus:outline-none"
+        aria-label="Open Menu" aria-controls="side-menu" aria-expanded="false">
+        <i class="fa-solid fa-bars text-sm"></i>
+      </button>
     </div>
+  </nav>
 
+  <div id="sidebar-overlay"></div>
+
+  <!-- SIDEBAR -->
+  <aside id="side-menu" aria-hidden="true" aria-label="Main Navigation">
+    <div class="px-5 pt-5 pb-4">
+      <div class="flex items-center justify-between">
+        <a href="/index.html" onclick="closeSideMenu()" class="flex items-center gap-3">
+        <img 
+  src="/logo (2).png"
+  alt="ATHAQ"
+  class="w-10 h-10 object-contain scale-125"
+>
+          <div>
+            <div class="text-[#004232] font-bold tracking-[0.16em] text-sm">ATHAQ DATES</div>
+            <div class="text-[9px] text-[#3f4944] uppercase tracking-[0.22em] mt-1">Industrial Factory</div>
+          </div>
+        </a>
+        <button id="close-menu" type="button" aria-label="Close Menu"
+          class="w-10 h-10 rounded-full border border-[#bec9c3]/50 bg-white flex items-center justify-center text-[#004232] hover:bg-[#e9e8e3] transition-all">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+    </div>
 
     <div class="h-px bg-[#bec9c3]/30 mx-5"></div>
 
-
-    <!-- ================= SIDEBAR CONTENT ================= -->
-
     <div class="flex-1 overflow-y-auto px-5 py-5">
-
-
-        <!-- ================= QUICK ACCESS ================= -->
-
-        <div class="mb-7">
-
-            <p class="text-[10px] font-bold uppercase
-                      tracking-[0.18em]
-                      text-[#3f4944]/70 mb-3 px-1">
-
-                Quick Access
-
-            </p>
-
-
-            <div class="grid grid-cols-2 gap-3">
-
-
-                <!-- ACCOUNT -->
-
-                <div id="sidebarAuthContainer">
-
-                    <a href="/login/index.html"
-                       onclick="closeSideMenu()"
-                       class="sidebar-action">
-
-                        <span class="sidebar-action-icon">
-                            <i class="fa-regular fa-user"></i>
-                        </span>
-
-                        <span class="min-w-0">
-
-                            <span class="block text-xs font-bold text-[#004232]">
-                                Account
-                            </span>
-
-                            <span class="block text-[10px]
-                                         text-[#3f4944] mt-1">
-
-                                Sign in
-
-                            </span>
-
-                        </span>
-
-                    </a>
-
-                </div>
-
-
-                <!-- LANGUAGE -->
-
-                <button type="button"
-                        onclick="toggleLanguage()"
-                        class="sidebar-action text-left">
-
-                    <span class="sidebar-action-icon">
-                        <i class="fa-solid fa-globe"></i>
-                    </span>
-
-                    <span class="min-w-0">
-
-                        <span class="block text-xs font-bold text-[#004232]">
-                            Language
-                        </span>
-
-                        <span id="languageLabel"
-                              class="block text-[10px]
-                                     text-[#3f4944] mt-1">
-
-                            English
-
-                        </span>
-
-                    </span>
-
-                </button>
-
-
-                <!-- WISHLIST -->
-
-                <a href="/web/product/wishlist.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-action">
-
-                    <span class="sidebar-action-icon">
-                        <i class="fa-regular fa-heart"></i>
-                    </span>
-
-                    <span class="min-w-0 flex-1">
-
-                        <span class="block text-xs font-bold text-[#004232]">
-                            Wishlist
-                        </span>
-
-                        <span class="block text-[10px]
-                                     text-[#3f4944] mt-1">
-
-                            Saved items
-
-                        </span>
-
-                    </span>
-
-                    <span id="sidebarWishlistCount"
-                          class="counter-badge">
-
-                        0
-
-                    </span>
-
-                </a>
-
-
-                <!-- CART -->
-
-                <a href="/admin/checkout.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-action">
-
-                    <span class="sidebar-action-icon">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                    </span>
-
-                    <span class="min-w-0 flex-1">
-
-                        <span class="block text-xs font-bold text-[#004232]">
-                            Cart
-                        </span>
-
-                        <span class="block text-[10px]
-                                     text-[#3f4944] mt-1">
-
-                            Your items
-
-                        </span>
-
-                    </span>
-
-                    <span id="sidebarCartCount"
-                          class="counter-badge">
-
-                        0
-
-                    </span>
-
-                </a>
-
-
-                <!-- SHARE -->
-
-                <button type="button"
-                        onclick="shareWebsite()"
-                        class="sidebar-action text-left">
-
-                    <span class="sidebar-action-icon">
-                        <i class="fa-solid fa-share-nodes"></i>
-                    </span>
-
-                    <span class="min-w-0">
-
-                        <span class="block text-xs font-bold text-[#004232]">
-                            Share
-                        </span>
-
-                        <span class="block text-[10px]
-                                     text-[#3f4944] mt-1">
-
-                            Share website
-
-                        </span>
-
-                    </span>
-
-                </button>
-
-            </div>
-
+      <div class="mb-7">
+        <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1">Quick Access</p>
+        <div class="grid grid-cols-2 gap-3">
+
+      <a id="accountLink" href="/login/index.html" onclick="closeSideMenu()" class="sidebar-action">
+    <span class="sidebar-action-icon">
+        <i class="fa-regular fa-user"></i>
+    </span>
+
+    <span class="min-w-0">
+        <span id="accountName"
+              class="block text-xs font-bold text-[#004232]">
+            Account
+        </span>
+
+        <span id="accountStatus"
+              class="block text-[10px] text-[#3f4944] mt-1">
+            Sign in
+        </span>
+    </span>
+</a>
+
+          <button type="button" onclick="toggleLanguage()" class="sidebar-action text-left">
+            <span class="sidebar-action-icon"><i class="fa-solid fa-globe"></i></span>
+            <span><span class="block text-xs font-bold text-[#004232]">Language</span><span id="languageLabel" class="block text-[10px] text-[#3f4944] mt-1">English</span></span>
+          </button>
+
+          <a href="/web/product/wishlist.html" onclick="closeSideMenu()" class="sidebar-action">
+            <span class="sidebar-action-icon"><i class="fa-regular fa-heart"></i></span>
+            <span class="min-w-0 flex-1"><span class="block text-xs font-bold text-[#004232]">Wishlist</span><span class="block text-[10px] text-[#3f4944] mt-1">Saved items</span></span>
+            <span id="sidebarWishlistCount" class="counter-badge">0</span>
+          </a>
+
+          <a href="/admin/checkout.html" onclick="closeSideMenu()" class="sidebar-action">
+            <span class="sidebar-action-icon"><i class="fa-solid fa-bag-shopping"></i></span>
+            <span class="min-w-0 flex-1"><span class="block text-xs font-bold text-[#004232]">Cart</span><span class="block text-[10px] text-[#3f4944] mt-1">Your items</span></span>
+            <span id="sidebarCartCount" class="counter-badge">0</span>
+          </a>
+
+          <button type="button" onclick="shareWebsite()" class="sidebar-action text-left">
+            <span class="sidebar-action-icon"><i class="fa-solid fa-share-nodes"></i></span>
+            <span><span class="block text-xs font-bold text-[#004232]">Share</span><span class="block text-[10px] text-[#3f4944] mt-1">Share website</span></span>
+          </button>
         </div>
+      </div>
 
+      <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
 
-        <!-- ================= DIVIDER ================= -->
-
-        <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
-
-
-        <!-- ================= MAIN NAVIGATION ================= -->
-
-        <div class="mb-7">
-
-            <p class="text-[10px] font-bold uppercase
-                      tracking-[0.18em]
-                      text-[#3f4944]/70 mb-3 px-1">
-
-                Navigation
-
-            </p>
-
-
-            <div class="space-y-2">
-
-
-                <!-- HOME -->
-
-                <a href="/index.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-nav-link">
-
-                    <span class="sidebar-nav-icon">
-                        <i class="fa-solid fa-house"></i>
-                    </span>
-
-                    <span>Home</span>
-
-                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
-
-                </a>
-
-
-                <!-- ABOUT -->
-
-                <a href="/web/about/index.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-nav-link">
-
-                    <span class="sidebar-nav-icon">
-                        <i class="fa-solid fa-circle-info"></i>
-                    </span>
-
-                    <span>About</span>
-
-                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
-
-                </a>
-
-
-                <!-- PRODUCTS -->
-
-                <a href="/web/product/index.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-nav-link">
-
-                    <span class="sidebar-nav-icon">
-                        <i class="fa-solid fa-box-open"></i>
-                    </span>
-
-                    <span>Products</span>
-
-                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
-
-                </a>
-
-
-                <!-- GALLERY -->
-
-                <a href="/web/gallery/index.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-nav-link active">
-
-                    <span class="sidebar-nav-icon">
-                        <i class="fa-solid fa-images"></i>
-                    </span>
-
-                    <span>Gallery</span>
-
-                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
-
-                </a>
-
-
-                <!-- CONTACT -->
-
-                <a href="/web/contact/index.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-nav-link">
-
-                    <span class="sidebar-nav-icon">
-                        <i class="fa-solid fa-envelope"></i>
-                    </span>
-
-                    <span>Contact</span>
-
-                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
-
-                </a>
-
-            </div>
-
+      <div class="mb-7">
+        <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1">Navigation</p>
+        <div class="space-y-2">
+          <a href="/index.html" data-nav="home" onclick="closeSideMenu()" class="sidebar-nav-link">
+            <span class="sidebar-nav-icon"><i class="fa-solid fa-house"></i></span><span>Home</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+          </a>
+          <a href="/web/about/index.html" data-nav="about" onclick="closeSideMenu()" class="sidebar-nav-link">
+            <span class="sidebar-nav-icon"><i class="fa-solid fa-circle-info"></i></span><span>About</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+          </a>
+          <a href="/web/product/index.html" data-nav="products" onclick="closeSideMenu()" class="sidebar-nav-link">
+            <span class="sidebar-nav-icon"><i class="fa-solid fa-box-open"></i></span><span>Products</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+          </a>
+          <a href="/web/gallery/index.html" data-nav="gallery" onclick="closeSideMenu()" class="sidebar-nav-link">
+            <span class="sidebar-nav-icon"><i class="fa-solid fa-images"></i></span><span>Gallery</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+          </a>
+          <a href="/web/contact/index.html" data-nav="contact" onclick="closeSideMenu()" class="sidebar-nav-link">
+            <span class="sidebar-nav-icon"><i class="fa-solid fa-envelope"></i></span><span>Contact</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+          </a>
         </div>
+      </div>
 
+      <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
 
-        <!-- ================= CONTACT ================= -->
-
-        <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
-
-        <div class="mb-6">
-
-            <p class="text-[10px] font-bold uppercase
-                      tracking-[0.18em]
-                      text-[#3f4944]/70 mb-3 px-1">
-
-                Contact
-
-            </p>
-
-
-            <div class="space-y-2">
-
-
-                <!-- PHONE -->
-
-                <a href="tel:+966581818482"
-                   class="flex items-center gap-3 px-3 py-3
-                          rounded-xl hover:bg-white
-                          transition-colors">
-
-                    <span class="w-9 h-9 rounded-lg
-                                 bg-[#c0edd4]/60
-                                 text-[#004232]
-                                 flex items-center justify-center">
-
-                        <i class="fa-solid fa-phone text-xs"></i>
-
-                    </span>
-
-                    <span>
-
-                        <span class="block text-[9px]
-                                     uppercase tracking-wider
-                                     text-[#3f4944]">
-
-                            Phone
-
-                        </span>
-
-                        <span class="block text-xs font-semibold
-                                     text-[#004232] mt-0.5">
-
-                            +966 58 181 8482
-
-                        </span>
-
-                    </span>
-
-                </a>
-
-
-                <!-- EMAIL -->
-
-                <a href="mailto:info@athaqdates.com"
-                   class="flex items-center gap-3 px-3 py-3
-                          rounded-xl hover:bg-white
-                          transition-colors">
-
-                    <span class="w-9 h-9 rounded-lg
-                                 bg-[#c0edd4]/60
-                                 text-[#004232]
-                                 flex items-center justify-center">
-
-                        <i class="fa-solid fa-envelope text-xs"></i>
-
-                    </span>
-
-                    <span class="min-w-0">
-
-                        <span class="block text-[9px]
-                                     uppercase tracking-wider
-                                     text-[#3f4944]">
-
-                            Email
-
-                        </span>
-
-                        <span class="block text-xs font-semibold
-                                     text-[#004232] mt-0.5 truncate">
-
-                            info@athaqdates.com
-
-                        </span>
-
-                    </span>
-
-                </a>
-
-            </div>
-
+      <div class="mb-6">
+        <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1">Contact</p>
+        <div class="space-y-2">
+          <a href="tel:+966581818482" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors">
+            <span class="w-9 h-9 rounded-lg bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center"><i class="fa-solid fa-phone text-xs"></i></span>
+            <span><span class="block text-[9px] uppercase tracking-wider text-[#3f4944]">Phone</span><span class="block text-xs font-semibold text-[#004232] mt-0.5">+966 58 181 8482</span></span>
+          </a>
+          <a href="mailto:info@athaqdates.com" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors">
+            <span class="w-9 h-9 rounded-lg bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center"><i class="fa-solid fa-envelope text-xs"></i></span>
+            <span class="min-w-0"><span class="block text-[9px] uppercase tracking-wider text-[#3f4944]">Email</span><span class="block text-xs font-semibold text-[#004232] mt-0.5 truncate">info@athaqdates.com</span></span>
+          </a>
         </div>
-
+      </div>
     </div>
 
-
-    <!-- ================= SIDEBAR FOOTER ================= -->
-
-    <div class="border-t border-[#bec9c3]/30
-                px-5 py-4 bg-white/45">
-
-        <div class="flex items-center justify-between gap-4">
-
-            <div>
-
-                <p class="text-[9px] uppercase
-                          tracking-[0.16em]
-                          text-[#3f4944]">
-
-                    ATHAQ DATES INDUSTRY
-
-                </p>
-
-                <p class="text-[9px]
-                          text-[#3f4944]/70 mt-1">
-
-                    Premium Saudi Dates
-
-                </p>
-
-            </div>
-
-            <div class="text-[#004232]/70
-                        text-[10px] font-semibold
-                        whitespace-nowrap">
-
-                © 2023–2026
-
-            </div>
-
+    <div class="border-t border-[#bec9c3]/30 px-5 py-4 bg-white/45">
+      <div class="flex items-center justify-between gap-4">
+        <div>
+          <p class="text-[9px] uppercase tracking-[0.16em] text-[#3f4944]">ATHAQ DATES INDUSTRY</p>
+          <p class="text-[9px] text-[#3f4944]/70 mt-1">Premium Saudi Dates</p>
         </div>
-
+        <div class="text-[#004232]/70 text-[10px] font-semibold whitespace-nowrap">© 2023–2026</div>
+      </div>
     </div>
+  </aside>
 
-</aside>
+  <main class="pt-20">
 
-<!-- =========================================================
-     MAIN CONTENT
-========================================================= -->
+    <!-- ABOUT HERO -->
+    <header class="relative w-full min-h-[70vh] flex items-center overflow-hidden">
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('/background.jpg');"></div>
+        <div class="absolute inset-0 bg-[#004232]/70"></div>
+      </div>
 
-<main class="pt-16">
+      <div class="relative z-10 w-full px-6 md:px-12 lg:px-24 xl:px-32 py-20">
+        <div class="max-w-[760px]">
+          <div class="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-lg text-white text-xs font-bold tracking-wider mb-6">
+            ESTABLISHED 2023
+          </div>
 
+          <h1 class="text-white uppercase mb-6" style="font-family:Georgia,serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;line-height:1.1;letter-spacing:.05em;">
+            ATHAQ DATES<br>
+            <span class="text-xl md:text-2xl lg:text-3xl font-normal tracking-normal lowercase opacity-90">INDUSTRIAL FACTORY.</span>
+          </h1>
 
-<!-- =====================================================
-     HERO SECTION
-====================================================== -->
+          <p class="text-lg md:text-xl text-white/95 max-w-2xl leading-relaxed">
+            ATHAQ Dates Industry brings the heritage of Saudi dates together with disciplined modern manufacturing, careful processing, and a commitment to consistent quality.
+          </p>
+        </div>
+      </div>
+    </header>
 
-<header class="relative w-full min-h-[calc(100vh-4rem)] flex items-center overflow-hidden">
-
-    <div class="absolute inset-0">
-
-        <div
-            class="absolute inset-0 bg-cover bg-center"
-            style="background-image:url('./background.jpg');">
+    <!-- OUR STORY -->
+    <section class="py-20 md:py-[120px] px-4 md:px-16 max-w-[1280px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div class="relative">
+          <div class="aspect-[4/5] bg-[#e9e8e3] rounded-3xl overflow-hidden shadow-2xl">
+            <img src="/web/about/about.jpg" alt="ATHAQ Dates processing facility" class="w-full h-full object-cover">
+          </div>
+          <div class="absolute top-6 left-6 bg-white p-5 rounded-2xl shadow-xl">
+            <span class="material-symbols-outlined text-[#004232] text-[38px]">verified</span>
+            <p class="font-bold text-[#004232] leading-tight mt-1">Trusted<br><span class="text-[#3f4944] font-normal text-sm">Saudi Quality</span></p>
+          </div>
         </div>
 
-        <div class="absolute inset-0 bg-primary/50"></div>
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#c0edd4]/50 text-[#446d59] rounded-full">
+            <span class="material-symbols-outlined text-[20px]">workspace_premium</span>
+            <span class="font-semibold text-xs uppercase tracking-wider">Our Story</span>
+          </div>
 
-    </div>
+          <h2 class="text-[#004232] font-bold text-4xl md:text-5xl leading-tight">A Legacy of Quality</h2>
 
+          <p class="text-[#3f4944] text-lg leading-relaxed">
+            At ATHAQ, we do more than process dates. We respect a product deeply connected to Saudi culture and agriculture while building the systems required for modern, reliable production.
+          </p>
 
-    <div class="relative z-10 w-full px-6 md:px-12 lg:px-24 xl:px-32 py-20">
+          <p class="text-[#3f4944] text-lg leading-relaxed">
+            From careful handling and sorting to packaging and delivery, our approach is built around consistency, cleanliness, presentation, and customer trust.
+          </p>
 
-        <div class="w-full max-w-[640px]">
+          <a href="/web/product/index.html" class="inline-flex items-center gap-2 font-semibold text-[#004232] border-b border-[#004232]/40 pb-1 hover:border-[#004232] transition-all">
+            Explore our products
+            <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-            <div class="inline-block px-4 py-1.5 bg-white/25 backdrop-blur-md rounded-lg text-white text-xs font-bold tracking-wider mb-6">
-                ESTABLISHED 2023
-            </div>
-
-            <h1
-                class="text-surface-bright mb-6 uppercase"
-                style="font-family: Georgia, serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.1; letter-spacing: 0.05em;">
-
-                ATHAQ DATES
-
-                <br>
-
-                <span class="text-xl md:text-2xl lg:text-3xl font-normal tracking-normal lowercase opacity-90">
-                    industrial factory
-                </span>
-
-            </h1>
-
-
-            <p
-                class="text-lg md:text-xl text-white/95 max-w-xl leading-relaxed mb-10"
-                data-en="The heartbeat of Saudi industrial prowess, delivering premium dates with the precision of high-end manufacturing and the soul of heritage."
-                data-ar="قلب الصناعة السعودية، نقدم تمورًا فاخرة بدقة التصنيع العالي وروح التراث.">
-
-                Premium Dates. Modern Manufacturing. Trusted Quality.
-
-            </p>
-
-
-            <div class="flex flex-col sm:flex-row gap-4">
-
-                <a
-                    href="./web/product/index.html"
-                    class="inline-flex items-center justify-center bg-primary-fixed text-on-primary-fixed font-semibold px-8 py-4 rounded-xl hover:bg-white transition-colors shadow-lg">
-
-                    Explore Our Products
-
-                </a>
-
-
-                <a
-                    href="./web/contact/index.html"
-                    class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-8 py-4 rounded-xl backdrop-blur-md transition-colors">
-
-                    Contact Us
-
-                </a>
-
-            </div>
-
+    <!-- VALUES -->
+    <section class="bg-[#efeee9] py-20 md:py-[100px] px-4 md:px-16">
+      <div class="max-w-[1280px] mx-auto">
+        <div class="max-w-2xl mb-12">
+          <p class="text-xs font-bold uppercase tracking-[.18em] text-[#3f4944]/70 mb-3">What guides us</p>
+          <h2 class="text-[#004232] font-bold text-4xl md:text-5xl">Our Core Values</h2>
         </div>
 
-    </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article class="bg-white rounded-2xl p-7 shadow-sm border border-[#bec9c3]/20">
+            <span class="material-symbols-outlined text-[#004232] text-[38px]">verified</span>
+            <h3 class="text-[#004232] text-xl font-bold mt-5 mb-3">Consistent Quality</h3>
+            <p class="text-[#3f4944] leading-relaxed">Every stage is approached with care so our customers can expect dependable quality and presentation.</p>
+          </article>
 
-</header>
+          <article class="bg-white rounded-2xl p-7 shadow-sm border border-[#bec9c3]/20">
+            <span class="material-symbols-outlined text-[#004232] text-[38px]">factory</span>
+            <h3 class="text-[#004232] text-xl font-bold mt-5 mb-3">Modern Manufacturing</h3>
+            <p class="text-[#3f4944] leading-relaxed">We combine practical industrial processes with the character and heritage of Saudi dates.</p>
+          </article>
 
-
-<!-- =====================================================
-     LEGACY OF QUALITY
-====================================================== -->
-
-<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-        <div class="order-2 lg:order-1 relative">
-
-            <div class="aspect-[4/5] bg-surface-container-high rounded-3xl overflow-hidden shadow-2xl relative">
-
-                <img
-                    class="w-full h-full object-cover"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRbI84PJff2fOScyyKkU58Dsa-5KovXQ3Ug-Ww5rNkV3FV3gBwxyO8RsfrJojuXaGtxQvj1uTHkCumD1-2ZW5iiuPhNTqhMS7pgzKi4RGPx1egqPdNcDJOwQeVmb3XJXTrUcYr5I-HS3F0j0c5cWAkiGALYL15HGmRl64ZwM8rTYbogqupBz91x4OkRc4j_RVXANHGu3dbfY2feydaLw9uXqNxKzO3OpxZksToxLpnosr5ta2YTNQ5xQ"
-                    alt="Factory Sorting Facility"/>
-
-
-                <div class="absolute top-8 left-8 bg-white p-6 rounded-2xl shadow-xl border border-secondary/10">
-
-                    <span class="material-symbols-outlined text-primary text-[40px] mb-2">
-                        verified
-                    </span>
-
-                    <p class="font-headline-md text-primary leading-tight">
-
-                        <span>100%</span>
-                        <br/>
-
-                        <span class="text-on-surface-variant font-normal text-[14px]">
-                            Freshness Guaranteed
-                        </span>
-
-                    </p>
-
-                </div>
-
-            </div>
-
+          <article class="bg-white rounded-2xl p-7 shadow-sm border border-[#bec9c3]/20">
+            <span class="material-symbols-outlined text-[#004232] text-[38px]">handshake</span>
+            <h3 class="text-[#004232] text-xl font-bold mt-5 mb-3">Trusted Partnerships</h3>
+            <p class="text-[#3f4944] leading-relaxed">We build long-term relationships through clear communication, reliable service, and professional standards.</p>
+          </article>
         </div>
+      </div>
+    </section>
 
-
-        <div class="order-1 lg:order-2 space-y-6">
-
-            <div class="inline-flex items-center gap-2 px-4 py-2 bg-secondary-container/50 text-on-secondary-container rounded-full">
-
-                <span class="material-symbols-outlined text-[20px]">
-                    workspace_premium
-                </span>
-
-                <span class="font-label-sm text-label-sm">
-                    Established Heritage
-                </span>
-
-            </div>
-
-
-            <h2 class="font-display-lg text-display-lg text-primary">
-                A Legacy of Quality
-            </h2>
-
-
-            <p class="font-body-lg text-on-surface-variant leading-relaxed">
-
-                At ATHAQ, we don't just process dates; we honor a cultural icon. Our factory bridges the gap between the sacred traditions of the date palm and the rigorous demands of modern food science.
-
-            </p>
-
-
-            <div class="pt-4">
-
-                <a
-                    class="inline-flex items-center gap-2 font-label-sm text-primary border-b border-primary/40 pb-1 hover:border-primary transition-all font-semibold"
-                    href="./web/about/index.html">
-
-                    Learn more about our standards
-
-                    <span class="material-symbols-outlined text-[18px]">
-                        chevron_right
-                    </span>
-
-                </a>
-
-            </div>
-
+    <!-- CTA -->
+    <section class="py-20 md:py-[100px] px-4 md:px-16">
+      <div class="max-w-[1280px] mx-auto bg-[#004232] rounded-3xl px-7 md:px-14 py-12 md:py-16 text-center">
+        <p class="text-[#a6f2d4] text-xs font-bold uppercase tracking-[.18em] mb-4">Work with ATHAQ</p>
+        <h2 class="text-white text-3xl md:text-5xl font-bold mb-5">Premium Dates. Modern Manufacturing. Trusted Quality.</h2>
+        <p class="text-white/80 max-w-2xl mx-auto leading-relaxed mb-8">Discover our products or contact our team to discuss your requirements.</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="/web/product/index.html" class="inline-flex items-center justify-center bg-[#a6f2d4] text-[#002117] font-semibold px-8 py-4 rounded-xl hover:bg-white transition-colors">Explore Products</a>
+          <a href="/web/contact/index.html" class="inline-flex items-center justify-center bg-white/10 border border-white/25 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/20 transition-colors">Contact Us</a>
         </div>
+      </div>
+    </section>
+  </main>
 
-    </div>
+  <!-- FOOTER -->
+  <footer class="bg-[#e3e3de] border-t border-[#735c00]/20 pt-16 pb-12 px-4 md:px-16">
+    <div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-16">
+      <div class="space-y-4">
+        <div class="text-lg font-bold text-[#004232]">ATHAQ DATES INDUSTRY</div>
+        <p class="text-[#3f4944]/80 text-sm">Pioneering the future of Saudi agriculture through premium industrial processing.</p>
+      </div>
 
-</section>
-
-</main>
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer class="bg-surface-container-highest border-t border-tertiary/20 pt-16 pb-12 px-margin-mobile md:px-margin-desktop">
-
-
-<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-16">
-
-    <div class="space-y-4">
-
-        <div class="font-headline-md text-lg font-bold text-primary">
-            ATHAQ DATES INDUSTRY
-        </div>
-
-        <p class="font-body-md text-on-surface-variant/80 text-sm">
-            Pioneering the future of Saudi agriculture through premium industrial processing.
-        </p>
-
-    </div>
-
-
-    <div>
-
-        <h4 class="font-label-sm uppercase text-primary mb-4 font-bold">
-            Quick Links
-        </h4>
-
-        <ul class="space-y-3">
-
-            <li>
-                <a class="text-on-surface-variant hover:text-primary text-sm"
-                   href="/web/about/index.html">
-                    Our Process
-                </a>
-            </li>
-
-            <li>
-                <a class="text-on-surface-variant hover:text-primary text-sm"
-                   href="/web/product/index.html">
-                    Products
-                </a>
-            </li>
-
-            <li>
-                <a class="text-on-surface-variant hover:text-primary text-sm"
-                   href="/web/customers/index.html">
-                    Customers
-                </a>
-            </li>
-
-            <li>
-                <a class="text-on-surface-variant hover:text-primary text-sm"
-                   href="/web/contact/index.html">
-                    Contact
-                </a>
-            </li>
-
+      <div>
+        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider">Quick Links</h4>
+        <ul class="space-y-3 text-sm">
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/about/index.html">Our Process</a></li>
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/product/index.html">Products</a></li>
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/gallery/index.html">Gallery</a></li>
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/contact/index.html">Contact</a></li>
         </ul>
+      </div>
 
-    </div>
-
-
-    <div>
-
-        <h4 class="font-label-sm uppercase text-primary mb-4 font-bold">
-            Legal
-        </h4>
-
-        <ul class="space-y-3">
-
-            <li>
-                <a class="text-on-surface-variant text-sm" href="#">
-                    Privacy Policy
-                </a>
-            </li>
-
-            <li>
-                <a class="text-on-surface-variant text-sm" href="#">
-                    Terms of Service
-                </a>
-            </li>
-
+      <div>
+        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider">Legal</h4>
+        <ul class="space-y-3 text-sm">
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="#">Privacy Policy</a></li>
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="#">Terms of Service</a></li>
         </ul>
+      </div>
 
-    </div>
-
-
-    <div>
-
-        <h4 class="font-label-sm uppercase text-primary mb-4 font-bold">
-            Contact
-        </h4>
-
-        <ul class="space-y-3 text-on-surface-variant text-sm">
-
-            <li>
-                King Salman Road, Al Bukayriyah
-            </li>
-
-            <li>
-                +966 58 181 8482
-            </li>
-
+      <div>
+        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider">Contact</h4>
+        <ul class="space-y-3 text-[#3f4944] text-sm">
+          <li>King Salman Road, Al Bukayriyah</li>
+          <li><a href="tel:+966581818482">+966 58 181 8482</a></li>
+          <li><a href="mailto:info@athaqdates.com">info@athaqdates.com</a></li>
         </ul>
-
+      </div>
     </div>
 
-</div>
+    <div class="max-w-[1280px] mx-auto text-center border-t border-[#6f7974]/20 pt-6 text-xs text-[#3f4944]">
+      &copy; 2023–2026 ATHAQ Dates Industry. All rights reserved.
+    </div>
+  </footer>
+
+<script>
+/* =========================================================
+   AUTH / PROFILE
+   ONLY loggedInUser = ACTIVE LOGIN SESSION
+========================================================= */
+
+function getActiveUser() {
+    let user = null;
+
+    try {
+        const storedUser = localStorage.getItem("loggedInUser");
+
+        if (storedUser) {
+            user = JSON.parse(storedUser);
+        }
+    } catch (error) {
+        console.error("Invalid loggedInUser:", error);
+        user = null;
+    }
+
+    return user;
+}
 
 
-<div class="max-w-container-max mx-auto text-center border-t border-outline-variant/20 pt-6 text-xs text-on-surface-variant">
+function updateAccountUI() {
 
-    &copy; 2023 ATHAQ Dates Industry. All rights reserved.
+    const accountName = document.getElementById("accountName");
+    const accountStatus = document.getElementById("accountStatus");
+    const accountLink = document.getElementById("accountLink");
 
-</div>
+    if (!accountName || !accountStatus || !accountLink) {
+        return;
+    }
+
+    const activeUser = getActiveUser();
+    const userRole = localStorage.getItem("userRole");
+
+    /* =====================================================
+       NO ACTIVE SESSION
+    ===================================================== */
+
+    if (!activeUser || typeof activeUser !== "object") {
+
+        accountName.textContent = "Login";
+        accountStatus.textContent = "Sign In";
+        accountLink.href = "/login/index.html";
+
+        return;
+    }
 
 
-</footer>
+    /* =====================================================
+       ACTIVE USER
+    ===================================================== */
 
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
+    const userName =
+        activeUser.name ||
+        activeUser.username ||
+        activeUser.fullName ||
+        "User";
 
-/* ===============================
+
+    /* =====================================================
+       ADMIN
+    ===================================================== */
+
+    if (
+        userRole === "admin" ||
+        activeUser.role === "admin"
+    ) {
+
+        accountName.textContent = userName;
+        accountStatus.textContent = "Admin Panel";
+        accountLink.href = "/admin/index.html";
+
+        return;
+    }
+
+
+    /* =====================================================
+       CUSTOMER
+    ===================================================== */
+
+    accountName.textContent = userName;
+    accountStatus.textContent = "My Profile";
+    accountLink.href = "/customer-profile/profile.html";
+}
+
+
+/* =========================================================
+   LOGOUT
+   IMPORTANT:
+   Remove every SESSION key.
+   DO NOT remove athaqUsers.
+========================================================= */
+
+function logout() {
+
+    /* Active login session */
+    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("user");
+    localStorage.removeItem("userRole");
+
+    /* Session storage */
+    sessionStorage.removeItem("loggedInUser");
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("userRole");
+
+    /*
+     * Immediately reset navbar/profile UI
+     * before redirecting.
+     */
+    const accountName =
+        document.getElementById("accountName");
+
+    const accountStatus =
+        document.getElementById("accountStatus");
+
+    const accountLink =
+        document.getElementById("accountLink");
+
+    if (accountName) {
+        accountName.textContent = "Login";
+    }
+
+    if (accountStatus) {
+        accountStatus.textContent = "Sign In";
+    }
+
+    if (accountLink) {
+        accountLink.href = "/login/index.html";
+    }
+
+    /*
+     * Redirect to login
+     */
+    window.location.replace("/login/index.html");
+}
+
+
+/* =========================================================
+   CHECK LOGIN WHEN PAGE LOADS
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    updateAccountUI();
+
+});
+
+
+/* =========================================================
+   CHECK AGAIN WHEN USER RETURNS TO PAGE
+   This prevents old profile information from remaining
+   after logout / browser back navigation.
+========================================================= */
+
+window.addEventListener("pageshow", function () {
+
+    updateAccountUI();
+
+});
+
+
+/* =========================================================
+   AUTO ACTIVE NAVIGATION
+========================================================= */
+
+(function setCurrentPageNav() {
+
+    const path = window.location.pathname
+        .replace(/\\/g, "/")
+        .toLowerCase();
+
+    let currentPage = "home";
+
+    if (path.includes("/web/about/")) {
+        currentPage = "about";
+    }
+
+    else if (path.includes("/web/product/")) {
+        currentPage = "products";
+    }
+
+    else if (path.includes("/web/gallery/")) {
+        currentPage = "gallery";
+    }
+
+    else if (path.includes("/web/contact/")) {
+        currentPage = "contact";
+    }
+
+    else if (
+        path.endsWith("/index.html") ||
+        path === "/" ||
+        path === ""
+    ) {
+        currentPage = "home";
+    }
+
+    document.querySelectorAll("[data-nav]").forEach(function (link) {
+
+        const isActive =
+            link.dataset.nav === currentPage;
+
+        link.classList.toggle(
+            "active",
+            isActive
+        );
+
+        if (link.classList.contains("desktop-nav-link")) {
+
+            link.classList.toggle(
+                "bg-[#004232]",
+                isActive
+            );
+
+            link.classList.toggle(
+                "text-white",
+                isActive
+            );
+
+            link.classList.toggle(
+                "shadow-sm",
+                isActive
+            );
+
+            link.classList.toggle(
+                "text-[#004232]",
+                !isActive
+            );
+        }
+
+    });
+
+})();
+
+
+/* =========================================================
    SIDEBAR
-================================ */
+========================================================= */
 
-#sidebar-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+const menuBtn =
+    document.getElementById("menu-btn");
 
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+const closeMenuBtn =
+    document.getElementById("close-menu");
 
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+const sideMenu =
+    document.getElementById("side-menu");
 
-    z-index: 9998;
-}
+const sidebarOverlay =
+    document.getElementById("sidebar-overlay");
 
-#sidebar-overlay.active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
 
-#side-menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: auto;
+function openSideMenu() {
 
-    width: min(390px, 88vw);
-    height: 100dvh;
+    sideMenu.classList.add("active");
 
-    background: linear-gradient(
-        180deg,
-        rgba(250, 249, 244, 0.99) 0%,
-        rgba(245, 244, 239, 0.99) 100%
+    sidebarOverlay.classList.add("active");
+
+    document.body.classList.add("menu-open");
+
+    menuBtn.setAttribute(
+        "aria-expanded",
+        "true"
     );
 
-    z-index: 9999;
-
-    transform: translateX(110%);
-    transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
-
-    box-shadow: -18px 0 55px rgba(0, 0, 0, 0.18);
-
-    display: flex;
-    flex-direction: column;
-
-    overflow: hidden;
+    sideMenu.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 }
 
-#side-menu.active {
-    transform: translateX(0);
+
+function closeSideMenu() {
+
+    sideMenu.classList.remove("active");
+
+    sidebarOverlay.classList.remove("active");
+
+    document.body.classList.remove("menu-open");
+
+    menuBtn.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+    sideMenu.setAttribute(
+        "aria-hidden",
+        "true"
+    );
 }
 
-.sidebar-scroll {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
+
+menuBtn.addEventListener(
+    "click",
+    function () {
+
+        if (
+            sideMenu.classList.contains("active")
+        ) {
+            closeSideMenu();
+        }
+
+        else {
+            openSideMenu();
+        }
+
+    }
+);
+
+
+closeMenuBtn.addEventListener(
+    "click",
+    closeSideMenu
+);
+
+
+sidebarOverlay.addEventListener(
+    "click",
+    closeSideMenu
+);
+
+
+document.addEventListener(
+    "keydown",
+    function (e) {
+
+        if (e.key === "Escape") {
+            closeSideMenu();
+        }
+
+    }
+);
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+function toggleLanguage() {
+
+    const label =
+        document.getElementById("languageLabel");
+
+    const isEnglish =
+        label.textContent.trim() === "English";
+
+    label.textContent =
+        isEnglish ? "العربية" : "English";
+
+    document.documentElement.lang =
+        isEnglish ? "ar" : "en";
+
+    document.documentElement.dir =
+        isEnglish ? "rtl" : "ltr";
 }
 
-.sidebar-action {
-    min-height: 64px;
 
-    display: flex;
-    align-items: center;
-    gap: 14px;
+/* =========================================================
+   SHARE WEBSITE
+========================================================= */
 
-    padding: 10px 14px;
+async function shareWebsite() {
 
-    border-radius: 14px;
-    border: 1px solid rgba(190, 201, 195, 0.45);
+    const shareData = {
+        title: "ATHAQ Dates Industry",
+        text: "Premium Saudi Dates",
+        url: window.location.origin
+    };
 
-    background: rgba(255, 255, 255, 0.55);
+    try {
 
-    transition: all 200ms ease;
-}
+        if (navigator.share) {
 
-.sidebar-action:hover {
-    transform: translateY(-2px);
-    background: white;
-    border-color: rgba(0, 66, 50, 0.18);
-}
+            await navigator.share(
+                shareData
+            );
 
-.sidebar-action-icon {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
+        }
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        else if (navigator.clipboard) {
 
-    border-radius: 12px;
+            await navigator.clipboard.writeText(
+                window.location.href
+            );
 
-    background: rgba(0, 66, 50, 0.07);
-    color: #004232;
-}
+            alert("Website link copied.");
 
-.sidebar-nav-link {
-    min-height: 52px;
+        }
 
-    display: flex;
-    align-items: center;
-    gap: 14px;
+    }
 
-    padding: 0 16px;
+    catch (error) {
 
-    color: #3f4944;
+        /* User cancelled sharing */
 
-    border-radius: 14px;
-
-    transition: all 200ms ease;
-}
-
-.sidebar-nav-link:hover {
-    background: rgba(192, 237, 212, 0.55);
-    color: #004232;
-    transform: translateX(4px);
-}
-
-.sidebar-nav-link.active {
-    background: #004232;
-    color: white;
-    box-shadow: 0 8px 20px rgba(0, 66, 50, 0.16);
-}
-
-.sidebar-nav-icon {
-    width: 38px;
-    height: 38px;
-    min-width: 38px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 11px;
-
-    background: rgba(0, 66, 50, 0.07);
-}
-
-.sidebar-nav-link.active .sidebar-nav-icon {
-    background: rgba(255, 255, 255, 0.14);
-}
-
-.counter-badge {
-    min-width: 21px;
-    height: 21px;
-
-    padding: 0 6px;
-
-    border-radius: 999px;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #004232;
-    color: white;
-
-    font-size: 10px;
-    font-weight: 800;
-}
-
-body.menu-open {
-    overflow: hidden;
-}
-
-@media (max-width: 480px) {
-    #side-menu {
-        width: 88vw;
-        max-width: 360px;
     }
 }
-
+</script>
 </body>
 </html>

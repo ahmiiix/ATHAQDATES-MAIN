@@ -77,84 +77,199 @@
 </div>
 
 <script>
-function toggleForm(type) {
-  const loginForm = document.getElementById('loginForm');
-  const registerForm = document.getElementById('registerForm');
-  const subtitle = document.getElementById('formSubtitle');
-
-  if (type === 'register') {
-    loginForm.classList.add('hidden');
-    registerForm.classList.remove('hidden');
-    subtitle.textContent = "Create your new account";
-  } else {
-    registerForm.classList.add('hidden');
-    loginForm.classList.remove('hidden');
-    subtitle.textContent = "Sign in to your account";
-  }
-}
-
-// Login Logic
 function handleLogin(event) {
-  event.preventDefault();
-  const userInput = document.getElementById("loginInput").value.trim();
-  const password = document.getElementById("loginPassword").value.trim();
-  const errorMsg = document.getElementById("errorMsg");
 
-  sessionStorage.clear();
+    event.preventDefault();
 
-  // Admin Check
-  if (userInput.toLowerCase() === "admin" && password === "1234") {
-    sessionStorage.setItem("isLoggedIn", "true");
-    sessionStorage.setItem("userRole", "admin");
-    sessionStorage.setItem("userName", "Admin");
-    window.location.href = "../admin/index.html";
-    return;
-  }
+    const userInput = document
+        .getElementById("loginInput")
+        .value
+        .trim();
 
-  // Check LocalStorage for Registered Customers
-  let users = JSON.parse(localStorage.getItem('athaqUsers')) || [];
-  let foundUser = users.find(u => (u.email === userInput || u.name === userInput) && u.password === password);
+    const password = document
+        .getElementById("loginPassword")
+        .value
+        .trim();
 
-  if (foundUser) {
-    sessionStorage.setItem("isLoggedIn", "true");
-    sessionStorage.setItem("userRole", "customer");
-    sessionStorage.setItem("userName", foundUser.name);
-    window.location.href = "../index.html";
-  } else {
-    errorMsg.classList.remove('hidden');
-    errorMsg.textContent = "Invalid username or password!";
-  }
-}
+    const errorMsg = document
+        .getElementById("errorMsg");
 
-// Register Logic (Create Account)
-function handleRegister(event) {
-  event.preventDefault();
-  const name = document.getElementById("regName").value.trim();
-  const email = document.getElementById("regEmail").value.trim().toLowerCase();
-  const password = document.getElementById("regPassword").value.trim();
-  const regErrorMsg = document.getElementById("regErrorMsg");
+    errorMsg.classList.add("hidden");
+    errorMsg.textContent = "";
 
-  let users = JSON.parse(localStorage.getItem('athaqUsers')) || [];
 
-  // Check if email already exists
-  if (users.some(u => u.email === email)) {
-    regErrorMsg.classList.remove('hidden');
-    regErrorMsg.textContent = "Email is already registered! Please login.";
-    return;
-  }
+    /* =====================================================
+       CLEAR OLD ACTIVE SESSION
+       ===================================================== */
 
-  // Save new user
-  users.push({ name, email, password });
-  localStorage.setItem('athaqUsers', JSON.stringify(users));
+    sessionStorage.clear();
 
-  // Auto login after registration
-  sessionStorage.clear();
-  sessionStorage.setItem("isLoggedIn", "true");
-  sessionStorage.setItem("userRole", "customer");
-  sessionStorage.setItem("userName", name);
+    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("user");
+    localStorage.removeItem("userRole");
 
-  alert("Account created successfully!");
-  window.location.href = "../index.html";
+
+    /* =====================================================
+       ADMIN LOGIN
+       ===================================================== */
+
+    if (
+        userInput.toLowerCase() === "admin" &&
+        password === "1234"
+    ) {
+
+        const adminUser = {
+            name: "Admin",
+            email: "admin@athaqdates.com",
+            role: "admin"
+        };
+
+
+        /* Session */
+
+        sessionStorage.setItem(
+            "isLoggedIn",
+            "true"
+        );
+
+        sessionStorage.setItem(
+            "userRole",
+            "admin"
+        );
+
+        sessionStorage.setItem(
+            "userName",
+            "Admin"
+        );
+
+
+        /* Active user */
+
+        localStorage.setItem(
+            "loggedInUser",
+            JSON.stringify(adminUser)
+        );
+
+        localStorage.setItem(
+            "user",
+            JSON.stringify(adminUser)
+        );
+
+        localStorage.setItem(
+            "userRole",
+            "admin"
+        );
+
+
+        /* Redirect */
+
+        window.location.href =
+            "/admin/index.html";
+
+        return;
+    }
+
+
+    /* =====================================================
+       CUSTOMER LOGIN
+       ===================================================== */
+
+    const users =
+        JSON.parse(
+            localStorage.getItem("athaqUsers")
+        ) || [];
+
+
+    const foundUser = users.find(function(user) {
+
+        return (
+
+            (
+                user.email &&
+                user.email.toLowerCase() ===
+                userInput.toLowerCase()
+            )
+
+            ||
+
+            (
+                user.name &&
+                user.name.toLowerCase() ===
+                userInput.toLowerCase()
+            )
+
+        ) &&
+
+        user.password === password;
+
+    });
+
+
+    /* =====================================================
+       CUSTOMER FOUND
+       ===================================================== */
+
+    if (foundUser) {
+
+
+        /* Session */
+
+        sessionStorage.setItem(
+            "isLoggedIn",
+            "true"
+        );
+
+        sessionStorage.setItem(
+            "userRole",
+            "customer"
+        );
+
+        sessionStorage.setItem(
+            "userName",
+            foundUser.name
+        );
+
+        sessionStorage.setItem(
+            "userEmail",
+            foundUser.email
+        );
+
+
+        /* Active user */
+
+        localStorage.setItem(
+            "loggedInUser",
+            JSON.stringify(foundUser)
+        );
+
+        localStorage.setItem(
+            "user",
+            JSON.stringify(foundUser)
+        );
+
+        localStorage.setItem(
+            "userRole",
+            "customer"
+        );
+
+
+        /* Redirect */
+
+        window.location.href =
+            "/customer-profile/profile.html";
+
+        return;
+    }
+
+
+    /* =====================================================
+       INVALID LOGIN
+       ===================================================== */
+
+    errorMsg.classList.remove("hidden");
+
+    errorMsg.textContent =
+        "Invalid username/email or password!";
 }
 </script>
 

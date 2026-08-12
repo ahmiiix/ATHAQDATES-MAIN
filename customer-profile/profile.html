@@ -23,6 +23,10 @@
             <button onclick="logoutUser()" class="bg-red-50 text-red-600 hover:bg-red-100 px-4 py-2 rounded-xl text-xs font-bold transition-colors cursor-pointer">
                 <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
             </button>
+         
+            <a href="/index.html" class="bg-[#004232] text-white hover:bg-[#002e23] px-4 py-2 rounded-xl text-xs font-bold transition-colors cursor-pointer">
+                <i class="fa-solid fa-house"></i> home
+            </a>
         </div>
     </nav>
 
@@ -65,15 +69,15 @@
                 <div class="space-y-4">
                     <div>
                         <label class="text-xs text-gray-400 uppercase font-semibold">Phone Number</label>
-                        <p class="font-medium text-gray-800" id="profilePhone">+9660571475140</p>
+                        <p class="font-medium text-gray-800" id="profilePhone">-</p>
                     </div>
                     <div>
                         <label class="text-xs text-gray-400 uppercase font-semibold">Member Since</label>
-                        <p class="font-medium text-gray-800" id="profileJoinDate">January 2026</p>
+                        <p class="font-medium text-gray-800" id="profileJoinDate">-</p>
                     </div>
                     <div>
                         <label class="text-xs text-gray-400 uppercase font-semibold">Shipping Address</label>
-                        <p class="font-medium text-gray-800 text-sm" id="profileAddress">King Salman Road, Al Bukayriyah</p>
+                        <p class="font-medium text-gray-800 text-sm" id="profileAddress">-</p>
                     </div>
                 </div>
 
@@ -118,17 +122,78 @@
         &copy; 2023 ATHAQ Dates Industry. All rights reserved.
     </footer>
 
-    <!-- Inline/External Logout Handler Script -->
+    <!-- Profile Data & Authentication Verification Script -->
     <script>
-        function logoutUser() {
-            // Clear user session storage data
-            sessionStorage.clear();
-            // Redirect back to the home screen
-            window.location.href = "/index.html";
+        document.addEventListener("DOMContentLoaded", function () {
+            // Check session from localStorage (supporting both 'loggedInUser' and 'user')
+            const currentUser = JSON.parse(localStorage.getItem("loggedInUser")) || JSON.parse(localStorage.getItem("user"));
+
+            if (!currentUser) {
+                // Agar user login nahi hai toh login page par redirect kar dein
+                window.location.href = "/login/index.html";
+                return;
+            }
+
+            // Navbar aur Profile elements update karna
+            const navUserName = document.getElementById("navUserName");
+            const profileFullName = document.getElementById("profileFullName");
+            const profileEmail = document.getElementById("profileEmail");
+            const profilePhone = document.getElementById("profilePhone");
+            const profileRole = document.getElementById("profileRole");
+            const profileAddress = document.getElementById("profileAddress");
+            const userAvatarText = document.getElementById("userAvatarText");
+
+            const userName = currentUser.name || currentUser.username || "Customer";
+            const userEmail = currentUser.email || "customer@example.com";
+            const userPhone = currentUser.phone || "+966 58 181 8482";
+            const userRole = localStorage.getItem("userRole") || currentUser.role || "Customer";
+            const userAddress = currentUser.address || "King Salman Road, Al Bukayriyah";
+
+            if (navUserName) navUserName.textContent = userName;
+            if (profileFullName) profileFullName.textContent = userName;
+            if (profileEmail) profileEmail.textContent = userEmail;
+            if (profilePhone) profilePhone.textContent = userPhone;
+            if (profileRole) profileRole.textContent = userRole;
+            if (profileAddress) profileAddress.textContent = userAddress;
+            if (userAvatarText) userAvatarText.textContent = userName.charAt(0).toUpperCase();
+        });
+
+    function logout() {
+
+    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("user");
+    localStorage.removeItem("userRole");
+
+    sessionStorage.removeItem("loggedInUser");
+    sessionStorage.removeItem("userRole");
+    sessionStorage.removeItem("isLoggedIn");
+    sessionStorage.removeItem("userName");
+    sessionStorage.removeItem("userEmail");
+
+    window.location.href = "/login/index.html";
+}
+
+        function openEditModal() {
+            alert("Edit profile feature coming soon.");
+        }
+
+        function uploadProfilePic(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById("userAvatarImg");
+                    const text = document.getElementById("userAvatarText");
+                    img.src = e.target.result;
+                    img.classList.remove("hidden");
+                    text.classList.add("hidden");
+                }
+                reader.readAsDataURL(file);
+            }
         }
     </script>
 
-    <!-- Separate JavaScript File -->
+    <!-- Separate JavaScript File if needed -->
     <script src="profile.js"></script>
 </body>
 </html>

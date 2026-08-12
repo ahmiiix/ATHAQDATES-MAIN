@@ -290,5 +290,20 @@
 
     <!-- Scripts -->
     <script src="script.js"></script>
+    <script>
+const isLoggedIn =
+    sessionStorage.getItem("isLoggedIn");
+
+const userRole =
+    sessionStorage.getItem("userRole");
+
+if (
+    isLoggedIn !== "true" ||
+    userRole !== "admin"
+) {
+    window.location.href =
+        "../login/index.html";
+}
+</script>
 </body>
 </html>
