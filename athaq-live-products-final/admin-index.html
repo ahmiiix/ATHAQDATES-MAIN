@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&family=Playfair+Display:wght@700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../supabase-config.js"></script>
 
     <style>
         .material-symbols-outlined {
@@ -77,8 +79,6 @@
             }
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script>
 </head>
 
 <body class="bg-[#faf9f4] text-on-surface font-sans min-h-screen flex flex-col md:flex-row antialiased">
@@ -757,611 +757,92 @@
 <!-- =========================================
      PRODUCT MANAGEMENT JAVASCRIPT
 ========================================= -->
-
 <script>
-
-    /*
-    =====================================================
-    IMPORTANT
-    =====================================================
-
-    This is now the MAIN shared storage key.
-
-    Admin page saves products here.
-    Products page must also read products from here.
-
-    DO NOT change this key on either page.
-    */
-
-    const PRODUCT_STORAGE_KEY = "athaqProducts";
-
-
-    /* =========================================
-       MODAL
-    ========================================= */
-
-    function openAddProductModal() {
-
-        const modal = document.getElementById("addProductModal");
-
-        modal.classList.remove("hidden");
-        modal.classList.add("flex");
-
-    }
-
-
-    function closeAddProductModal() {
-
-        const modal = document.getElementById("addProductModal");
-
-        modal.classList.remove("flex");
-        modal.classList.add("hidden");
-
-        document.getElementById("productForm").reset();
-
-    }
-
-
-    /* =========================================
-       SCROLL TO PRODUCTS
-    ========================================= */
-
-    function scrollToProducts() {
-
-        document
-            .getElementById("productTableContainer")
-            .scrollIntoView({
-                behavior: "smooth"
-            });
-
-    }
-
-
-    /* =========================================
-       WISHLIST
-    ========================================= */
-
-    function openWishlistModal() {
-
-        alert("Wishlist view functionality");
-
-    }
-
-
-    /* =========================================
-       CART
-    ========================================= */
-
-    function openCartViewModal() {
-
-        alert("Cart items view functionality");
-
-    }
-
-
-    /* =========================================
-       LOAD PRODUCTS
-    ========================================= */
-
-    function getProducts() {
-
-        try {
-
-            const savedProducts =
-                localStorage.getItem(PRODUCT_STORAGE_KEY);
-
-            if (!savedProducts) {
-                return [];
-            }
-
-            const products = JSON.parse(savedProducts);
-
-            return Array.isArray(products)
-                ? products
-                : [];
-
-        } catch (error) {
-
-            console.error(
-                "Error loading products:",
-                error
-            );
-
-            return [];
-
-        }
-
-    }
-
-
-    /* =========================================
-       SAVE PRODUCTS
-    ========================================= */
-
-    function setProducts(products) {
-
-        localStorage.setItem(
-            PRODUCT_STORAGE_KEY,
-            JSON.stringify(products)
-        );
-
-    }
-
-
-    /* =========================================
-       LOAD ADMIN PRODUCT TABLE
-    ========================================= */
-
-    function loadProducts() {
-
-        const productListTable =
-            document.getElementById("productList");
-
-        const totalProductsCount =
-            document.getElementById("totalProducts");
-
-
-        const products = getProducts();
-
-
-        totalProductsCount.textContent =
-            products.length;
-
-
-        productListTable.innerHTML = "";
-
-
-        /* NO PRODUCTS */
-
-        if (products.length === 0) {
-
-            productListTable.innerHTML = `
-                <tr>
-                    <td
-                        colspan="6"
-                        class="px-6 py-6 text-center text-gray-500"
-                    >
-                        No products found.
-                        Add a new product to see it here.
-                    </td>
-                </tr>
-            `;
-
-            return;
-
-        }
-
-
-        /* PRODUCTS */
-
-        products.forEach((product, index) => {
-
-            const row =
-                document.createElement("tr");
-
-
-            row.className =
-                "hover:bg-gray-50/50 transition-colors";
-
-
-            row.innerHTML = `
-
-                <td class="px-6 py-4 flex items-center gap-3">
-
-                    <img
-                        src="${escapeHTML(product.image || "https://via.placeholder.com/50")}"
-                        alt="${escapeHTML(product.name || "Product")}"
-                        class="w-12 h-12 object-cover rounded-lg border"
-                    >
-
-                    <div>
-
-                        <p class="font-bold text-gray-900">
-                            ${escapeHTML(product.name || "")}
-                        </p>
-
-                        <p class="text-xs text-gray-500">
-                            SKU: ${escapeHTML(product.sku || "")}
-                        </p>
-
-                    </div>
-
-                </td>
-
-
-                <td class="px-6 py-4 text-gray-600">
-                    ${escapeHTML(product.category || "")}
-                </td>
-
-
-                <td class="px-6 py-4 font-semibold text-gray-800">
-                    ${Number(product.stock || 0)}
-                </td>
-
-
-                <td class="px-6 py-4 text-amber-500">
-                    ${escapeHTML(product.quality || "")}
-                </td>
-
-
-                <td class="px-6 py-4 font-bold text-green-900">
-                    $${Number(product.price || 0).toFixed(2)}
-                </td>
-
-
-                <td class="px-6 py-4 text-right">
-
-                    <button
-                        type="button"
-                        onclick="deleteProduct(${index})"
-                        class="text-red-500 hover:text-red-700 p-1.5 rounded-lg hover:bg-red-50 transition-colors"
-                        title="Delete Product"
-                    >
-
-                        <span class="material-symbols-outlined text-xl">
-                            delete
-                        </span>
-
-                    </button>
-
-                </td>
-
-            `;
-
-
-            productListTable.appendChild(row);
-
-        });
-
-    }
-
-
-    /* =========================================
-       SAFE HTML
-    ========================================= */
-
-    function escapeHTML(value) {
-
-        return String(value)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-
-    }
-
-
-    /* =========================================
-       FORM SUBMIT
-    ========================================= */
-
-    document
-        .getElementById("productForm")
-        .addEventListener("submit", function(event) {
-
-            event.preventDefault();
-
-
-            const name =
-                document
-                    .getElementById("productName")
-                    .value
-                    .trim();
-
-
-            const sku =
-                document
-                    .getElementById("productSKU")
-                    .value
-                    .trim();
-
-
-            const category =
-                document
-                    .getElementById("productCategory")
-                    .value;
-
-
-            const price =
-                document
-                    .getElementById("productPrice")
-                    .value;
-
-
-            const stock =
-                document
-                    .getElementById("productStock")
-                    .value;
-
-
-            const quality =
-                document
-                    .getElementById("productQuality")
-                    .value;
-
-
-            const description =
-                document
-                    .getElementById("productDescription")
-                    .value
-                    .trim();
-
-
-            const imageInput =
-                document.getElementById("productImage");
-
-
-            /* DEFAULT IMAGE */
-
-            const defaultImage =
-                "https://via.placeholder.com/150";
-
-
-            /*
-            =====================================================
-            IMAGE SELECTED
-            =====================================================
-            */
-
-            if (
-                imageInput.files &&
-                imageInput.files.length > 0
-            ) {
-
-                const file =
-                    imageInput.files[0];
-
-
-                const reader =
-                    new FileReader();
-
-
-                reader.onload = function(event) {
-
-                    saveProductData(
-                        name,
-                        sku,
-                        category,
-                        price,
-                        stock,
-                        quality,
-                        description,
-                        event.target.result
-                    );
-
-                };
-
-
-                reader.onerror = function() {
-
-                    alert(
-                        "Unable to read the selected image."
-                    );
-
-                };
-
-
-                reader.readAsDataURL(file);
-
-            }
-
-
-            /*
-            =====================================================
-            NO IMAGE
-            =====================================================
-            */
-
-            else {
-
-                saveProductData(
-                    name,
-                    sku,
-                    category,
-                    price,
-                    stock,
-                    quality,
-                    description,
-                    defaultImage
-                );
-
-            }
-
-        });
-
-
-    /* =========================================
-       SAVE NEW PRODUCT
-    ========================================= */
-
-    function saveProductData(
-        name,
-        sku,
-        category,
-        price,
-        stock,
-        quality,
-        description,
-        image
-    ) {
-
-
-        let products =
-            getProducts();
-
-
-        /*
-        =====================================================
-        CREATE PRODUCT
-        =====================================================
-        */
-
-        const newProduct = {
-
-            id: Date.now(),
-
-            name: name,
-
-            sku: sku,
-
-            category: category,
-
-            price: Number(price),
-
-            stock: Number(stock),
-
-            quality: quality,
-
-            description: description,
-
-            image: image,
-
-            createdAt:
-                new Date().toISOString()
-
-        };
-
-
-        /*
-        =====================================================
-        ADD TO SHARED PRODUCT STORAGE
-        =====================================================
-        */
-
-        products.push(newProduct);
-
-
-        setProducts(products);
-
-
-        /*
-        =====================================================
-        UPDATE ADMIN TABLE
-        =====================================================
-        */
-
-        loadProducts();
-
-
-        /*
-        =====================================================
-        CLOSE MODAL
-        =====================================================
-        */
-
-        closeAddProductModal();
-
-
-        /*
-        =====================================================
-        SUCCESS
-        =====================================================
-        */
-
-        alert(
-            "Product added successfully!\n\n" +
-            "The product is now available on the Products page."
-        );
-
-
-        console.log(
-            "New product saved:",
-            newProduct
-        );
-
-    }
-
-
-    /* =========================================
-       DELETE PRODUCT
-    ========================================= */
-
-    function deleteProduct(index) {
-
-        const products =
-            getProducts();
-
-
-        if (!products[index]) {
-            return;
-        }
-
-
-        const productName =
-            products[index].name;
-
-
-        if (
-            confirm(
-                `Are you sure you want to delete "${productName}"?`
-            )
-        ) {
-
-
-            products.splice(index, 1);
-
-
-            /*
-            IMPORTANT:
-
-            Same storage is updated here.
-
-            Therefore deleted product will also
-            disappear from the Products page.
-            */
-
-            setProducts(products);
-
-
-            loadProducts();
-
-
-            alert(
-                "Product deleted successfully."
-            );
-
-        }
-
-    }
-
-
-    /* =========================================
-       KEEP ADMIN TABLE UPDATED
-       WHEN STORAGE CHANGES IN ANOTHER TAB
-    ========================================= */
-
-    window.addEventListener(
-        "storage",
-        function(event) {
-
-            if (
-                event.key === PRODUCT_STORAGE_KEY
-            ) {
-
-                loadProducts();
-
-            }
-
-        }
-    );
-
-
-    /* =========================================
-       PAGE LOAD
-    ========================================= */
-
-    window.addEventListener(
-        "DOMContentLoaded",
-        function() {
-
-            loadProducts();
-
-        }
-    );
-
+const db = window.ATHAQ_SUPABASE;
+const ADMIN_EMAIL = "admin@athaqdates.com";
+
+function requireDB(){
+  if(!db){ throw new Error("Supabase is not configured. Please fill supabase-config.js"); }
+  return db;
+}
+function escapeHTML(value){return String(value ?? "").replace(/[&<>\"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'\"':"&quot;","'":"&#039;"}[c]));}
+
+async function ensureAdmin(){
+  if(!db) { alert("Supabase is not configured yet."); return false; }
+  const {data:{session}}=await db.auth.getSession();
+  if(!session || !session.user || session.user.email?.toLowerCase()!==ADMIN_EMAIL){
+    await db.auth.signOut();
+    window.location.href="../login/index.html";
+    return false;
+  }
+  sessionStorage.setItem("isLoggedIn","true");
+  sessionStorage.setItem("userRole","admin");
+  sessionStorage.setItem("userName","Admin");
+  return true;
+}
+
+function openAddProductModal(){const m=document.getElementById("addProductModal");m.classList.remove("hidden");m.classList.add("flex");}
+function closeAddProductModal(){const m=document.getElementById("addProductModal");m.classList.remove("flex");m.classList.add("hidden");document.getElementById("productForm").reset();}
+function scrollToProducts(){document.getElementById("productTableContainer")?.scrollIntoView({behavior:"smooth"});}
+function openWishlistModal(){alert("Wishlist view functionality");}
+function openCartViewModal(){alert("Cart items view functionality");}
+
+async function getProducts(){
+  const {data,error}=await requireDB().from("products").select("*").order("created_at",{ascending:false});
+  if(error) throw error; return data||[];
+}
+
+async function uploadProductImage(file,id){
+  if(!file) return null;
+  const ext=(file.name.split(".").pop()||"jpg").toLowerCase();
+  const path=`products/${id}.${ext}`;
+  const {error}=await requireDB().storage.from("product-images").upload(path,file,{upsert:true,contentType:file.type||"image/jpeg"});
+  if(error) throw error;
+  return requireDB().storage.from("product-images").getPublicUrl(path).data.publicUrl;
+}
+
+async function loadProducts(){
+  const table=document.getElementById("productList");
+  const total=document.getElementById("totalProducts");
+  try{
+    const products=await getProducts();
+    total.textContent=products.length;
+    if(!products.length){table.innerHTML='<tr><td colspan="6" class="px-6 py-8 text-center text-gray-500">No products found. Add a new product to see it here.</td></tr>';return;}
+    table.innerHTML=products.map(p=>`<tr class="hover:bg-gray-50/50 transition-colors">
+      <td class="px-6 py-4 flex items-center gap-3"><img src="${escapeHTML(p.image_url||'https://via.placeholder.com/50')}" class="w-12 h-12 object-cover rounded-lg border"><div><p class="font-bold text-gray-900">${escapeHTML(p.name)}</p><p class="text-xs text-gray-500">SKU: ${escapeHTML(p.sku)}</p></div></td>
+      <td class="px-6 py-4 text-gray-600">${escapeHTML(p.category)}</td><td class="px-6 py-4 text-gray-600">${Number(p.stock||0)}</td><td class="px-6 py-4 text-amber-500">${escapeHTML(p.quality)}</td><td class="px-6 py-4 font-bold text-green-900">SAR ${Number(p.price||0).toFixed(2)}</td>
+      <td class="px-6 py-4 text-right"><button type="button" onclick="deleteProduct('${escapeHTML(p.id)}','${escapeHTML(p.name)}')" class="text-red-500 hover:text-red-700 p-1.5 rounded-lg hover:bg-red-50"><span class="material-symbols-outlined text-xl">delete</span></button></td>
+    </tr>`).join("");
+  }catch(err){console.error(err);table.innerHTML='<tr><td colspan="6" class="px-6 py-8 text-center text-red-600">Unable to load products. Check Supabase configuration.</td></tr>';}
+}
+
+document.getElementById("productForm").addEventListener("submit",async function(event){
+  event.preventDefault();
+  const button=this.querySelector('button[type="submit"]'); button.disabled=true; button.textContent="Saving...";
+  try{
+    if(!(await ensureAdmin())) return;
+    const id=crypto.randomUUID();
+    const file=document.getElementById("productImage").files?.[0]||null;
+    const image_url=await uploadProductImage(file,id);
+    const product={id,
+      name:document.getElementById("productName").value.trim(),sku:document.getElementById("productSKU").value.trim(),
+      category:document.getElementById("productCategory").value,price:Number(document.getElementById("productPrice").value),
+      stock:Number(document.getElementById("productStock").value),quality:document.getElementById("productQuality").value,
+      description:document.getElementById("productDescription").value.trim(),image_url};
+    const {error}=await requireDB().from("products").insert(product); if(error) throw error;
+    closeAddProductModal(); await loadProducts(); alert("Product added successfully!\n\nIt is now live on the Products page.");
+  }catch(err){console.error(err);alert("Product could not be added.\n\n"+(err.message||"Unknown error"));}
+  finally{button.disabled=false;button.textContent="Add Product";}
+});
+
+async function deleteProduct(id,name){
+  if(!confirm(`Are you sure you want to delete "${name}"?`)) return;
+  try{if(!(await ensureAdmin())) return; const {error}=await requireDB().from("products").delete().eq("id",id);if(error)throw error;await loadProducts();alert("Product deleted successfully.");}
+  catch(err){console.error(err);alert("Unable to delete product.\n\n"+(err.message||"Unknown error"));}
+}
+
+window.addEventListener("DOMContentLoaded",async()=>{if(await ensureAdmin()) await loadProducts();});
 </script>
-
 
 <!-- Existing script.js -->
 <script src="script.js"></script>

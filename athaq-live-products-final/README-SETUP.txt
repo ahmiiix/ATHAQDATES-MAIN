@@ -1,0 +1,1 @@
+Replace admin/index.html with admin-index.html; web/product/index.html with products-index.html; login/index.html with login-index.html. Put supabase-config.js in project root. Run supabase-setup.sql in Supabase SQL Editor. Then create admin@athaqdates.com in Supabase Auth and paste URL/key into supabase-config.js.
