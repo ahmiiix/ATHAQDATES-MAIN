@@ -1,9 +1,9 @@
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="scroll-smooth" dir="ltr" lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ATHAQ | Our Harvest Portfolio</title>
+  <title data-en="ATHAQ | Our Harvest Portfolio" data-ar="أثاق | محفظة حصادنا">ATHAQ | Our Harvest Portfolio</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -110,6 +110,18 @@ html = r'''<!DOCTYPE html>
 #side-menu.active {
     transform: translateX(0);
 }
+
+/* RTL Support overrides */
+html[dir="rtl"] #side-menu {
+    right: auto;
+    left: 0;
+    transform: translateX(-105%);
+    box-shadow: 18px 0 55px rgba(0, 0, 0, 0.18);
+}
+html[dir="rtl"] #side-menu.active {
+    transform: translateX(0);
+}
+
     .sidebar-scroll {
         flex: 1;
         overflow-y: auto;
@@ -151,6 +163,10 @@ html = r'''<!DOCTYPE html>
         color: #004232;
         transform: translateX(4px);
     }
+    
+    html[dir="rtl"] .sidebar-link:hover {
+        transform: translateX(-4px);
+    }
 
     .sidebar-link.active {
         background: #004232;
@@ -184,6 +200,10 @@ html = r'''<!DOCTYPE html>
         background: rgba(192, 237, 212, 0.55);
         color: #004232;
         transform: translateX(4px);
+    }
+    
+    html[dir="rtl"] .sidebar-nav-link:hover {
+        transform: translateX(-4px);
     }
 
     .sidebar-nav-link.active {
@@ -316,6 +336,65 @@ html = r'''<!DOCTYPE html>
     body.menu-open {
         overflow: hidden;
     }
+
+    /* =====================================================
+       LANGUAGE SWITCH — KEEP PAGE POSITION 100% STABLE
+       ===================================================== */
+
+    html {
+        scrollbar-gutter: stable both-edges;
+        overflow-x: hidden;
+    }
+
+    /* Never let changing EN ↔ AR reverse the complete page layout.
+       Arabic text is translated, but the page/navbar/sidebar geometry
+       stays exactly where it was. */
+    html[dir="rtl"] {
+        direction: ltr !important;
+    }
+
+    html[dir="ltr"] {
+        direction: ltr !important;
+    }
+
+    body {
+        direction: ltr !important;
+        overflow-x: hidden;
+    }
+
+    /* Keep the premium sidebar on the RIGHT in both languages.
+       Do NOT move it to the left when Arabic is selected. */
+    #side-menu {
+        right: 0 !important;
+        left: auto !important;
+    }
+
+    html[dir="rtl"] #side-menu,
+    html[dir="rtl"] #side-menu.active {
+        right: 0 !important;
+        left: auto !important;
+        transform: translateX(0);
+    }
+
+    html[dir="rtl"] #side-menu:not(.active) {
+        transform: translateX(105%) !important;
+    }
+
+    /* Keep sidebar text direction natural for Arabic without moving
+       the sidebar itself. */
+    #side-menu .sidebar-link,
+    #side-menu .sidebar-nav-link,
+    #side-menu .sidebar-action,
+    #side-menu .sidebar-scroll {
+        direction: rtl;
+    }
+
+    html[dir="ltr"] #side-menu .sidebar-link,
+    html[dir="ltr"] #side-menu .sidebar-nav-link,
+    html[dir="ltr"] #side-menu .sidebar-action,
+    html[dir="ltr"] #side-menu .sidebar-scroll {
+        direction: ltr;
+    }
 </style>
 </head>
 <body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
@@ -324,66 +403,42 @@ html = r'''<!DOCTYPE html>
      PREMIUM HEADER / NAVBAR
 ========================================================= -->
 
-<!-- ================= PREMIUM NAVBAR ================= -->
-<nav class="fixed top-0 left-0 w-full z-[100] bg-white/85 backdrop-blur-xl border-b border-[#bec9c3]/20"
-     style="height:80px;">
+<!-- HEADER -->
+<nav class="fixed top-0 left-0 w-full z-[100] bg-white/85 backdrop-blur-xl border-b border-[#bec9c3]/20" style="height:80px;">
 
-    <div class="w-full h-20 px-5 sm:px-6 md:px-10 lg:px-16 flex items-center justify-between">
+  <div dir="ltr" class="w-full h-20 px-5 sm:px-6 md:px-10 lg:px-16 flex items-center justify-between">
 
-        <!-- ================= LEFT : LOGO ================= -->
-        <div class="flex items-center flex-shrink-0">
-
-            <a href="/index.html"
-               class="flex items-center gap-3 group"
-               aria-label="ATHAQ Home">
-
-          <!-- COMPLETE ATHAQ LOGO -->
+    <a href="/index.html" class="flex items-center group" aria-label="ATHAQ Home">
+      
+<!-- COMPLETE ATHAQ LOGO -->
 <div class="w-[200px] h-[70px] flex items-center justify-center overflow-visible group-hover:scale-[1.03] transition-transform duration-300">
-
   <img 
-    src="/logo.png"
+    src="/LOGO.PNG"
     alt="ATHAQ Industrial Factory"
     class="w-full h-full object-contain"
   >
-
 </div>
 
 </a>
 
-        </div>
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="toggleLanguage()" class="sidebar-action text-left !min-h-[46px] !py-1 !px-2.5">
+            <span class="sidebar-action-icon !w-8 !h-8 !min-w-[32px] !rounded-lg text-xs"><i class="fa-solid fa-globe"></i></span>
+            <span class="min-w-0 pr-1">
+                <span class="block text-[11px] font-bold text-[#004232]" data-en="Language" data-ar="اللغة">Language</span>
+                <span id="languageLabel" class="block text-[9px] text-[#3f4944] mt-0.5">English</span>
+            </span>
+        </button>
 
-
-
-
-
-        <!-- ================= RIGHT : MENU BUTTON ================= -->
-        <div class="flex items-center justify-end gap-2 flex-shrink-0">
-
-            <button id="menu-btn"
-                    type="button"
-                    class="w-10 h-10 rounded-full
-                           border border-[#bec9c3]/45
-                           bg-white/70 backdrop-blur-sm
-                           flex items-center justify-center
-                           text-[#004232]
-                           hover:bg-white
-                           hover:border-[#004232]/20
-                           hover:shadow-sm
-                           transition-all duration-200
-                           focus:outline-none"
-                    aria-label="Open Menu"
-                    aria-controls="side-menu"
-                    aria-expanded="false">
-
-                <i class="fa-solid fa-bars text-sm"></i>
-
-            </button>
-
-        </div>
-
+        <button id="menu-btn" type="button"
+          class="w-10 h-10 rounded-full border border-[#bec9c3]/45 bg-white/70 backdrop-blur-sm flex items-center justify-center text-[#004232] hover:bg-white hover:border-[#004232]/20 hover:shadow-sm transition-all focus:outline-none"
+          aria-label="Open Menu" aria-controls="side-menu" aria-expanded="false">
+          <i class="fa-solid fa-bars text-sm"></i>
+        </button> 
+      </div>
+      
     </div>
-
-</nav>
+  </nav>
 
 
 <!-- =========================================================
@@ -403,15 +458,9 @@ html = r'''<!DOCTYPE html>
 <aside id="side-menu"
        aria-hidden="true"
        aria-label="Main Navigation"
-class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
-       bg-[#faf9f4] z-[200]
-       shadow-2xl
-       translate-x-full
-       transition-transform duration-300 ease-out
-       flex flex-col"
+       class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw] bg-[#faf9f4] z-[200] shadow-2xl translate-x-full transition-transform duration-300 ease-out flex flex-col">
 
-
-     ================ SIDEBAR TOP ================= -->
+    <!-- ================= SIDEBAR TOP ================= -->
 
     <div class="px-5 pt-5 pb-4">
 
@@ -431,15 +480,13 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
                 <div>
 
-                    <div class="text-[#004232] font-bold
-                                tracking-[0.16em] text-sm">
+                    <div class="text-[#004232] font-bold tracking-[0.16em] text-sm" data-en="ATHAQ DATES" data-ar="تمور أثاق">
 
                         ATHAQ DATES
 
                     </div>
 
-                    <div class="text-[9px] text-[#3f4944]
-                                uppercase tracking-[0.22em] mt-1">
+                    <div class="text-[9px] text-[#3f4944] uppercase tracking-[0.22em] mt-1" data-en="Industrial Factory" data-ar="المصنع الصناعي">
 
                         Industrial Factory
 
@@ -486,7 +533,7 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
             <p class="text-[10px] font-bold uppercase
                       tracking-[0.18em]
-                      text-[#3f4944]/70 mb-3 px-1">
+                      text-[#3f4944]/70 mb-3 px-1" data-en="Quick Access" data-ar="الوصول السريع">
 
                 Quick Access
 
@@ -499,33 +546,6 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
          
 
 
-                <!-- LANGUAGE -->
-
-                <button type="button"
-                        onclick="toggleLanguage()"
-                        class="sidebar-action text-left">
-
-                    <span class="sidebar-action-icon">
-                        <i class="fa-solid fa-globe"></i>
-                    </span>
-
-                    <span class="min-w-0">
-
-                        <span class="block text-xs font-bold text-[#004232]">
-                            Language
-                        </span>
-
-                        <span id="languageLabel"
-                              class="block text-[10px]
-                                     text-[#3f4944] mt-1">
-
-                            English
-
-                        </span>
-
-                    </span>
-
-                </button>
 
 
                 <!-- WISHLIST -->
@@ -540,12 +560,11 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
                     <span class="min-w-0 flex-1">
 
-                        <span class="block text-xs font-bold text-[#004232]">
+                        <span class="block text-xs font-bold text-[#004232]" data-en="Wishlist" data-ar="المفضلة">
                             Wishlist
                         </span>
 
-                        <span class="block text-[10px]
-                                     text-[#3f4944] mt-1">
+                        <span class="block text-[10px] text-[#3f4944] mt-1" data-en="Saved items" data-ar="العناصر المحفوظة">
 
                             Saved items
 
@@ -575,12 +594,11 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
                     <span class="min-w-0 flex-1">
 
-                        <span class="block text-xs font-bold text-[#004232]">
+                        <span class="block text-xs font-bold text-[#004232]" data-en="Cart" data-ar="السلة">
                             Cart
                         </span>
 
-                        <span class="block text-[10px]
-                                     text-[#3f4944] mt-1">
+                        <span class="block text-[10px] text-[#3f4944] mt-1" data-en="Your items" data-ar="عناصرك">
 
                             Your items
 
@@ -610,12 +628,11 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
                     <span class="min-w-0">
 
-                        <span class="block text-xs font-bold text-[#004232]">
+                        <span class="block text-xs font-bold text-[#004232]" data-en="Share" data-ar="مشاركة">
                             Share
                         </span>
 
-                        <span class="block text-[10px]
-                                     text-[#3f4944] mt-1">
+                        <span class="block text-[10px] text-[#3f4944] mt-1" data-en="Share website" data-ar="مشاركة الموقع">
 
                             Share website
 
@@ -639,9 +656,7 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
         <div class="mb-7">
 
-            <p class="text-[10px] font-bold uppercase
-                      tracking-[0.18em]
-                      text-[#3f4944]/70 mb-3 px-1">
+            <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1" data-en="Navigation" data-ar="التنقل">
 
                 Navigation
 
@@ -661,7 +676,7 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                         <i class="fa-solid fa-house"></i>
                     </span>
 
-                    <span>Home</span>
+                    <span data-en="Home" data-ar="الرئيسية">Home</span>
 
                     <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
 
@@ -678,7 +693,7 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                         <i class="fa-solid fa-circle-info"></i>
                     </span>
 
-                    <span>About</span>
+                    <span data-en="About" data-ar="من نحن">About</span>
 
                     <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
 
@@ -695,7 +710,7 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                         <i class="fa-solid fa-box-open"></i>
                     </span>
 
-                    <span>Products</span>
+                    <span data-en="Products" data-ar="المنتجات">Products</span>
 
                     <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
 
@@ -712,7 +727,7 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                         <i class="fa-solid fa-images"></i>
                     </span>
 
-                    <span>Gallery</span>
+                    <span data-en="Gallery" data-ar="معرض الصور">Gallery</span>
 
                     <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
 
@@ -729,10 +744,17 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                         <i class="fa-solid fa-envelope"></i>
                     </span>
 
-                    <span>Contact</span>
+                    <span data-en="Contact" data-ar="اتصل بنا">Contact</span>
 
                     <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
 
+                </a>
+
+                <!-- OUR TEAM-->
+
+                <a href="/web/meet-team/meet-team.html" data-nav="team" onclick="closeSideMenu()" class="sidebar-nav-link">
+
+                    <span class="sidebar-nav-icon"><i class="fa-solid fa-users"></i></span><span data-en="OUR TEAM" data-ar="فريقنا">OUR TEAM</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
                 </a>
 
             </div>
@@ -746,9 +768,7 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
         <div class="mb-6">
 
-            <p class="text-[10px] font-bold uppercase
-                      tracking-[0.18em]
-                      text-[#3f4944]/70 mb-3 px-1">
+            <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1" data-en="Contact" data-ar="اتصل بنا">
 
                 Contact
 
@@ -776,16 +796,13 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
                     <span>
 
-                        <span class="block text-[9px]
-                                     uppercase tracking-wider
-                                     text-[#3f4944]">
+                        <span class="block text-[9px] uppercase tracking-wider text-[#3f4944]" data-en="Phone" data-ar="الهاتف">
 
                             Phone
 
                         </span>
 
-                        <span class="block text-xs font-semibold
-                                     text-[#004232] mt-0.5">
+                        <span class="block text-xs font-semibold text-[#004232] mt-0.5">
 
                             +966 58 181 8482
 
@@ -814,16 +831,13 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
                     <span class="min-w-0">
 
-                        <span class="block text-[9px]
-                                     uppercase tracking-wider
-                                     text-[#3f4944]">
+                        <span class="block text-[9px] uppercase tracking-wider text-[#3f4944]" data-en="Email" data-ar="البريد الإلكتروني">
 
                             Email
 
                         </span>
 
-                        <span class="block text-xs font-semibold
-                                     text-[#004232] mt-0.5 truncate">
+                        <span class="block text-xs font-semibold text-[#004232] mt-0.5 truncate">
 
                             info@athaqdates.com
 
@@ -842,23 +856,19 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
     <!-- ================= SIDEBAR FOOTER ================= -->
 
-    <div class="border-t border-[#bec9c3]/30
-                px-5 py-4 bg-white/45">
+    <div class="border-t border-[#bec9c3]/30 px-5 py-4 bg-white/45">
 
         <div class="flex items-center justify-between gap-4">
 
             <div>
 
-                <p class="text-[9px] uppercase
-                          tracking-[0.16em]
-                          text-[#3f4944]">
+                <p class="text-[9px] uppercase tracking-[0.16em] text-[#3f4944]" data-en="ATHAQ DATES INDUSTRY" data-ar="صناعة تمور أثاق">
 
                     ATHAQ DATES INDUSTRY
 
                 </p>
 
-                <p class="text-[9px]
-                          text-[#3f4944]/70 mt-1">
+                <p class="text-[9px] text-[#3f4944]/70 mt-1" data-en="Premium Saudi Dates" data-ar="تمور سعودية فاخرة">
 
                     Premium Saudi Dates
 
@@ -866,9 +876,7 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
             </div>
 
-            <div class="text-[#004232]/70
-                        text-[10px] font-semibold
-                        whitespace-nowrap">
+            <div class="text-[#004232]/70 text-[10px] font-semibold whitespace-nowrap">
 
                 © 2023–2026
 
@@ -889,9 +897,9 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
     <header class="px-4 md:px-16 max-w-7xl mx-auto mb-12">
       <div class="flex flex-col md:flex-row justify-between items-end gap-6">
         <div class="max-w-2xl">
-          <span class="text-xs font-bold text-emerald-800 uppercase tracking-[0.2em] mb-2 block">Premium Selection</span>
-          <h1 class="text-3xl md:text-5xl font-extrabold text-[#004232] mb-4">Our Harvest Portfolio</h1>
-          <p class="text-base text-gray-600">
+          <span class="text-xs font-bold text-emerald-800 uppercase tracking-[0.2em] mb-2 block" data-en="Premium Selection" data-ar="تشكيلة فاخرة">Premium Selection</span>
+          <h1 class="text-3xl md:text-5xl font-extrabold text-[#004232] mb-4" data-en="Our Harvest Portfolio" data-ar="محفظة حصادنا">Our Harvest Portfolio</h1>
+          <p class="text-base text-gray-600" data-en="Exploring the intersection of Saudi heritage and industrial precision. Each date variety is processed with global quality standards." data-ar="استكشاف تقاطع التراث السعودي والدقة الصناعية. تتم معالجة كل صنف من التتمور وفقاً لمعايير الجودة العالمية.">
             Exploring the intersection of Saudi heritage and industrial precision.
             Each date variety is processed with global quality standards.
           </p>
@@ -904,14 +912,14 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
             <button onclick="toggleFilterMenu()" type="button"
                     class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-white transition-colors text-xs font-bold">
               <span class="material-symbols-outlined text-sm">filter_list</span>
-              <span>Filter</span>
+              <span data-en="Filter" data-ar="تصفية">Filter</span>
             </button>
 
             <div id="filterDropdown"
                  class="hidden absolute top-12 left-0 bg-white shadow-xl rounded-xl border border-gray-100 p-3 z-30 w-40 text-xs font-semibold text-gray-700">
-              <div onclick="filterProducts('all')" class="p-2 hover:bg-gray-50 rounded cursor-pointer">All Products</div>
-              <div onclick="filterProducts('premium')" class="p-2 hover:bg-gray-50 rounded cursor-pointer">Premium Grade</div>
-              <div onclick="filterProducts('limited')" class="p-2 hover:bg-gray-50 rounded cursor-pointer">Limited Harvest</div>
+              <div onclick="filterProducts('all')" class="p-2 hover:bg-gray-50 rounded cursor-pointer" data-en="All Products" data-ar="جميع المنتجات">All Products</div>
+              <div onclick="filterProducts('premium')" class="p-2 hover:bg-gray-50 rounded cursor-pointer" data-en="Premium Grade" data-ar="درجة ممتازة">Premium Grade</div>
+              <div onclick="filterProducts('limited')" class="p-2 hover:bg-gray-50 rounded cursor-pointer" data-en="Limited Harvest" data-ar="حصاد محدود">Limited Harvest</div>
             </div>
           </div>
 
@@ -920,13 +928,13 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
             <button onclick="toggleSortMenu()" type="button"
                     class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-white transition-colors text-xs font-bold">
               <span class="material-symbols-outlined text-sm">sort</span>
-              <span>Sort By</span>
+              <span data-en="Sort By" data-ar="ترتيب حسب">Sort By</span>
             </button>
 
             <div id="sortDropdown"
                  class="hidden absolute top-12 right-0 bg-white shadow-xl rounded-xl border border-gray-100 p-3 z-30 w-44 text-xs font-semibold text-gray-700">
-              <div onclick="sortProducts('low-high')" class="p-2 hover:bg-gray-50 rounded cursor-pointer">Price: Low to High</div>
-              <div onclick="sortProducts('high-low')" class="p-2 hover:bg-gray-50 rounded cursor-pointer">Price: High to Low</div>
+              <div onclick="sortProducts('low-high')" class="p-2 hover:bg-gray-50 rounded cursor-pointer" data-en="Price: Low to High" data-ar="السعر: من الأقل للأعلى">Price: Low to High</div>
+              <div onclick="sortProducts('high-low')" class="p-2 hover:bg-gray-50 rounded cursor-pointer" data-en="Price: High to Low" data-ar="السعر: من الأعلى للأقل">Price: High to Low</div>
             </div>
           </div>
         </div>
@@ -957,16 +965,16 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
             <div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-between bg-white">
               <div>
-                <span class="text-xs font-bold text-amber-700 uppercase tracking-widest mb-2 block">Featured Variety</span>
-                <h2 class="text-2xl md:text-3xl font-extrabold text-[#004232] mb-3">The Royal Assortment</h2>
-                <p class="text-sm text-gray-600 mb-6">A curated selection of our finest harvests. Experience the full spectrum of texture and flavor.</p>
+                <span class="text-xs font-bold text-amber-700 uppercase tracking-widest mb-2 block" data-en="Featured Variety" data-ar="صنف مميز">Featured Variety</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-[#004232] mb-3" data-en="The Royal Assortment" data-ar="التشكيلة الملكية">The Royal Assortment</h2>
+                <p class="text-sm text-gray-600 mb-6" data-en="A curated selection of our finest harvests. Experience the full spectrum of texture and flavor." data-ar="مجموعة مختارة من أجود محاصيلنا. استمتع بالطيف الكامل من الملمس والنكهة.">A curated selection of our finest harvests. Experience the full spectrum of texture and flavor.</p>
                 <span class="product-price text-xl font-bold text-[#004232] mb-6 block">SAR 250.00</span>
               </div>
 
               <div class="flex items-center gap-3">
                 <button onclick="buyNow('p_featured','The Royal Assortment',250,this.closest('.product-card').querySelector('img').src)"
                         class="flex-1 bg-[#004232] text-white py-3 px-4 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-[#002e23] transition-colors flex items-center justify-center gap-2 shadow-md">
-                  <i class="fa-solid fa-bolt"></i> Buy Now
+                  <i class="fa-solid fa-bolt"></i> <span data-en="Buy Now" data-ar="اشتري الآن">Buy Now</span>
                 </button>
 
                 <button onclick="addToCart('p_featured','The Royal Assortment',250,this.closest('.product-card').querySelector('img').src)"
@@ -986,7 +994,7 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6d6L6xCje4iZnUq4eERix-e9zOaJN3GAjLJ4VmklC6FSvYTF3DiOaq4tsGOVbY20RjE2VtR3QNPKiARNGIPAAffzKp2XrLGrhT5uylU8_DHY97bZi1CNEd-93JJDpiaBsP8XSQnxiApgd_R2rMwcafV2jPuw9OtrblDRmhVEVWqAhcccmodCbau7kHqgO4iGt8aK3b3kcMtbeTGNfAVBBkxXYCUs6dGsw-USzseQE7SxSOU2KH4o3LQ"
                  alt="Sukkary Gold">
-            <span class="absolute top-4 left-4 bg-[#004232] text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Premium Grade</span>
+            <span class="absolute top-4 left-4 bg-[#004232] text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider" data-en="Premium Grade" data-ar="درجة ممتازة">Premium Grade</span>
             <button onclick="toggleWishlist(event,'p_sukkary','Sukkary Gold',this.closest('.product-card').querySelector('img').src,95)"
                     class="wishlist-btn absolute top-4 right-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center text-gray-700 shadow-md hover:bg-white transition-all">
               <i class="fa-regular fa-heart"></i>
@@ -996,16 +1004,16 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
           <div class="p-6 flex-grow flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-start mb-2">
-                <h3 class="text-xl font-bold text-[#004232]">Sukkary Gold</h3>
+                <h3 class="text-xl font-bold text-[#004232]" data-en="Sukkary Gold" data-ar="سكري ذهبي">Sukkary Gold</h3>
                 <span class="product-price font-extrabold text-[#004232]">SAR 95.00</span>
               </div>
-              <p class="text-xs text-gray-500 mb-6 line-clamp-2">Crisp exterior with a melt-in-the-mouth sugary core. Notes of honey and brown butter.</p>
+              <p class="text-xs text-gray-500 mb-6 line-clamp-2" data-en="Crisp exterior with a melt-in-the-mouth sugary core. Notes of honey and brown butter." data-ar="خارج مقرمش مع لب سكري يذوب في الفم. نكهات العسل والزبدة البنية.">Crisp exterior with a melt-in-the-mouth sugary core. Notes of honey and brown butter.</p>
             </div>
 
             <div class="flex items-center gap-2 pt-4 border-t border-gray-100">
               <button onclick="buyNow('p_sukkary','Sukkary Gold',95,this.closest('.product-card').querySelector('img').src)"
                       class="flex-1 bg-[#004232] text-white py-2.5 px-3 rounded-xl text-xs font-bold uppercase hover:bg-[#002e23] transition-colors flex items-center justify-center gap-2">
-                <i class="fa-solid fa-bolt"></i> Buy Now
+                <i class="fa-solid fa-bolt"></i> <span data-en="Buy Now" data-ar="اشتري الآن">Buy Now</span>
               </button>
               <button onclick="addToCart('p_sukkary','Sukkary Gold',95,this.closest('.product-card').querySelector('img').src)"
                       class="p-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 text-gray-700">
@@ -1023,7 +1031,7 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb88OWBX_BwkRaOUmOpbMlykITyyGelGU0QmZ6B_PyobSmYHbeTm_nU5tQkxJtbszRkuzv3d4oQjhHRMk4I6t2NaRIj3ca5htlL1bpFcXtLDJiKit5bwwelr7sd-UGHYBLp9VwJ7xKis-2dtozUxOEnYPxs2g9nUfK6sOZr6ilW09XW21DOBfZCGBLcR0OknfW5roa0c3RF_JTln0HeXrjSd_FY5WfSrDrIgD5J-fJx4vONFSi42qxZw"
                  alt="Ajwa Al-Madinah">
-            <span class="absolute top-4 left-4 bg-amber-700 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Limited Harvest</span>
+            <span class="absolute top-4 left-4 bg-amber-700 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider" data-en="Limited Harvest" data-ar="حصاد محدود">Limited Harvest</span>
             <button onclick="toggleWishlist(event,'p_ajwa','Ajwa Al-Madinah',this.closest('.product-card').querySelector('img').src,140)"
                     class="wishlist-btn absolute top-4 right-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center text-gray-700 shadow-md hover:bg-white transition-all">
               <i class="fa-regular fa-heart"></i>
@@ -1033,16 +1041,16 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
           <div class="p-6 flex-grow flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-start mb-2">
-                <h3 class="text-xl font-bold text-[#004232]">Ajwa Al-Madinah</h3>
+                <h3 class="text-xl font-bold text-[#004232]" data-en="Ajwa Al-Madinah" data-ar="عجوة المدينة">Ajwa Al-Madinah</h3>
                 <span class="product-price font-extrabold text-[#004232]">SAR 140.00</span>
               </div>
-              <p class="text-xs text-gray-500 mb-6 line-clamp-2">Fine, silky texture with a deep, fruity complexity. Revered for its unique nutritional profile.</p>
+              <p class="text-xs text-gray-500 mb-6 line-clamp-2" data-en="Fine, silky texture with a deep, fruity complexity. Revered for its unique nutritional profile." data-ar="قوام ناعم وحريري مع تعقيد فاكهي عميق. تحظى بالتقدير لملفها الغذائي الفريد.">Fine, silky texture with a deep, fruity complexity. Revered for its unique nutritional profile.</p>
             </div>
 
             <div class="flex items-center gap-2 pt-4 border-t border-gray-100">
               <button onclick="buyNow('p_ajwa','Ajwa Al-Madinah',140,this.closest('.product-card').querySelector('img').src)"
                       class="flex-1 bg-[#004232] text-white py-2.5 px-3 rounded-xl text-xs font-bold uppercase hover:bg-[#002e23] transition-colors flex items-center justify-center gap-2">
-                <i class="fa-solid fa-bolt"></i> Buy Now
+                <i class="fa-solid fa-bolt"></i> <span data-en="Buy Now" data-ar="اشتري الآن">Buy Now</span>
               </button>
               <button onclick="addToCart('p_ajwa','Ajwa Al-Madinah',140,this.closest('.product-card').querySelector('img').src)"
                       class="p-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 text-gray-700">
@@ -1069,16 +1077,16 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
           <div class="p-6 flex-grow flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-start mb-2">
-                <h3 class="text-xl font-bold text-[#004232]">Khalas Al-Ahsa</h3>
+                <h3 class="text-xl font-bold text-[#004232]" data-en="Khalas Al-Ahsa" data-ar="خلاص الأحساء">Khalas Al-Ahsa</h3>
                 <span class="product-price font-extrabold text-[#004232]">SAR 80.00</span>
               </div>
-              <p class="text-xs text-gray-500 mb-6 line-clamp-2">The definitive everyday luxury. Sticky, caramelly, and perfectly balanced sweetness.</p>
+              <p class="text-xs text-gray-500 mb-6 line-clamp-2" data-en="The definitive everyday luxury. Sticky, caramelly, and perfectly balanced sweetness." data-ar="رفاهية يومية لا غنى عنها. لزجة، بطعم الكراميل، وحلاوة متوازنة تماماً.">The definitive everyday luxury. Sticky, caramelly, and perfectly balanced sweetness.</p>
             </div>
 
             <div class="flex items-center gap-2 pt-4 border-t border-gray-100">
               <button onclick="buyNow('p_khalas','Khalas Al-Ahsa',80,this.closest('.product-card').querySelector('img').src)"
                       class="flex-1 bg-[#004232] text-white py-2.5 px-3 rounded-xl text-xs font-bold uppercase hover:bg-[#002e23] transition-colors flex items-center justify-center gap-2">
-                <i class="fa-solid fa-bolt"></i> Buy Now
+                <i class="fa-solid fa-bolt"></i> <span data-en="Buy Now" data-ar="اشتري الآن">Buy Now</span>
               </button>
               <button onclick="addToCart('p_khalas','Khalas Al-Ahsa',80,this.closest('.product-card').querySelector('img').src)"
                       class="p-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 text-gray-700">
@@ -1105,16 +1113,16 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
           <div class="p-6 flex-grow flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-start mb-2">
-                <h3 class="text-xl font-bold text-[#004232]">Sagai Selection</h3>
+                <h3 class="text-xl font-bold text-[#004232]" data-en="Sagai Selection" data-ar="تشكيلة صقعي">Sagai Selection</h3>
                 <span class="product-price font-extrabold text-[#004232]">SAR 110.00</span>
               </div>
-              <p class="text-xs text-gray-500 mb-6 line-clamp-2">Distinctive firm base with a soft tip. A textured journey from crunch to cream.</p>
+              <p class="text-xs text-gray-500 mb-6 line-clamp-2" data-en="Distinctive firm base with a soft tip. A textured journey from crunch to cream." data-ar="قاعدة متينة مميزة مع طرف ناعم. رحلة قوامية من القرمشة إلى النعومة.">Distinctive firm base with a soft tip. A textured journey from crunch to cream.</p>
             </div>
 
             <div class="flex items-center gap-2 pt-4 border-t border-gray-100">
               <button onclick="buyNow('p_sagai','Sagai Selection',110,this.closest('.product-card').querySelector('img').src)"
                       class="flex-1 bg-[#004232] text-white py-2.5 px-3 rounded-xl text-xs font-bold uppercase hover:bg-[#002e23] transition-colors flex items-center justify-center gap-2">
-                <i class="fa-solid fa-bolt"></i> Buy Now
+                <i class="fa-solid fa-bolt"></i> <span data-en="Buy Now" data-ar="اشتري الآن">Buy Now</span>
               </button>
               <button onclick="addToCart('p_sagai','Sagai Selection',110,this.closest('.product-card').querySelector('img').src)"
                       class="p-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 text-gray-700">
@@ -1131,13 +1139,13 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
     <section class="mt-24 px-4 md:px-16 max-w-7xl mx-auto">
       <div class="bg-emerald-100/60 rounded-3xl p-8 md:p-16 text-center relative overflow-hidden border border-emerald-200">
         <div class="relative z-10 max-w-2xl mx-auto">
-          <h2 class="text-2xl md:text-4xl font-extrabold text-[#004232] mb-4">Bulk Industrial Inquiries</h2>
-          <p class="text-sm text-gray-600 mb-8">We specialize in white-label production and international supply chains. Connect with our team for volume pricing.</p>
+          <h2 class="text-2xl md:text-4xl font-extrabold text-[#004232] mb-4" data-en="Bulk Industrial Inquiries" data-ar="استفسارات الصناعات بالجملة">Bulk Industrial Inquiries</h2>
+          <p class="text-sm text-gray-600 mb-8" data-en="We specialize in white-label production and international supply chains. Connect with our team for volume pricing." data-ar="نحن متخصصون في الإنتاج الخاص وسلاسل الإمداد الدولية. تواصل مع فريقنا لمعرفة أسعار الكميات.">We specialize in white-label production and international supply chains. Connect with our team for volume pricing.</p>
           <div class="flex flex-col sm:flex-row justify-center gap-3">
             <input class="px-5 py-3 rounded-xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#004232] text-sm min-w-[280px]"
-                   placeholder="Business Email Address" type="email">
+                   placeholder="Business Email Address" data-en-placeholder="Business Email Address" data-ar-placeholder="البريد الإلكتروني للعمل" type="email">
             <button type="button"
-                    class="bg-[#004232] text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#002e23] transition-all shadow-md">
+                    class="bg-[#004232] text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#002e23] transition-all shadow-md" data-en="Request Catalog" data-ar="طلب الكتالوج">
               Request Catalog
             </button>
           </div>
@@ -1150,30 +1158,30 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
   <footer class="w-full py-16 px-4 md:px-16 grid grid-cols-1 md:grid-cols-4 gap-8 bg-gray-200/50 border-t border-gray-200">
     <div>
       <div class="text-2xl font-bold font-serif text-[#004232] mb-3">ATHAQ</div>
-      <p class="text-xs text-gray-600">Pioneering the industrial future of Saudi dates with heritage and precision.</p>
+      <p class="text-xs text-gray-600" data-en="Pioneering the industrial future of Saudi dates with heritage and precision." data-ar="ريادة المستقبل الصناعي للتمور السعودية بالتراث والدقة.">Pioneering the industrial future of Saudi dates with heritage and precision.</p>
     </div>
 
     <div>
-      <h4 class="text-xs font-bold text-[#004232] uppercase mb-4 tracking-widest">Navigation</h4>
+      <h4 class="text-xs font-bold text-[#004232] uppercase mb-4 tracking-widest" data-en="Navigation" data-ar="التنقل">Navigation</h4>
       <ul class="space-y-2 text-xs text-gray-600">
-        <li><a class="hover:text-amber-800 transition-colors" href="#">Industrial Process</a></li>
-        <li><a class="hover:text-amber-800 transition-colors" href="#">Certifications</a></li>
-        <li><a class="hover:text-amber-800 transition-colors" href="#">Sustainability</a></li>
+        <li><a class="hover:text-amber-800 transition-colors" href="#" data-en="Industrial Process" data-ar="العملية الصناعية">Industrial Process</a></li>
+        <li><a class="hover:text-amber-800 transition-colors" href="#" data-en="Certifications" data-ar="الشهادات">Certifications</a></li>
+        <li><a class="hover:text-amber-800 transition-colors" href="#" data-en="Sustainability" data-ar="الاستدامة">Sustainability</a></li>
       </ul>
     </div>
 
     <div>
-      <h4 class="text-xs font-bold text-[#004232] uppercase mb-4 tracking-widest">Legal</h4>
+      <h4 class="text-xs font-bold text-[#004232] uppercase mb-4 tracking-widest" data-en="Legal" data-ar="قانوني">Legal</h4>
       <ul class="space-y-2 text-xs text-gray-600">
-        <li><a class="hover:text-amber-800 transition-colors" href="#">Privacy Policy</a></li>
-        <li><a class="hover:text-amber-800 transition-colors" href="#">Terms of Service</a></li>
+        <li><a class="hover:text-amber-800 transition-colors" href="#" data-en="Privacy Policy" data-ar="سياسة الخصوصية">Privacy Policy</a></li>
+        <li><a class="hover:text-amber-800 transition-colors" href="#" data-en="Terms of Service" data-ar="شروط الخدمة">Terms of Service</a></li>
       </ul>
     </div>
 
     <div>
-      <h4 class="text-xs font-bold text-[#004232] uppercase mb-4 tracking-widest">Contact</h4>
+      <h4 class="text-xs font-bold text-[#004232] uppercase mb-4 tracking-widest" data-en="Contact" data-ar="اتصل">Contact</h4>
       <ul class="space-y-2 text-xs text-gray-600">
-        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">location_on</span> Riyadh Industrial City</li>
+        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">location_on</span> <span data-en="Riyadh Industrial City" data-ar="مدينة الرياض الصناعية">Riyadh Industrial City</span></li>
         <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">mail</span> inquiry@athaq.sa</li>
       </ul>
     </div>
@@ -1183,12 +1191,12 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
   <div id="searchModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[10000] hidden items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
       <div class="flex justify-between items-center mb-4">
-        <h3 class="text-lg font-bold text-[#004232]">Search Products</h3>
+        <h3 class="text-lg font-bold text-[#004232]" data-en="Search Products" data-ar="بحث المنتجات">Search Products</h3>
         <button onclick="closeSearchModal()" type="button" class="text-gray-500 hover:text-gray-700 font-bold text-xl">&times;</button>
       </div>
       <div class="flex items-center gap-2 border border-gray-300 rounded-xl px-3 py-2">
         <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
-        <input type="text" id="searchInput" placeholder="Type to search dates..."
+        <input type="text" id="searchInput" placeholder="Type to search dates..." data-en-placeholder="Type to search dates..." data-ar-placeholder="اكتب للبحث عن التمور..."
                class="w-full focus:outline-none text-sm" oninput="handleSearch(this.value)">
       </div>
     </div>
@@ -1198,12 +1206,14 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
   <script>
     let wishlist = JSON.parse(localStorage.getItem("athaqWishlist")) || [];
     let cart = JSON.parse(localStorage.getItem("athaqCart")) || [];
+    let currentLang = localStorage.getItem("athaqLang") || "en";
 
     document.addEventListener("DOMContentLoaded", () => {
       updateWishlistUI();
       updateCartUI();
       checkAuthHeader();
       setupMenu();
+      applyLanguage(currentLang);
     });
 
     /* ================= SIDEBAR ================= */
@@ -1239,8 +1249,15 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
       const button = document.getElementById("menu-btn");
       if (!menu) return;
 
-      menu.classList.remove("translate-x-full");
+      /*
+       * Sidebar is permanently anchored to the RIGHT.
+       * Language changes must never move it to the left.
+       */
+      menu.style.right = "0";
+      menu.style.left = "auto";
+      menu.classList.remove("-translate-x-full", "translate-x-full");
       menu.classList.add("translate-x-0", "active");
+
       overlay?.classList.remove("opacity-0", "invisible");
       overlay?.classList.add("opacity-100", "visible", "active");
       document.body.classList.add("menu-open");
@@ -1252,9 +1269,17 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
       const menu = document.getElementById("side-menu");
       const overlay = document.getElementById("sidebar-overlay");
       const button = document.getElementById("menu-btn");
-
-      menu?.classList.remove("translate-x-0", "active");
+      /*
+       * Sidebar always closes toward the RIGHT.
+       */
+      menu?.classList.remove("translate-x-0", "active", "-translate-x-full");
       menu?.classList.add("translate-x-full");
+
+      if (menu) {
+        menu.style.right = "0";
+        menu.style.left = "auto";
+      }
+
       overlay?.classList.remove("opacity-100", "visible", "active");
       overlay?.classList.add("opacity-0", "invisible");
       document.body.classList.remove("menu-open");
@@ -1294,46 +1319,6 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
             </a>`;
         }
       }
-
-      if (sidebarAuth) {
-        if (isLoggedIn === "true") {
-          const accountHref = userRole === "admin" ? "/admin/index.html" : "/customer-profile/profile.html";
-          const accountIcon = userRole === "admin" ? "fa-gauge" : "fa-user";
-          const accountTitle = userRole === "admin" ? "Admin Dashboard" : userName;
-
-          sidebarAuth.innerHTML = `
-            <a href="${accountHref}" class="sidebar-action">
-              <span class="sidebar-action-icon"><i class="fa-solid ${accountIcon} text-lg"></i></span>
-              <span class="flex-1">
-                <span class="block text-sm font-bold text-[#004232]">${escapeHtml(accountTitle)}</span>
-                <span class="block text-[11px] text-[#3f4944]/70">${userRole === "admin" ? "Manage your store" : "View your profile"}</span>
-              </span>
-              <i class="fa-solid fa-chevron-right text-xs text-[#3f4944]/50"></i>
-            </a>
-            <button type="button" onclick="logoutUser()" class="sidebar-link w-full text-left">
-              <span class="sidebar-link-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
-              <span class="font-semibold text-sm">Logout</span>
-            </button>`;
-        } else {
-          sidebarAuth.innerHTML = `
-            <a href="/login/index.html" class="sidebar-action">
-              <span class="sidebar-action-icon"><i class="fa-regular fa-user text-lg"></i></span>
-              <span class="flex-1">
-                <span class="block text-sm font-bold text-[#004232]">Login / Register</span>
-                <span class="block text-[11px] text-[#3f4944]/70">Access your account</span>
-              </span>
-              <i class="fa-solid fa-chevron-right text-xs text-[#3f4944]/50"></i>
-            </a>`;
-        }
-      }
-    }
-
-    function logoutUser() {
-      sessionStorage.removeItem("isLoggedIn");
-      sessionStorage.removeItem("userRole");
-      sessionStorage.removeItem("userName");
-      checkAuthHeader();
-      closeSideMenu();
     }
 
     function escapeHtml(value) {
@@ -1422,7 +1407,7 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
       localStorage.setItem("athaqCart", JSON.stringify(cart));
       updateCartUI();
-      alert(name + " has been added to your cart!");
+      alert(currentLang === 'ar' ? "تم إضافته إلى السلة!" : name + " has been added to your cart!");
     }
 
     function buyNow(id, name, price, image) {
@@ -1493,10 +1478,105 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
     }
 
     /* ================= LANGUAGE ================= */
+
     function toggleLanguage() {
-      // Keep your existing language system here if already implemented.
-      // This button is intentionally preserved so it does not break your project.
-      alert("Language switch is ready. Connect your existing EN / AR language logic here.");
+      /*
+       * IMPORTANT:
+       * Save the exact viewport position before changing language.
+       * Changing dir can otherwise make the browser recalculate the
+       * layout/scroll position and appear to "jump".
+       */
+      const savedX = window.scrollX;
+      const savedY = window.scrollY;
+
+      currentLang = currentLang === "en" ? "ar" : "en";
+      localStorage.setItem("athaqLang", currentLang);
+
+      applyLanguage(currentLang);
+
+      /*
+       * Restore the exact position after the DOM has updated.
+       * requestAnimationFrame is used twice so the browser has time
+       * to finish the language/layout repaint first.
+       */
+      window.scrollTo(savedX, savedY);
+
+      requestAnimationFrame(() => {
+        window.scrollTo(savedX, savedY);
+
+        requestAnimationFrame(() => {
+          window.scrollTo(savedX, savedY);
+        });
+      });
+    }
+
+    function applyLanguage(lang) {
+      const html = document.documentElement;
+      const body = document.body;
+
+      /*
+       * Keep document geometry LTR at all times.
+       * This is the key fix: Arabic content changes, but the page
+       * does NOT switch its complete layout direction.
+       */
+      html.setAttribute("lang", lang);
+      html.setAttribute("dir", "ltr");
+
+      /*
+       * Store the selected language separately so other scripts/pages
+       * can still know that Arabic is active.
+       */
+      html.dataset.language = lang;
+      body.dataset.language = lang;
+
+      // Update Language button label
+      const langLabel = document.getElementById("languageLabel");
+      if (langLabel) {
+        langLabel.innerText = lang === "ar" ? "العربية" : "English";
+      }
+
+      // Translate all tagged elements without changing their layout.
+      document.querySelectorAll("[data-en][data-ar]").forEach(el => {
+        const translated = el.getAttribute(`data-${lang}`);
+        if (translated !== null) {
+          el.innerText = translated;
+        }
+
+        // Arabic text reads correctly while the page geometry stays fixed.
+        if (lang === "ar") {
+          el.style.direction = "rtl";
+          el.style.textAlign = "right";
+        } else {
+          el.style.direction = "";
+          el.style.textAlign = "";
+        }
+      });
+
+      // Translate placeholders
+      document.querySelectorAll("[data-en-placeholder][data-ar-placeholder]").forEach(el => {
+        const placeholder = el.getAttribute(`data-${lang}-placeholder`);
+        if (placeholder !== null) {
+          el.setAttribute("placeholder", placeholder);
+        }
+
+        if (lang === "ar") {
+          el.style.direction = "rtl";
+          el.style.textAlign = "right";
+        } else {
+          el.style.direction = "";
+          el.style.textAlign = "";
+        }
+      });
+
+      /*
+       * The sidebar must remain on the RIGHT in Arabic too.
+       * Do not change its physical position when the language changes.
+       */
+      const menu = document.getElementById("side-menu");
+      if (menu) {
+        menu.style.right = "0";
+        menu.style.left = "auto";
+      }
     }
 
     /* ================= SHARE ================= */
@@ -1511,7 +1591,7 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
         }).catch(() => {});
       } else if (navigator.clipboard) {
         navigator.clipboard.writeText(url)
-          .then(() => alert("Link copied!"))
+          .then(() => alert(currentLang === 'ar' ? "تم نسخ الرابط!" : "Link copied!"))
           .catch(() => alert("Unable to copy the link."));
       } else {
         alert(url);

@@ -79,6 +79,14 @@
       display:flex; flex-direction:column; overflow:hidden;
     }
     #side-menu.active { transform:translateX(0); }
+    /* Support for RTL Sidebar sliding */
+    html[dir="rtl"] #side-menu {
+      right: auto;
+      left: 0;
+      transform:translateX(-105%);
+      box-shadow:18px 0 55px rgba(0,0,0,.18);
+    }
+    html[dir="rtl"] #side-menu.active { transform:translateX(0); }
 
     .sidebar-action {
       min-height:64px; display:flex; align-items:center; gap:14px;
@@ -100,6 +108,7 @@
       text-decoration:none; transition:background .2s ease,color .2s ease,transform .2s ease;
     }
     .sidebar-nav-link:hover { background:rgba(192,237,212,.55); color:#004232; transform:translateX(4px); }
+    html[dir="rtl"] .sidebar-nav-link:hover { transform:translateX(-4px); }
     .sidebar-nav-link.active { background:#004232; color:#fff; box-shadow:0 8px 20px rgba(0,66,50,.16); }
     .sidebar-nav-link.active .sidebar-nav-icon { background:rgba(255,255,255,.14); color:#fff; }
 
@@ -134,11 +143,22 @@
 
 </a>
 
-      <button id="menu-btn" type="button"
-        class="w-10 h-10 rounded-full border border-[#bec9c3]/45 bg-white/70 backdrop-blur-sm flex items-center justify-center text-[#004232] hover:bg-white hover:border-[#004232]/20 hover:shadow-sm transition-all focus:outline-none"
-        aria-label="Open Menu" aria-controls="side-menu" aria-expanded="false">
-        <i class="fa-solid fa-bars text-sm"></i>
-      </button>
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="toggleLanguage()" class="sidebar-action text-left !min-h-[46px] !py-1 !px-2.5">
+            <span class="sidebar-action-icon !w-8 !h-8 !min-w-[32px] !rounded-lg text-xs"><i class="fa-solid fa-globe"></i></span>
+            <span class="min-w-0 pr-1">
+                <span class="block text-[11px] font-bold text-[#004232]" data-en="Language" data-ar="اللغة">Language</span>
+                <span id="languageLabel" class="block text-[9px] text-[#3f4944] mt-0.5">English</span>
+            </span>
+        </button>
+
+        <button id="menu-btn" type="button"
+          class="w-10 h-10 rounded-full border border-[#bec9c3]/45 bg-white/70 backdrop-blur-sm flex items-center justify-center text-[#004232] hover:bg-white hover:border-[#004232]/20 hover:shadow-sm transition-all focus:outline-none"
+          aria-label="Open Menu" aria-controls="side-menu" aria-expanded="false">
+          <i class="fa-solid fa-bars text-sm"></i>
+        </button> 
+      </div>
+      
     </div>
   </nav>
 
@@ -155,8 +175,8 @@
   class="w-10 h-10 object-contain scale-125"
 >
           <div>
-            <div class="text-[#004232] font-bold tracking-[0.16em] text-sm">ATHAQ DATES</div>
-            <div class="text-[9px] text-[#3f4944] uppercase tracking-[0.22em] mt-1">Industrial Factory</div>
+            <div class="text-[#004232] font-bold tracking-[0.16em] text-sm" data-en="ATHAQ DATES" data-ar="تمور أثاق">ATHAQ DATES</div>
+            <div class="text-[9px] text-[#3f4944] uppercase tracking-[0.22em] mt-1" data-en="Industrial Factory" data-ar="المصنع الصناعي">Industrial Factory</div>
           </div>
         </a>
         <button id="close-menu" type="button" aria-label="Close Menu"
@@ -170,7 +190,7 @@
 
     <div class="flex-1 overflow-y-auto px-5 py-5">
       <div class="mb-7">
-        <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1">Quick Access</p>
+        <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1" data-en="Quick Access" data-ar="الوصول السريع">Quick Access</p>
         <div class="grid grid-cols-2 gap-3">
 
       <a id="accountLink" href="/login/index.html" onclick="closeSideMenu()" class="sidebar-action">
@@ -180,37 +200,31 @@
 
     <span class="min-w-0">
         <span id="accountName"
-              class="block text-xs font-bold text-[#004232]">
+              class="block text-xs font-bold text-[#004232]" data-en="Account" data-ar="الحساب">
             Account
         </span>
 
         <span id="accountStatus"
-              class="block text-[10px] text-[#3f4944] mt-1">
+              class="block text-[10px] text-[#3f4944] mt-1" data-en="Sign in" data-ar="تسجيل الدخول">
             Sign in
         </span>
     </span>
 </a>
-
-          <button type="button" onclick="toggleLanguage()" class="sidebar-action text-left">
-            <span class="sidebar-action-icon"><i class="fa-solid fa-globe"></i></span>
-            <span><span class="block text-xs font-bold text-[#004232]">Language</span><span id="languageLabel" class="block text-[10px] text-[#3f4944] mt-1">English</span></span>
-          </button>
-
           <a href="/web/product/wishlist.html" onclick="closeSideMenu()" class="sidebar-action">
             <span class="sidebar-action-icon"><i class="fa-regular fa-heart"></i></span>
-            <span class="min-w-0 flex-1"><span class="block text-xs font-bold text-[#004232]">Wishlist</span><span class="block text-[10px] text-[#3f4944] mt-1">Saved items</span></span>
+            <span class="min-w-0 flex-1"><span class="block text-xs font-bold text-[#004232]" data-en="Wishlist" data-ar="المفضلة">Wishlist</span><span class="block text-[10px] text-[#3f4944] mt-1" data-en="Saved items" data-ar="العناصر المحفوظة">Saved items</span></span>
             <span id="sidebarWishlistCount" class="counter-badge">0</span>
           </a>
 
           <a href="/admin/checkout.html" onclick="closeSideMenu()" class="sidebar-action">
             <span class="sidebar-action-icon"><i class="fa-solid fa-bag-shopping"></i></span>
-            <span class="min-w-0 flex-1"><span class="block text-xs font-bold text-[#004232]">Cart</span><span class="block text-[10px] text-[#3f4944] mt-1">Your items</span></span>
+            <span class="min-w-0 flex-1"><span class="block text-xs font-bold text-[#004232]" data-en="Cart" data-ar="السلة">Cart</span><span class="block text-[10px] text-[#3f4944] mt-1" data-en="Your items" data-ar="عناصرك">Your items</span></span>
             <span id="sidebarCartCount" class="counter-badge">0</span>
           </a>
 
           <button type="button" onclick="shareWebsite()" class="sidebar-action text-left">
             <span class="sidebar-action-icon"><i class="fa-solid fa-share-nodes"></i></span>
-            <span><span class="block text-xs font-bold text-[#004232]">Share</span><span class="block text-[10px] text-[#3f4944] mt-1">Share website</span></span>
+            <span><span class="block text-xs font-bold text-[#004232]" data-en="Share" data-ar="مشاركة">Share</span><span class="block text-[10px] text-[#3f4944] mt-1" data-en="Share website" data-ar="مشاركة الموقع">Share website</span></span>
           </button>
         </div>
       </div>
@@ -218,22 +232,25 @@
       <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
 
       <div class="mb-7">
-        <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1">Navigation</p>
+        <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1" data-en="Navigation" data-ar="التنقل">Navigation</p>
         <div class="space-y-2">
           <a href="/index.html" data-nav="home" onclick="closeSideMenu()" class="sidebar-nav-link">
-            <span class="sidebar-nav-icon"><i class="fa-solid fa-house"></i></span><span>Home</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+            <span class="sidebar-nav-icon"><i class="fa-solid fa-house"></i></span><span data-en="Home" data-ar="الرئيسية">Home</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
           </a>
           <a href="/web/about/index.html" data-nav="about" onclick="closeSideMenu()" class="sidebar-nav-link">
-            <span class="sidebar-nav-icon"><i class="fa-solid fa-circle-info"></i></span><span>About</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+            <span class="sidebar-nav-icon"><i class="fa-solid fa-circle-info"></i></span><span data-en="About" data-ar="من نحن">About</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
           </a>
           <a href="/web/product/index.html" data-nav="products" onclick="closeSideMenu()" class="sidebar-nav-link">
-            <span class="sidebar-nav-icon"><i class="fa-solid fa-box-open"></i></span><span>Products</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+            <span class="sidebar-nav-icon"><i class="fa-solid fa-box-open"></i></span><span data-en="Products" data-ar="المنتجات">Products</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
           </a>
           <a href="/web/gallery/index.html" data-nav="gallery" onclick="closeSideMenu()" class="sidebar-nav-link">
-            <span class="sidebar-nav-icon"><i class="fa-solid fa-images"></i></span><span>Gallery</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+            <span class="sidebar-nav-icon"><i class="fa-solid fa-images"></i></span><span data-en="Gallery" data-ar="المعرض">Gallery</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
           </a>
           <a href="/web/contact/index.html" data-nav="contact" onclick="closeSideMenu()" class="sidebar-nav-link">
-            <span class="sidebar-nav-icon"><i class="fa-solid fa-envelope"></i></span><span>Contact</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+            <span class="sidebar-nav-icon"><i class="fa-solid fa-envelope"></i></span><span data-en="Contact" data-ar="اتصل بنا">Contact</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+          </a>
+          <a href="/web/meet-team/meet-team.html" data-nav="team" onclick="closeSideMenu()" class="sidebar-nav-link">
+            <span class="sidebar-nav-icon"><i class="fa-solid fa-users"></i></span><span data-en="OUR TEAM" data-ar="فريقنا">OUR TEAM</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
           </a>
         </div>
       </div>
@@ -241,15 +258,15 @@
       <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
 
       <div class="mb-6">
-        <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1">Contact</p>
+        <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1" data-en="Contact" data-ar="اتصل بنا">Contact</p>
         <div class="space-y-2">
           <a href="tel:+966581818482" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors">
             <span class="w-9 h-9 rounded-lg bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center"><i class="fa-solid fa-phone text-xs"></i></span>
-            <span><span class="block text-[9px] uppercase tracking-wider text-[#3f4944]">Phone</span><span class="block text-xs font-semibold text-[#004232] mt-0.5">+966 58 181 8482</span></span>
+            <span><span class="block text-[9px] uppercase tracking-wider text-[#3f4944]" data-en="Phone" data-ar="الهاتف">Phone</span><span class="block text-xs font-semibold text-[#004232] mt-0.5">+966 58 181 8482</span></span>
           </a>
           <a href="mailto:info@athaqdates.com" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors">
             <span class="w-9 h-9 rounded-lg bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center"><i class="fa-solid fa-envelope text-xs"></i></span>
-            <span class="min-w-0"><span class="block text-[9px] uppercase tracking-wider text-[#3f4944]">Email</span><span class="block text-xs font-semibold text-[#004232] mt-0.5 truncate">info@athaqdates.com</span></span>
+            <span class="min-w-0"><span class="block text-[9px] uppercase tracking-wider text-[#3f4944]" data-en="Email" data-ar="البريد الإلكتروني">Email</span><span class="block text-xs font-semibold text-[#004232] mt-0.5 truncate">info@athaqdates.com</span></span>
           </a>
         </div>
       </div>
@@ -258,8 +275,8 @@
     <div class="border-t border-[#bec9c3]/30 px-5 py-4 bg-white/45">
       <div class="flex items-center justify-between gap-4">
         <div>
-          <p class="text-[9px] uppercase tracking-[0.16em] text-[#3f4944]">ATHAQ DATES INDUSTRY</p>
-          <p class="text-[9px] text-[#3f4944]/70 mt-1">Premium Saudi Dates</p>
+          <p class="text-[9px] uppercase tracking-[0.16em] text-[#3f4944]" data-en="ATHAQ DATES INDUSTRY" data-ar="صناعة تمور أثاق">ATHAQ DATES INDUSTRY</p>
+          <p class="text-[9px] text-[#3f4944]/70 mt-1" data-en="Premium Saudi Dates" data-ar="تمور سعودية فاخرة">Premium Saudi Dates</p>
         </div>
         <div class="text-[#004232]/70 text-[10px] font-semibold whitespace-nowrap">© 2023–2026</div>
       </div>
@@ -277,16 +294,16 @@
 
       <div class="relative z-10 w-full px-6 md:px-12 lg:px-24 xl:px-32 py-20">
         <div class="max-w-[760px]">
-          <div class="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-lg text-white text-xs font-bold tracking-wider mb-6">
+          <div class="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-lg text-white text-xs font-bold tracking-wider mb-6" data-en="ESTABLISHED 2023" data-ar="تأسست عام 2023">
             ESTABLISHED 2023
           </div>
 
           <h1 class="text-white uppercase mb-6" style="font-family:Georgia,serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;line-height:1.1;letter-spacing:.05em;">
-            ATHAQ DATES<br>
-            <span class="text-xl md:text-2xl lg:text-3xl font-normal tracking-normal lowercase opacity-90">INDUSTRIAL FACTORY.</span>
+            <span data-en="ATHAQ DATES" data-ar="تمور أثاق">ATHAQ DATES</span><br>
+            <span class="text-xl md:text-2xl lg:text-3xl font-normal tracking-normal lowercase opacity-90" data-en="INDUSTRIAL FACTORY." data-ar="المصنع الصناعي.">INDUSTRIAL FACTORY.</span>
           </h1>
 
-          <p class="text-lg md:text-xl text-white/95 max-w-2xl leading-relaxed">
+          <p class="text-lg md:text-xl text-white/95 max-w-2xl leading-relaxed" data-en="ATHAQ Dates Industry brings the heritage of Saudi dates together with disciplined modern manufacturing, careful processing, and a commitment to consistent quality." data-ar="تجمع صناعة تمور أثاق بين تراث التمور السعودية والتصنيع الحديث والانضباط، والمعالجة الدقيقة، والالتزام بالجودة الثابتة.">
             ATHAQ Dates Industry brings the heritage of Saudi dates together with disciplined modern manufacturing, careful processing, and a commitment to consistent quality.
           </p>
         </div>
@@ -302,28 +319,28 @@
           </div>
           <div class="absolute top-6 left-6 bg-white p-5 rounded-2xl shadow-xl">
             <span class="material-symbols-outlined text-[#004232] text-[38px]">verified</span>
-            <p class="font-bold text-[#004232] leading-tight mt-1">Trusted<br><span class="text-[#3f4944] font-normal text-sm">Saudi Quality</span></p>
+            <p class="font-bold text-[#004232] leading-tight mt-1"><span data-en="Trusted" data-ar="موثوقة">Trusted</span><br><span class="text-[#3f4944] font-normal text-sm" data-en="Saudi Quality" data-ar="الجودة السعودية">Saudi Quality</span></p>
           </div>
         </div>
 
         <div class="space-y-6">
           <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#c0edd4]/50 text-[#446d59] rounded-full">
             <span class="material-symbols-outlined text-[20px]">workspace_premium</span>
-            <span class="font-semibold text-xs uppercase tracking-wider">Our Story</span>
+            <span class="font-semibold text-xs uppercase tracking-wider" data-en="Our Story" data-ar="قصتنا">Our Story</span>
           </div>
 
-          <h2 class="text-[#004232] font-bold text-4xl md:text-5xl leading-tight">A Legacy of Quality</h2>
+          <h2 class="text-[#004232] font-bold text-4xl md:text-5xl leading-tight" data-en="A Legacy of Quality" data-ar="إرث من الجودة">A Legacy of Quality</h2>
 
-          <p class="text-[#3f4944] text-lg leading-relaxed">
+          <p class="text-[#3f4944] text-lg leading-relaxed" data-en="At ATHAQ, we do more than process dates. We respect a product deeply connected to Saudi culture and agriculture while building the systems required for modern, reliable production." data-ar="في أثاق، نحن نقوم بأكثر من مجرد معالجة التمور. نحن نحترم منتجًا يرتبط ارتباطًا وثيقًا بالثقافة والزراعة السعودية بينما نبني الأنظمة اللازمة لإنتاج حديث وموثوق.">
             At ATHAQ, we do more than process dates. We respect a product deeply connected to Saudi culture and agriculture while building the systems required for modern, reliable production.
           </p>
 
-          <p class="text-[#3f4944] text-lg leading-relaxed">
+          <p class="text-[#3f4944] text-lg leading-relaxed" data-en="From careful handling and sorting to packaging and delivery, our approach is built around consistency, cleanliness, presentation, and customer trust." data-ar="من المعالجة والفرز الدقيق إلى التعبئة والتسليم، تم بناء نهجنا حول الاتساق والنظافة والعرض وثقة العملاء.">
             From careful handling and sorting to packaging and delivery, our approach is built around consistency, cleanliness, presentation, and customer trust.
           </p>
 
           <a href="/web/product/index.html" class="inline-flex items-center gap-2 font-semibold text-[#004232] border-b border-[#004232]/40 pb-1 hover:border-[#004232] transition-all">
-            Explore our products
+            <span data-en="Explore our products" data-ar="استكشف منتجاتنا">Explore our products</span>
             <span class="material-symbols-outlined text-[18px]">chevron_right</span>
           </a>
         </div>
@@ -334,27 +351,27 @@
     <section class="bg-[#efeee9] py-20 md:py-[100px] px-4 md:px-16">
       <div class="max-w-[1280px] mx-auto">
         <div class="max-w-2xl mb-12">
-          <p class="text-xs font-bold uppercase tracking-[.18em] text-[#3f4944]/70 mb-3">What guides us</p>
-          <h2 class="text-[#004232] font-bold text-4xl md:text-5xl">Our Core Values</h2>
+          <p class="text-xs font-bold uppercase tracking-[.18em] text-[#3f4944]/70 mb-3" data-en="What guides us" data-ar="ما يوجهنا">What guides us</p>
+          <h2 class="text-[#004232] font-bold text-4xl md:text-5xl" data-en="Our Core Values" data-ar="قيمنا الجوهرية">Our Core Values</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <article class="bg-white rounded-2xl p-7 shadow-sm border border-[#bec9c3]/20">
             <span class="material-symbols-outlined text-[#004232] text-[38px]">verified</span>
-            <h3 class="text-[#004232] text-xl font-bold mt-5 mb-3">Consistent Quality</h3>
-            <p class="text-[#3f4944] leading-relaxed">Every stage is approached with care so our customers can expect dependable quality and presentation.</p>
+            <h3 class="text-[#004232] text-xl font-bold mt-5 mb-3" data-en="Consistent Quality" data-ar="جودة ثابتة">Consistent Quality</h3>
+            <p class="text-[#3f4944] leading-relaxed" data-en="Every stage is approached with care so our customers can expect dependable quality and presentation." data-ar="نتناول كل مرحلة بعناية لكي يتوقع عملاؤنا جودة وعرضًا يمكن الاعتماد عليهما.">Every stage is approached with care so our customers can expect dependable quality and presentation.</p>
           </article>
 
           <article class="bg-white rounded-2xl p-7 shadow-sm border border-[#bec9c3]/20">
             <span class="material-symbols-outlined text-[#004232] text-[38px]">factory</span>
-            <h3 class="text-[#004232] text-xl font-bold mt-5 mb-3">Modern Manufacturing</h3>
-            <p class="text-[#3f4944] leading-relaxed">We combine practical industrial processes with the character and heritage of Saudi dates.</p>
+            <h3 class="text-[#004232] text-xl font-bold mt-5 mb-3" data-en="Modern Manufacturing" data-ar="تصنيع حديث">Modern Manufacturing</h3>
+            <p class="text-[#3f4944] leading-relaxed" data-en="We combine practical industrial processes with the character and heritage of Saudi dates." data-ar="نجمع بين العمليات الصناعية العملية وطابع وتراث التمور السعودية.">We combine practical industrial processes with the character and heritage of Saudi dates.</p>
           </article>
 
           <article class="bg-white rounded-2xl p-7 shadow-sm border border-[#bec9c3]/20">
             <span class="material-symbols-outlined text-[#004232] text-[38px]">handshake</span>
-            <h3 class="text-[#004232] text-xl font-bold mt-5 mb-3">Trusted Partnerships</h3>
-            <p class="text-[#3f4944] leading-relaxed">We build long-term relationships through clear communication, reliable service, and professional standards.</p>
+            <h3 class="text-[#004232] text-xl font-bold mt-5 mb-3" data-en="Trusted Partnerships" data-ar="شراكات موثوقة">Trusted Partnerships</h3>
+            <p class="text-[#3f4944] leading-relaxed" data-en="We build long-term relationships through clear communication, reliable service, and professional standards." data-ar="نبني علاقات طويلة الأمد من خلال التواصل الواضح والخدمة الموثوقة والمعايير المهنية.">We build long-term relationships through clear communication, reliable service, and professional standards.</p>
           </article>
         </div>
       </div>
@@ -363,12 +380,12 @@
     <!-- CTA -->
     <section class="py-20 md:py-[100px] px-4 md:px-16">
       <div class="max-w-[1280px] mx-auto bg-[#004232] rounded-3xl px-7 md:px-14 py-12 md:py-16 text-center">
-        <p class="text-[#a6f2d4] text-xs font-bold uppercase tracking-[.18em] mb-4">Work with ATHAQ</p>
-        <h2 class="text-white text-3xl md:text-5xl font-bold mb-5">Premium Dates. Modern Manufacturing. Trusted Quality.</h2>
-        <p class="text-white/80 max-w-2xl mx-auto leading-relaxed mb-8">Discover our products or contact our team to discuss your requirements.</p>
+        <p class="text-[#a6f2d4] text-xs font-bold uppercase tracking-[.18em] mb-4" data-en="Work with ATHAQ" data-ar="اعمل مع أثاق">Work with ATHAQ</p>
+        <h2 class="text-white text-3xl md:text-5xl font-bold mb-5" data-en="Premium Dates. Modern Manufacturing. Trusted Quality." data-ar="تمور فاخرة. تصنيع حديث. جودة موثوقة.">Premium Dates. Modern Manufacturing. Trusted Quality.</h2>
+        <p class="text-white/80 max-w-2xl mx-auto leading-relaxed mb-8" data-en="Discover our products or contact our team to discuss your requirements." data-ar="اكتشف منتجاتنا أو تواصل مع فريقنا لمناقشة متطلباتك.">Discover our products or contact our team to discuss your requirements.</p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <a href="/web/product/index.html" class="inline-flex items-center justify-center bg-[#a6f2d4] text-[#002117] font-semibold px-8 py-4 rounded-xl hover:bg-white transition-colors">Explore Products</a>
-          <a href="/web/contact/index.html" class="inline-flex items-center justify-center bg-white/10 border border-white/25 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/20 transition-colors">Contact Us</a>
+          <a href="/web/product/index.html" class="inline-flex items-center justify-center bg-[#a6f2d4] text-[#002117] font-semibold px-8 py-4 rounded-xl hover:bg-white transition-colors" data-en="Explore Products" data-ar="استكشف المنتجات">Explore Products</a>
+          <a href="/web/contact/index.html" class="inline-flex items-center justify-center bg-white/10 border border-white/25 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/20 transition-colors" data-en="Contact Us" data-ar="اتصل بنا">Contact Us</a>
         </div>
       </div>
     </section>
@@ -378,39 +395,39 @@
   <footer class="bg-[#e3e3de] border-t border-[#735c00]/20 pt-16 pb-12 px-4 md:px-16">
     <div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-16">
       <div class="space-y-4">
-        <div class="text-lg font-bold text-[#004232]">ATHAQ DATES INDUSTRY</div>
-        <p class="text-[#3f4944]/80 text-sm">Pioneering the future of Saudi agriculture through premium industrial processing.</p>
+        <div class="text-lg font-bold text-[#004232]" data-en="ATHAQ DATES INDUSTRY" data-ar="صناعة تمور أثاق">ATHAQ DATES INDUSTRY</div>
+        <p class="text-[#3f4944]/80 text-sm" data-en="Pioneering the future of Saudi agriculture through premium industrial processing." data-ar="ريادة مستقبل الزراعة السعودية من خلال المعالجة الصناعية الفاخرة.">Pioneering the future of Saudi agriculture through premium industrial processing.</p>
       </div>
 
       <div>
-        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider">Quick Links</h4>
+        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider" data-en="Quick Links" data-ar="روابط سريعة">Quick Links</h4>
         <ul class="space-y-3 text-sm">
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/about/index.html">Our Process</a></li>
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/product/index.html">Products</a></li>
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/gallery/index.html">Gallery</a></li>
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/contact/index.html">Contact</a></li>
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/about/index.html" data-en="Our Process" data-ar="عملياتنا">Our Process</a></li>
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/product/index.html" data-en="Products" data-ar="المنتجات">Products</a></li>
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/gallery/index.html" data-en="Gallery" data-ar="المعرض">Gallery</a></li>
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/contact/index.html" data-en="Contact" data-ar="اتصل بنا">Contact</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider">Legal</h4>
+        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider" data-en="Legal" data-ar="قانوني">Legal</h4>
         <ul class="space-y-3 text-sm">
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="#">Privacy Policy</a></li>
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="#">Terms of Service</a></li>
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="#" data-en="Privacy Policy" data-ar="سياسة الخصوصية">Privacy Policy</a></li>
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="#" data-en="Terms of Service" data-ar="شروط الخدمة">Terms of Service</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider">Contact</h4>
+        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider" data-en="Contact" data-ar="اتصل بنا">Contact</h4>
         <ul class="space-y-3 text-[#3f4944] text-sm">
-          <li>King Salman Road, Al Bukayriyah</li>
+          <li data-en="King Salman Road, Al Bukayriyah" data-ar="طريق الملك سلمان، البكيرية">King Salman Road, Al Bukayriyah</li>
           <li><a href="tel:+966581818482">+966 58 181 8482</a></li>
           <li><a href="mailto:info@athaqdates.com">info@athaqdates.com</a></li>
         </ul>
       </div>
     </div>
 
-    <div class="max-w-[1280px] mx-auto text-center border-t border-[#6f7974]/20 pt-6 text-xs text-[#3f4944]">
+    <div class="max-w-[1280px] mx-auto text-center border-t border-[#6f7974]/20 pt-6 text-xs text-[#3f4944]" data-en="&copy; 2023–2026 ATHAQ Dates Industry. All rights reserved." data-ar="&copy; 2023–2026 صناعة تمور أثاق. جميع الحقوق محفوظة.">
       &copy; 2023–2026 ATHAQ Dates Industry. All rights reserved.
     </div>
   </footer>
@@ -458,8 +475,14 @@ function updateAccountUI() {
 
     if (!activeUser || typeof activeUser !== "object") {
 
-        accountName.textContent = "Login";
-        accountStatus.textContent = "Sign In";
+        accountName.dataset.en = "Account";
+        accountName.dataset.ar = "الحساب";
+        accountStatus.dataset.en = "Sign in";
+        accountStatus.dataset.ar = "تسجيل الدخول";
+
+        const isArabic = document.documentElement.lang === "ar";
+        accountName.textContent = isArabic ? "الحساب" : "Account";
+        accountStatus.textContent = isArabic ? "تسجيل الدخول" : "Sign in";
         accountLink.href = "/login/index.html";
 
         return;
@@ -487,7 +510,10 @@ function updateAccountUI() {
     ) {
 
         accountName.textContent = userName;
-        accountStatus.textContent = "Admin Panel";
+        accountStatus.dataset.en = "Admin Panel";
+        accountStatus.dataset.ar = "لوحة التحكم";
+        const isArabic = document.documentElement.lang === "ar";
+        accountStatus.textContent = isArabic ? "لوحة التحكم" : "Admin Panel";
         accountLink.href = "/admin/index.html";
 
         return;
@@ -499,58 +525,27 @@ function updateAccountUI() {
     ===================================================== */
 
     accountName.textContent = userName;
-    accountStatus.textContent = "My Profile";
+    accountStatus.dataset.en = "My Profile";
+    accountStatus.dataset.ar = "ملفي الشخصي";
+    const isArabic = document.documentElement.lang === "ar";
+    accountStatus.textContent = isArabic ? "ملفي الشخصي" : "My Profile";
     accountLink.href = "/customer-profile/profile.html";
 }
 
 
 /* =========================================================
    LOGOUT
-   IMPORTANT:
-   Remove every SESSION key.
-   DO NOT remove athaqUsers.
 ========================================================= */
 
 function logout() {
-
-    /* Active login session */
     localStorage.removeItem("loggedInUser");
     localStorage.removeItem("user");
     localStorage.removeItem("userRole");
 
-    /* Session storage */
     sessionStorage.removeItem("loggedInUser");
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("userRole");
 
-    /*
-     * Immediately reset navbar/profile UI
-     * before redirecting.
-     */
-    const accountName =
-        document.getElementById("accountName");
-
-    const accountStatus =
-        document.getElementById("accountStatus");
-
-    const accountLink =
-        document.getElementById("accountLink");
-
-    if (accountName) {
-        accountName.textContent = "Login";
-    }
-
-    if (accountStatus) {
-        accountStatus.textContent = "Sign In";
-    }
-
-    if (accountLink) {
-        accountLink.href = "/login/index.html";
-    }
-
-    /*
-     * Redirect to login
-     */
     window.location.replace("/login/index.html");
 }
 
@@ -560,22 +555,12 @@ function logout() {
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
-
     updateAccountUI();
-
 });
 
 
-/* =========================================================
-   CHECK AGAIN WHEN USER RETURNS TO PAGE
-   This prevents old profile information from remaining
-   after logout / browser back navigation.
-========================================================= */
-
 window.addEventListener("pageshow", function () {
-
     updateAccountUI();
-
 });
 
 
@@ -671,59 +656,31 @@ const sidebarOverlay =
 
 
 function openSideMenu() {
-
     sideMenu.classList.add("active");
-
     sidebarOverlay.classList.add("active");
-
     document.body.classList.add("menu-open");
-
-    menuBtn.setAttribute(
-        "aria-expanded",
-        "true"
-    );
-
-    sideMenu.setAttribute(
-        "aria-hidden",
-        "false"
-    );
+    menuBtn.setAttribute("aria-expanded", "true");
+    sideMenu.setAttribute("aria-hidden", "false");
 }
 
 
 function closeSideMenu() {
-
     sideMenu.classList.remove("active");
-
     sidebarOverlay.classList.remove("active");
-
     document.body.classList.remove("menu-open");
-
-    menuBtn.setAttribute(
-        "aria-expanded",
-        "false"
-    );
-
-    sideMenu.setAttribute(
-        "aria-hidden",
-        "true"
-    );
+    menuBtn.setAttribute("aria-expanded", "false");
+    sideMenu.setAttribute("aria-hidden", "true");
 }
 
 
 menuBtn.addEventListener(
     "click",
     function () {
-
-        if (
-            sideMenu.classList.contains("active")
-        ) {
+        if (sideMenu.classList.contains("active")) {
             closeSideMenu();
-        }
-
-        else {
+        } else {
             openSideMenu();
         }
-
     }
 );
 
@@ -743,35 +700,35 @@ sidebarOverlay.addEventListener(
 document.addEventListener(
     "keydown",
     function (e) {
-
         if (e.key === "Escape") {
             closeSideMenu();
         }
-
     }
 );
 
 
 /* =========================================================
-   LANGUAGE
+   LANGUAGE (UPDATED FOR FULL PAGE TRANSLATION)
 ========================================================= */
 
 function toggleLanguage() {
+    const label = document.getElementById("languageLabel");
+    const isEnglish = label.textContent.trim() === "English";
+    
+    const targetLang = isEnglish ? "ar" : "en";
+    const targetDir = isEnglish ? "rtl" : "ltr";
 
-    const label =
-        document.getElementById("languageLabel");
+    label.textContent = isEnglish ? "العربية" : "English";
+    document.documentElement.lang = targetLang;
+    document.documentElement.dir = targetDir;
 
-    const isEnglish =
-        label.textContent.trim() === "English";
-
-    label.textContent =
-        isEnglish ? "العربية" : "English";
-
-    document.documentElement.lang =
-        isEnglish ? "ar" : "en";
-
-    document.documentElement.dir =
-        isEnglish ? "rtl" : "ltr";
+    // Translate all elements with data-en and data-ar attributes
+    document.querySelectorAll("[data-en][data-ar]").forEach(function(el) {
+        const text = el.getAttribute(`data-${targetLang}`);
+        if (text) {
+            el.textContent = text;
+        }
+    });
 }
 
 
@@ -788,32 +745,112 @@ async function shareWebsite() {
     };
 
     try {
-
         if (navigator.share) {
-
-            await navigator.share(
-                shareData
-            );
-
-        }
-
-        else if (navigator.clipboard) {
-
+            await navigator.share(shareData);
+        } else if (navigator.clipboard) {
             await navigator.clipboard.writeText(
                 window.location.href
             );
-
             alert("Website link copied.");
-
         }
-
-    }
-
-    catch (error) {
-
+    } catch (error) {
         /* User cancelled sharing */
-
     }
+}
+</script>
+<script>
+/* =========================================================
+   LANGUAGE
+   FIXED — NO SIDEBAR JUMP + MENU BUTTON WORKS
+========================================================= */
+
+function toggleLanguage() {
+
+    const label = document.getElementById("languageLabel");
+
+    if (!label) {
+        return;
+    }
+
+    /* Current language */
+    const isEnglish =
+        label.textContent.trim() === "English";
+
+    /* Target language */
+    const targetLang =
+        isEnglish ? "ar" : "en";
+
+
+    /*
+       Save current scroll position.
+       This prevents the page from jumping when
+       the language changes.
+    */
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+
+
+    /*
+       Change language label
+    */
+    label.textContent =
+        isEnglish ? "العربية" : "English";
+
+
+    /*
+       IMPORTANT:
+       Only change LANG.
+
+       DO NOT change:
+       document.documentElement.dir
+
+       This keeps the complete layout LTR,
+       so the sidebar stays on the RIGHT.
+    */
+    document.documentElement.lang =
+        targetLang;
+
+
+    /*
+       Translate all elements having:
+       data-en="..."
+       data-ar="..."
+    */
+    document
+        .querySelectorAll("[data-en][data-ar]")
+        .forEach(function (el) {
+
+            const text =
+                el.getAttribute("data-" + targetLang);
+
+            if (text !== null) {
+                el.textContent = text;
+            }
+
+        });
+
+
+    /*
+       Update Account information after translation.
+    */
+    if (typeof updateAccountUI === "function") {
+        updateAccountUI();
+    }
+
+
+    /*
+       Restore scroll position after browser
+       finishes updating the text.
+    */
+    requestAnimationFrame(function () {
+
+        window.scrollTo(
+            scrollX,
+            scrollY
+        );
+
+    });
+
 }
 </script>
 </body>

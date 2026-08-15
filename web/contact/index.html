@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta name="description" content="ATHAQ Dates Industry — premium Saudi dates, modern processing, trusted quality."/>
-  <title>ATHAQ | Contact</title>
+  <title data-i18n="pageTitle">ATHAQ | Contact</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -201,70 +201,42 @@
 
 <body class="font-body">
 
-<!-- =========================================================
-     PREMIUM HEADER / NAVBAR
-========================================================= -->
+<!-- HEADER -->
+<nav class="fixed top-0 left-0 w-full z-[100] bg-white/85 backdrop-blur-xl border-b border-[#bec9c3]/20" style="height:80px;">
 
-<!-- ================= PREMIUM NAVBAR ================= -->
-<nav class="fixed top-0 left-0 w-full z-[100] bg-white/85 backdrop-blur-xl border-b border-[#bec9c3]/20"
-     style="height:80px;">
+  <div class="w-full h-20 px-5 sm:px-6 md:px-10 lg:px-16 flex items-center justify-between">
 
-    <div class="w-full h-20 px-5 sm:px-6 md:px-10 lg:px-16 flex items-center justify-between">
-
-        <!-- ================= LEFT : LOGO ================= -->
-        <div class="flex items-center flex-shrink-0">
-
-            <a href="/index.html"
-               class="flex items-center gap-3 group"
-               aria-label="ATHAQ Home">
-
-          <!-- COMPLETE ATHAQ LOGO -->
+    <a href="/index.html" class="flex items-center group" aria-label="ATHAQ Home">
+      
+<!-- COMPLETE ATHAQ LOGO -->
 <div class="w-[200px] h-[70px] flex items-center justify-center overflow-visible group-hover:scale-[1.03] transition-transform duration-300">
-
   <img 
-    src="/logo.png"
+    src="/LOGO.PNG"
     alt="ATHAQ Industrial Factory"
     class="w-full h-full object-contain"
   >
-
 </div>
 
 </a>
 
-        </div>
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="toggleLanguage()" class="sidebar-action text-left !min-h-[46px] !py-1 !px-2.5">
+            <span class="sidebar-action-icon !w-8 !h-8 !min-w-[32px] !rounded-lg text-xs"><i class="fa-solid fa-globe"></i></span>
+            <span class="min-w-0 pr-1 rtl:pr-0 rtl:pl-1">
+                <span class="block text-[11px] font-bold text-[#004232]" data-en="Language" data-ar="اللغة">Language</span>
+                <span id="languageLabel" class="block text-[9px] text-[#3f4944] mt-0.5" data-en="English" data-ar="العربية">English</span>
+            </span>
+        </button>
 
-
-
-
-
-        <!-- ================= RIGHT : MENU BUTTON ================= -->
-        <div class="flex items-center justify-end gap-2 flex-shrink-0">
-
-            <button id="menu-btn"
-                    type="button"
-                    class="w-10 h-10 rounded-full
-                           border border-[#bec9c3]/45
-                           bg-white/70 backdrop-blur-sm
-                           flex items-center justify-center
-                           text-[#004232]
-                           hover:bg-white
-                           hover:border-[#004232]/20
-                           hover:shadow-sm
-                           transition-all duration-200
-                           focus:outline-none"
-                    aria-label="Open Menu"
-                    aria-controls="side-menu"
-                    aria-expanded="false">
-
-                <i class="fa-solid fa-bars text-sm"></i>
-
-            </button>
-
-        </div>
-
+        <button id="menu-btn" type="button"
+          class="w-10 h-10 rounded-full border border-[#bec9c3]/45 bg-white/70 backdrop-blur-sm flex items-center justify-center text-[#004232] hover:bg-white hover:border-[#004232]/20 hover:shadow-sm transition-all focus:outline-none"
+          aria-label="Open Menu" aria-controls="side-menu" aria-expanded="false">
+          <i class="fa-solid fa-bars text-sm"></i>
+        </button> 
+      </div>
+      
     </div>
-
-</nav>
+  </nav>
 
 
 <!-- =========================================================
@@ -284,55 +256,44 @@
 <aside id="side-menu"
        aria-hidden="true"
        aria-label="Main Navigation"
-class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
-       bg-[#faf9f4] z-[200]
-       shadow-2xl
-       translate-x-full
-       transition-transform duration-300 ease-out
-       flex flex-col"
+       class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
+              bg-[#faf9f4] z-[200]
+              shadow-2xl
+              translate-x-full
+              transition-transform duration-300 ease-out
+              flex flex-col">
 
-
-     ================ SIDEBAR TOP ================= -->
-
+    <!-- ================= SIDEBAR TOP ================= -->
     <div class="px-5 pt-5 pb-4">
 
         <div class="flex items-center justify-between">
 
             <!-- LOGO -->
-
             <a href="/index.html"
                onclick="closeSideMenu()"
                class="flex items-center gap-3">
 
               <img 
-  src="/logo (2).png"
-  alt="ATHAQ"
-  class="w-10 h-10 object-contain scale-125"
->
+                src="/logo (2).png"
+                alt="ATHAQ"
+                class="w-10 h-10 object-contain scale-125"
+              >
 
                 <div>
-
                     <div class="text-[#004232] font-bold
                                 tracking-[0.16em] text-sm">
-
                         ATHAQ DATES
-
                     </div>
 
                     <div class="text-[9px] text-[#3f4944]
-                                uppercase tracking-[0.22em] mt-1">
-
+                                uppercase tracking-[0.22em] mt-1"
+                         data-i18n="sidebarSubtitle">
                         Industrial Factory
-
                     </div>
-
                 </div>
-
             </a>
 
-
             <!-- CLOSE BUTTON -->
-
             <button id="close-menu"
                     type="button"
                     aria-label="Close Menu"
@@ -352,65 +313,25 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
     </div>
 
-
     <div class="h-px bg-[#bec9c3]/30 mx-5"></div>
 
-
     <!-- ================= SIDEBAR CONTENT ================= -->
-
     <div class="flex-1 overflow-y-auto px-5 py-5">
 
-
         <!-- ================= QUICK ACCESS ================= -->
-
         <div class="mb-7">
 
             <p class="text-[10px] font-bold uppercase
                       tracking-[0.18em]
-                      text-[#3f4944]/70 mb-3 px-1">
-
+                      text-[#3f4944]/70 mb-3 px-1"
+               data-i18n="quickAccessTitle">
                 Quick Access
-
             </p>
-
 
             <div class="grid grid-cols-2 gap-3">
 
-
-         
-
-
-                <!-- LANGUAGE -->
-
-                <button type="button"
-                        onclick="toggleLanguage()"
-                        class="sidebar-action text-left">
-
-                    <span class="sidebar-action-icon">
-                        <i class="fa-solid fa-globe"></i>
-                    </span>
-
-                    <span class="min-w-0">
-
-                        <span class="block text-xs font-bold text-[#004232]">
-                            Language
-                        </span>
-
-                        <span id="languageLabel"
-                              class="block text-[10px]
-                                     text-[#3f4944] mt-1">
-
-                            English
-
-                        </span>
-
-                    </span>
-
-                </button>
-
-
+     
                 <!-- WISHLIST -->
-
                 <a href="/web/product/wishlist.html"
                    onclick="closeSideMenu()"
                    class="sidebar-action">
@@ -420,32 +341,25 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                     </span>
 
                     <span class="min-w-0 flex-1">
-
-                        <span class="block text-xs font-bold text-[#004232]">
+                        <span class="block text-xs font-bold text-[#004232]" data-i18n="wishlistTitle">
                             Wishlist
                         </span>
 
                         <span class="block text-[10px]
-                                     text-[#3f4944] mt-1">
-
+                                     text-[#3f4944] mt-1"
+                              data-i18n="wishlistSubtitle">
                             Saved items
-
                         </span>
-
                     </span>
 
                     <span id="sidebarWishlistCount"
                           class="counter-badge">
-
                         0
-
                     </span>
 
                 </a>
 
-
                 <!-- CART -->
-
                 <a href="/admin/checkout.html"
                    onclick="closeSideMenu()"
                    class="sidebar-action">
@@ -455,32 +369,25 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                     </span>
 
                     <span class="min-w-0 flex-1">
-
-                        <span class="block text-xs font-bold text-[#004232]">
+                        <span class="block text-xs font-bold text-[#004232]" data-i18n="cartTitle">
                             Cart
                         </span>
 
                         <span class="block text-[10px]
-                                     text-[#3f4944] mt-1">
-
+                                     text-[#3f4944] mt-1"
+                              data-i18n="cartSubtitle">
                             Your items
-
                         </span>
-
                     </span>
 
                     <span id="sidebarCartCount"
                           class="counter-badge">
-
                         0
-
                     </span>
 
                 </a>
 
-
                 <!-- SHARE -->
-
                 <button type="button"
                         onclick="shareWebsite()"
                         class="sidebar-action text-left">
@@ -490,18 +397,15 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                     </span>
 
                     <span class="min-w-0">
-
-                        <span class="block text-xs font-bold text-[#004232]">
+                        <span class="block text-xs font-bold text-[#004232]" data-i18n="shareTitle">
                             Share
                         </span>
 
                         <span class="block text-[10px]
-                                     text-[#3f4944] mt-1">
-
+                                     text-[#3f4944] mt-1"
+                              data-i18n="shareSubtitle">
                             Share website
-
                         </span>
-
                     </span>
 
                 </button>
@@ -510,30 +414,22 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
         </div>
 
-
         <!-- ================= DIVIDER ================= -->
-
         <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
 
-
         <!-- ================= MAIN NAVIGATION ================= -->
-
         <div class="mb-7">
 
             <p class="text-[10px] font-bold uppercase
                       tracking-[0.18em]
-                      text-[#3f4944]/70 mb-3 px-1">
-
+                      text-[#3f4944]/70 mb-3 px-1"
+               data-i18n="navigationTitle">
                 Navigation
-
             </p>
-
 
             <div class="space-y-2">
 
-
                 <!-- HOME -->
-
                 <a href="/index.html"
                    onclick="closeSideMenu()"
                    class="sidebar-nav-link">
@@ -542,15 +438,13 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                         <i class="fa-solid fa-house"></i>
                     </span>
 
-                    <span>Home</span>
+                    <span data-i18n="navHome">Home</span>
 
                     <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
 
                 </a>
 
-
                 <!-- ABOUT -->
-
                 <a href="/web/about/index.html"
                    onclick="closeSideMenu()"
                    class="sidebar-nav-link">
@@ -559,15 +453,13 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                         <i class="fa-solid fa-circle-info"></i>
                     </span>
 
-                    <span>About</span>
+                    <span data-i18n="navAbout">About</span>
 
                     <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
 
                 </a>
 
-
                 <!-- PRODUCTS -->
-
                 <a href="/web/product/index.html"
                    onclick="closeSideMenu()"
                    class="sidebar-nav-link">
@@ -576,15 +468,13 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                         <i class="fa-solid fa-box-open"></i>
                     </span>
 
-                    <span>Products</span>
+                    <span data-i18n="navProducts">Products</span>
 
                     <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
 
                 </a>
 
-
                 <!-- GALLERY -->
-
                 <a href="/web/gallery/index.html"
                    onclick="closeSideMenu()"
                    class="sidebar-nav-link">
@@ -593,15 +483,13 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                         <i class="fa-solid fa-images"></i>
                     </span>
 
-                    <span>Gallery</span>
+                    <span data-i18n="navGallery">Gallery</span>
 
                     <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
 
                 </a>
 
-
                 <!-- CONTACT -->
-
                 <a href="/web/contact/index.html"
                    onclick="closeSideMenu()"
                    class="sidebar-nav-link active">
@@ -610,37 +498,38 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                         <i class="fa-solid fa-envelope"></i>
                     </span>
 
-                    <span>Contact</span>
+                    <span data-i18n="navContact">Contact</span>
 
                     <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
 
+                </a>
+
+                <!-- OUR TEAM -->
+                <a href="/web/meet-team/meet-team.html" data-nav="team" onclick="closeSideMenu()" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon"><i class="fa-solid fa-users"></i></span>
+                    <span data-i18n="navTeam">OUR TEAM</span>
+                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
                 </a>
 
             </div>
 
         </div>
 
-
         <!-- ================= CONTACT ================= -->
-
         <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
 
         <div class="mb-6">
 
             <p class="text-[10px] font-bold uppercase
                       tracking-[0.18em]
-                      text-[#3f4944]/70 mb-3 px-1">
-
+                      text-[#3f4944]/70 mb-3 px-1"
+               data-i18n="sidebarContactHeader">
                 Contact
-
             </p>
-
 
             <div class="space-y-2">
 
-
                 <!-- PHONE -->
-
                 <a href="tel:+966581818482"
                    class="flex items-center gap-3 px-3 py-3
                           rounded-xl hover:bg-white
@@ -650,35 +539,26 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                                  bg-[#c0edd4]/60
                                  text-[#004232]
                                  flex items-center justify-center">
-
                         <i class="fa-solid fa-phone text-xs"></i>
-
                     </span>
 
                     <span>
-
                         <span class="block text-[9px]
                                      uppercase tracking-wider
-                                     text-[#3f4944]">
-
+                                     text-[#3f4944]"
+                              data-i18n="phoneLabel">
                             Phone
-
                         </span>
 
                         <span class="block text-xs font-semibold
                                      text-[#004232] mt-0.5">
-
                             +966 58 181 8482
-
                         </span>
-
                     </span>
 
                 </a>
 
-
                 <!-- EMAIL -->
-
                 <a href="mailto:info@athaqdates.com"
                    class="flex items-center gap-3 px-3 py-3
                           rounded-xl hover:bg-white
@@ -688,28 +568,21 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                                  bg-[#c0edd4]/60
                                  text-[#004232]
                                  flex items-center justify-center">
-
                         <i class="fa-solid fa-envelope text-xs"></i>
-
                     </span>
 
                     <span class="min-w-0">
-
                         <span class="block text-[9px]
                                      uppercase tracking-wider
-                                     text-[#3f4944]">
-
+                                     text-[#3f4944]"
+                              data-i18n="emailLabel">
                             Email
-
                         </span>
 
                         <span class="block text-xs font-semibold
                                      text-[#004232] mt-0.5 truncate">
-
                             info@athaqdates.com
-
                         </span>
-
                     </span>
 
                 </a>
@@ -720,39 +593,30 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
     </div>
 
-
     <!-- ================= SIDEBAR FOOTER ================= -->
-
     <div class="border-t border-[#bec9c3]/30
                 px-5 py-4 bg-white/45">
 
         <div class="flex items-center justify-between gap-4">
 
             <div>
-
                 <p class="text-[9px] uppercase
                           tracking-[0.16em]
                           text-[#3f4944]">
-
                     ATHAQ DATES INDUSTRY
-
                 </p>
 
                 <p class="text-[9px]
-                          text-[#3f4944]/70 mt-1">
-
+                          text-[#3f4944]/70 mt-1"
+                   data-i18n="footerSubtitle">
                     Premium Saudi Dates
-
                 </p>
-
             </div>
 
             <div class="text-[#004232]/70
                         text-[10px] font-semibold
                         whitespace-nowrap">
-
                 © 2023–2026
-
             </div>
 
         </div>
@@ -760,14 +624,15 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
     </div>
 
 </aside>
-  <main class="pt-20 pb-20">
+
+<main class="pt-20 pb-20">
 
     <!-- CONTACT CONTENT -->
     <div class="max-w-[1280px] mx-auto px-4 md:px-16 pt-16 md:pt-20">
 
       <div class="mb-16">
-        <span class="text-xs font-bold uppercase tracking-[0.18em] text-[#004232] mb-4 block">Get in Touch</span>
-        <h1 class="text-[#004232] max-w-2xl text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+        <span class="text-xs font-bold uppercase tracking-[0.18em] text-[#004232] mb-4 block" data-i18n="getInTouch">Get in Touch</span>
+        <h1 class="text-[#004232] max-w-2xl text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" data-i18n="mainHeading">
           Partnering for Industrial Excellence.
         </h1>
         <div class="w-24 h-1 bg-[#e9c349] mt-6"></div>
@@ -779,14 +644,14 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
         <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
 
           <div class="md:col-span-2 bg-white premium-shadow p-8 md:p-12 rounded-2xl border border-[#bec9c3]/20">
-            <h2 class="text-[#004232] text-2xl font-bold mb-8">Send us a Message</h2>
+            <h2 class="text-[#004232] text-2xl font-bold mb-8" data-i18n="sendMessageHeader">Send us a Message</h2>
 
             <form class="space-y-8" id="contactForm">
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
                 <div class="relative group">
-                  <label class="text-xs font-semibold uppercase tracking-wider text-[#3f4944] block mb-1">Full Name</label>
+                  <label class="text-xs font-semibold uppercase tracking-wider text-[#3f4944] block mb-1" data-i18n="fullNameLabel">Full Name</label>
                   <input
                     class="w-full input-underline bg-transparent border-[#bec9c3] focus:border-[#004232] py-3 text-base placeholder:text-[#bec9c3] outline-none border-b"
                     placeholder="Touseef Ahmad"
@@ -796,7 +661,7 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                 </div>
 
                 <div class="relative group">
-                  <label class="text-xs font-semibold uppercase tracking-wider text-[#3f4944] block mb-1">Email Address</label>
+                  <label class="text-xs font-semibold uppercase tracking-wider text-[#3f4944] block mb-1" data-i18n="emailAddressLabel">Email Address</label>
                   <input
                     class="w-full input-underline bg-transparent border-[#bec9c3] focus:border-[#004232] py-3 text-base placeholder:text-[#bec9c3] outline-none border-b"
                     placeholder="aathaqq3@gmail.com"
@@ -808,7 +673,7 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
               </div>
 
               <div class="relative group">
-                <label class="text-xs font-semibold uppercase tracking-wider text-[#3f4944] block mb-1">Subject</label>
+                <label class="text-xs font-semibold uppercase tracking-wider text-[#3f4944] block mb-1" data-i18n="subjectLabel">Subject</label>
                 <input
                   class="w-full input-underline bg-transparent border-[#bec9c3] focus:border-[#004232] py-3 text-base placeholder:text-[#bec9c3] outline-none border-b"
                   placeholder="Wholesale Inquiry"
@@ -818,7 +683,7 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
               </div>
 
               <div class="relative group">
-                <label class="text-xs font-semibold uppercase tracking-wider text-[#3f4944] block mb-1">Message</label>
+                <label class="text-xs font-semibold uppercase tracking-wider text-[#3f4944] block mb-1" data-i18n="messageLabel">Message</label>
                 <textarea
                   class="w-full input-underline bg-transparent border-[#bec9c3] focus:border-[#004232] py-3 text-base placeholder:text-[#bec9c3] resize-none outline-none border-b"
                   placeholder="How can we help your business today?"
@@ -831,6 +696,7 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                 <button
                   class="bg-[#004232] text-white w-full md:w-auto px-10 py-4 rounded-xl text-xs font-bold tracking-wider flex items-center justify-center gap-3 hover:bg-[#005c46] transition-all group active:scale-[0.98]"
                   type="submit"
+                  data-i18n="submitButton"
                 >
                   SEND MESSAGE
                   <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
@@ -842,19 +708,10 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
           <div class="bg-[#f5f4ef] p-8 rounded-2xl border border-[#bec9c3]/20 flex flex-col justify-between hover:border-[#3e6653] transition-colors group">
             <div>
-              <span class="material-symbols-outlined text-[#004232] text-3xl mb-4 group-hover:scale-110 transition-transform block">phone_in_talk</span>
-              <h3 class="text-[#004232] text-2xl font-bold mb-2">Phone</h3>
-              <p class="text-[#3f4944]">+966 058 181 8482</p>
-              <p class="text-[#3f4944]/70 mt-1">Friday off</p>
-            </div>
-          </div>
-
-          <div class="bg-[#f5f4ef] p-8 rounded-2xl border border-[#bec9c3]/20 flex flex-col justify-between hover:border-[#3e6653] transition-colors group">
-            <div>
               <span class="material-symbols-outlined text-[#004232] text-3xl mb-4 group-hover:scale-110 transition-transform block">mail</span>
-              <h3 class="text-[#004232] text-2xl font-bold mb-2">Mail</h3>
+              <h3 class="text-[#004232] text-2xl font-bold mb-2" data-i18n="mailCardHeader">Mail</h3>
               <p class="text-[#3f4944]">aathaqq3@gmail.com</p>
-              <p class="text-[#3f4944]/70 mt-1">Support within 24h</p>
+              <p class="text-[#3f4944]/70 mt-1" data-i18n="mailCardSub">Support within 24h</p>
             </div>
           </div>
 
@@ -879,20 +736,21 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
                   <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">location_on</span>
                 </div>
                 <div class="bg-white px-4 py-2 rounded-lg shadow-md mt-2 border border-[#004232]/20">
-                  <p class="text-[11px] font-bold tracking-wider text-[#004232]">ATHAQ INDUSTRIAL FACTORY</p>
+                  <p class="text-[11px] font-bold tracking-wider text-[#004232]" data-i18n="mapBadge">ATHAQ INDUSTRIAL FACTORY</p>
                 </div>
               </div>
             </div>
 
             <div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-6 rounded-xl border border-[#bec9c3]/20">
-              <h4 class="text-xl font-bold text-[#004232] mb-2">Al Bukayriyah Industrial City</h4>
-              <p class="text-[#3f4944] text-sm mb-4">مصنع اعذاق للتمور, King Salman Road, Al Bukayriyah</p>
+              <h4 class="text-xl font-bold text-[#004232] mb-2" data-i18n="locationTitle">Al Bukayriyah Industrial City</h4>
+              <p class="text-[#3f4944] text-sm mb-4" data-i18n="locationAddress">مصنع اعذاق للتمور, King Salman Road, Al Bukayriyah</p>
 
               <a
                 class="text-[#004232] font-bold text-xs border-b border-[#004232] pb-0.5 hover:text-[#735c00] hover:border-[#735c00] transition-colors flex items-center w-fit gap-2"
                 href="https://maps.app.goo.gl/2xr8cy6nbb7knATL7"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-i18n="getDirections"
               >
                 GET DIRECTIONS
                 <span class="material-symbols-outlined text-sm">open_in_new</span>
@@ -903,14 +761,15 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
           <div class="bg-[#004232] text-white p-8 rounded-2xl relative overflow-hidden">
             <div class="relative z-10">
-              <h3 class="text-2xl font-bold mb-4">Quality First</h3>
-              <p class="text-[#a6f2d4] mb-6 leading-relaxed">
+              <h3 class="text-2xl font-bold mb-4" data-i18n="qualityHeader">Quality First</h3>
+              <p class="text-[#a6f2d4] mb-6 leading-relaxed" data-i18n="qualityText">
                 Experience the precision of Athaq’s advanced manufacturing facilities firsthand. Schedule a site visit today.
               </p>
               <button
                 type="button"
                 class="bg-[#cca830] text-[#4f3e00] px-6 py-3 rounded-xl text-xs font-bold tracking-wider hover:bg-[#ffe088] transition-colors"
                 onclick="alert('Factory tour request received. Our team will contact you.')"
+                data-i18n="factoryTourBtn"
               >
                 BOOK A FACTORY TOUR
               </button>
@@ -930,33 +789,33 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
       <div class="space-y-4">
         <div class="text-lg font-bold text-[#004232]">ATHAQ DATES INDUSTRY</div>
-        <p class="text-[#3f4944]/80 text-sm max-w-xs">
+        <p class="text-[#3f4944]/80 text-sm max-w-xs" data-i18n="footerDesc">
           Pioneering the future of Saudi agriculture through premium industrial processing.
         </p>
       </div>
 
       <div>
-        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider">Quick Links</h4>
+        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider" data-i18n="footerLinksHeader">Quick Links</h4>
         <ul class="space-y-3 text-sm">
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/about/index.html">Our Process</a></li>
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/product/index.html">Products</a></li>
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/gallery/index.html">Gallery</a></li>
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/contact/index.html">Contact</a></li>
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/about/index.html" data-i18n="footerOurProcess">Our Process</a></li>
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/product/index.html" data-i18n="footerProducts">Products</a></li>
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/gallery/index.html" data-i18n="footerGallery">Gallery</a></li>
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/contact/index.html" data-i18n="footerContact">Contact</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider">Legal</h4>
+        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider" data-i18n="footerLegalHeader">Legal</h4>
         <ul class="space-y-3 text-sm">
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="#">Privacy Policy</a></li>
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="#">Terms of Service</a></li>
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="#" data-i18n="footerPrivacy">Privacy Policy</a></li>
+          <li><a class="text-[#3f4944] hover:text-[#004232]" href="#" data-i18n="footerTerms">Terms of Service</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider">Contact</h4>
+        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider" data-i18n="footerContactHeader">Contact</h4>
         <ul class="space-y-3 text-[#3f4944] text-sm">
-          <li>King Salman Road, Al Bukayriyah</li>
+          <li data-i18n="footerAddress">King Salman Road, Al Bukayriyah</li>
           <li><a href="tel:+966581818482">+966 58 181 8482</a></li>
           <li><a href="mailto:info@athaqdates.com">info@athaqdates.com</a></li>
         </ul>
@@ -964,39 +823,121 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
     </div>
 
-    <div class="max-w-[1280px] mx-auto text-center border-t border-[#6f7974]/20 pt-6 text-xs text-[#3f4944]">
+    <div class="max-w-[1280px] mx-auto text-center border-t border-[#6f7974]/20 pt-6 text-xs text-[#3f4944]" data-i18n="footerCopy">
       &copy; 2023–2026 ATHAQ Dates Industry. All rights reserved.
     </div>
   </footer>
 
   <script>
     /* =========================================================
-       AUTO ACTIVE NAVIGATION
-       Same navigation behavior as the About page.
+        TRANSLATIONS DICTIONARY (EN / AR)
     ========================================================= */
-    (function setCurrentPageNav() {
-      const path = window.location.pathname.replace(/\\/g, "/").toLowerCase();
-
-      let currentPage = "home";
-
-      if (path.includes("/web/about/")) currentPage = "about";
-      else if (path.includes("/web/product/")) currentPage = "products";
-      else if (path.includes("/web/gallery/")) currentPage = "gallery";
-      else if (path.includes("/web/contact/")) currentPage = "contact";
-      else if (path.endsWith("/index.html") || path === "/" || path === "") currentPage = "home";
-
-      document.querySelectorAll("[data-nav]").forEach(function(link) {
-        const isActive = link.dataset.nav === currentPage;
-        link.classList.toggle("active", isActive);
-
-        if (link.classList.contains("desktop-nav-link")) {
-          link.classList.toggle("bg-[#004232]", isActive);
-          link.classList.toggle("text-white", isActive);
-          link.classList.toggle("shadow-sm", isActive);
-          link.classList.toggle("text-[#004232]", !isActive);
-        }
-      });
-    })();
+    const translations = {
+      en: {
+        pageTitle: "ATHAQ | Contact",
+        sidebarSubtitle: "Industrial Factory",
+        quickAccessTitle: "Quick Access",
+        languageTitle: "Language",
+        wishlistTitle: "Wishlist",
+        wishlistSubtitle: "Saved items",
+        cartTitle: "Cart",
+        cartSubtitle: "Your items",
+        shareTitle: "Share",
+        shareSubtitle: "Share website",
+        navigationTitle: "Navigation",
+        navHome: "Home",
+        navAbout: "About",
+        navProducts: "Products",
+        navGallery: "Gallery",
+        navContact: "Contact",
+        navTeam: "OUR TEAM",
+        sidebarContactHeader: "Contact",
+        phoneLabel: "Phone",
+        emailLabel: "Email",
+        footerSubtitle: "Premium Saudi Dates",
+        getInTouch: "Get in Touch",
+        mainHeading: "Partnering for Industrial Excellence.",
+        sendMessageHeader: "Send us a Message",
+        fullNameLabel: "Full Name",
+        emailAddressLabel: "Email Address",
+        subjectLabel: "Subject",
+        messageLabel: "Message",
+        submitButton: "SEND MESSAGE",
+        mailCardHeader: "Mail",
+        mailCardSub: "Support within 24h",
+        mapBadge: "ATHAQ INDUSTRIAL FACTORY",
+        locationTitle: "Al Bukayriyah Industrial City",
+        locationAddress: "مصنع اعذاق للتمور, King Salman Road, Al Bukayriyah",
+        getDirections: "GET DIRECTIONS",
+        qualityHeader: "Quality First",
+        qualityText: "Experience the precision of Athaq’s advanced manufacturing facilities firsthand. Schedule a site visit today.",
+        factoryTourBtn: "BOOK A FACTORY TOUR",
+        footerDesc: "Pioneering the future of Saudi agriculture through premium industrial processing.",
+        footerLinksHeader: "Quick Links",
+        footerOurProcess: "Our Process",
+        footerProducts: "Products",
+        footerGallery: "Gallery",
+        footerContact: "Contact",
+        footerLegalHeader: "Legal",
+        footerPrivacy: "Privacy Policy",
+        footerTerms: "Terms of Service",
+        footerContactHeader: "Contact",
+        footerAddress: "King Salman Road, Al Bukayriyah",
+        footerCopy: "© 2023–2026 ATHAQ Dates Industry. All rights reserved."
+      },
+      ar: {
+        pageTitle: "أذاق | اتصل بنا",
+        sidebarSubtitle: "مصنع صناعي",
+        quickAccessTitle: "وصول سريع",
+        languageTitle: "اللغة",
+        wishlistTitle: "المفضلة",
+        wishlistSubtitle: "العناصر المحفوظة",
+        cartTitle: "السلة",
+        cartSubtitle: "عناصرك",
+        shareTitle: "مشاركة",
+        shareSubtitle: "مشاركة الموقع",
+        navigationTitle: "التنقل",
+        navHome: "الرئيسية",
+        navAbout: "من نحن",
+        navProducts: "المنتجات",
+        navGallery: "معرض الصور",
+        navContact: "اتصل بنا",
+        navTeam: "فريقنا",
+        sidebarContactHeader: "اتصل",
+        phoneLabel: "الهاتف",
+        emailLabel: "البريد الإلكتروني",
+        footerSubtitle: "تمور سعودية فاخرة",
+        getInTouch: "ابق على تواصل",
+        mainHeading: "شراكة من أجل التميز الصناعي.",
+        sendMessageHeader: "أرسل لنا رسالة",
+        fullNameLabel: "الاسم الكامل",
+        emailAddressLabel: "عنوان البريد الإلكتروني",
+        subjectLabel: "الموضوع",
+        messageLabel: "الرسالة",
+        submitButton: "إرسال الرسالة",
+        mailCardHeader: "البريد",
+        mailCardSub: "دعم خلال 24 ساعة",
+        mapBadge: "مصنع أذاق الصناعي",
+        locationTitle: "مدينة البكيرية الصناعية",
+        locationAddress: "مصنع اعذاق للتمور، طريق الملك سلمان، البكيرية",
+        getDirections: "احصل على الاتجاهات",
+        qualityHeader: "الجودة أولاً",
+        qualityText: "جرب دقة مرافق التصنيع المتقدمة لدى أذاق بنفسك. احجز زيارة لموقعنا اليوم.",
+        factoryTourBtn: "حجز جولة في المصنع",
+        footerDesc: "ريادة مستقبل الزراعة السعودية من خلال المعالجة الصناعية المتقدمة.",
+        footerLinksHeader: "روابط سريعة",
+        footerOurProcess: "عملياتنا",
+        footerProducts: "المنتجات",
+        footerGallery: "معرض الصور",
+        footerContact: "اتصل بنا",
+        footerLegalHeader: "قانوني",
+        footerPrivacy: "سياسة الخصوصية",
+        footerTerms: "شروط الخدمة",
+        footerContactHeader: "اتصل",
+        footerAddress: "طريق الملك سلمان، البكيرية",
+        footerCopy: "جميع الحقوق محفوظة © 2023–2026 صناعة تمور أذاق."
+      }
+    };
 
     /* =========================================================
        SIDEBAR
@@ -1034,15 +975,25 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
     });
 
     /* =========================================================
-       LANGUAGE
+       LANGUAGE TOGGLE FUNCTIONALITY
     ========================================================= */
     function toggleLanguage() {
       const label = document.getElementById("languageLabel");
       const isEnglish = label.textContent.trim() === "English";
+      const targetLang = isEnglish ? "ar" : "en";
 
+      // Toggle label text only (direction remains LTR so buttons/menus don't shift)
       label.textContent = isEnglish ? "العربية" : "English";
-      document.documentElement.lang = isEnglish ? "ar" : "en";
-      document.documentElement.dir = isEnglish ? "rtl" : "ltr";
+      document.documentElement.lang = targetLang;
+
+      // Translate all elements with data-i18n attribute
+      const elements = document.querySelectorAll("[data-i18n]");
+      elements.forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[targetLang] && translations[targetLang][key]) {
+          el.textContent = translations[targetLang][key];
+        }
+      });
     }
 
     /* =========================================================
@@ -1116,7 +1067,6 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 
     /* =========================================================
        OPTIONAL COUNTS
-       Keeps sidebar counters compatible with the rest of site.
     ========================================================= */
     function updateSidebarCounts() {
       try {

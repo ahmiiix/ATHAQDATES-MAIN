@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallery | ATHAQ Industrial Factory</title>
+  <title data-en="Gallery | ATHAQ Industrial Factory" data-ar="المعرض | مصنع أثاق الصناعي">Gallery | ATHAQ Industrial Factory</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&family=Playfair+Display:wght@700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     html,body{width:100%;overflow-x:hidden}
-    body{overflow-y:scroll;background:#faf9f4}
+    body{overflow-y:scroll;background:#faf9f4;font-family:'Manrope', 'Cairo', sans-serif;}
     .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
 
     .masonry-grid{
@@ -95,9 +95,9 @@
             "margin-mobile":"16px","margin-desktop":"64px","gutter":"24px"
           },
           fontFamily:{
-            "body-md":["Manrope"],"label-sm":["IBM Plex Sans"],
-            "headline-md":["Be Vietnam Pro"],"body-lg":["Manrope"],
-            "display-lg":["Be Vietnam Pro"]
+            "body-md":["Manrope","Cairo"],"label-sm":["IBM Plex Sans","Cairo"],
+            "headline-md":["Be Vietnam Pro","Cairo"],"body-lg":["Manrope","Cairo"],
+            "display-lg":["Be Vietnam Pro","Cairo"]
           },
           fontSize:{
             "body-md":["16px",{lineHeight:"1.5",fontWeight:"400"}],
@@ -115,658 +115,241 @@
 
 <body>
 
-<!-- =========================================================
-     PREMIUM HEADER / NAVBAR
-========================================================= -->
+<!-- HEADER -->
+<nav class="fixed top-0 left-0 w-full z-[100] bg-white/85 backdrop-blur-xl border-b border-[#bec9c3]/20" style="height:80px;">
+  <div class="w-full h-20 px-5 sm:px-6 md:px-10 lg:px-16 flex items-center justify-between">
+    <a href="/index.html" class="flex items-center group" aria-label="ATHAQ Home">
+      <div class="w-[200px] h-[70px] flex items-center justify-center overflow-visible group-hover:scale-[1.03] transition-transform duration-300">
+        <img src="/LOGO.PNG" alt="ATHAQ Industrial Factory" class="w-full h-full object-contain">
+      </div>
+    </a>
 
-<!-- ================= PREMIUM NAVBAR ================= -->
-<nav class="fixed top-0 left-0 w-full z-[100] bg-white/85 backdrop-blur-xl border-b border-[#bec9c3]/20"
-     style="height:80px;">
+    <div class="flex items-center gap-3">
+      <button type="button" onclick="toggleLanguage()" class="sidebar-action text-left !min-h-[46px] !py-1 !px-2.5">
+          <span class="sidebar-action-icon !w-8 !h-8 !min-w-[32px] !rounded-lg text-xs"><i class="fa-solid fa-globe"></i></span>
+          <span class="min-w-0 pr-1">
+              <span class="block text-[11px] font-bold text-[#004232]" data-en="Language" data-ar="اللغة">Language</span>
+              <span id="languageLabel" class="block text-[9px] text-[#3f4944] mt-0.5" data-en="English" data-ar="العربية">English</span>
+          </span>
+      </button>
 
-    <div class="w-full h-20 px-5 sm:px-6 md:px-10 lg:px-16 flex items-center justify-between">
-
-        <!-- ================= LEFT : LOGO ================= -->
-        <div class="flex items-center flex-shrink-0">
-
-            <a href="/index.html"
-               class="flex items-center gap-3 group"
-               aria-label="ATHAQ Home">
-
-          <!-- COMPLETE ATHAQ LOGO -->
-<div class="w-[200px] h-[70px] flex items-center justify-center overflow-visible group-hover:scale-[1.03] transition-transform duration-300">
-
-  <img 
-    src="/logo.png"
-    alt="ATHAQ Industrial Factory"
-    class="w-full h-full object-contain"
-  >
-
-</div>
-
-</a>
-
-        </div>
-
-
-
-
-
-        <!-- ================= RIGHT : MENU BUTTON ================= -->
-        <div class="flex items-center justify-end gap-2 flex-shrink-0">
-
-            <button id="menu-btn"
-                    type="button"
-                    class="w-10 h-10 rounded-full
-                           border border-[#bec9c3]/45
-                           bg-white/70 backdrop-blur-sm
-                           flex items-center justify-center
-                           text-[#004232]
-                           hover:bg-white
-                           hover:border-[#004232]/20
-                           hover:shadow-sm
-                           transition-all duration-200
-                           focus:outline-none"
-                    aria-label="Open Menu"
-                    aria-controls="side-menu"
-                    aria-expanded="false">
-
-                <i class="fa-solid fa-bars text-sm"></i>
-
-            </button>
-
-        </div>
-
+      <button id="menu-btn" type="button"
+        class="w-10 h-10 rounded-full border border-[#bec9c3]/45 bg-white/70 backdrop-blur-sm flex items-center justify-center text-[#004232] hover:bg-white hover:border-[#004232]/20 hover:shadow-sm transition-all focus:outline-none"
+        aria-label="Open Menu" aria-controls="side-menu" aria-expanded="false">
+        <i class="fa-solid fa-bars text-sm"></i>
+      </button> 
     </div>
-
+  </div>
 </nav>
 
+<!-- DARK BLUR OVERLAY -->
+<div id="sidebar-overlay" class="fixed inset-0 bg-black/40 backdrop-blur-[2px] z-[150] opacity-0 invisible transition-all duration-300"></div>
 
-<!-- =========================================================
-     DARK BLUR OVERLAY
-========================================================= -->
-
-<div id="sidebar-overlay"
-     class="fixed inset-0 bg-black/40 backdrop-blur-[2px] z-[150]
-            opacity-0 invisible transition-all duration-300">
-</div>
-
-
-<!-- =========================================================
-     RIGHT SLIDE SIDEBAR — REFERENCE MENU
-========================================================= -->
-
-<aside id="side-menu"
-       aria-hidden="true"
-       aria-label="Main Navigation"
-class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
-       bg-[#faf9f4] z-[200]
-       shadow-2xl
-       translate-x-full
-       transition-transform duration-300 ease-out
-       flex flex-col"
-
-
-     ================ SIDEBAR TOP ================= -->
-
+<!-- RIGHT SLIDE SIDEBAR -->
+<aside id="side-menu" aria-hidden="true" aria-label="Main Navigation" class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw] bg-[#faf9f4] z-[200] shadow-2xl translate-x-full transition-transform duration-300 ease-out flex flex-col">
     <div class="px-5 pt-5 pb-4">
-
         <div class="flex items-center justify-between">
-
-            <!-- LOGO -->
-
-            <a href="/index.html"
-               onclick="closeSideMenu()"
-               class="flex items-center gap-3">
-
-              <img 
-  src="/logo (2).png"
-  alt="ATHAQ"
-  class="w-10 h-10 object-contain scale-125"
->
-
+            <a href="/index.html" onclick="closeSideMenu()" class="flex items-center gap-3">
+              <img src="/logo (2).png" alt="ATHAQ" class="w-10 h-10 object-contain scale-125">
                 <div>
-
-                    <div class="text-[#004232] font-bold
-                                tracking-[0.16em] text-sm">
-
-                        ATHAQ DATES
-
-                    </div>
-
-                    <div class="text-[9px] text-[#3f4944]
-                                uppercase tracking-[0.22em] mt-1">
-
-                        Industrial Factory
-
-                    </div>
-
+                    <div class="text-[#004232] font-bold tracking-[0.16em] text-sm" data-en="ATHAQ DATES" data-ar="تمور أثاق">ATHAQ DATES</div>
+                    <div class="text-[9px] text-[#3f4944] uppercase tracking-[0.22em] mt-1" data-en="Industrial Factory" data-ar="المصنع الصناعي">Industrial Factory</div>
                 </div>
-
             </a>
-
-
-            <!-- CLOSE BUTTON -->
-
-            <button id="close-menu"
-                    type="button"
-                    aria-label="Close Menu"
-                    class="w-10 h-10 rounded-full
-                           border border-[#bec9c3]/50
-                           bg-white
-                           flex items-center justify-center
-                           text-[#004232]
-                           hover:bg-[#e9e8e3]
-                           transition-all duration-200">
-
+            <button id="close-menu" type="button" aria-label="Close Menu" class="w-10 h-10 rounded-full border border-[#bec9c3]/50 bg-white flex items-center justify-center text-[#004232] hover:bg-[#e9e8e3] transition-all duration-200">
                 <i class="fa-solid fa-xmark text-lg"></i>
-
             </button>
-
         </div>
-
     </div>
-
 
     <div class="h-px bg-[#bec9c3]/30 mx-5"></div>
 
-
-    <!-- ================= SIDEBAR CONTENT ================= -->
-
     <div class="flex-1 overflow-y-auto px-5 py-5">
-
-
-        <!-- ================= QUICK ACCESS ================= -->
-
         <div class="mb-7">
-
-            <p class="text-[10px] font-bold uppercase
-                      tracking-[0.18em]
-                      text-[#3f4944]/70 mb-3 px-1">
-
-                Quick Access
-
-            </p>
-
-
+            <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1" data-en="Quick Access" data-ar="الوصول السريع">Quick Access</p>
             <div class="grid grid-cols-2 gap-3">
-
-
-         
-
-
-                <!-- LANGUAGE -->
-
-                <button type="button"
-                        onclick="toggleLanguage()"
-                        class="sidebar-action text-left">
-
-                    <span class="sidebar-action-icon">
-                        <i class="fa-solid fa-globe"></i>
-                    </span>
-
-                    <span class="min-w-0">
-
-                        <span class="block text-xs font-bold text-[#004232]">
-                            Language
-                        </span>
-
-                        <span id="languageLabel"
-                              class="block text-[10px]
-                                     text-[#3f4944] mt-1">
-
-                            English
-
-                        </span>
-
-                    </span>
-
-                </button>
-
-
-                <!-- WISHLIST -->
-
-                <a href="/web/product/wishlist.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-action">
-
-                    <span class="sidebar-action-icon">
-                        <i class="fa-regular fa-heart"></i>
-                    </span>
-
+                <a href="/web/product/wishlist.html" onclick="closeSideMenu()" class="sidebar-action">
+                    <span class="sidebar-action-icon"><i class="fa-regular fa-heart"></i></span>
                     <span class="min-w-0 flex-1">
-
-                        <span class="block text-xs font-bold text-[#004232]">
-                            Wishlist
-                        </span>
-
-                        <span class="block text-[10px]
-                                     text-[#3f4944] mt-1">
-
-                            Saved items
-
-                        </span>
-
+                        <span class="block text-xs font-bold text-[#004232]" data-en="Wishlist" data-ar="المفضلة">Wishlist</span>
+                        <span class="block text-[10px] text-[#3f4944] mt-1" data-en="Saved items" data-ar="العناصر المحفوظة">Saved items</span>
                     </span>
-
-                    <span id="sidebarWishlistCount"
-                          class="counter-badge">
-
-                        0
-
-                    </span>
-
+                    <span id="sidebarWishlistCount" class="counter-badge">0</span>
                 </a>
 
-
-                <!-- CART -->
-
-                <a href="/admin/checkout.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-action">
-
-                    <span class="sidebar-action-icon">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                    </span>
-
+                <a href="/admin/checkout.html" onclick="closeSideMenu()" class="sidebar-action">
+                    <span class="sidebar-action-icon"><i class="fa-solid fa-bag-shopping"></i></span>
                     <span class="min-w-0 flex-1">
-
-                        <span class="block text-xs font-bold text-[#004232]">
-                            Cart
-                        </span>
-
-                        <span class="block text-[10px]
-                                     text-[#3f4944] mt-1">
-
-                            Your items
-
-                        </span>
-
+                        <span class="block text-xs font-bold text-[#004232]" data-en="Cart" data-ar="السلة">Cart</span>
+                        <span class="block text-[10px] text-[#3f4944] mt-1" data-en="Your items" data-ar="عناصرك">Your items</span>
                     </span>
-
-                    <span id="sidebarCartCount"
-                          class="counter-badge">
-
-                        0
-
-                    </span>
-
+                    <span id="sidebarCartCount" class="counter-badge">0</span>
                 </a>
 
-
-                <!-- SHARE -->
-
-                <button type="button"
-                        onclick="shareWebsite()"
-                        class="sidebar-action text-left">
-
-                    <span class="sidebar-action-icon">
-                        <i class="fa-solid fa-share-nodes"></i>
-                    </span>
-
+                <button type="button" onclick="shareWebsite()" class="sidebar-action text-left">
+                    <span class="sidebar-action-icon"><i class="fa-solid fa-share-nodes"></i></span>
                     <span class="min-w-0">
-
-                        <span class="block text-xs font-bold text-[#004232]">
-                            Share
-                        </span>
-
-                        <span class="block text-[10px]
-                                     text-[#3f4944] mt-1">
-
-                            Share website
-
-                        </span>
-
+                        <span class="block text-xs font-bold text-[#004232]" data-en="Share" data-ar="مشاركة">Share</span>
+                        <span class="block text-[10px] text-[#3f4944] mt-1" data-en="Share website" data-ar="مشاركة الموقع">Share website</span>
                     </span>
-
                 </button>
-
             </div>
-
         </div>
-
-
-        <!-- ================= DIVIDER ================= -->
 
         <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
 
-
-        <!-- ================= MAIN NAVIGATION ================= -->
-
         <div class="mb-7">
-
-            <p class="text-[10px] font-bold uppercase
-                      tracking-[0.18em]
-                      text-[#3f4944]/70 mb-3 px-1">
-
-                Navigation
-
-            </p>
-
-
+            <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1" data-en="Navigation" data-ar="التنقل">Navigation</p>
             <div class="space-y-2">
-
-
-                <!-- HOME -->
-
-                <a href="/index.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-nav-link">
-
-                    <span class="sidebar-nav-icon">
-                        <i class="fa-solid fa-house"></i>
-                    </span>
-
-                    <span>Home</span>
-
+                <a href="/index.html" onclick="closeSideMenu()" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon"><i class="fa-solid fa-house"></i></span>
+                    <span data-en="Home" data-ar="الرئيسية">Home</span>
                     <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
-
                 </a>
-
-
-                <!-- ABOUT -->
-
-                <a href="/web/about/index.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-nav-link">
-
-                    <span class="sidebar-nav-icon">
-                        <i class="fa-solid fa-circle-info"></i>
-                    </span>
-
-                    <span>About</span>
-
+                <a href="/web/about/index.html" onclick="closeSideMenu()" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon"><i class="fa-solid fa-circle-info"></i></span>
+                    <span data-en="About" data-ar="من نحن">About</span>
                     <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
-
                 </a>
-
-
-                <!-- PRODUCTS -->
-
-                <a href="/web/product/index.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-nav-link">
-
-                    <span class="sidebar-nav-icon">
-                        <i class="fa-solid fa-box-open"></i>
-                    </span>
-
-                    <span>Products</span>
-
+                <a href="/web/product/index.html" onclick="closeSideMenu()" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon"><i class="fa-solid fa-box-open"></i></span>
+                    <span data-en="Products" data-ar="المنتجات">Products</span>
                     <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
-
                 </a>
-
-
-                <!-- GALLERY -->
-
-                <a href="/web/gallery/index.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-nav-link active">
-
-                    <span class="sidebar-nav-icon">
-                        <i class="fa-solid fa-images"></i>
-                    </span>
-
-                    <span>Gallery</span>
-
+                <a href="/web/gallery/index.html" onclick="closeSideMenu()" class="sidebar-nav-link active">
+                    <span class="sidebar-nav-icon"><i class="fa-solid fa-images"></i></span>
+                    <span data-en="Gallery" data-ar="معرض الصور">Gallery</span>
                     <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
-
                 </a>
-
-
-                <!-- CONTACT -->
-
-                <a href="/web/contact/index.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-nav-link">
-
-                    <span class="sidebar-nav-icon">
-                        <i class="fa-solid fa-envelope"></i>
-                    </span>
-
-                    <span>Contact</span>
-
+                <a href="/web/contact/index.html" onclick="closeSideMenu()" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon"><i class="fa-solid fa-envelope"></i></span>
+                    <span data-en="Contact" data-ar="اتصل بنا">Contact</span>
                     <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
-
                 </a>
-
+                <a href="/web/meet-team/meet-team.html" onclick="closeSideMenu()" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon"><i class="fa-solid fa-users"></i></span>
+                    <span data-en="OUR TEAM" data-ar="فريقنا">OUR TEAM</span>
+                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+                </a>
             </div>
-
         </div>
-
-
-        <!-- ================= CONTACT ================= -->
 
         <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
 
         <div class="mb-6">
-
-            <p class="text-[10px] font-bold uppercase
-                      tracking-[0.18em]
-                      text-[#3f4944]/70 mb-3 px-1">
-
-                Contact
-
-            </p>
-
-
+            <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1" data-en="Contact" data-ar="اتصل بنا">Contact</p>
             <div class="space-y-2">
-
-
-                <!-- PHONE -->
-
-                <a href="tel:+966581818482"
-                   class="flex items-center gap-3 px-3 py-3
-                          rounded-xl hover:bg-white
-                          transition-colors">
-
-                    <span class="w-9 h-9 rounded-lg
-                                 bg-[#c0edd4]/60
-                                 text-[#004232]
-                                 flex items-center justify-center">
-
-                        <i class="fa-solid fa-phone text-xs"></i>
-
-                    </span>
-
+                <a href="tel:+966581818482" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors">
+                    <span class="w-9 h-9 rounded-lg bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center"><i class="fa-solid fa-phone text-xs"></i></span>
                     <span>
-
-                        <span class="block text-[9px]
-                                     uppercase tracking-wider
-                                     text-[#3f4944]">
-
-                            Phone
-
-                        </span>
-
-                        <span class="block text-xs font-semibold
-                                     text-[#004232] mt-0.5">
-
-                            +966 58 181 8482
-
-                        </span>
-
+                        <span class="block text-[9px] uppercase tracking-wider text-[#3f4944]" data-en="Phone" data-ar="الهاتف">Phone</span>
+                        <span class="block text-xs font-semibold text-[#004232] mt-0.5" dir="ltr">+966 58 181 8482</span>
                     </span>
-
                 </a>
-
-
-                <!-- EMAIL -->
-
-                <a href="mailto:info@athaqdates.com"
-                   class="flex items-center gap-3 px-3 py-3
-                          rounded-xl hover:bg-white
-                          transition-colors">
-
-                    <span class="w-9 h-9 rounded-lg
-                                 bg-[#c0edd4]/60
-                                 text-[#004232]
-                                 flex items-center justify-center">
-
-                        <i class="fa-solid fa-envelope text-xs"></i>
-
-                    </span>
-
+                <a href="mailto:info@athaqdates.com" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors">
+                    <span class="w-9 h-9 rounded-lg bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center"><i class="fa-solid fa-envelope text-xs"></i></span>
                     <span class="min-w-0">
-
-                        <span class="block text-[9px]
-                                     uppercase tracking-wider
-                                     text-[#3f4944]">
-
-                            Email
-
-                        </span>
-
-                        <span class="block text-xs font-semibold
-                                     text-[#004232] mt-0.5 truncate">
-
-                            info@athaqdates.com
-
-                        </span>
-
+                        <span class="block text-[9px] uppercase tracking-wider text-[#3f4944]" data-en="Email" data-ar="البريد الإلكتروني">Email</span>
+                        <span class="block text-xs font-semibold text-[#004232] mt-0.5 truncate" dir="ltr">info@athaqdates.com</span>
                     </span>
-
                 </a>
-
             </div>
-
         </div>
-
     </div>
 
-
-    <!-- ================= SIDEBAR FOOTER ================= -->
-
-    <div class="border-t border-[#bec9c3]/30
-                px-5 py-4 bg-white/45">
-
+    <div class="border-t border-[#bec9c3]/30 px-5 py-4 bg-white/45">
         <div class="flex items-center justify-between gap-4">
-
             <div>
-
-                <p class="text-[9px] uppercase
-                          tracking-[0.16em]
-                          text-[#3f4944]">
-
-                    ATHAQ DATES INDUSTRY
-
-                </p>
-
-                <p class="text-[9px]
-                          text-[#3f4944]/70 mt-1">
-
-                    Premium Saudi Dates
-
-                </p>
-
+                <p class="text-[9px] uppercase tracking-[0.16em] text-[#3f4944]" data-en="ATHAQ DATES INDUSTRY" data-ar="صناعة تمور أثاق">ATHAQ DATES INDUSTRY</p>
+                <p class="text-[9px] text-[#3f4944]/70 mt-1" data-en="Premium Saudi Dates" data-ar="تمور سعودية فاخرة">Premium Saudi Dates</p>
             </div>
-
-            <div class="text-[#004232]/70
-                        text-[10px] font-semibold
-                        whitespace-nowrap">
-
-                © 2023–2026
-
-            </div>
-
+            <div class="text-[#004232]/70 text-[10px] font-semibold whitespace-nowrap">© 2023–2026</div>
         </div>
-
     </div>
-
 </aside>
-<!-- =========================================================
-     GALLERY CONTENT
-========================================================= -->
-<main class="pt-32 pb-[120px] px-4 md:px-16 max-w-[1280px] mx-auto">
 
-  <header class="mb-20 text-center md:text-start">
+<!-- GALLERY CONTENT -->
+<main class="pt-32 pb-[120px] px-4 md:px-16 max-w-[1280px] mx-auto">
+  <header class="mb-20 text-start">
     <div class="inline-flex items-center gap-2 mb-4 text-[#735c00]">
       <span class="h-px w-8 bg-[#735c00]"></span>
-      <span class="text-xs font-semibold uppercase tracking-widest">Visual Archive</span>
+      <span class="text-xs font-semibold uppercase tracking-widest" data-en="Visual Archive" data-ar="الأرشيف المرئي">Visual Archive</span>
     </div>
-    <h1 class="text-3xl md:text-5xl font-bold text-[#004232] mb-6">Our Industrial Journey</h1>
-    <p class="max-w-2xl text-lg leading-relaxed text-[#3f4944]">
+    <h1 class="text-3xl md:text-5xl font-bold text-[#004232] mb-6" data-en="Our Industrial Journey" data-ar="رحلتنا الصناعية">Our Industrial Journey</h1>
+    <p class="max-w-2xl text-lg leading-relaxed text-[#3f4944]" data-en="Explore the fusion of Saudi heritage and modern manufacturing. From the sun-drenched palm groves to our state-of-the-art packaging facility." data-ar="استكشف مزيج التراث السعودي والتصنيع الحديث. من واحات النخيل المشمسة إلى منشأة التعبئة والتغليف الحديثة لدينا.">
       Explore the fusion of Saudi heritage and modern manufacturing. From the sun-drenched palm groves to our state-of-the-art packaging facility.
     </p>
   </header>
 
   <div class="flex flex-wrap gap-4 mb-12 border-b border-[#bec9c3]/20 pb-8">
-    <button class="px-6 py-2 rounded-full bg-[#c0edd4] text-[#446d59] text-xs font-semibold">All Highlights</button>
-    <button class="px-6 py-2 rounded-full bg-[#efeee9] hover:bg-[#e9e8e3] transition-colors text-[#3f4944] text-xs font-semibold">The Groves</button>
-    <button class="px-6 py-2 rounded-full bg-[#efeee9] hover:bg-[#e9e8e3] transition-colors text-[#3f4944] text-xs font-semibold">Factory Precision</button>
-    <button class="px-6 py-2 rounded-full bg-[#efeee9] hover:bg-[#e9e8e3] transition-colors text-[#3f4944] text-xs font-semibold">Global Quality</button>
-    <button class="px-6 py-2 rounded-full bg-[#efeee9] hover:bg-[#e9e8e3] transition-colors text-[#3f4944] text-xs font-semibold">Our People</button>
+    <button class="px-6 py-2 rounded-full bg-[#c0edd4] text-[#446d59] text-xs font-semibold" data-en="All Highlights" data-ar="جميع الأبرز">All Highlights</button>
+    <button class="px-6 py-2 rounded-full bg-[#efeee9] hover:bg-[#e9e8e3] transition-colors text-[#3f4944] text-xs font-semibold" data-en="The Groves" data-ar="الواحات">The Groves</button>
+    <button class="px-6 py-2 rounded-full bg-[#efeee9] hover:bg-[#e9e8e3] transition-colors text-[#3f4944] text-xs font-semibold" data-en="Factory Precision" data-ar="دقة المصنع">Factory Precision</button>
+    <button class="px-6 py-2 rounded-full bg-[#efeee9] hover:bg-[#e9e8e3] transition-colors text-[#3f4944] text-xs font-semibold" data-en="Global Quality" data-ar="الجودة العالمية">Global Quality</button>
+    <button class="px-6 py-2 rounded-full bg-[#efeee9] hover:bg-[#e9e8e3] transition-colors text-[#3f4944] text-xs font-semibold" data-en="Our People" data-ar="فريقنا">Our People</button>
   </div>
 
   <div class="masonry-grid">
-
     <div class="masonry-item-wide masonry-item-square relative group overflow-hidden rounded-xl bg-[#e3e3de] shadow-sm">
-      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-        style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjiDHJLzPSDP7IoYaPHCOvQykAdxwN9gjPk5adyeslK2qWs8Rjm6puerhSKpXzWlKvm8FsD42G7y8p2opTP923UN33Em6JZfG2A4njl0pTZoq32N9XCGuqPp5tbUKsEiOGbwkLdKxagnDh31pMIOarXUF7oCRqhYk_gHdb0ENi2abqiwqtf2fkDgtrOT1WDOBra-TssiBJimuxVulKZz9d_27ClDj2sSiGjv0Do-pbDYGn81noTnZqkQ')"></div>
+      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjiDHJLzPSDP7IoYaPHCOvQykAdxwN9gjPk5adyeslK2qWs8Rjm6puerhSKpXzWlKvm8FsD42G7y8p2opTP923UN33Em6JZfG2A4njl0pTZoq32N9XCGuqPp5tbUKsEiOGbwkLdKxagnDh31pMIOarXUF7oCRqhYk_gHdb0ENi2abqiwqtf2fkDgtrOT1WDOBra-TssiBJimuxVulKZz9d_27ClDj2sSiGjv0Do-pbDYGn81noTnZqkQ')"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-[#004232]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
-        <span class="text-[#ffe088] text-xs font-semibold uppercase mb-2">The Beginning</span>
-        <h3 class="text-white text-2xl font-semibold">Ancestral Groves</h3>
+        <span class="text-[#ffe088] text-xs font-semibold uppercase mb-2" data-en="The Beginning" data-ar="البداية">The Beginning</span>
+        <h3 class="text-white text-2xl font-semibold" data-en="Ancestral Groves" data-ar="الواحات العريقة">Ancestral Groves</h3>
       </div>
     </div>
 
     <div class="masonry-item-tall relative group overflow-hidden rounded-xl bg-[#e3e3de] shadow-sm">
-      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-        style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDI4cxoeJqg8mzDtDSqvxYt-EOeSI4pgNmIlLQSw-Jp6kltItzXtFBSLTU2Aeu5FvJOKiDqYp7ShoNdqm6U-iGFV_a-GrHKBoznMSVG51VVpNZ9WdsqG081QckNv8vkY03blhu339MlJOYGFiHoUZT72uF-5VJ9NHxVjGeOhBcpbtHczFhmRXyXF4vIgcBe4zLvUWWUli0T1Z0pmwQnxrN3vd-JIZC_rOTRiPG8I7faNHHKCsvKWTRmQA')"></div>
+      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDI4cxoeJqg8mzDtDSqvxYt-EOeSI4pgNmIlLQSw-Jp6kltItzXtFBSLTU2Aeu5FvJOKiDqYp7ShoNdqm6U-iGFV_a-GrHKBoznMSVG51VVpNZ9WdsqG081QckNv8vkY03blhu339MlJOYGFiHoUZT72uF-5VJ9NHxVjGeOhBcpbtHczFhmRXyXF4vIgcBe4zLvUWWUli0T1Z0pmwQnxrN3vd-JIZC_rOTRiPG8I7faNHHKCsvKWTRmQA')"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-[#004232]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
-        <span class="text-[#ffe088] text-xs font-semibold uppercase mb-2">Precision</span>
-        <h3 class="text-white text-2xl font-semibold">Automated Sorting</h3>
+        <span class="text-[#ffe088] text-xs font-semibold uppercase mb-2" data-en="Precision" data-ar="الدقة">Precision</span>
+        <h3 class="text-white text-2xl font-semibold" data-en="Automated Sorting" data-ar="الفرز الآلي">Automated Sorting</h3>
       </div>
     </div>
 
     <div class="masonry-item-square relative group overflow-hidden rounded-xl bg-[#e3e3de] shadow-sm">
-      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-        style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-x5RuFYKdrYqimz7FKzHJNpvLC0Lo3IPQ2tSedKWrAWZfsfTnGB_NDpfLhkbMZBrysVh_5PU318Hg4Y8lIZCUiV25o4KmQKC4TpgoV4ESAF0HD7SIZCoqaW0v8G2JuUM3fheh7_T5WP0Pcr1RlCuo27h8QpjzBI3RE5T77pRfqcjVGSotl_pMMTjb_CQgeQsI4f6VhQENXPq1Z6AfqT-aP5tSTRo9LUVVDChrpo8WQ5YeV9x4uh4o8w')"></div>
+      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-x5RuFYKdrYqimz7FKzHJNpvLC0Lo3IPQ2tSedKWrAWZfsfTnGB_NDpfLhkbMZBrysVh_5PU318Hg4Y8lIZCUiV25o4KmQKC4TpgoV4ESAF0HD7SIZCoqaW0v8G2JuUM3fheh7_T5WP0Pcr1RlCuo27h8QpjzBI3RE5T77pRfqcjVGSotl_pMMTjb_CQgeQsI4f6VhQENXPq1Z6AfqT-aP5tSTRo9LUVVDChrpo8WQ5YeV9x4uh4o8w')"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-[#004232]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
-        <span class="text-[#ffe088] text-xs font-semibold uppercase mb-2">Design</span>
-        <h3 class="text-white text-2xl font-semibold">The Final Touch</h3>
+        <span class="text-[#ffe088] text-xs font-semibold uppercase mb-2" data-en="Design" data-ar="التصميم">Design</span>
+        <h3 class="text-white text-2xl font-semibold" data-en="The Final Touch" data-ar="اللمسة الأخيرة">The Final Touch</h3>
       </div>
     </div>
 
     <div class="masonry-item-square relative group overflow-hidden rounded-xl bg-[#e3e3de] shadow-sm">
-      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-        style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBY945oCPNGNpk6JiIzoC654vrfdfgvQkoFq1MrZo80w7OGEwdIS8aCwxYe9DfWR6YmUo_4jb_oa5VEpj-dgVzI6luyVcE-OUn-Q0M8VzA-U4UbjfdGsVCgnZ9qEX5b5mW6KYPIF2uL5pAYVAP67xlwjzpUeDYM-0ir0fb2KGbgJZc4NMg1Ffw_i3_Qt8Qz-gjL7JQtS1m-ThNqWruv1vtc95vpKjGetskQAyo6hJ4SWbrGnM7aDVZ1vg')"></div>
+      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBY945oCPNGNpk6JiIzoC654vrfdfgvQkoFq1MrZo80w7OGEwdIS8aCwxYe9DfWR6YmUo_4jb_oa5VEpj-dgVzI6luyVcE-OUn-Q0M8VzA-U4UbjfdGsVCgnZ9qEX5b5mW6KYPIF2uL5pAYVAP67xlwjzpUeDYM-0ir0fb2KGbgJZc4NMg1Ffw_i3_Qt8Qz-gjL7JQtS1m-ThNqWruv1vtc95vpKjGetskQAyo6hJ4SWbrGnM7aDVZ1vg')"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-[#004232]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
-        <span class="text-[#ffe088] text-xs font-semibold uppercase mb-2">Expertise</span>
-        <h3 class="text-white text-2xl font-semibold">Quality Control</h3>
+        <span class="text-[#ffe088] text-xs font-semibold uppercase mb-2" data-en="Expertise" data-ar="الخبرة">Expertise</span>
+        <h3 class="text-white text-2xl font-semibold" data-en="Quality Control" data-ar="مراقبة الجودة">Quality Control</h3>
       </div>
     </div>
 
     <div class="masonry-item-wide relative group overflow-hidden rounded-xl bg-[#e3e3de] shadow-sm">
-      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-        style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuCmDfALsgPFXq90e-4zLxb4htMCNLuF-UsRPlrf_Tcfxth7zYievDTyV6BRVhqI_HMtiJxchWiudukFnJidbFz4lzOs7-zuBVPbl1epJnqGOAyPPre-goTPPSt4YMo12rNvypWciN1-Y6w9SNIXtWr7h-JU5Tp7iZadE4OSTNrpFXBuQA3liDwYKS5LyILDPom6pEhKiq_qo0Chc-Rr1nAAOKsKB95Yuczo2oQSyqk8kYHAg95byhu27g')"></div>
+      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuCmDfALsgPFXq90e-4zLxb4htMCNLuF-UsRPlrf_Tcfxth7zYievDTyV6BRVhqI_HMtiJxchWiudukFnJidbFz4lzOs7-zuBVPbl1epJnqGOAyPPre-goTPPSt4YMo12rNvypWciN1-Y6w9SNIXtWr7h-JU5Tp7iZadE4OSTNrpFXBuQA3liDwYKS5LyILDPom6pEhKiq_qo0Chc-Rr1nAAOKsKB95Yuczo2oQSyqk8kYHAg95byhu27g')"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-[#004232]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
-        <span class="text-[#ffe088] text-xs font-semibold uppercase mb-2">Logistics</span>
-        <h3 class="text-white text-2xl font-semibold">Global Distribution</h3>
+        <span class="text-[#ffe088] text-xs font-semibold uppercase mb-2" data-en="Logistics" data-ar="اللوجستيات">Logistics</span>
+        <h3 class="text-white text-2xl font-semibold" data-en="Global Distribution" data-ar="التوزيع العالمي">Global Distribution</h3>
       </div>
     </div>
 
     <div class="masonry-item-square relative group overflow-hidden rounded-xl bg-[#e3e3de] shadow-sm">
-      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-        style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQwdzXk3XUuDjqQjRhxY4Ky6m15evNMP6SxJ-Ak4E33VimmBkur-fobEhFjFyz4w46z9G9eZC14aAqAk74yA8tY7YXpC65ptKRggxj2G1b9qD-MkUGrm19aMfsCDpjg7dEM4LfHSINJWAvio8cmJD_igTht8OydwmRGF_gAfn-u0OT8xmWdpuHW_niCjzejX3hBgB-iuyxqlrYKuQfxRBt2B5jW1Ru134x14S-H9I0rwqO4z2RA_ENPQ')"></div>
+      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQwdzXk3XUuDjqQjRhxY4Ky6m15evNMP6SxJ-Ak4E33VimmBkur-fobEhFjFyz4w46z9G9eZC14aAqAk74yA8tY7YXpC65ptKRggxj2G1b9qD-MkUGrm19aMfsCDpjg7dEM4LfHSINJWAvio8cmJD_igTht8OydwmRGF_gAfn-u0OT8xmWdpuHW_niCjzejX3hBgB-iuyxqlrYKuQfxRBt2B5jW1Ru134x14S-H9I0rwqO4z2RA_ENPQ')"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-[#004232]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
-        <span class="text-[#ffe088] text-xs font-semibold uppercase mb-2">Product</span>
-        <h3 class="text-white text-2xl font-semibold">Natural Excellence</h3>
+        <span class="text-[#ffe088] text-xs font-semibold uppercase mb-2" data-en="Product" data-ar="المنتج">Product</span>
+        <h3 class="text-white text-2xl font-semibold" data-en="Natural Excellence" data-ar="التميز الطبيعي">Natural Excellence</h3>
       </div>
     </div>
-
   </div>
 
   <section class="mt-[120px] bg-[#005c46] text-[#88d2b6] rounded-3xl p-12 md:p-16 relative overflow-hidden">
     <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
-      <div class="max-w-xl text-center md:text-start">
-        <h2 class="text-3xl md:text-5xl font-bold mb-6 text-[#002117]">Partner with Excellence</h2>
-        <p class="text-lg leading-relaxed opacity-90">
+      <div class="max-w-xl text-start">
+        <h2 class="text-3xl md:text-5xl font-bold mb-6 text-[#002117]" data-en="Partner with Excellence" data-ar="شارك التميز">Partner with Excellence</h2>
+        <p class="text-lg leading-relaxed opacity-90" data-en="We provide industrial-scale date processing and private labeling for global commercial partners. Discover our quality standards." data-ar="نقدم معالجة التمور على نطاق صناعي ووضع العلامات التجارية الخاصة للشركاء التجاريين العالميين. اكتشف معايير الجودة لدينا.">
           We provide industrial-scale date processing and private labeling for global commercial partners. Discover our quality standards.
         </p>
       </div>
       <div class="flex flex-col sm:flex-row gap-4">
-        <a href="/web/contact/index.html" class="px-8 py-4 bg-[#004232] text-white rounded-lg font-bold hover:opacity-90 transition-all active:scale-95 shadow-xl text-center">Inquire Now</a>
-        <a href="/catalog/catalog.pdf" download class="px-8 py-4 bg-transparent border border-[#002117] text-[#002117] rounded-lg font-bold hover:bg-white/10 transition-all text-center">Download Catalog</a>
+        <a href="/web/contact/index.html" class="px-8 py-4 bg-[#004232] text-white rounded-lg font-bold hover:opacity-90 transition-all active:scale-95 shadow-xl text-center" data-en="Inquire Now" data-ar="استفسر الآن">Inquire Now</a>
+        <a href="/catalog/catalog.pdf" download class="px-8 py-4 bg-transparent border border-[#002117] text-[#002117] rounded-lg font-bold hover:bg-white/10 transition-all text-center" data-en="Download Catalog" data-ar="تحميل الكتالوج">Download Catalog</a>
       </div>
     </div>
     <div class="absolute top-0 right-0 w-64 h-64 opacity-10 pointer-events-none">
@@ -779,37 +362,37 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
 <footer class="w-full py-20 px-4 md:px-16 bg-[#e3e3de] border-t border-[#735c00]/20 grid grid-cols-1 md:grid-cols-4 gap-6">
   <div class="space-y-4">
     <div class="text-2xl font-semibold text-[#004232] mb-2">ATHAQ</div>
-    <p class="text-[#3f4944] text-base mb-6">Leading the future of Saudi industrial date production with tradition and technology.</p>
+    <p class="text-[#3f4944] text-base mb-6" data-en="Leading the future of Saudi industrial date production with tradition and technology." data-ar="نقود مستقبل إنتاج التمور الصناعية السعودية بالتراث والتكنولوجيا.">Leading the future of Saudi industrial date production with tradition and technology.</p>
   </div>
 
   <div>
-    <h4 class="text-lg font-semibold text-[#004232] mb-6">Navigation</h4>
+    <h4 class="text-lg font-semibold text-[#004232] mb-6" data-en="Navigation" data-ar="التنقل">Navigation</h4>
     <ul class="space-y-4">
-      <li><a class="text-[#3f4944] hover:text-[#735c00] transition-colors" href="/web/about/index.html">About Us</a></li>
-      <li><a class="text-[#3f4944] hover:text-[#735c00] transition-colors" href="/web/product/index.html">Product List</a></li>
-      <li><a class="text-[#3f4944] hover:text-[#735c00] transition-colors" href="/web/gallery/index.html">Gallery</a></li>
-      <li><a class="text-[#3f4944] hover:text-[#735c00] transition-colors" href="/web/contact/index.html">Contact Us</a></li>
+      <li><a class="text-[#3f4944] hover:text-[#735c00] transition-colors" href="/web/about/index.html" data-en="About Us" data-ar="من نحن">About Us</a></li>
+      <li><a class="text-[#3f4944] hover:text-[#735c00] transition-colors" href="/web/product/index.html" data-en="Product List" data-ar="قائمة المنتجات">Product List</a></li>
+      <li><a class="text-[#3f4944] hover:text-[#735c00] transition-colors" href="/web/gallery/index.html" data-en="Gallery" data-ar="معرض الصور">Gallery</a></li>
+      <li><a class="text-[#3f4944] hover:text-[#735c00] transition-colors" href="/web/contact/index.html" data-en="Contact Us" data-ar="اتصل بنا">Contact Us</a></li>
     </ul>
   </div>
 
   <div>
-    <h4 class="text-lg font-semibold text-[#004232] mb-6">Legal & Standards</h4>
+    <h4 class="text-lg font-semibold text-[#004232] mb-6" data-en="Legal & Standards" data-ar="الشؤون القانونية والمعايير">Legal & Standards</h4>
     <ul class="space-y-4">
-      <li><a class="text-[#3f4944] hover:text-[#735c00] transition-colors" href="#">Privacy Policy</a></li>
-      <li><a class="text-[#3f4944] hover:text-[#735c00] transition-colors" href="#">Terms of Service</a></li>
-      <li><a class="text-[#3f4944] hover:text-[#735c00] transition-colors" href="#">Quality Standards</a></li>
+      <li><a class="text-[#3f4944] hover:text-[#735c00] transition-colors" href="#" data-en="Privacy Policy" data-ar="سياسة الخصوصية">Privacy Policy</a></li>
+      <li><a class="text-[#3f4944] hover:text-[#735c00] transition-colors" href="#" data-en="Terms of Service" data-ar="شروط الخدمة">Terms of Service</a></li>
+      <li><a class="text-[#3f4944] hover:text-[#735c00] transition-colors" href="#" data-en="Quality Standards" data-ar="معايير الجودة">Quality Standards</a></li>
     </ul>
   </div>
 
   <div>
-    <h4 class="text-lg font-semibold text-[#004232] mb-6">Contact Factory</h4>
-    <p class="text-[#3f4944] mb-2">Al Bukayriyah Industrial City</p>
-    <p class="text-[#3f4944] mb-2">Al Bukayriyah, Saudi Arabia</p>
-    <p class="text-[#004232] font-bold mt-4">aathaqq3@gmail.com</p>
+    <h4 class="text-lg font-semibold text-[#004232] mb-6" data-en="Contact Factory" data-ar="اتصل بالمصنع">Contact Factory</h4>
+    <p class="text-[#3f4944] mb-2" data-en="Al Bukayriyah Industrial City" data-ar="مدينة البكيرية الصناعية">Al Bukayriyah Industrial City</p>
+    <p class="text-[#3f4944] mb-2" data-en="Al Bukayriyah, Saudi Arabia" data-ar="البكيرية، المملكة العربية السعودية">Al Bukayriyah, Saudi Arabia</p>
+    <p class="text-[#004232] font-bold mt-4" dir="ltr">aathaqq3@gmail.com</p>
   </div>
 
   <div class="col-span-1 md:col-span-4 border-t border-[#bec9c3]/30 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-    <span class="text-[#3f4944] text-base">© 2026 ATHAQ Industrial Factory. All rights reserved.</span>
+    <span class="text-[#3f4944] text-base" data-en="© 2026 ATHAQ Industrial Factory. All rights reserved." data-ar="© 2026 مصنع أثاق الصناعي. جميع الحقوق محفوظة.">© 2026 ATHAQ Industrial Factory. All rights reserved.</span>
     <div class="flex gap-8">
       <span class="material-symbols-outlined text-[#6f7974]">verified_user</span>
       <span class="material-symbols-outlined text-[#6f7974]">factory</span>
@@ -855,9 +438,22 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
   });
 
   function toggleLanguage(){
-    const label=document.getElementById("languageLabel");
-    if(!label) return;
-    label.textContent = label.textContent === "English" ? "العربية" : "English";
+    const htmlEl = document.documentElement;
+    const currentLang = htmlEl.getAttribute("lang") || "en";
+    const newLang = currentLang === "en" ? "ar" : "en";
+    
+    htmlEl.setAttribute("lang", newLang);
+    // Note: dir attribute hata diya gaya hai taake buttons aur layout apni jagah fix rahein
+    
+    // Update all elements with data-en and data-ar
+    document.querySelectorAll("[data-en][data-ar]").forEach(el => {
+      el.textContent = el.getAttribute(`data-${newLang}`);
+    });
+
+    const langLabel = document.getElementById("languageLabel");
+    if(langLabel) {
+      langLabel.textContent = newLang === "ar" ? "العربية" : "English";
+    }
   }
 
   async function shareWebsite(){
@@ -876,6 +472,5 @@ class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw]
   }
 </script>
 
-<script src="script.js"></script>
 </body>
 </html>
