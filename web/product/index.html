@@ -7,6 +7,8 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../../supabase-config.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
 
@@ -413,7 +415,7 @@ html[dir="rtl"] #side-menu.active {
 <!-- COMPLETE ATHAQ LOGO -->
 <div class="w-[200px] h-[70px] flex items-center justify-center overflow-visible group-hover:scale-[1.03] transition-transform duration-300">
   <img 
-    src="/logo.png"
+    src="/database/logo.png"
     alt="ATHAQ Industrial Factory"
     class="w-full h-full object-contain"
   >
@@ -473,7 +475,7 @@ html[dir="rtl"] #side-menu.active {
                class="flex items-center gap-3">
 
               <img 
-  src="/logo (2).png"
+  src="/database/logo(2).png"
   alt="ATHAQ"
   class="w-10 h-10 object-contain scale-125"
 >
@@ -943,197 +945,21 @@ html[dir="rtl"] #side-menu.active {
       <div class="w-full h-px bg-gray-200 mt-8"></div>
     </header>
 
-    <!-- PRODUCT GRID -->
     <section class="px-4 md:px-16 max-w-7xl mx-auto">
-      <div id="productGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div id="productGrid"
+       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-        <!-- Featured -->
-        <div class="product-card col-span-1 lg:col-span-2 group relative overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-md transition-all duration-500"
-             data-id="p_featured" data-price="250" data-category="limited">
+    <div id="productsLoading"
+         class="col-span-full py-16 text-center text-gray-500">
+      Loading products...
+    </div>
 
-          <div class="flex flex-col md:flex-row h-full">
-            <div class="md:w-1/2 overflow-hidden h-64 md:h-full relative">
-              <img alt="The Royal Assortment"
-                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH7jlhj9vVAGtVeQWfnLCQaD-CYs7ghpUu6J9F7PwKStRpOBs6iNVWdscl_SnsHZhk66ltbYD2F8UYb_OnFvXjfqfywiZY9KWsSmSpUOjprlpJp3DhL_Osw-G6PBHzkCrKOc7aj_giXbE52sBu_NsrwVffAfXvBM-WZVj5IkGCxGtLqpKUqxGpmi9FZBJpClm2JJkc0RUyS-GR-d8wxkEmJYcUEVDBrlnrriEBJm855l0JKWSyyB3AmA">
+  </div>
+</section>
 
-              <button onclick="toggleWishlist(event,'p_featured','The Royal Assortment',this.closest('.product-card').querySelector('img').src,250)"
-                      class="wishlist-btn absolute top-4 left-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-gray-700 shadow-md hover:bg-white transition-all">
-                <i class="fa-regular fa-heart text-lg"></i>
-              </button>
-            </div>
+  </div>
 
-            <div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-between bg-white">
-              <div>
-                <span class="text-xs font-bold text-amber-700 uppercase tracking-widest mb-2 block" data-en="Featured Variety" data-ar="صنف مميز">Featured Variety</span>
-                <h2 class="text-2xl md:text-3xl font-extrabold text-[#004232] mb-3" data-en="The Royal Assortment" data-ar="التشكيلة الملكية">The Royal Assortment</h2>
-                <p class="text-sm text-gray-600 mb-6" data-en="A curated selection of our finest harvests. Experience the full spectrum of texture and flavor." data-ar="مجموعة مختارة من أجود محاصيلنا. استمتع بالطيف الكامل من الملمس والنكهة.">A curated selection of our finest harvests. Experience the full spectrum of texture and flavor.</p>
-                <span class="product-price text-xl font-bold text-[#004232] mb-6 block">SAR 250.00</span>
-              </div>
-
-              <div class="flex items-center gap-3">
-                <button onclick="buyNow('p_featured','The Royal Assortment',250,this.closest('.product-card').querySelector('img').src)"
-                        class="flex-1 bg-[#004232] text-white py-3 px-4 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-[#002e23] transition-colors flex items-center justify-center gap-2 shadow-md">
-                  <i class="fa-solid fa-bolt"></i> <span data-en="Buy Now" data-ar="اشتري الآن">Buy Now</span>
-                </button>
-
-                <button onclick="addToCart('p_featured','The Royal Assortment',250,this.closest('.product-card').querySelector('img').src)"
-                        class="p-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors text-gray-700">
-                  <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Sukkary -->
-        <div class="product-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group overflow-hidden"
-             data-id="p_sukkary" data-price="95" data-category="premium">
-
-          <div class="relative aspect-square overflow-hidden bg-gray-50">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6d6L6xCje4iZnUq4eERix-e9zOaJN3GAjLJ4VmklC6FSvYTF3DiOaq4tsGOVbY20RjE2VtR3QNPKiARNGIPAAffzKp2XrLGrhT5uylU8_DHY97bZi1CNEd-93JJDpiaBsP8XSQnxiApgd_R2rMwcafV2jPuw9OtrblDRmhVEVWqAhcccmodCbau7kHqgO4iGt8aK3b3kcMtbeTGNfAVBBkxXYCUs6dGsw-USzseQE7SxSOU2KH4o3LQ"
-                 alt="Sukkary Gold">
-            <span class="absolute top-4 left-4 bg-[#004232] text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider" data-en="Premium Grade" data-ar="درجة ممتازة">Premium Grade</span>
-            <button onclick="toggleWishlist(event,'p_sukkary','Sukkary Gold',this.closest('.product-card').querySelector('img').src,95)"
-                    class="wishlist-btn absolute top-4 right-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center text-gray-700 shadow-md hover:bg-white transition-all">
-              <i class="fa-regular fa-heart"></i>
-            </button>
-          </div>
-
-          <div class="p-6 flex-grow flex flex-col justify-between">
-            <div>
-              <div class="flex justify-between items-start mb-2">
-                <h3 class="text-xl font-bold text-[#004232]" data-en="Sukkary Gold" data-ar="سكري ذهبي">Sukkary Gold</h3>
-                <span class="product-price font-extrabold text-[#004232]">SAR 95.00</span>
-              </div>
-              <p class="text-xs text-gray-500 mb-6 line-clamp-2" data-en="Crisp exterior with a melt-in-the-mouth sugary core. Notes of honey and brown butter." data-ar="خارج مقرمش مع لب سكري يذوب في الفم. نكهات العسل والزبدة البنية.">Crisp exterior with a melt-in-the-mouth sugary core. Notes of honey and brown butter.</p>
-            </div>
-
-            <div class="flex items-center gap-2 pt-4 border-t border-gray-100">
-              <button onclick="buyNow('p_sukkary','Sukkary Gold',95,this.closest('.product-card').querySelector('img').src)"
-                      class="flex-1 bg-[#004232] text-white py-2.5 px-3 rounded-xl text-xs font-bold uppercase hover:bg-[#002e23] transition-colors flex items-center justify-center gap-2">
-                <i class="fa-solid fa-bolt"></i> <span data-en="Buy Now" data-ar="اشتري الآن">Buy Now</span>
-              </button>
-              <button onclick="addToCart('p_sukkary','Sukkary Gold',95,this.closest('.product-card').querySelector('img').src)"
-                      class="p-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 text-gray-700">
-                <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Ajwa -->
-        <div class="product-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group overflow-hidden"
-             data-id="p_ajwa" data-price="140" data-category="limited">
-
-          <div class="relative aspect-square overflow-hidden bg-gray-50">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb88OWBX_BwkRaOUmOpbMlykITyyGelGU0QmZ6B_PyobSmYHbeTm_nU5tQkxJtbszRkuzv3d4oQjhHRMk4I6t2NaRIj3ca5htlL1bpFcXtLDJiKit5bwwelr7sd-UGHYBLp9VwJ7xKis-2dtozUxOEnYPxs2g9nUfK6sOZr6ilW09XW21DOBfZCGBLcR0OknfW5roa0c3RF_JTln0HeXrjSd_FY5WfSrDrIgD5J-fJx4vONFSi42qxZw"
-                 alt="Ajwa Al-Madinah">
-            <span class="absolute top-4 left-4 bg-amber-700 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider" data-en="Limited Harvest" data-ar="حصاد محدود">Limited Harvest</span>
-            <button onclick="toggleWishlist(event,'p_ajwa','Ajwa Al-Madinah',this.closest('.product-card').querySelector('img').src,140)"
-                    class="wishlist-btn absolute top-4 right-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center text-gray-700 shadow-md hover:bg-white transition-all">
-              <i class="fa-regular fa-heart"></i>
-            </button>
-          </div>
-
-          <div class="p-6 flex-grow flex flex-col justify-between">
-            <div>
-              <div class="flex justify-between items-start mb-2">
-                <h3 class="text-xl font-bold text-[#004232]" data-en="Ajwa Al-Madinah" data-ar="عجوة المدينة">Ajwa Al-Madinah</h3>
-                <span class="product-price font-extrabold text-[#004232]">SAR 140.00</span>
-              </div>
-              <p class="text-xs text-gray-500 mb-6 line-clamp-2" data-en="Fine, silky texture with a deep, fruity complexity. Revered for its unique nutritional profile." data-ar="قوام ناعم وحريري مع تعقيد فاكهي عميق. تحظى بالتقدير لملفها الغذائي الفريد.">Fine, silky texture with a deep, fruity complexity. Revered for its unique nutritional profile.</p>
-            </div>
-
-            <div class="flex items-center gap-2 pt-4 border-t border-gray-100">
-              <button onclick="buyNow('p_ajwa','Ajwa Al-Madinah',140,this.closest('.product-card').querySelector('img').src)"
-                      class="flex-1 bg-[#004232] text-white py-2.5 px-3 rounded-xl text-xs font-bold uppercase hover:bg-[#002e23] transition-colors flex items-center justify-center gap-2">
-                <i class="fa-solid fa-bolt"></i> <span data-en="Buy Now" data-ar="اشتري الآن">Buy Now</span>
-              </button>
-              <button onclick="addToCart('p_ajwa','Ajwa Al-Madinah',140,this.closest('.product-card').querySelector('img').src)"
-                      class="p-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 text-gray-700">
-                <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Khalas -->
-        <div class="product-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group overflow-hidden"
-             data-id="p_khalas" data-price="80" data-category="premium">
-
-          <div class="relative aspect-square overflow-hidden bg-gray-50">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKATL3LuvNdZ3fBDO1eJ6E9chrxGkgmIjH1UWsmpTpmrZl7diZkxCrlrpx_T0N6Fr57gvIzbCncUAfrr8efiYvazdLbLuPeq-E3wq0sGHE5cVDHwjxzqzCBoalu02_QkwwlS2d1KwcEp9RHL3Ntd2wJXo8HBNOKNCor9-5TdmRoiS_m3ku6-7ko5TOHeO_U1ylSiz8CSghgo3FIW-oAbHGZl3C_jkYwMxMpIlHCuFBzQv9to3o4IRxw"
-                 alt="Khalas Al-Ahsa">
-            <button onclick="toggleWishlist(event,'p_khalas','Khalas Al-Ahsa',this.closest('.product-card').querySelector('img').src,80)"
-                    class="wishlist-btn absolute top-4 right-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center text-gray-700 shadow-md hover:bg-white transition-all">
-              <i class="fa-regular fa-heart"></i>
-            </button>
-          </div>
-
-          <div class="p-6 flex-grow flex flex-col justify-between">
-            <div>
-              <div class="flex justify-between items-start mb-2">
-                <h3 class="text-xl font-bold text-[#004232]" data-en="Khalas Al-Ahsa" data-ar="خلاص الأحساء">Khalas Al-Ahsa</h3>
-                <span class="product-price font-extrabold text-[#004232]">SAR 80.00</span>
-              </div>
-              <p class="text-xs text-gray-500 mb-6 line-clamp-2" data-en="The definitive everyday luxury. Sticky, caramelly, and perfectly balanced sweetness." data-ar="رفاهية يومية لا غنى عنها. لزجة، بطعم الكراميل، وحلاوة متوازنة تماماً.">The definitive everyday luxury. Sticky, caramelly, and perfectly balanced sweetness.</p>
-            </div>
-
-            <div class="flex items-center gap-2 pt-4 border-t border-gray-100">
-              <button onclick="buyNow('p_khalas','Khalas Al-Ahsa',80,this.closest('.product-card').querySelector('img').src)"
-                      class="flex-1 bg-[#004232] text-white py-2.5 px-3 rounded-xl text-xs font-bold uppercase hover:bg-[#002e23] transition-colors flex items-center justify-center gap-2">
-                <i class="fa-solid fa-bolt"></i> <span data-en="Buy Now" data-ar="اشتري الآن">Buy Now</span>
-              </button>
-              <button onclick="addToCart('p_khalas','Khalas Al-Ahsa',80,this.closest('.product-card').querySelector('img').src)"
-                      class="p-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 text-gray-700">
-                <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Sagai -->
-        <div class="product-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group overflow-hidden"
-             data-id="p_sagai" data-price="110" data-category="premium">
-
-          <div class="relative aspect-square overflow-hidden bg-gray-50">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa_aO1ID9d77Zh9EJrvOjoxik05zw0UiRGSDMP7EIUjGQElgMvoHoimkXgZjtuQXBs03nCnuGlFG9go8de5eucBV38DioomY6qHDAh3myVAO3Nb3iv6zMvvVJ0gd7Smerjb4c4sMheOlN33Bys5Zkn1sXFOgmkved3WNTiW7ij8Ojt6GUa_Jymz7HeLzmdMF_GXru5D4uvSajQWNmVZxoxO2RjoW04yeTp0iRaUIQVR3-_bMlBnM5jHg"
-                 alt="Sagai Selection">
-            <button onclick="toggleWishlist(event,'p_sagai','Sagai Selection',this.closest('.product-card').querySelector('img').src,110)"
-                    class="wishlist-btn absolute top-4 right-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center text-gray-700 shadow-md hover:bg-white transition-all">
-              <i class="fa-regular fa-heart"></i>
-            </button>
-          </div>
-
-          <div class="p-6 flex-grow flex flex-col justify-between">
-            <div>
-              <div class="flex justify-between items-start mb-2">
-                <h3 class="text-xl font-bold text-[#004232]" data-en="Sagai Selection" data-ar="تشكيلة صقعي">Sagai Selection</h3>
-                <span class="product-price font-extrabold text-[#004232]">SAR 110.00</span>
-              </div>
-              <p class="text-xs text-gray-500 mb-6 line-clamp-2" data-en="Distinctive firm base with a soft tip. A textured journey from crunch to cream." data-ar="قاعدة متينة مميزة مع طرف ناعم. رحلة قوامية من القرمشة إلى النعومة.">Distinctive firm base with a soft tip. A textured journey from crunch to cream.</p>
-            </div>
-
-            <div class="flex items-center gap-2 pt-4 border-t border-gray-100">
-              <button onclick="buyNow('p_sagai','Sagai Selection',110,this.closest('.product-card').querySelector('img').src)"
-                      class="flex-1 bg-[#004232] text-white py-2.5 px-3 rounded-xl text-xs font-bold uppercase hover:bg-[#002e23] transition-colors flex items-center justify-center gap-2">
-                <i class="fa-solid fa-bolt"></i> <span data-en="Buy Now" data-ar="اشتري الآن">Buy Now</span>
-              </button>
-              <button onclick="addToCart('p_sagai','Sagai Selection',110,this.closest('.product-card').querySelector('img').src)"
-                      class="p-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 text-gray-700">
-                <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
+            
 
     <!-- BULK INQUIRIES -->
     <section class="mt-24 px-4 md:px-16 max-w-7xl mx-auto">
@@ -1214,6 +1040,7 @@ html[dir="rtl"] #side-menu.active {
       checkAuthHeader();
       setupMenu();
       applyLanguage(currentLang);
+      loadLiveProducts();
     });
 
     /* ================= SIDEBAR ================= */
@@ -1415,43 +1242,645 @@ html[dir="rtl"] #side-menu.active {
       window.location.href = "/admin/checkout.html";
     }
 
-    /* ================= FILTER ================= */
-    function toggleFilterMenu() {
-      const dropdown = document.getElementById("filterDropdown");
-      document.getElementById("sortDropdown")?.classList.add("hidden");
-      dropdown?.classList.toggle("hidden");
+/* =========================================================
+   ATHAQ LIVE SUPABASE PRODUCTS
+   ADMIN → SUPABASE → PRODUCT PAGE
+========================================================= */
+
+function getProductDB() {
+  return window.ATHAQ_SUPABASE || null;
+}
+
+
+/* ================= SAFE TEXT ================= */
+
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+
+/* ================= CATEGORY ================= */
+
+function normalizeCategory(category) {
+  return String(category || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-");
+}
+
+
+function getCategoryBadge(category) {
+
+  const raw = String(category || "").trim();
+  const normalized = normalizeCategory(raw);
+
+  if (
+    normalized.includes("limited") ||
+    normalized.includes("harvest")
+  ) {
+    return `
+      <span
+        class="absolute top-4 left-4 bg-amber-700 text-white
+               px-3 py-1 rounded-full text-[10px] font-bold
+               uppercase tracking-wider"
+        data-en="Limited Harvest"
+        data-ar="حصاد محدود">
+        Limited Harvest
+      </span>
+    `;
+  }
+
+  return `
+    <span
+      class="absolute top-4 left-4 bg-[#004232] text-white
+             px-3 py-1 rounded-full text-[10px] font-bold
+             uppercase tracking-wider"
+      data-en="Premium Grade"
+      data-ar="درجة ممتازة">
+      Premium Grade
+    </span>
+  `;
+}
+
+
+/* =========================================================
+   RENDER PRODUCT
+========================================================= */
+
+function renderLiveProduct(product) {
+
+  const id = escapeHTML(product.id);
+  const name = escapeHTML(
+    product.name || "ATHAQ Product"
+  );
+
+  const description = escapeHTML(
+    product.description || ""
+  );
+
+  const image = escapeHTML(
+    product.image_url ||
+    product.image ||
+    "https://via.placeholder.com/600x600?text=ATHAQ"
+  );
+
+  const price = Number(product.price) || 0;
+
+  const category = normalizeCategory(
+    product.category || "premium"
+  );
+
+  return `
+    <div
+      class="product-card bg-white rounded-2xl border border-gray-100
+             shadow-sm hover:shadow-lg transition-all duration-300
+             flex flex-col group overflow-hidden"
+      data-id="${id}"
+      data-price="${price}"
+      data-category="${category}"
+      data-search="${name.toLowerCase()} ${description.toLowerCase()}">
+
+      <div class="relative aspect-square overflow-hidden bg-gray-50">
+
+        <img
+          class="w-full h-full object-cover
+                 group-hover:scale-105 transition-transform duration-500"
+          src="${image}"
+          alt="${name}"
+          loading="lazy"
+          onerror="this.src='https://via.placeholder.com/600x600?text=ATHAQ';">
+
+        ${getCategoryBadge(category)}
+
+        <button
+          type="button"
+          class="wishlist-btn absolute top-4 right-4
+                 w-9 h-9 bg-white/90 rounded-full
+                 flex items-center justify-center
+                 text-gray-700 shadow-md hover:bg-white transition-all"
+          data-wishlist-id="${id}"
+          data-wishlist-name="${name}"
+          data-wishlist-price="${price}"
+          data-wishlist-image="${image}"
+          onclick="handleProductWishlist(event, this)">
+
+          <i class="fa-regular fa-heart"></i>
+
+        </button>
+
+      </div>
+
+
+      <div class="p-6 flex-grow flex flex-col justify-between">
+
+        <div>
+
+          <div class="flex justify-between items-start
+                      mb-2 gap-4">
+
+            <h3 class="text-xl font-bold text-[#004232]">
+              ${name}
+            </h3>
+
+            <span
+              class="product-price text-xl font-bold
+                     text-[#004232] whitespace-nowrap">
+              SAR ${price.toFixed(2)}
+            </span>
+
+          </div>
+
+          <p class="text-xs text-gray-500 mb-6 line-clamp-2">
+            ${description}
+          </p>
+
+        </div>
+
+
+        <div
+          class="flex items-center gap-3
+                 pt-4 border-t border-gray-100">
+
+          <button
+            type="button"
+            class="flex-1 bg-[#004232] text-white
+                   py-3 px-4 rounded-xl font-bold
+                   text-xs uppercase tracking-wider
+                   hover:bg-[#002e23] transition-colors
+                   flex items-center justify-center gap-2
+                   shadow-md"
+            onclick="handleProductBuyNow(this)">
+
+            <i class="fa-solid fa-bolt"></i>
+
+            <span
+              data-en="Buy Now"
+              data-ar="اشتري الآن">
+              Buy Now
+            </span>
+
+          </button>
+
+
+          <button
+            type="button"
+            class="p-3 border border-gray-300
+                   rounded-xl hover:bg-gray-50
+                   transition-colors text-gray-700"
+            onclick="handleProductAddToCart(this)">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+}
+
+
+/* =========================================================
+   WISHLIST
+========================================================= */
+
+function handleProductWishlist(event, button) {
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  const id =
+    button.dataset.wishlistId;
+
+  const name =
+    button.dataset.wishlistName ||
+    "ATHAQ Product";
+
+  const price =
+    Number(button.dataset.wishlistPrice) || 0;
+
+  const image =
+    button.dataset.wishlistImage || "";
+
+  if (typeof toggleWishlist === "function") {
+
+    toggleWishlist(
+      event,
+      id,
+      name,
+      image,
+      price
+    );
+
+  } else {
+
+    console.error(
+      "ATHAQ: toggleWishlist() is not available."
+    );
+
+  }
+}
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+function handleProductAddToCart(button) {
+
+  const card =
+    button.closest(".product-card");
+
+  if (!card) return;
+
+  const id =
+    card.dataset.id;
+
+  const price =
+    Number(card.dataset.price) || 0;
+
+  const name =
+    card.querySelector("h3")?.innerText?.trim() ||
+    "ATHAQ Product";
+
+  const image =
+    card.querySelector("img")?.src || "";
+
+  if (typeof addToCart === "function") {
+
+    addToCart(
+      id,
+      name,
+      price,
+      image
+    );
+
+  } else {
+
+    console.error(
+      "ATHAQ: addToCart() is not available."
+    );
+
+  }
+}
+
+
+/* =========================================================
+   BUY NOW
+========================================================= */
+
+function handleProductBuyNow(button) {
+
+  const card =
+    button.closest(".product-card");
+
+  if (!card) return;
+
+  const id =
+    card.dataset.id;
+
+  const price =
+    Number(card.dataset.price) || 0;
+
+  const name =
+    card.querySelector("h3")?.innerText?.trim() ||
+    "ATHAQ Product";
+
+  const image =
+    card.querySelector("img")?.src || "";
+
+  if (typeof buyNow === "function") {
+
+    buyNow(
+      id,
+      name,
+      price,
+      image
+    );
+
+  } else {
+
+    console.error(
+      "ATHAQ: buyNow() is not available."
+    );
+
+  }
+}
+
+
+/* =========================================================
+   LOAD PRODUCTS FROM SUPABASE
+========================================================= */
+
+async function loadLiveProducts() {
+
+  const grid =
+    document.getElementById("productGrid");
+
+  const loading =
+    document.getElementById("productsLoading");
+
+  if (!grid) {
+
+    console.error(
+      "ATHAQ: #productGrid not found."
+    );
+
+    return;
+  }
+
+
+  const db =
+    getProductDB();
+
+
+  if (!db) {
+
+    console.error(
+      "ATHAQ: window.ATHAQ_SUPABASE is not available."
+    );
+
+    grid.innerHTML = `
+      <div class="col-span-full py-16 text-center">
+
+        <div class="text-red-600 font-bold mb-2">
+          Unable to connect to product database.
+        </div>
+
+        <div class="text-sm text-gray-500">
+          Supabase configuration was not loaded.
+        </div>
+
+      </div>
+    `;
+
+    return;
+  }
+
+
+  if (loading) {
+    loading.style.display = "block";
+  }
+
+
+  try {
+
+    const response =
+      await db
+        .from("products")
+        .select("*")
+        .order("created_at", {
+          ascending: false
+        });
+
+
+    const data =
+      response.data;
+
+    const error =
+      response.error;
+
+
+    if (error) {
+      throw error;
     }
 
-    function filterProducts(category) {
-      document.querySelectorAll(".product-card").forEach(card => {
-        const matches = category === "all" || card.dataset.category === category;
-        card.style.display = matches ? "" : "none";
-      });
 
-      document.getElementById("filterDropdown")?.classList.add("hidden");
+    console.log(
+      "ATHAQ Supabase products:",
+      data
+    );
+
+
+    if (!Array.isArray(data) || data.length === 0) {
+
+      grid.innerHTML = `
+        <div class="col-span-full py-16 text-center">
+
+          <div
+            class="text-[#004232] text-lg font-bold mb-2">
+            No Products Available
+          </div>
+
+          <div class="text-sm text-gray-500">
+            Products added from the Admin Panel
+            will appear here.
+          </div>
+
+        </div>
+      `;
+
+      return;
     }
 
-    /* ================= SORT ================= */
-    function toggleSortMenu() {
-      const dropdown = document.getElementById("sortDropdown");
-      document.getElementById("filterDropdown")?.classList.add("hidden");
-      dropdown?.classList.toggle("hidden");
+
+    grid.innerHTML =
+      data
+        .map(renderLiveProduct)
+        .join("");
+
+
+    updateWishlistUI();
+
+    if (
+      typeof applyLanguage === "function" &&
+      typeof currentLang !== "undefined"
+    ) {
+      applyLanguage(currentLang);
     }
 
-    function sortProducts(order) {
-      const grid = document.getElementById("productGrid");
-      const cards = [...grid.querySelectorAll(".product-card")];
 
-      cards.sort((a, b) => {
-        const priceA = Number(a.dataset.price) || 0;
-        const priceB = Number(b.dataset.price) || 0;
-        return order === "low-high" ? priceA - priceB : priceB - priceA;
-      });
+    /*
+     * Re-apply current filter/search state
+     * after Supabase products are rendered.
+     */
 
-      cards.forEach(card => grid.appendChild(card));
-      document.getElementById("sortDropdown")?.classList.add("hidden");
-      updateWishlistUI();
+    applyProductVisibility();
+
+
+  } catch (error) {
+
+    console.error(
+      "ATHAQ Product Loading Error:",
+      error
+    );
+
+
+    grid.innerHTML = `
+      <div class="col-span-full py-16 text-center">
+
+        <div class="text-red-600 font-bold mb-2">
+          Unable to load products.
+        </div>
+
+        <div class="text-sm text-gray-500">
+          ${escapeHTML(
+            error?.message ||
+            "Please check your Supabase connection."
+          )}
+        </div>
+
+      </div>
+    `;
+
+  } finally {
+
+    if (loading) {
+      loading.style.display = "none";
     }
+
+  }
+}
+
+
+/* =========================================================
+   FILTER STATE
+========================================================= */
+
+let activeProductCategory = "all";
+let activeProductSearch = "";
+
+
+/* =========================================================
+   APPLY FILTER + SEARCH TOGETHER
+========================================================= */
+
+function applyProductVisibility() {
+
+  const query =
+    activeProductSearch
+      .toLowerCase()
+      .trim();
+
+
+  document
+    .querySelectorAll(".product-card")
+    .forEach(card => {
+
+      const category =
+        card.dataset.category || "";
+
+      const searchableText =
+        (
+          card.dataset.search ||
+          card.innerText ||
+          ""
+        ).toLowerCase();
+
+
+      const categoryMatch =
+        activeProductCategory === "all" ||
+        category === normalizeCategory(
+          activeProductCategory
+        );
+
+
+      const searchMatch =
+        !query ||
+        searchableText.includes(query);
+
+
+      card.style.display =
+        categoryMatch && searchMatch
+          ? ""
+          : "none";
+
+    });
+}
+
+
+/* ================= FILTER ================= */
+
+function toggleFilterMenu() {
+
+  const dropdown =
+    document.getElementById("filterDropdown");
+
+  document
+    .getElementById("sortDropdown")
+    ?.classList.add("hidden");
+
+  dropdown?.classList.toggle("hidden");
+}
+
+
+function filterProducts(category) {
+
+  activeProductCategory =
+    category || "all";
+
+  applyProductVisibility();
+
+  document
+    .getElementById("filterDropdown")
+    ?.classList.add("hidden");
+}
+
+
+/* ================= SORT ================= */
+
+function toggleSortMenu() {
+
+  const dropdown =
+    document.getElementById("sortDropdown");
+
+  document
+    .getElementById("filterDropdown")
+    ?.classList.add("hidden");
+
+  dropdown?.classList.toggle("hidden");
+}
+
+
+function sortProducts(order) {
+
+  const grid =
+    document.getElementById("productGrid");
+
+  if (!grid) return;
+
+
+  const cards =
+    [...grid.querySelectorAll(".product-card")];
+
+
+  cards.sort((a, b) => {
+
+    const priceA =
+      Number(a.dataset.price) || 0;
+
+    const priceB =
+      Number(b.dataset.price) || 0;
+
+
+    return order === "low-high"
+      ? priceA - priceB
+      : priceB - priceA;
+
+  });
+
+
+  cards.forEach(card =>
+    grid.appendChild(card)
+  );
+
+
+  document
+    .getElementById("sortDropdown")
+    ?.classList.add("hidden");
+
+
+  applyProductVisibility();
+
+  updateWishlistUI();
+}
 
     /* ================= SEARCH ================= */
     function openSearchModal() {
@@ -1469,13 +1898,12 @@ html[dir="rtl"] #side-menu.active {
     }
 
     function handleSearch(value) {
-      const query = value.toLowerCase().trim();
 
-      document.querySelectorAll(".product-card").forEach(card => {
-        const text = card.innerText.toLowerCase();
-        card.style.display = !query || text.includes(query) ? "" : "none";
-      });
-    }
+  activeProductSearch =
+    String(value || "");
+
+  applyProductVisibility();
+}
 
     /* ================= LANGUAGE ================= */
 
