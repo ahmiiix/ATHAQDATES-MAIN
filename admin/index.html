@@ -242,7 +242,7 @@ function logout() {
         window.ATHAQ_SUPABASE.auth.signOut();
     }
 
-    window.location.href = "../login/index.html";
+    window.location.replace('../admin/index.html');
 }
 </script>
 
@@ -917,48 +917,190 @@ function escapeHTML(value){return String(value ?? "").replace(/[&<>\"']/g,c=>({"
 async function ensureAdmin() {
 
     if (!db) {
+        console.error("Supabase is not configured.");
         alert("Supabase is not configured yet.");
         return false;
     }
 
-    const {
-        data: { session },
-        error
-    } = await db.auth.getSession();
+    try {
 
-    if (error || !session || !session.user) {
-        window.location.href = "../login/index.html";
-        return false;
-    }
+        /*
+        ==========================================
+        WAIT FOR SUPABASE SESSION RESTORE
+        ==========================================
+        */
 
-    const email = (session.user.email || "").toLowerCase();
+        let session = null;
 
-    if (email !== ADMIN_EMAIL.toLowerCase()) {
-        await db.auth.signOut();
-        sessionStorage.clear();
-        localStorage.removeItem("loggedInUser");
-        localStorage.removeItem("user");
-        localStorage.removeItem("userRole");
+        for (let attempt = 0; attempt < 10; attempt++) {
 
-        window.location.href = "../login/index.html";
-        return false;
-    }
+            const {
+                data,
+                error
+            } = await db.auth.getSession();
 
-    sessionStorage.setItem("isLoggedIn", "true");
-    sessionStorage.setItem("userRole", "admin");
-    sessionStorage.setItem("userName", "Admin");
-    sessionStorage.setItem("userEmail", session.user.email);
+            if (error) {
+                console.error(
+                    "Supabase session error:",
+                    error
+                );
+            }
 
-    localStorage.setItem(
-        "loggedInUser",
-        JSON.stringify({
+            session = data?.session || null;
+
+            if (session?.user) {
+                break;
+            }
+
+            /*
+            Give Supabase a little time to restore
+            the existing browser session.
+            */
+
+            await new Promise(resolve => {
+                setTimeout(resolve, 300);
+            });
+        }
+
+
+        /*
+        ==========================================
+        NO SESSION
+        ==========================================
+        */
+
+        if (!session || !session.user) {
+
+            console.warn(
+                "No Supabase admin session found."
+            );
+
+            window.location.replace(
+                "../login/index.html"
+            );
+
+            return false;
+        }
+
+
+        /*
+        ==========================================
+        CHECK ADMIN EMAIL
+        ==========================================
+        */
+
+        const email =
+            (session.user.email || "")
+                .trim()
+                .toLowerCase();
+
+
+        if (email !== ADMIN_EMAIL.toLowerCase()) {
+
+            console.warn(
+                "User is not authorized as admin:",
+                email
+            );
+
+            await db.auth.signOut();
+
+            sessionStorage.removeItem("isLoggedIn");
+            sessionStorage.removeItem("userRole");
+            sessionStorage.removeItem("userName");
+            sessionStorage.removeItem("userEmail");
+
+            localStorage.removeItem("loggedInUser");
+            localStorage.removeItem("user");
+            localStorage.removeItem("userRole");
+
+            window.location.replace(
+                "../login/index.html"
+            );
+
+            return false;
+        }
+
+
+        /*
+        ==========================================
+        ADMIN SESSION IS VALID
+        ==========================================
+        */
+
+        const adminUser = {
             name: "Admin",
             email: session.user.email,
             role: "admin"
-        })
-    );
+        };
 
-    return true;
+
+        /*
+        SESSION STORAGE
+        */
+
+        sessionStorage.setItem(
+            "isLoggedIn",
+            "true"
+        );
+
+        sessionStorage.setItem(
+            "userRole",
+            "admin"
+        );
+
+        sessionStorage.setItem(
+            "userName",
+            "Admin"
+        );
+
+        sessionStorage.setItem(
+            "userEmail",
+            session.user.email
+        );
+
+
+        /*
+        LOCAL STORAGE
+        */
+
+        localStorage.setItem(
+            "loggedInUser",
+            JSON.stringify(adminUser)
+        );
+
+        localStorage.setItem(
+            "userRole",
+            "admin"
+        );
+
+        localStorage.setItem(
+            "user",
+            JSON.stringify(adminUser)
+        );
+
+
+        console.log(
+            "ATHAQ ADMIN AUTHENTICATED:",
+            session.user.email
+        );
+
+
+        return true;
+
+
+    } catch (error) {
+
+        console.error(
+            "ADMIN AUTHENTICATION ERROR:",
+            error
+        );
+
+        window.location.replace(
+            "../login/index.html"
+        );
+
+        return false;
+    }
 }
 
 function openAddProductModal(){const m=document.getElementById("addProductModal");m.classList.remove("hidden");m.classList.add("flex");}
@@ -1021,7 +1163,23 @@ async function deleteProduct(id,name){
   catch(err){console.error(err);alert("Unable to delete product.\n\n"+(err.message||"Unknown error"));}
 }
 
-window.addEventListener("DOMContentLoaded",async()=>{if(await ensureAdmin()) await loadProducts();});
+window.addEventListener("DOMContentLoaded", async () => {
+
+    console.log("ATHAQ Admin Dashboard loading...");
+
+    const isAdmin = await ensureAdmin();
+
+    if (!isAdmin) {
+        return;
+    }
+
+    console.log(
+        "ATHAQ Admin Dashboard authentication successful."
+    );
+
+    await loadProducts();
+
+});
 // =========================================
 // ATHAQ ADMIN CHAT - STEP 2
 // LOAD CUSTOMER CONVERSATIONS
