@@ -109,14 +109,122 @@
                         <h4 class="font-bold text-[#004232]">Need assistance with your order?</h4>
                         <p class="text-xs text-gray-600 mt-1">Our customer support team is available 24/7.</p>
                     </div>
-                    <a href="https://wa.me/+966581818482" target="_blank" class="bg-[#004232] text-white px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-[#002e23] transition-colors whitespace-nowrap">
-                        <i class="fa-brands fa-whatsapp mr-1"></i> Chat Support
-                    </a>
+                   <button
+    type="button"
+    onclick="openLiveChat()"
+    class="bg-[#004232] text-white px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-[#002e23] transition-colors whitespace-nowrap"
+>
+    <i class="fa-solid fa-comments mr-1"></i>
+    Chat Support
+</button>
                 </div>
             </div>
         </div>
     </main>
+<!-- ==========================================
+     ATHAQ LIVE CHAT WINDOW
+========================================== -->
 
+<div
+    id="liveChatWindow"
+    class="hidden fixed bottom-5 right-5 z-[100] w-[360px] max-w-[calc(100vw-30px)]"
+>
+    <div class="bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
+
+        <!-- Chat Header -->
+        <div class="bg-[#004232] text-white px-5 py-4 flex items-center justify-between">
+
+            <div class="flex items-center gap-3">
+
+                <div class="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-sm">
+                        ATHAQ Support
+                    </h3>
+
+                    <p class="text-[10px] text-emerald-100">
+                        <span class="inline-block w-2 h-2 bg-green-400 rounded-full mr-1"></span>
+                        Online
+                    </p>
+                </div>
+
+            </div>
+
+            <button
+                type="button"
+                onclick="closeLiveChat()"
+                class="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <!-- Messages -->
+        <div
+            id="chatMessages"
+            class="h-[360px] overflow-y-auto p-4 space-y-3 bg-[#faf9f4]"
+        >
+
+            <div class="flex justify-start">
+
+                <div class="bg-white border border-gray-200 rounded-2xl rounded-tl-none px-4 py-3 max-w-[80%] shadow-sm">
+
+                    <p class="text-xs text-gray-700">
+                        Hello! 👋
+                    </p>
+
+                    <p class="text-xs text-gray-700 mt-1">
+                        How can we help you today?
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Typing / Status -->
+        <div
+            id="chatStatus"
+            class="hidden px-4 py-1 text-[10px] text-gray-400"
+        >
+            Sending...
+        </div>
+
+
+        <!-- Input -->
+        <div class="border-t border-gray-100 p-3 bg-white">
+
+            <div class="flex items-center gap-2">
+
+                <input
+                    type="text"
+                    id="chatMessageInput"
+                    placeholder="Type your message..."
+                    class="flex-1 border border-gray-200 rounded-xl px-3 py-3 text-xs outline-none focus:border-[#004232] focus:ring-1 focus:ring-[#004232]"
+                    onkeydown="handleChatKey(event)"
+                >
+
+                <button
+                    type="button"
+                    onclick="sendChatMessage()"
+                    class="w-11 h-11 rounded-xl bg-[#004232] text-white flex items-center justify-center hover:bg-[#002e23] transition-colors"
+                >
+                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
     <!-- Footer -->
     <footer class="text-center py-6 text-xs text-gray-500 border-t border-gray-200 bg-white">
         &copy; 2023 ATHAQ Dates Industry. All rights reserved.

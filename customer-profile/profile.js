@@ -392,3 +392,87 @@ function openEditModal() {
 
     alert("Profile updated successfully!");
 }
+function openLiveChat() {
+    const chat = document.getElementById("liveChatWindow");
+
+    if (chat) {
+        chat.classList.remove("hidden");
+    }
+
+    setTimeout(() => {
+        const input = document.getElementById("chatMessageInput");
+
+        if (input) {
+            input.focus();
+        }
+    }, 100);
+}
+
+
+function closeLiveChat() {
+    const chat = document.getElementById("liveChatWindow");
+
+    if (chat) {
+        chat.classList.add("hidden");
+    }
+}
+
+
+function handleChatKey(event) {
+
+    if (event.key === "Enter") {
+
+        event.preventDefault();
+
+        sendChatMessage();
+    }
+}
+
+
+function sendChatMessage() {
+
+    const input = document.getElementById("chatMessageInput");
+    const messages = document.getElementById("chatMessages");
+
+    if (!input || !messages) {
+        return;
+    }
+
+    const message = input.value.trim();
+
+    if (!message) {
+        return;
+    }
+
+
+    const messageHTML = `
+        <div class="flex justify-end">
+
+            <div class="bg-[#004232] text-white rounded-2xl rounded-tr-none px-4 py-3 max-w-[80%] shadow-sm">
+
+                <p class="text-xs">
+                    ${escapeChatHTML(message)}
+                </p>
+
+            </div>
+
+        </div>
+    `;
+
+
+    messages.insertAdjacentHTML("beforeend", messageHTML);
+
+    input.value = "";
+
+    messages.scrollTop = messages.scrollHeight;
+}
+
+
+function escapeChatHTML(text) {
+
+    const div = document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
