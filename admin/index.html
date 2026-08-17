@@ -12,13 +12,84 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="../supabase-config.js"></script>
-    <!-- =========================================
-     ATHAQ CUSTOMER LIVE CHAT
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f5f4ef;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #bec9c3;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6f7974;
+        }
+
+        @keyframes highlight {
+            0% {
+                box-shadow: 0 0 0 0px rgba(0, 66, 50, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 6px rgba(0, 66, 50, 0.2);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0px rgba(0, 66, 50, 0);
+            }
+        }
+
+        .highlight-table {
+            animation: highlight 1.5s ease-in-out;
+        }
+    </style>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#004232",
+                        "primary-fixed": "#a6f2d4",
+                        "secondary": "#3e6653",
+                        "surface": "#faf9f4",
+                        "surface-container-low": "#f5f4ef",
+                        "surface-container-high": "#e9e8e3",
+                        "surface-container-highest": "#e3e3de",
+                        "on-surface": "#1b1c19",
+                        "on-surface-variant": "#3f4944",
+                        "outline-variant": "#bec9c3"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-[#faf9f4] text-on-surface font-sans min-h-screen flex flex-col md:flex-row antialiased">
+<!-- =========================================
+     ATHAQ ADMIN LIVE CHAT
 ========================================= -->
 
 <div class="fixed bottom-5 right-5 z-50">
 
     <button
+        type="button"
         onclick="openAdminChat()"
         class="w-14 h-14 rounded-full bg-[#004232] text-white shadow-xl flex items-center justify-center hover:bg-[#002e23] transition"
     >
@@ -69,6 +140,7 @@
             </div>
 
             <button
+                type="button"
                 onclick="closeAdminChat()"
                 class="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center"
             >
@@ -145,6 +217,7 @@
                 >
 
                 <button
+                    type="button"
                     onclick="sendAdminMessage()"
                     class="w-11 h-11 rounded-xl bg-[#004232] text-white flex items-center justify-center hover:bg-[#002e23]"
                 >
@@ -158,77 +231,6 @@
     </div>
 
 </div>
-
-    <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-
-        .fill-icon {
-            font-variation-settings: 'FILL' 1;
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f5f4ef;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #bec9c3;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #6f7974;
-        }
-
-        @keyframes highlight {
-            0% {
-                box-shadow: 0 0 0 0px rgba(0, 66, 50, 0.4);
-            }
-
-            50% {
-                box-shadow: 0 0 0 6px rgba(0, 66, 50, 0.2);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0px rgba(0, 66, 50, 0);
-            }
-        }
-
-        .highlight-table {
-            animation: highlight 1.5s ease-in-out;
-        }
-    </style>
-
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#004232",
-                        "primary-fixed": "#a6f2d4",
-                        "secondary": "#3e6653",
-                        "surface": "#faf9f4",
-                        "surface-container-low": "#f5f4ef",
-                        "surface-container-high": "#e9e8e3",
-                        "surface-container-highest": "#e3e3de",
-                        "on-surface": "#1b1c19",
-                        "on-surface-variant": "#3f4944",
-                        "outline-variant": "#bec9c3"
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-
-<body class="bg-[#faf9f4] text-on-surface font-sans min-h-screen flex flex-col md:flex-row antialiased">
-
 <script>
 function logout() {
     sessionStorage.clear();
@@ -1034,7 +1036,7 @@ function openAdminChat() {
 
     const chat = document.getElementById("adminChatWindow");
 
-    if (chat) {
+    if (chat) { 
         chat.classList.remove("hidden");
     }
 
@@ -1197,6 +1199,328 @@ function escapeAdminHTML(value) {
 
         });
 
+}
+async function selectAdminConversation(conversationId) {
+
+    if (!adminDB) return;
+
+    try {
+
+        selectedAdminConversation = conversationId;
+
+        // Find conversation
+        const {
+            data: conversation,
+            error: conversationError
+        } = await adminDB
+            .from("chat_conversations")
+            .select("*")
+            .eq("id", conversationId)
+            .single();
+
+        if (conversationError) throw conversationError;
+
+        // Show customer information
+        const customerBox =
+            document.getElementById("adminSelectedCustomer");
+
+        const customerName =
+            document.getElementById("adminCustomerName");
+
+        const customerEmail =
+            document.getElementById("adminCustomerEmail");
+
+        if (customerBox) {
+            customerBox.classList.remove("hidden");
+        }
+
+        if (customerName) {
+            customerName.textContent =
+                conversation.customer_name || "Customer";
+        }
+
+        if (customerEmail) {
+            customerEmail.textContent =
+                conversation.customer_email || "";
+        }
+
+        // Load messages
+        await loadAdminMessages(conversationId);
+
+        // Mark unread as read
+        await adminDB
+            .from("chat_conversations")
+            .update({
+                unread_for_admin: 0
+            })
+            .eq("id", conversationId);
+
+        // Refresh customer list
+        await loadAdminConversations();
+
+    } catch (error) {
+
+        console.error(
+            "SELECT CUSTOMER ERROR:",
+            error
+        );
+
+        alert(
+            "Unable to open customer conversation.\n\n" +
+            (error.message || "Unknown error")
+        );
+    }
+}
+async function loadAdminMessages(conversationId) {
+
+    const messagesBox =
+        document.getElementById("adminChatMessages");
+
+    if (!messagesBox) return;
+
+    messagesBox.innerHTML = `
+        <div class="text-center text-xs text-gray-400 py-10">
+            Loading messages...
+        </div>
+    `;
+
+    try {
+
+        const {
+            data: messages,
+            error
+        } = await adminDB
+            .from("chat_messages")
+            .select("*")
+            .eq("conversation_id", conversationId)
+            .order("created_at", {
+                ascending: true
+            });
+
+        if (error) throw error;
+
+        if (!messages || messages.length === 0) {
+
+            messagesBox.innerHTML = `
+                <div class="text-center text-xs text-gray-400 py-10">
+                    No messages yet.
+                </div>
+            `;
+
+            return;
+        }
+
+        messagesBox.innerHTML = messages.map(function(message) {
+
+            const isAdmin =
+                message.sender_role === "admin";
+
+            return `
+                <div class="flex ${isAdmin ? "justify-end" : "justify-start"}">
+
+                    <div class="
+                        max-w-[80%]
+                        px-3 py-2
+                        rounded-2xl
+                        text-xs
+                        ${
+                            isAdmin
+                            ? "bg-[#004232] text-white rounded-br-md"
+                            : "bg-white border border-gray-200 text-gray-700 rounded-bl-md"
+                        }
+                    ">
+
+                        ${escapeAdminHTML(message.message || "")}
+
+                        <div class="
+                            text-[9px]
+                            mt-1
+                            ${
+                                isAdmin
+                                ? "text-emerald-100"
+                                : "text-gray-400"
+                            }
+                        ">
+
+                            ${
+                                message.created_at
+                                ? new Date(message.created_at)
+                                    .toLocaleTimeString([], {
+                                        hour: "2-digit",
+                                        minute: "2-digit"
+                                    })
+                                : ""
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+            `;
+
+        }).join("");
+
+        messagesBox.scrollTop =
+            messagesBox.scrollHeight;
+
+    } catch (error) {
+
+        console.error(
+            "ADMIN MESSAGE LOAD ERROR:",
+            error
+        );
+
+        messagesBox.innerHTML = `
+            <div class="text-center text-xs text-red-500 py-10">
+
+                Unable to load messages.
+
+                <br><br>
+
+                ${escapeAdminHTML(error.message || "")}
+
+            </div>
+        `;
+    }
+}
+async function sendAdminMessage() {
+
+    const input = document.getElementById("adminChatInput");
+
+    if (!input) return;
+
+    const messageText = input.value.trim();
+
+    if (!messageText) return;
+
+    if (!selectedAdminConversation) {
+        alert("Please select a customer conversation first.");
+        return;
+    }
+
+    if (!adminDB) {
+        alert("Supabase is not configured.");
+        return;
+    }
+
+    try {
+
+        input.disabled = true;
+
+        // Get currently logged-in admin
+        const {
+            data: { user },
+            error: userError
+        } = await adminDB.auth.getUser();
+
+        if (userError) {
+            throw userError;
+        }
+
+        if (!user) {
+            alert("Admin session expired. Please login again.");
+            return;
+        }
+
+        console.log("ADMIN USER ID:", user.id);
+        console.log("CONVERSATION ID:", selectedAdminConversation);
+
+        // ==========================================
+        // INSERT ADMIN MESSAGE
+        // ==========================================
+
+        const { data: insertedMessage, error: messageError } =
+            await adminDB
+                .from("chat_messages")
+                .insert({
+                    conversation_id: selectedAdminConversation,
+                    sender_id: user.id,
+                    sender_role: "admin",
+                    message: messageText,
+                    is_read: true
+                })
+                .select()
+                .single();
+
+        if (messageError) {
+
+            console.error("SUPABASE INSERT ERROR:", messageError);
+
+            throw new Error(
+                messageError.message +
+                "\n\nCode: " +
+                (messageError.code || "N/A") +
+                "\n\nDetails: " +
+                (messageError.details || "N/A") +
+                "\n\nHint: " +
+                (messageError.hint || "N/A")
+            );
+        }
+
+        console.log(
+            "ADMIN MESSAGE INSERTED:",
+            insertedMessage
+        );
+
+        // Clear input
+        input.value = "";
+
+        // ==========================================
+        // UPDATE CONVERSATION
+        // ==========================================
+
+        const { error: conversationError } =
+            await adminDB
+                .from("chat_conversations")
+                .update({
+                    updated_at: new Date().toISOString()
+                })
+                .eq(
+                    "id",
+                    selectedAdminConversation
+                );
+
+        if (conversationError) {
+            console.error(
+                "CONVERSATION UPDATE ERROR:",
+                conversationError
+            );
+        }
+
+        // Reload messages
+        await loadAdminMessages(
+            selectedAdminConversation
+        );
+
+    } catch (error) {
+
+        console.error(
+            "ADMIN SEND MESSAGE ERROR:",
+            error
+        );
+
+        alert(
+            "Message could not be sent.\n\n" +
+            error.message
+        );
+
+    } finally {
+
+        input.disabled = false;
+        input.focus();
+
+    }
+}
+
+function handleAdminChatKey(event) {
+
+    if (event.key === "Enter") {
+
+        event.preventDefault();
+
+        sendAdminMessage();
+    }
 }
 </script>
 </body>
