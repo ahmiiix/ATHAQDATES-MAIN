@@ -1,3 +1,7 @@
+const db = window.ATHAQ_SUPABASE;
+
+let currentChatConversation = null;
+let chatRealtimeChannel = null;
 document.addEventListener("DOMContentLoaded", function () {
 
     // ============================================
@@ -429,12 +433,14 @@ function handleChatKey(event) {
 }
 
 
-function sendChatMessage() {
+async function sendChatMessage() {
 
     const input = document.getElementById("chatMessageInput");
     const messages = document.getElementById("chatMessages");
+    const status = document.getElementById("chatStatus");
 
     if (!input || !messages) {
+        console.error("Chat elements not found.");
         return;
     }
 
@@ -444,35 +450,259 @@ function sendChatMessage() {
         return;
     }
 
+    if (!db) {
+        alert("Supabase is not configured.");
+        console.error("ATHAQ_SUPABASE not found.");
+        return;
+    }
 
-    const messageHTML = `
-        <div class="flex justify-end">
+    input.disabled = true;
 
-            <div class="bg-[#004232] text-white rounded-2xl rounded-tr-none px-4 py-3 max-w-[80%] shadow-sm">
+    if (status) {
+        status.textContent = "Sending...";
+        status.classList.remove("hidden");
+    }
 
-                <p class="text-xs">
-                    ${escapeChatHTML(message)}
-                </p>
+    try {
 
+        // Check Supabase login
+        const { data: authData, error: authError } =
+            await db.auth.getUser();
+
+        if (authError || !authData.user) {
+            console.error("AUTH ERROR:", authError);
+            throw new Error("Customer is not logged in to Supabase.");
+        }
+
+        const user = authData.user;
+
+        // Get customer information
+        const currentUser =
+            JSON.parse(localStorage.getItem("loggedInUser")) ||
+            JSON.parse(localStorage.getItem("user")) ||
+            {};
+
+        // Find existing conversation
+        let { data: conversation, error: conversationError } =
+            await db
+                .from("chat_conversations")
+                .select("*")
+                .eq("customer_id", user.id)
+                .eq("status", "open")
+                .order("created_at", { ascending: false })
+                .limit(1)
+                .maybeSingle();
+
+        if (conversationError) {
+            console.error("CONVERSATION ERROR:", conversationError);
+            throw conversationError;
+        }
+
+        // Create conversation if none exists
+        if (!conversation) {
+
+            const { data: newConversation, error: createError } =
+                await db
+                    .from("chat_conversations")
+                    .insert({
+                        customer_id: user.id,
+                        customer_name:
+                            currentUser.name ||
+                            user.user_metadata?.full_name ||
+                            "Customer",
+                        customer_email:
+                            currentUser.email ||
+                            user.email,
+                        status: "open",
+                        unread_for_admin: 0,
+                        unread_for_customer: 0
+                    })
+                    .select()
+                    .single();
+
+            if (createError) {
+                console.error("CREATE CONVERSATION ERROR:", createError);
+                throw createError;
+            }
+
+            conversation = newConversation;
+        }
+
+        currentChatConversation = conversation;
+
+        // Insert message
+        const { data: savedMessage, error: messageError } =
+            await db
+                .from("chat_messages")
+                .insert({
+                    conversation_id: conversation.id,
+                    sender_id: user.id,
+                    sender_role: "customer",
+                    message: message,
+                    is_read: false
+                })
+                .select()
+                .single();
+
+        if (messageError) {
+            console.error("MESSAGE INSERT ERROR:", messageError);
+            throw messageError;
+        }
+
+        console.log("MESSAGE SENT:", savedMessage);
+
+        // Update admin unread count
+        const newUnreadCount =
+            (conversation.unread_for_admin || 0) + 1;
+
+        const { error: updateError } =
+            await db
+                .from("chat_conversations")
+                .update({
+                    unread_for_admin: newUnreadCount,
+                    updated_at: new Date().toISOString()
+                })
+                .eq("id", conversation.id);
+
+        if (updateError) {
+            console.warn("Unread count update failed:", updateError);
+        }
+
+        // Show sent message
+        messages.insertAdjacentHTML(
+            "beforeend",
+            `
+            <div class="flex justify-end">
+                <div class="bg-[#004232] text-white rounded-2xl rounded-tr-none px-4 py-3 max-w-[80%] shadow-sm">
+                    <p class="text-xs">
+                        ${escapeChatHTML(message)}
+                    </p>
+                </div>
             </div>
+            `
+        );
 
-        </div>
-    `;
+        input.value = "";
 
+        messages.scrollTop = messages.scrollHeight;
 
-    messages.insertAdjacentHTML("beforeend", messageHTML);
+        if (status) {
+            status.textContent = "Message sent ✓";
 
-    input.value = "";
+            setTimeout(() => {
+                status.classList.add("hidden");
+            }, 1500);
+        }
 
-    messages.scrollTop = messages.scrollHeight;
+    } catch (error) {
+
+        console.error("SEND CHAT ERROR:", error);
+
+        alert(
+            "Message could not be sent.\n\n" +
+            (error.message || "Unknown error")
+        );
+
+        if (status) {
+            status.textContent = "Failed to send message";
+        }
+
+    } finally {
+
+        input.disabled = false;
+        input.focus();
+    }
 }
+async function getOrCreateChatConversation() {
 
+    if (!db) {
+        console.error("Supabase is not configured.");
+        return null;
+    }
 
+    const currentUser =
+        JSON.parse(localStorage.getItem("loggedInUser")) ||
+        JSON.parse(localStorage.getItem("user"));
+
+    if (!currentUser) {
+        console.error("Customer is not logged in.");
+        return null;
+    }
+
+    const {
+        data: authData,
+        error: authError
+    } = await db.auth.getUser();
+
+    if (authError || !authData.user) {
+        console.error("Supabase user not found:", authError);
+        return null;
+    }
+
+    const user = authData.user;
+
+    // Existing conversation
+    const {
+        data: existing,
+        error: existingError
+    } = await db
+        .from("chat_conversations")
+        .select("*")
+        .eq("customer_id", user.id)
+        .eq("status", "open")
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+    if (existingError) {
+        console.error(
+            "Conversation load error:",
+            existingError
+        );
+        return null;
+    }
+
+    if (existing) {
+        currentChatConversation = existing;
+        return existing;
+    }
+
+    // Create new conversation
+    const {
+        data: newConversation,
+        error: createError
+    } = await db
+        .from("chat_conversations")
+        .insert({
+            customer_id: user.id,
+            customer_name:
+                currentUser.name ||
+                user.user_metadata?.full_name ||
+                "Customer",
+            customer_email:
+                currentUser.email ||
+                user.email,
+            status: "open",
+            unread_for_admin: 0,
+            unread_for_customer: 0
+        })
+        .select()
+        .single();
+
+    if (createError) {
+        console.error(
+            "Conversation creation error:",
+            createError
+        );
+        return null;
+    }
+
+    currentChatConversation = newConversation;
+
+    return newConversation;
+}
 function escapeChatHTML(text) {
-
     const div = document.createElement("div");
-
     div.textContent = text;
-
     return div.innerHTML;
 }
