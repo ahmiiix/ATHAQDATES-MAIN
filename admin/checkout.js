@@ -18,48 +18,201 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // 1. RENDER CHECKOUT ITEMS & CALCULATE TOTAL
+// 1. RENDER CHECKOUT ITEMS & CALCULATE TOTAL
 function renderCheckoutSummary() {
     const itemsContainer = document.getElementById("checkoutItemsList");
     const subtotalElem = document.getElementById("summarySubtotal");
     const totalElem = document.getElementById("summaryTotal");
+    const submitBtn = document.getElementById("submitOrderBtn");
 
-    const cart = JSON.parse(localStorage.getItem("athaqCart")) || [];
+    let cart = JSON.parse(localStorage.getItem("athaqCart")) || [];
 
     if (!itemsContainer) return;
 
+    // =========================
+    // EMPTY CART
+    // =========================
     if (cart.length === 0) {
-        itemsContainer.innerHTML = `<p class="text-center text-gray-400 py-6 text-sm">Your cart is empty. Please add products from store.</p>`;
-        if (subtotalElem) subtotalElem.textContent = "SAR 0.00";
-        if (totalElem) totalElem.textContent = "SAR 0.00";
+        currentGrandTotal = 0;
+
+        itemsContainer.innerHTML = `
+            <div class="py-8 text-center">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-gray-100 flex items-center justify-center">
+                    <i class="fa-solid fa-cart-shopping text-gray-400"></i>
+                </div>
+
+                <p class="text-sm font-semibold text-gray-500">
+                    Your cart is empty.
+                </p>
+
+                <a href="index.html"
+                   class="inline-flex mt-4 px-4 py-2 rounded-lg bg-[#004232] text-white text-xs font-bold hover:bg-[#002e23] transition">
+                    Continue Shopping
+                </a>
+            </div>
+        `;
+
+        if (subtotalElem) {
+            subtotalElem.textContent = "SAR 0.00";
+        }
+
+        if (totalElem) {
+            totalElem.textContent = "SAR 0.00";
+        }
+
+        // Disable checkout button
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.classList.add("opacity-50", "cursor-not-allowed");
+        }
+
         return;
+    }
+
+    // Enable checkout button
+    if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove("opacity-50", "cursor-not-allowed");
     }
 
     currentGrandTotal = 0;
 
-    itemsContainer.innerHTML = cart.map(item => {
-        const itemQty = item.quantity || 1;
-        const itemTotal = Number(item.price) * itemQty;
+    // =========================
+    // RENDER CART ITEMS
+    // =========================
+    itemsContainer.innerHTML = cart.map((item, index) => {
+
+        const itemQty = Number(item.quantity) || 1;
+        const itemPrice = Number(item.price) || 0;
+        const itemTotal = itemPrice * itemQty;
+
         currentGrandTotal += itemTotal;
 
         return `
-            <div class="py-3 flex items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
-                    <img src="${item.image || 'https://via.placeholder.com/50'}" class="w-12 h-12 rounded-lg object-cover border border-gray-200" alt="${escapeHTML(item.name)}">
-                    <div>
-                        <h4 class="font-bold text-gray-800 text-sm">${escapeHTML(item.name)}</h4>
-                        <p class="text-xs text-gray-500">Qty: ${itemQty} x SAR ${Number(item.price).toFixed(2)}</p>
+            <div class="py-4 flex items-center justify-between gap-3"
+                 data-cart-index="${index}">
+
+                <!-- PRODUCT INFO -->
+                <div class="flex items-center gap-3 min-w-0">
+
+                    <img
+                        src="${escapeHTML(item.image || 'https://via.placeholder.com/60')}"
+                        class="w-14 h-14 rounded-xl object-cover border border-gray-200 flex-shrink-0"
+                        alt="${escapeHTML(item.name)}"
+                        onerror="this.src='https://via.placeholder.com/60';"
+                    >
+
+                    <div class="min-w-0">
+
+                        <h4 class="font-bold text-gray-800 text-sm truncate">
+                            ${escapeHTML(item.name)}
+                        </h4>
+
+                        <p class="text-xs text-gray-500 mt-1">
+                            Qty: ${itemQty} × SAR ${itemPrice.toFixed(2)}
+                        </p>
+
+                        <p class="text-xs font-semibold text-[#004232] mt-1">
+                            SAR ${itemTotal.toFixed(2)}
+                        </p>
+
                     </div>
+
                 </div>
-                <span class="font-bold text-gray-900 text-sm">SAR ${itemTotal.toFixed(2)}</span>
+
+
+                <!-- RIGHT SIDE -->
+                <div class="flex flex-col items-end gap-2 flex-shrink-0">
+
+                    <span class="font-bold text-gray-900 text-sm">
+                        SAR ${itemTotal.toFixed(2)}
+                    </span>
+
+                    <!-- DELETE / REMOVE BUTTON -->
+                    <button
+                        type="button"
+                        onclick="removeCheckoutItem(${index})"
+                        class="inline-flex items-center gap-1.5
+                               px-2.5 py-1.5
+                               rounded-lg
+                               text-[10px] font-bold
+                               text-red-600
+                               bg-red-50
+                               border border-red-100
+                               hover:bg-red-100
+                               hover:border-red-200
+                               transition-all">
+
+                        <i class="fa-solid fa-trash-can text-[10px]"></i>
+
+                        <span>
+                            Remove
+                        </span>
+
+                    </button>
+
+                </div>
+
             </div>
         `;
-    }).join('');
 
-    if (subtotalElem) subtotalElem.textContent = `SAR ${currentGrandTotal.toFixed(2)}`;
-    if (totalElem) totalElem.textContent = `SAR ${currentGrandTotal.toFixed(2)}`;
+    }).join("");
 
-    // Try Moyasar Initialization
+    // =========================
+    // UPDATE TOTALS
+    // =========================
+    if (subtotalElem) {
+        subtotalElem.textContent =
+            `SAR ${currentGrandTotal.toFixed(2)}`;
+    }
+
+    if (totalElem) {
+        totalElem.textContent =
+            `SAR ${currentGrandTotal.toFixed(2)}`;
+    }
+
+    // Initialize Moyasar
     initMoyasarCardPayment();
+}
+// ==========================================
+// REMOVE PRODUCT FROM CHECKOUT CART
+// ==========================================
+
+function removeCheckoutItem(index) {
+
+    let cart =
+        JSON.parse(localStorage.getItem("athaqCart")) || [];
+
+    // Check valid index
+    if (
+        index < 0 ||
+        index >= cart.length
+    ) {
+        return;
+    }
+
+    const removedProduct = cart[index];
+
+    // Confirmation
+    const confirmRemove = confirm(
+        `"${removedProduct.name}" remove from your cart?`
+    );
+
+    if (!confirmRemove) {
+        return;
+    }
+
+    // Remove selected product
+    cart.splice(index, 1);
+
+    // Save updated cart
+    localStorage.setItem(
+        "athaqCart",
+        JSON.stringify(cart)
+    );
+
+    // Re-render checkout
+    renderCheckoutSummary();
 }
 
 // 2. TOGGLE PAYMENT METHODS
