@@ -25,6 +25,27 @@
     <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email Address</label><input type="email" id="regEmail" placeholder="you@example.com" required class="w-full border border-gray-300 rounded-xl shadow-sm focus:ring-[#004232] focus:border-[#004232] text-sm py-3 px-4 outline-none"></div>
     <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1">Password</label><input type="password" id="regPassword" placeholder="••••••••" required minlength="6" class="w-full border border-gray-300 rounded-xl shadow-sm focus:ring-[#004232] focus:border-[#004232] text-sm py-3 px-4 outline-none"></div>
     <div id="regErrorMsg" class="hidden text-rose-600 text-xs font-bold text-center bg-rose-50 py-2 rounded-lg"></div>
+    <div id="verificationBox" class="hidden mt-3 p-4 rounded-xl bg-emerald-50 border border-emerald-100">
+
+    <p class="text-xs text-gray-600 text-center mb-3">
+        Registration successful. Please check your email and verify your account.
+    </p>
+
+    <button
+        type="button"
+        id="resendVerificationBtn"
+        onclick="resendVerificationEmail()"
+        class="w-full bg-[#004232] text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-[#002e23] transition-all"
+    >
+        Resend Verification Email
+    </button>
+
+    <p
+        id="resendMessage"
+        class="text-[11px] text-center mt-2 text-gray-500"
+    ></p>
+
+</div>
     <button type="submit" class="w-full bg-[#004232] text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-[#002e23] transition-all shadow-md mt-2">Register & Create Account</button>
     <div class="text-center mt-4"><p class="text-xs text-gray-500">Already have an account? <button type="button" onclick="toggleForm('login')" class="text-[#004232] font-bold hover:underline">Login here</button></p></div>
   </form>
@@ -141,7 +162,314 @@ async function handleLogin(event) {
 
     window.location.href = '../customer-profile/profile.html';
 }
-async function handleRegister(event){event.preventDefault();document.getElementById('regErrorMsg').classList.add('hidden');if(!db){showError('regErrorMsg','Supabase is not configured yet.');return;}const name=document.getElementById('regName').value.trim();const email=document.getElementById('regEmail').value.trim();const password=document.getElementById('regPassword').value;const {data,error}=await db.auth.signUp({email,password,options:{data:{full_name:name}}});if(error){showError('regErrorMsg',error.message);return;}if(data.session){sessionStorage.setItem('isLoggedIn','true');sessionStorage.setItem('userRole','customer');sessionStorage.setItem('userName',name);sessionStorage.setItem('userEmail',email);window.location.href='../customer-profile/profile.html';}else{showError('regErrorMsg','Registration successful. Check your email to confirm your account, then login.');}}
+async function handleRegister(event) {
+    event.preventDefault();
+
+    const errorBox = document.getElementById('regErrorMsg');
+    const verificationBox = document.getElementById('verificationBox');
+    const resendMessage = document.getElementById('resendMessage');
+    const registerButton =
+        document.querySelector('#registerForm button[type="submit"]');
+
+    errorBox.classList.add('hidden');
+    verificationBox.classList.add('hidden');
+    resendMessage.textContent = '';
+
+    if (!db) {
+        showError(
+            'regErrorMsg',
+            'Supabase is not configured yet.'
+        );
+        return;
+    }
+
+    const name =
+        document.getElementById('regName').value.trim();
+
+    const email =
+        document.getElementById('regEmail').value.trim().toLowerCase();
+
+    const password =
+        document.getElementById('regPassword').value;
+
+    if (!name || !email || !password) {
+        showError(
+            'regErrorMsg',
+            'Please fill all required fields.'
+        );
+        return;
+    }
+
+    if (password.length < 6) {
+        showError(
+            'regErrorMsg',
+            'Password must be at least 6 characters.'
+        );
+        return;
+    }
+
+    registerButton.disabled = true;
+    registerButton.textContent = 'Creating Account...';
+
+    try {
+
+        const { data, error } = await db.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+                data: {
+                    full_name: name
+                }
+            }
+        });
+
+        console.log('SUPABASE SIGNUP DATA:', data);
+        console.log('SUPABASE SIGNUP ERROR:', error);
+
+        /*
+        ==========================================
+        SUPABASE ERROR
+        ==========================================
+        */
+
+        if (error) {
+
+            console.error('Registration Error:', error);
+
+            registerButton.disabled = false;
+            registerButton.textContent =
+                'Register & Create Account';
+
+            showError(
+                'regErrorMsg',
+                error.message
+            );
+
+            return;
+        }
+
+        /*
+        ==========================================
+        USER WAS CREATED
+        ==========================================
+        */
+
+        if (!data || !data.user) {
+
+            registerButton.disabled = false;
+            registerButton.textContent =
+                'Register & Create Account';
+
+            showError(
+                'regErrorMsg',
+                'Account could not be created. Please try again.'
+            );
+
+            return;
+        }
+
+        /*
+        ==========================================
+        EMAIL VERIFICATION REQUIRED
+        ==========================================
+        */
+
+        if (!data.session) {
+
+            sessionStorage.setItem(
+                'verificationEmail',
+                email
+            );
+
+            sessionStorage.setItem(
+                'verificationName',
+                name
+            );
+
+            verificationBox.classList.remove('hidden');
+
+            registerButton.disabled = true;
+            registerButton.textContent =
+                'Verification Required';
+
+            registerButton.classList.add(
+                'opacity-50',
+                'cursor-not-allowed'
+            );
+
+            resendMessage.textContent =
+                `Verification email sent to ${email}. Please check your inbox.`;
+
+            resendMessage.className =
+                'text-[11px] text-center mt-2 text-green-700';
+
+            startResendCooldown();
+
+            return;
+        }
+
+        /*
+        ==========================================
+        EMAIL VERIFICATION NOT REQUIRED
+        ==========================================
+        */
+
+        const customerUser = {
+            name: name,
+            email: email,
+            role: 'customer'
+        };
+
+        sessionStorage.setItem(
+            'isLoggedIn',
+            'true'
+        );
+
+        sessionStorage.setItem(
+            'userRole',
+            'customer'
+        );
+
+        sessionStorage.setItem(
+            'userName',
+            name
+        );
+
+        sessionStorage.setItem(
+            'userEmail',
+            email
+        );
+
+        localStorage.setItem(
+            'loggedInUser',
+            JSON.stringify(customerUser)
+        );
+
+        localStorage.setItem(
+            'userRole',
+            'customer'
+        );
+
+        localStorage.setItem(
+            'user',
+            JSON.stringify(customerUser)
+        );
+
+        window.location.href =
+            '../customer-profile/profile.html';
+
+    } catch (err) {
+
+        console.error(
+            'Unexpected Registration Error:',
+            err
+        );
+
+        registerButton.disabled = false;
+        registerButton.textContent =
+            'Register & Create Account';
+
+        showError(
+            'regErrorMsg',
+            'Something went wrong. Please try again.'
+        );
+    }
+}
+async function resendVerificationEmail() {
+
+    const button = document.getElementById('resendVerificationBtn');
+    const message = document.getElementById('resendMessage');
+
+    const email = sessionStorage.getItem('verificationEmail');
+
+    if (!email) {
+        message.textContent = 'Please register again first.';
+        message.className =
+            'text-[11px] text-center mt-2 text-red-600';
+        return;
+    }
+
+    if (!db) {
+        message.textContent = 'Supabase is not configured.';
+        return;
+    }
+
+    // Button temporarily disable
+    button.disabled = true;
+    button.classList.add('opacity-50', 'cursor-not-allowed');
+
+    message.textContent = 'Sending verification email...';
+    message.className =
+        'text-[11px] text-center mt-2 text-gray-500';
+
+    const { error } = await db.auth.resend({
+        type: 'signup',
+        email: email
+    });
+
+    if (error) {
+
+        console.error('Resend verification error:', error);
+
+        message.textContent =
+            'Email could not be sent. Please try again later.';
+
+        message.className =
+            'text-[11px] text-center mt-2 text-red-600';
+
+        button.disabled = false;
+        button.classList.remove('opacity-50', 'cursor-not-allowed');
+
+        return;
+    }
+
+    message.textContent =
+        'Verification email sent successfully. Please check your inbox.';
+
+    message.className =
+        'text-[11px] text-center mt-2 text-green-700';
+
+    startResendCooldown();
+}
+function startResendCooldown() {
+
+    const button = document.getElementById('resendVerificationBtn');
+    const message = document.getElementById('resendMessage');
+
+    let seconds = 60;
+
+    button.disabled = true;
+    button.classList.add('opacity-50', 'cursor-not-allowed');
+
+    button.textContent = `Resend Verification (${seconds}s)`;
+
+    const timer = setInterval(() => {
+
+        seconds--;
+
+        if (seconds <= 0) {
+
+            clearInterval(timer);
+
+            button.disabled = false;
+            button.classList.remove(
+                'opacity-50',
+                'cursor-not-allowed'
+            );
+
+            button.textContent = 'Resend Verification Email';
+
+            message.textContent =
+                'You can request another verification email now.';
+
+            return;
+        }
+
+        button.textContent =
+            `Resend Verification (${seconds}s)`;
+
+    }, 1000);
+}
 </script>
 </body>
 </html>
