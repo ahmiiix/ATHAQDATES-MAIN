@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://cdn.moyasar.com/mpf/1.14.0/moyasar.css" />
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
             theme: {
@@ -158,27 +160,9 @@
                             <!-- Moyasar SDK mount point -->
                             <div class="mysr-form"></div>
 
-                            <!-- Native Fallback Inputs (Shows if SDK Key is Pending) -->
-                            <div id="customCardFields" class="space-y-3">
-                                <div>
-                                    <label class="block text-xs font-bold text-gray-600 mb-1">Cardholder Name</label>
-                                    <input type="text" id="cardHolderName" placeholder="Name on Card" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-[#004232] outline-none">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-gray-600 mb-1">Card Number</label>
-                                    <input type="text" id="cardNumber" maxlength="19" placeholder="4000 0000 0000 0000" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-[#004232] outline-none">
-                                </div>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <div>
-                                        <label class="block text-xs font-bold text-gray-600 mb-1">Expiry (MM/YY)</label>
-                                        <input type="text" id="cardExpiry" maxlength="5" placeholder="MM/YY" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-[#004232] outline-none">
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold text-gray-600 mb-1">CVV / CVC</label>
-                                        <input type="password" id="cardCvv" maxlength="4" placeholder="123" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-[#004232] outline-none">
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- Secure payment fields are rendered by Moyasar.
+                                 Card number / expiry / CVV are never stored by ATHAQ. -->
+                            <div id="customCardFields" class="hidden"></div>
                         </div>
                     </div>
 
@@ -254,9 +238,16 @@
                 </div>
             </div>
 
-            <button type="button" onclick="finishOrder()" class="w-full bg-[#004232] text-white py-3.5 rounded-xl font-bold text-sm hover:bg-[#002e23] transition-colors cursor-pointer">
-                Back to Store
-            </button>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button type="button" onclick="trackCurrentOrder()" class="w-full border border-[#004232] text-[#004232] py-3.5 rounded-xl font-bold text-sm hover:bg-[#004232] hover:text-white transition-colors cursor-pointer">
+                    <i class="fa-solid fa-location-dot mr-2"></i>
+                    Track My Order
+                </button>
+                <button type="button" onclick="finishOrder()" class="w-full bg-[#004232] text-white py-3.5 rounded-xl font-bold text-sm hover:bg-[#002e23] transition-colors cursor-pointer">
+                    Back to Store
+                </button>
+            </div>
+            <p class="text-[10px] text-gray-400 mt-4">Keep your order reference and phone number to check your order status anytime.</p>
         </div>
     </div>
 

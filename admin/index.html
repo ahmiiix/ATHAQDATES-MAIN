@@ -271,23 +271,37 @@ function logout() {
 
     <nav class="flex-1 space-y-1 px-3">
 
-        <a
-            class="flex items-center gap-3 bg-green-100 text-green-900 rounded-lg px-4 py-3 font-medium transition-all"
-            href="#"
-        >
-            <span class="material-symbols-outlined fill-icon">
-                inventory_2
-            </span>
+       <a
+    class="flex items-center gap-3 bg-green-100 text-green-900 rounded-lg px-4 py-3 font-medium transition-all"
+    href="#"
+>
+    <span class="material-symbols-outlined fill-icon">
+        inventory_2
+    </span>
 
-            <span>
-                Product Management
-            </span>
-        </a>
+    <span>
+        Product Management
+    </span>
+</a>
+
+
+<a
+    href="orders/index.html"
+    class="flex items-center gap-3 text-gray-600 hover:bg-gray-200/60 rounded-lg px-4 py-3 font-medium transition-all"
+>
+    <span class="material-symbols-outlined">
+        receipt_long
+    </span>
+
+    <span>
+        Orders
+    </span>
+</a>
 
 
         <a
             class="flex items-center gap-3 text-gray-600 hover:bg-gray-200/60 rounded-lg px-4 py-3 font-medium transition-all"
-            href="#"
+            href="images/index.html"
         >
             <span class="material-symbols-outlined">
                 cloud_upload
@@ -598,7 +612,6 @@ function logout() {
             </div>
 
         </div>
-
     </main>
 
 
@@ -1106,6 +1119,33 @@ async function ensureAdmin() {
 function openAddProductModal(){const m=document.getElementById("addProductModal");m.classList.remove("hidden");m.classList.add("flex");}
 function closeAddProductModal(){const m=document.getElementById("addProductModal");m.classList.remove("flex");m.classList.add("hidden");document.getElementById("productForm").reset();}
 function scrollToProducts(){document.getElementById("productTableContainer")?.scrollIntoView({behavior:"smooth"});}
+function scrollToOrders(event) {
+    if (event) {
+        event.preventDefault();
+    }
+
+    const ordersSection = document.getElementById("ordersSection");
+
+    if (!ordersSection) {
+        console.error("Orders section not found.");
+        return;
+    }
+
+    ordersSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    ordersSection.classList.remove("highlight-table");
+
+    void ordersSection.offsetWidth;
+
+    ordersSection.classList.add("highlight-table");
+
+    if (typeof loadAdminOrders === "function") {
+        loadAdminOrders();
+    }
+}
 function openWishlistModal(){alert("Wishlist view functionality");}
 function openCartViewModal(){alert("Cart items view functionality");}
 

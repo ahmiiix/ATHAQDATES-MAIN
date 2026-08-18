@@ -1,0 +1,2841 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        content="width=device-width, initial-scale=1.0"
+        name="viewport"
+    >
+
+    <title>ATHAQ Admin - Orders</title>
+
+    <!-- FONTS -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Playfair+Display:wght@700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../../supabase-config.js"></script>
+
+    <style>
+
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
+        }
+
+        .fill-icon {
+            font-variation-settings:
+                'FILL' 1,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f5f4ef;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #bec9c3;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6f7974;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .modal-backdrop {
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(3px);
+        }
+
+        .modal-scroll {
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .status-select {
+            min-width: 155px;
+        }
+
+    </style>
+
+    <script>
+
+        tailwind.config = {
+
+            darkMode: "class",
+
+            theme: {
+
+                extend: {
+
+                    colors: {
+
+                        primary: "#004232",
+
+                        surface: "#faf9f4"
+
+                    }
+
+                }
+
+            }
+
+        };
+
+    </script>
+
+</head>
+
+
+<body class="bg-[#faf9f4] text-gray-900 min-h-screen flex">
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside
+    class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-[#f5f4ef] border-r border-gray-200 shadow-sm py-6 z-40 overflow-y-auto"
+>
+
+    <!-- LOGO -->
+
+    <div class="px-6 mb-8">
+
+        <span
+            class="block text-2xl font-bold tracking-wider"
+            style="
+                font-family: 'Playfair Display', serif;
+                color: #1c4d06;
+            "
+        >
+            ATHAQ DATES
+        </span>
+
+        <p
+            class="text-xs font-semibold text-gray-500 uppercase tracking-wider mt-1"
+        >
+            Factory Control
+        </p>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="flex-1 space-y-1 px-3">
+
+        <!-- PRODUCTS -->
+
+        <a
+            href="../index.html"
+            class="flex items-center gap-3 text-gray-600 hover:bg-gray-200/60 rounded-lg px-4 py-3 font-medium transition-all"
+        >
+
+            <span class="material-symbols-outlined">
+                inventory_2
+            </span>
+
+            <span>
+                Product Management
+            </span>
+
+        </a>
+
+
+        <!-- ORDERS -->
+
+        <a
+            href="index.html"
+            class="flex items-center gap-3 bg-green-100 text-green-900 rounded-lg px-4 py-3 font-medium transition-all"
+        >
+
+            <span class="material-symbols-outlined fill-icon">
+                receipt_long
+            </span>
+
+            <span>
+                Orders
+            </span>
+
+        </a>
+
+
+        <!-- IMAGE UPLOADS -->
+
+        <a
+            href="#"
+            class="flex items-center gap-3 text-gray-600 hover:bg-gray-200/60 rounded-lg px-4 py-3 font-medium transition-all"
+        >
+
+            <span class="material-symbols-outlined">
+                cloud_upload
+            </span>
+
+            <span>
+                Image Uploads
+            </span>
+
+        </a>
+
+    </nav>
+
+
+    <!-- BOTTOM -->
+
+    <div
+        class="mt-auto pt-6 border-t border-gray-200 px-3 space-y-1"
+    >
+
+        <div class="px-3 mb-4">
+
+            <a
+                href="../../index.html"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <button
+                    type="button"
+                    class="w-full bg-[#004232] text-white py-2.5 px-4 rounded-lg text-sm font-semibold hover:bg-green-800 transition-colors"
+                >
+                    View Website
+                </button>
+
+            </a>
+
+        </div>
+
+
+        <!-- SETTINGS -->
+
+        <a
+            href="../settings/index.html"
+            class="flex items-center gap-3 text-gray-600 hover:bg-gray-200/60 rounded-lg px-4 py-3 font-medium transition-all"
+        >
+
+            <span class="material-symbols-outlined">
+                settings
+            </span>
+
+            <span>
+                Settings
+            </span>
+
+        </a>
+
+
+        <!-- LOGOUT -->
+
+        <a
+            href="#"
+            onclick="logout(); return false;"
+            class="flex items-center gap-3 text-red-600 hover:bg-red-50 rounded-lg px-4 py-3 font-medium transition-all cursor-pointer"
+        >
+
+            <span class="material-symbols-outlined">
+                logout
+            </span>
+
+            <span>
+                Logout
+            </span>
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<div class="flex-1 md:ml-64 flex flex-col min-h-screen w-full">
+
+
+    <!-- HEADER -->
+
+    <header
+        class="h-20 flex items-center justify-between px-6 md:px-10 bg-[#faf9f4]/90 backdrop-blur-md border-b border-gray-200 sticky top-0 z-30"
+    >
+
+        <div>
+
+            <h1
+                class="text-2xl font-bold text-[#1c4d06]"
+                style="font-family: 'Playfair Display', serif;"
+            >
+                Customer Orders
+            </h1>
+
+            <p class="text-sm text-gray-500 mt-1">
+                View and manage customer orders
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            onclick="loadAdminOrders()"
+            class="bg-[#004232] text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-green-800 flex items-center justify-center gap-2 transition-colors"
+        >
+
+            <span class="material-symbols-outlined text-xl">
+                refresh
+            </span>
+
+            Refresh Orders
+
+        </button>
+
+    </header>
+
+
+    <!-- CONTENT -->
+
+    <main class="flex-1 p-6 md:p-10 w-full">
+
+
+        <!-- =================================================
+             SEARCH + STATS
+        ================================================= -->
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+
+
+            <!-- TOTAL -->
+
+            <div
+                class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5"
+            >
+
+                <div class="flex items-center justify-between">
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Total Orders
+                        </p>
+
+                        <p
+                            id="totalOrders"
+                            class="text-3xl font-bold text-[#004232] mt-1"
+                        >
+                            0
+                        </p>
+
+                    </div>
+
+                    <div
+                        class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center"
+                    >
+
+                        <span class="material-symbols-outlined text-green-800">
+                            receipt_long
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NEW -->
+
+            <div
+                class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5"
+            >
+
+                <div class="flex items-center justify-between">
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            New Orders
+                        </p>
+
+                        <p
+                            id="newOrders"
+                            class="text-3xl font-bold text-amber-600 mt-1"
+                        >
+                            0
+                        </p>
+
+                    </div>
+
+                    <div
+                        class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center"
+                    >
+
+                        <span class="material-symbols-outlined text-amber-600">
+                            notifications_active
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DELIVERED -->
+
+            <div
+                class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5"
+            >
+
+                <div class="flex items-center justify-between">
+
+                    <div>
+
+                        <p class="text-sm text-gray-500">
+                            Delivered
+                        </p>
+
+                        <p
+                            id="deliveredOrders"
+                            class="text-3xl font-bold text-green-600 mt-1"
+                        >
+                            0
+                        </p>
+
+                    </div>
+
+                    <div
+                        class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center"
+                    >
+
+                        <span class="material-symbols-outlined text-green-600">
+                            check_circle
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div
+            class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 mb-6"
+        >
+
+            <div class="flex flex-col lg:flex-row gap-4">
+
+                <div class="relative flex-1">
+
+                    <span
+                        class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                    >
+                        search
+                    </span>
+
+                    <input
+                        id="orderSearch"
+                        type="text"
+                        placeholder="Search by order reference, customer name, phone or email..."
+                        class="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-200 focus:border-green-700 outline-none"
+                        oninput="filterOrders()"
+                    >
+
+                </div>
+
+
+<select
+    onchange="updateOrderStatus('ORDER_ID', this.value)"
+>
+    <option value="new">New</option>
+    <option value="confirmed">Confirmed</option>
+    <option value="preparing">Preparing</option>
+    <option value="out_for_delivery">Out for Delivery</option>
+    <option value="delivered">Delivered</option>
+    <option value="cancelled">Cancelled</option>
+</select>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             ORDERS CARD
+        ================================================= -->
+
+        <div
+            class="bg-white rounded-2xl border border-gray-100 shadow-sm w-full overflow-hidden"
+        >
+
+
+            <!-- CARD HEADER -->
+
+            <div
+                class="p-6 border-b border-gray-100 flex flex-col lg:flex-row lg:items-center justify-between gap-4"
+            >
+
+                <div>
+
+                    <h2 class="text-xl font-bold text-green-900">
+                        Customer Orders
+                    </h2>
+
+                    <p class="text-sm text-gray-500 mt-1">
+                        View and manage all customer orders.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="showingOrders"
+                    class="text-sm text-gray-500"
+                >
+                    Showing 0 orders
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="overflow-x-auto w-full">
+
+                <table
+                    class="w-full border-collapse text-left min-w-[1250px]"
+                >
+
+                    <thead
+                        class="bg-gray-50/80 border-b border-gray-100"
+                    >
+
+                        <tr>
+
+                            <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                                Order
+                            </th>
+
+                            <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                                Customer
+                            </th>
+
+                            <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                                Phone
+                            </th>
+
+                            <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                                Total
+                            </th>
+
+                            <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                                Payment
+                            </th>
+
+                            <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                                Date
+                            </th>
+
+                            <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                                Status
+                            </th>
+
+                            <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="adminOrdersList"
+                        class="divide-y divide-gray-100 text-sm"
+                    >
+
+                        <tr>
+
+                            <td
+                                colspan="8"
+                                class="px-6 py-12 text-center text-gray-400"
+                            >
+
+                                Loading orders...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer
+        class="w-full py-8 px-6 md:px-10 bg-[#e9e8e3]/40 border-t border-gray-200 mt-auto"
+    >
+
+        <div
+            class="flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-sm"
+        >
+
+            <div>
+
+                <span
+                    class="font-bold text-green-900 block"
+                    style="font-family: 'Playfair Display', serif;"
+                >
+                    ATHAQ DATES
+                </span>
+
+                <p>
+                    © 2026 Athaq Industrial Factory. All rights reserved.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<!-- =========================================================
+     ORDER DETAILS MODAL
+========================================================= -->
+
+<div
+    id="orderModal"
+    class="hidden fixed inset-0 z-[100] modal-backdrop items-center justify-center p-4"
+>
+
+    <div
+        class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl modal-scroll"
+    >
+
+        <!-- MODAL HEADER -->
+
+        <div
+            class="sticky top-0 bg-white border-b border-gray-100 p-6 flex items-center justify-between z-10"
+        >
+
+            <div>
+
+                <p
+                    id="modalOrderNumber"
+                    class="text-xl font-bold text-[#004232]"
+                >
+                    Order
+                </p>
+
+                <p
+                    id="modalOrderDate"
+                    class="text-sm text-gray-500 mt-1"
+                >
+                    -
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                onclick="closeOrderModal()"
+                class="w-10 h-10 rounded-full hover:bg-gray-100 flex items-center justify-center"
+            >
+
+                <span class="material-symbols-outlined">
+                    close
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- MODAL BODY -->
+
+        <div class="p-6 space-y-6">
+
+
+            <!-- CUSTOMER -->
+
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 gap-4"
+            >
+
+                <div class="border border-gray-100 rounded-xl p-4">
+
+                    <p class="text-xs text-gray-400 uppercase font-bold mb-2">
+                        Customer
+                    </p>
+
+                    <p
+                        id="modalCustomer"
+                        class="font-semibold text-gray-900"
+                    >
+                        -
+                    </p>
+
+                    <p
+                        id="modalEmail"
+                        class="text-sm text-gray-500 mt-1"
+                    >
+                        -
+                    </p>
+
+                </div>
+
+
+                <div class="border border-gray-100 rounded-xl p-4">
+
+                    <p class="text-xs text-gray-400 uppercase font-bold mb-2">
+                        Phone
+                    </p>
+
+                    <p
+                        id="modalPhone"
+                        class="font-semibold text-gray-900"
+                    >
+                        -
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ADDRESS -->
+
+            <div
+                class="border border-gray-100 rounded-xl p-4"
+            >
+
+                <div class="flex items-center gap-2 mb-2">
+
+                    <span class="material-symbols-outlined text-green-700">
+                        location_on
+                    </span>
+
+                    <p class="text-xs text-gray-400 uppercase font-bold">
+                        Delivery Address
+                    </p>
+
+                </div>
+
+                <p
+                    id="modalAddress"
+                    class="text-gray-700 whitespace-pre-line"
+                >
+                    -
+                </p>
+
+            </div>
+
+
+            <!-- PAYMENT / TOTAL / STATUS -->
+
+            <div
+                class="grid grid-cols-1 md:grid-cols-3 gap-4"
+            >
+
+                <div class="border border-gray-100 rounded-xl p-4">
+
+                    <p class="text-xs text-gray-400 uppercase font-bold mb-2">
+                        Total
+                    </p>
+
+                    <p
+                        id="modalTotal"
+                        class="text-xl font-bold text-green-900"
+                    >
+                        SAR 0.00
+                    </p>
+
+                </div>
+
+
+                <div class="border border-gray-100 rounded-xl p-4">
+
+                    <p class="text-xs text-gray-400 uppercase font-bold mb-2">
+                        Payment
+                    </p>
+
+                    <p
+                        id="modalPayment"
+                        class="font-semibold text-gray-700"
+                    >
+                        -
+                    </p>
+
+                </div>
+
+
+                <div class="border border-gray-100 rounded-xl p-4">
+
+                    <p class="text-xs text-gray-400 uppercase font-bold mb-2">
+                        Status
+                    </p>
+
+                    <select
+                        id="modalStatus"
+                        onchange="changeOrderStatus()"
+                        class="status-select w-full border border-gray-200 rounded-lg px-3 py-2 font-semibold focus:ring-2 focus:ring-green-200 outline-none"
+                    >
+
+                        <option value="new">
+                            New
+                        </option>
+
+                        <option value="confirmed">
+                            Confirmed
+                        </option>
+
+                        <option value="preparing">
+                            Preparing
+                        </option>
+
+                        <option value="out_for_delivery">
+                            Out for Delivery
+                        </option>
+
+                        <option value="delivered">
+                            Delivered
+                        </option>
+
+                        <option value="cancelled">
+                            Cancelled
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- ITEMS -->
+
+            <div
+                class="border border-gray-100 rounded-xl overflow-hidden"
+            >
+
+                <div
+                    class="bg-gray-50 px-4 py-4 border-b border-gray-100"
+                >
+
+                    <h3 class="font-bold text-green-900">
+                        Order Items
+                    </h3>
+
+                </div>
+
+
+                <div id="modalItems">
+
+                    <div class="p-6 text-center text-gray-400">
+                        No items found.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXTRA DETAILS -->
+
+            <div
+                id="modalExtra"
+                class="border border-gray-100 rounded-xl p-4 hidden"
+            >
+
+                <p class="text-xs text-gray-400 uppercase font-bold mb-2">
+                    Additional Information
+                </p>
+
+                <div
+                    id="modalExtraContent"
+                    class="text-sm text-gray-600"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MODAL FOOTER -->
+
+        <div
+            class="border-t border-gray-100 p-5 flex justify-end"
+        >
+
+            <button
+                type="button"
+                onclick="closeOrderModal()"
+                class="bg-[#004232] text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-green-800"
+            >
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   SUPABASE
+========================================================= */
+
+const db = window.ATHAQ_SUPABASE;
+
+const ADMIN_EMAIL = "xshazam023@gmail.com";
+
+let allOrders = [];
+
+let currentOrder = null;
+
+
+/* =========================================================
+   REQUIRE DB
+========================================================= */
+
+function requireDB() {
+
+    if (!db) {
+
+        throw new Error(
+            "Supabase is not configured. Please check supabase-config.js"
+        );
+
+    }
+
+    return db;
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(/[&<>"']/g, function(char) {
+
+            return {
+
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;"
+
+            }[char];
+
+        });
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+async function logout() {
+
+    try {
+
+        if (db) {
+
+            await db.auth.signOut();
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Logout error:",
+            error
+        );
+
+    }
+
+    sessionStorage.clear();
+
+    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("user");
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("isLoggedIn");
+
+    window.location.replace(
+        "../../login/index.html"
+    );
+
+}
+
+
+/* =========================================================
+   ADMIN AUTH
+========================================================= */
+
+async function ensureAdmin() {
+
+    if (!db) {
+
+        alert(
+            "Supabase is not configured."
+        );
+
+        return false;
+
+    }
+
+    try {
+
+        let session = null;
+
+        for (
+            let attempt = 0;
+            attempt < 10;
+            attempt++
+        ) {
+
+            const {
+                data,
+                error
+            } = await db.auth.getSession();
+
+            if (error) {
+
+                console.error(
+                    "Session error:",
+                    error
+                );
+
+            }
+
+            session =
+                data?.session || null;
+
+            if (session?.user) {
+
+                break;
+
+            }
+
+            await new Promise(
+                resolve =>
+                    setTimeout(resolve, 300)
+            );
+
+        }
+
+
+        if (!session || !session.user) {
+
+            window.location.replace(
+                "../../login/index.html"
+            );
+
+            return false;
+
+        }
+
+
+        const email =
+            (session.user.email || "")
+                .trim()
+                .toLowerCase();
+
+
+        if (
+            email !==
+            ADMIN_EMAIL.toLowerCase()
+        ) {
+
+            await db.auth.signOut();
+
+            window.location.replace(
+                "../../login/index.html"
+            );
+
+            return false;
+
+        }
+
+        return true;
+
+    } catch (error) {
+
+        console.error(
+            "ADMIN AUTH ERROR:",
+            error
+        );
+
+        window.location.replace(
+            "../../login/index.html"
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+function formatOrderDate(value) {
+
+    if (!value) {
+
+        return "-";
+
+    }
+
+    try {
+
+        return new Date(value).toLocaleString(
+            [],
+            {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
+
+    } catch (error) {
+
+        return String(value);
+
+    }
+
+}
+
+
+/* =========================================================
+   STATUS NORMALIZER
+========================================================= */
+
+function normalizeStatus(status) {
+
+    const value =
+        String(status || "new")
+            .trim()
+            .toLowerCase()
+            .replace(/-/g, "_")
+            .replace(/\s+/g, "_");
+
+    if (
+        value === "pending" ||
+        value === "new"
+    ) {
+
+        return "new";
+
+    }
+
+    if (
+        value === "confirmed" ||
+        value === "confirm"
+    ) {
+
+        return "confirmed";
+
+    }
+
+    if (
+        value === "processing" ||
+        value === "preparing"
+    ) {
+
+        return "preparing";
+
+    }
+
+    if (
+        value === "shipped" ||
+        value === "out_for_delivery" ||
+        value === "outfordelivery"
+    ) {
+
+        return "out_for_delivery";
+
+    }
+
+    if (
+        value === "completed" ||
+        value === "paid" ||
+        value === "delivered"
+    ) {
+
+        return "delivered";
+
+    }
+
+    if (
+        value === "cancelled" ||
+        value === "canceled"
+    ) {
+
+        return "cancelled";
+
+    }
+
+    return "new";
+
+}
+
+
+/* =========================================================
+   STATUS LABEL
+========================================================= */
+
+function statusLabel(status) {
+
+    const value =
+        normalizeStatus(status);
+
+    const labels = {
+
+        new: "New",
+
+        confirmed: "Confirmed",
+
+        preparing: "Preparing",
+
+        out_for_delivery: "Out for Delivery",
+
+        delivered: "Delivered",
+
+        cancelled: "Cancelled"
+
+    };
+
+    return labels[value] || "New";
+
+}
+
+
+/* =========================================================
+   STATUS BADGE
+========================================================= */
+
+function getStatusBadge(status) {
+
+    const value =
+        normalizeStatus(status);
+
+    const classes = {
+
+        new:
+            "bg-amber-100 text-amber-700",
+
+        confirmed:
+            "bg-green-100 text-green-700",
+
+        preparing:
+            "bg-orange-100 text-orange-700",
+
+        out_for_delivery:
+            "bg-blue-100 text-blue-700",
+
+        delivered:
+            "bg-emerald-100 text-emerald-700",
+
+        cancelled:
+            "bg-red-100 text-red-700"
+
+    };
+
+    return `
+        <span
+            class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold ${classes[value]}"
+        >
+            ${statusLabel(value)}
+        </span>
+    `;
+
+}
+
+
+/* =========================================================
+   CUSTOMER NAME
+========================================================= */
+
+function getCustomerName(order) {
+
+    return (
+        order.customer_name ||
+        order.name ||
+        order.full_name ||
+        order.customer ||
+        order.user_name ||
+        "Customer"
+    );
+
+}
+
+
+/* =========================================================
+   EMAIL
+========================================================= */
+
+function getCustomerEmail(order) {
+
+    return (
+        order.customer_email ||
+        order.email ||
+        order.user_email ||
+        "-"
+    );
+
+}
+
+
+/* =========================================================
+   PHONE
+========================================================= */
+
+function getCustomerPhone(order) {
+
+    return (
+        order.phone ||
+        order.customer_phone ||
+        order.phone_number ||
+        "-"
+    );
+
+}
+
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+function getOrderTotalNumber(order) {
+
+    const value =
+        order.total ??
+        order.total_amount ??
+        order.amount ??
+        order.grand_total ??
+        0;
+
+    const number =
+        Number(value);
+
+    return Number.isFinite(number)
+        ? number
+        : 0;
+
+}
+
+
+function getOrderTotal(order) {
+
+    return (
+        "SAR " +
+        getOrderTotalNumber(order).toFixed(2)
+    );
+
+}
+
+
+/* =========================================================
+   PAYMENT
+========================================================= */
+
+function getPayment(order) {
+
+    return (
+        order.payment_method ||
+        order.payment ||
+        "COD"
+    );
+
+}
+
+
+/* =========================================================
+   ORDER NUMBER
+========================================================= */
+
+function getOrderNumber(order) {
+
+    return (
+        order.order_number ||
+        order.order_no ||
+        order.order_reference ||
+        order.order_id ||
+        order.id ||
+        "-"
+    );
+
+}
+
+
+/* =========================================================
+   ADDRESS
+========================================================= */
+
+function getDeliveryAddress(order) {
+
+    const address =
+        order.delivery_address ||
+        order.shipping_address ||
+        order.address ||
+        order.customer_address ||
+        order.deliveryAddress;
+
+    if (address) {
+
+        if (typeof address === "object") {
+
+            return Object.values(address)
+                .filter(Boolean)
+                .join(", ");
+
+        }
+
+        return String(address);
+
+    }
+
+    const parts = [
+
+        order.address_line1,
+        order.address_line2,
+        order.city,
+        order.state,
+        order.postal_code,
+        order.country
+
+    ].filter(Boolean);
+
+    if (parts.length) {
+
+        return parts.join(", ");
+
+    }
+
+    return "No delivery address provided";
+
+}
+
+
+/* =========================================================
+   ITEMS PARSER
+========================================================= */
+
+function getOrderItems(order) {
+
+    let items =
+        order.items ??
+        order.order_items ??
+        order.cart_items ??
+        order.products ??
+        order.orderItems ??
+        [];
+
+    if (typeof items === "string") {
+
+        try {
+
+            items = JSON.parse(items);
+
+        } catch (error) {
+
+            return [];
+
+        }
+
+    }
+
+    if (!Array.isArray(items)) {
+
+        if (
+            items &&
+            typeof items === "object"
+        ) {
+
+            items = Object.values(items);
+
+        } else {
+
+            return [];
+
+        }
+
+    }
+
+    return items;
+
+}
+
+
+/* =========================================================
+   ITEM NAME
+========================================================= */
+
+function getItemName(item) {
+
+    return (
+        item.product_name ||
+        item.name ||
+        item.title ||
+        item.product?.name ||
+        "Product"
+    );
+
+}
+
+
+/* =========================================================
+   ITEM QUANTITY
+========================================================= */
+
+function getItemQuantity(item) {
+
+    const quantity =
+        item.quantity ??
+        item.qty ??
+        item.count ??
+        1;
+
+    const number =
+        Number(quantity);
+
+    return Number.isFinite(number)
+        ? number
+        : 1;
+
+}
+
+
+/* =========================================================
+   ITEM PRICE
+========================================================= */
+
+function getItemPrice(item) {
+
+    const price =
+        item.price ??
+        item.unit_price ??
+        item.product_price ??
+        0;
+
+    const number =
+        Number(price);
+
+    return Number.isFinite(number)
+        ? number
+        : 0;
+
+}
+
+
+/* =========================================================
+   LOAD ORDERS
+========================================================= */
+
+async function loadAdminOrders() {
+
+    const table =
+        document.getElementById(
+            "adminOrdersList"
+        );
+
+    if (!table) {
+
+        return;
+
+    }
+
+    table.innerHTML = `
+        <tr>
+            <td
+                colspan="8"
+                class="px-6 py-16 text-center text-gray-400"
+            >
+                <div class="flex flex-col items-center gap-3">
+
+                    <span
+                        class="material-symbols-outlined animate-spin text-3xl"
+                    >
+                        refresh
+                    </span>
+
+                    <span>
+                        Loading orders...
+                    </span>
+
+                </div>
+            </td>
+        </tr>
+    `;
+
+
+    try {
+
+        const database =
+            requireDB();
+
+
+        const {
+            data: orders,
+            error
+        } = await database
+            .from("orders")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        allOrders =
+            orders || [];
+
+
+        updateStats();
+
+        filterOrders();
+
+
+    } catch (error) {
+
+        console.error(
+            "LOAD ORDERS ERROR:",
+            error
+        );
+
+
+        table.innerHTML = `
+            <tr>
+
+                <td
+                    colspan="8"
+                    class="px-6 py-16 text-center"
+                >
+
+                    <span
+                        class="material-symbols-outlined text-5xl text-red-300"
+                    >
+                        error
+                    </span>
+
+                    <p class="text-red-600 font-semibold mt-3">
+                        Unable to load orders
+                    </p>
+
+                    <p class="text-gray-400 text-xs mt-2">
+                        ${escapeHTML(
+                            error.message ||
+                            "Unknown Supabase error"
+                        )}
+                    </p>
+
+                    <button
+                        onclick="loadAdminOrders()"
+                        class="mt-4 bg-[#004232] text-white px-4 py-2 rounded-lg font-semibold"
+                    >
+                        Try Again
+                    </button>
+
+                </td>
+
+            </tr>
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+function updateStats() {
+
+    const total =
+        document.getElementById(
+            "totalOrders"
+        );
+
+    const newOrders =
+        document.getElementById(
+            "newOrders"
+        );
+
+    const delivered =
+        document.getElementById(
+            "deliveredOrders"
+        );
+
+
+    if (total) {
+
+        total.textContent =
+            allOrders.length;
+
+    }
+
+
+    if (newOrders) {
+
+        newOrders.textContent =
+            allOrders.filter(
+                order =>
+                    normalizeStatus(
+                        order.status ||
+                        order.order_status
+                    ) === "new"
+            ).length;
+
+    }
+
+
+    if (delivered) {
+
+        delivered.textContent =
+            allOrders.filter(
+                order =>
+                    normalizeStatus(
+                        order.status ||
+                        order.order_status
+                    ) === "delivered"
+            ).length;
+
+    }
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function filterOrders() {
+
+    const searchInput =
+        document.getElementById(
+            "orderSearch"
+        );
+
+    const statusFilter =
+        document.getElementById(
+            "statusFilter"
+        );
+
+
+    const search =
+        (searchInput?.value || "")
+            .trim()
+            .toLowerCase();
+
+
+    const selectedStatus =
+        statusFilter?.value || "all";
+
+
+    const filtered =
+        allOrders.filter(
+            function(order) {
+
+                const searchable = [
+
+                    getOrderNumber(order),
+
+                    getCustomerName(order),
+
+                    getCustomerEmail(order),
+
+                    getCustomerPhone(order),
+
+                    getDeliveryAddress(order)
+
+                ]
+                .join(" ")
+                .toLowerCase();
+
+
+                const matchesSearch =
+                    !search ||
+                    searchable.includes(search);
+
+
+                const currentStatus =
+                    normalizeStatus(
+                        order.status ||
+                        order.order_status
+                    );
+
+
+                const matchesStatus =
+                    selectedStatus === "all" ||
+                    currentStatus === selectedStatus;
+
+
+                return (
+                    matchesSearch &&
+                    matchesStatus
+                );
+
+            }
+        );
+
+
+    renderOrders(filtered);
+
+}
+
+
+/* =========================================================
+   RENDER ORDERS
+========================================================= */
+
+function renderOrders(orders) {
+
+    const table =
+        document.getElementById(
+            "adminOrdersList"
+        );
+
+    const showing =
+        document.getElementById(
+            "showingOrders"
+        );
+
+
+    if (showing) {
+
+        showing.textContent =
+            `Showing ${orders.length} of ${allOrders.length} orders`;
+
+    }
+
+
+    if (!orders.length) {
+
+        table.innerHTML = `
+            <tr>
+
+                <td
+                    colspan="8"
+                    class="px-6 py-16 text-center"
+                >
+
+                    <span
+                        class="material-symbols-outlined text-5xl text-gray-300"
+                    >
+                        search_off
+                    </span>
+
+                    <p
+                        class="text-gray-500 font-semibold mt-3"
+                    >
+                        No orders found
+                    </p>
+
+                    <p
+                        class="text-gray-400 text-sm mt-1"
+                    >
+                        Try another search or status filter.
+                    </p>
+
+                </td>
+
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    table.innerHTML =
+        orders.map(
+            function(order) {
+
+                const orderNumber =
+                    getOrderNumber(order);
+
+                const customer =
+                    getCustomerName(order);
+
+                const email =
+                    getCustomerEmail(order);
+
+                const phone =
+                    getCustomerPhone(order);
+
+                const total =
+                    getOrderTotal(order);
+
+                const payment =
+                    getPayment(order);
+
+                const date =
+                    formatOrderDate(
+                        order.created_at ||
+                        order.order_date ||
+                        order.date
+                    );
+
+                const status =
+                    normalizeStatus(
+                        order.status ||
+                        order.order_status
+                    );
+
+
+                return `
+
+                    <tr
+                        class="hover:bg-gray-50 transition-colors"
+                    >
+
+                        <!-- ORDER -->
+
+                        <td class="px-6 py-5">
+
+                            <button
+                                onclick="openOrder('${escapeHTML(order.id || "")}')"
+                                class="font-bold text-[#004232] hover:underline text-left"
+                            >
+                                #${escapeHTML(orderNumber)}
+                            </button>
+
+                        </td>
+
+
+                        <!-- CUSTOMER -->
+
+                        <td class="px-6 py-5">
+
+                            <p class="font-semibold text-gray-900">
+                                ${escapeHTML(customer)}
+                            </p>
+
+                            ${
+                                email !== "-"
+                                ?
+                                `
+                                <p class="text-xs text-gray-400 mt-1">
+                                    ${escapeHTML(email)}
+                                </p>
+                                `
+                                :
+                                ""
+                            }
+
+                        </td>
+
+
+                        <!-- PHONE -->
+
+                        <td class="px-6 py-5 text-gray-600">
+
+                            ${escapeHTML(phone)}
+
+                        </td>
+
+
+                        <!-- TOTAL -->
+
+                        <td class="px-6 py-5">
+
+                            <span class="font-bold text-green-900">
+                                ${total}
+                            </span>
+
+                        </td>
+
+
+                        <!-- PAYMENT -->
+
+                        <td class="px-6 py-5">
+
+                            <span
+                                class="inline-flex px-2.5 py-1 rounded-lg bg-gray-100 text-gray-700 text-xs font-semibold"
+                            >
+                                ${escapeHTML(payment)}
+                            </span>
+
+                        </td>
+
+
+                        <!-- DATE -->
+
+                        <td
+                            class="px-6 py-5 text-gray-500 text-xs whitespace-nowrap"
+                        >
+
+                            ${escapeHTML(date)}
+
+                        </td>
+
+
+                        <!-- STATUS -->
+
+                        <td class="px-6 py-5">
+
+                            ${getStatusBadge(status)}
+
+                        </td>
+
+
+                        <!-- ACTION -->
+
+                        <td class="px-6 py-5 text-right">
+
+                            <button
+                                type="button"
+                                onclick="openOrder('${escapeHTML(order.id || "")}')"
+                                class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-[#004232] hover:bg-green-50 transition"
+                                title="View Order"
+                            >
+
+                                <span class="material-symbols-outlined">
+                                    visibility
+                                </span>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        ).join("");
+
+}
+
+
+/* =========================================================
+   OPEN ORDER
+========================================================= */
+
+async function openOrder(orderId) {
+
+    if (!orderId) {
+
+        alert(
+            "Order ID not found."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        const {
+            data: order,
+            error
+        } = await requireDB()
+            .from("orders")
+            .select("*")
+            .eq("id", orderId)
+            .single();
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        currentOrder =
+            order;
+
+
+        fillOrderModal(order);
+
+
+        const modal =
+            document.getElementById(
+                "orderModal"
+            );
+
+
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+
+
+    } catch (error) {
+
+        console.error(
+            "OPEN ORDER ERROR:",
+            error
+        );
+
+
+        alert(
+            "Unable to open order.\n\n" +
+            (
+                error.message ||
+                "Unknown error"
+            )
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   FILL MODAL
+========================================================= */
+
+function fillOrderModal(order) {
+
+    document.getElementById(
+        "modalOrderNumber"
+    ).textContent =
+        "#" +
+        getOrderNumber(order);
+
+
+    document.getElementById(
+        "modalOrderDate"
+    ).textContent =
+        formatOrderDate(
+            order.created_at ||
+            order.order_date ||
+            order.date
+        );
+
+
+    document.getElementById(
+        "modalCustomer"
+    ).textContent =
+        getCustomerName(order);
+
+
+    document.getElementById(
+        "modalEmail"
+    ).textContent =
+        getCustomerEmail(order);
+
+
+    document.getElementById(
+        "modalPhone"
+    ).textContent =
+        getCustomerPhone(order);
+
+
+    document.getElementById(
+        "modalAddress"
+    ).textContent =
+        getDeliveryAddress(order);
+
+
+    document.getElementById(
+        "modalTotal"
+    ).textContent =
+        getOrderTotal(order);
+
+
+    document.getElementById(
+        "modalPayment"
+    ).textContent =
+        getPayment(order);
+
+
+    document.getElementById(
+        "modalStatus"
+    ).value =
+        normalizeStatus(
+            order.status ||
+            order.order_status
+        );
+
+
+    renderModalItems(order);
+
+    renderExtraInfo(order);
+
+}
+
+
+/* =========================================================
+   RENDER ITEMS
+========================================================= */
+
+function renderModalItems(order) {
+
+    const container =
+        document.getElementById(
+            "modalItems"
+        );
+
+
+    const items =
+        getOrderItems(order);
+
+
+    if (!items.length) {
+
+        container.innerHTML = `
+            <div class="p-6 text-center">
+
+                <span
+                    class="material-symbols-outlined text-4xl text-gray-300"
+                >
+                    inventory_2
+                </span>
+
+                <p class="text-gray-500 mt-2">
+                    No product items found for this order.
+                </p>
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="divide-y divide-gray-100">
+
+            ${items.map(
+                function(item, index) {
+
+                    const name =
+                        getItemName(item);
+
+                    const quantity =
+                        getItemQuantity(item);
+
+                    const price =
+                        getItemPrice(item);
+
+                    const subtotal =
+                        price * quantity;
+
+
+                    return `
+
+                        <div
+                            class="p-4 flex items-center justify-between gap-4"
+                        >
+
+                            <div class="flex items-center gap-3">
+
+                                <div
+                                    class="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center"
+                                >
+
+                                    <span class="material-symbols-outlined text-green-700">
+                                        inventory_2
+                                    </span>
+
+                                </div>
+
+                                <div>
+
+                                    <p class="font-semibold text-gray-900">
+                                        ${escapeHTML(name)}
+                                    </p>
+
+                                    <p class="text-xs text-gray-500 mt-1">
+                                        Quantity: ${quantity}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="text-right">
+
+                                <p class="font-bold text-green-900">
+                                    SAR ${subtotal.toFixed(2)}
+                                </p>
+
+                                ${
+                                    price > 0
+                                    ?
+                                    `
+                                    <p class="text-xs text-gray-400">
+                                        SAR ${price.toFixed(2)} × ${quantity}
+                                    </p>
+                                    `
+                                    :
+                                    ""
+                                }
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            ).join("")}
+
+        </div>
+    `;
+
+}
+
+
+/* =========================================================
+   EXTRA INFO
+========================================================= */
+
+function renderExtraInfo(order) {
+
+    const box =
+        document.getElementById(
+            "modalExtra"
+        );
+
+    const content =
+        document.getElementById(
+            "modalExtraContent"
+        );
+
+
+    const ignored = new Set([
+
+        "id",
+        "order_number",
+        "order_no",
+        "order_reference",
+        "order_id",
+        "customer_name",
+        "name",
+        "full_name",
+        "customer",
+        "user_name",
+        "customer_email",
+        "email",
+        "user_email",
+        "phone",
+        "customer_phone",
+        "phone_number",
+        "total",
+        "total_amount",
+        "amount",
+        "grand_total",
+        "payment_method",
+        "payment",
+        "status",
+        "order_status",
+        "created_at",
+        "updated_at",
+        "order_date",
+        "date",
+        "delivery_address",
+        "shipping_address",
+        "address",
+        "customer_address",
+        "deliveryAddress",
+        "address_line1",
+        "address_line2",
+        "city",
+        "state",
+        "postal_code",
+        "country",
+        "items",
+        "order_items",
+        "cart_items",
+        "products",
+        "orderItems"
+    ]);
+
+
+    const extra = Object.entries(order)
+        .filter(
+            ([key, value]) =>
+                !ignored.has(key) &&
+                value !== null &&
+                value !== undefined &&
+                value !== ""
+        );
+
+
+    if (!extra.length) {
+
+        box.classList.add("hidden");
+
+        return;
+
+    }
+
+
+    content.innerHTML =
+        extra.map(
+            ([key, value]) => {
+
+                let displayValue = value;
+
+                if (
+                    typeof value === "object"
+                ) {
+
+                    displayValue =
+                        JSON.stringify(
+                            value,
+                            null,
+                            2
+                        );
+
+                }
+
+                return `
+
+                    <div class="flex justify-between gap-4 py-2 border-b border-gray-50 last:border-0">
+
+                        <span class="font-semibold text-gray-500">
+                            ${escapeHTML(key)}
+                        </span>
+
+                        <span class="text-gray-700 text-right break-all">
+                            ${escapeHTML(displayValue)}
+                        </span>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
+
+
+    box.classList.remove("hidden");
+
+}
+
+
+/* =========================================================
+   CHANGE STATUS
+========================================================= */
+
+async function changeOrderStatus() {
+
+    if (!currentOrder) {
+
+        return;
+
+    }
+
+
+    const select =
+        document.getElementById(
+            "modalStatus"
+        );
+
+
+    const newStatus =
+        normalizeStatus(
+            select.value
+        );
+
+
+    const oldStatus =
+        normalizeStatus(
+            currentOrder.status ||
+            currentOrder.order_status
+        );
+
+
+    if (newStatus === oldStatus) {
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            "Change order status to \"" +
+            statusLabel(newStatus) +
+            "\"?"
+        );
+
+
+    if (!confirmed) {
+
+        select.value =
+            oldStatus;
+
+        return;
+
+    }
+
+
+    select.disabled = true;
+
+
+    try {
+
+        const {
+            error
+        } = await requireDB()
+            .from("orders")
+            .update({
+
+                status: newStatus
+
+            })
+            .eq(
+                "id",
+                currentOrder.id
+            );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        currentOrder.status =
+            newStatus;
+
+
+        /*
+         UPDATE LOCAL ORDER
+        */
+
+        const index =
+            allOrders.findIndex(
+                order =>
+                    order.id ===
+                    currentOrder.id
+            );
+
+
+        if (index !== -1) {
+
+            allOrders[index].status =
+                newStatus;
+
+        }
+
+
+        updateStats();
+
+        filterOrders();
+
+
+        alert(
+            "Order status updated successfully."
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "STATUS UPDATE ERROR:",
+            error
+        );
+
+
+        select.value =
+            oldStatus;
+
+
+        alert(
+            "Unable to update order status.\n\n" +
+            (
+                error.message ||
+                "Supabase update failed"
+            )
+        );
+
+    } finally {
+
+        select.disabled = false;
+
+    }
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
+
+function closeOrderModal() {
+
+    const modal =
+        document.getElementById(
+            "orderModal"
+        );
+
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+
+    currentOrder =
+        null;
+
+}
+
+
+/* =========================================================
+   REALTIME ORDERS
+========================================================= */
+
+function setupRealtime() {
+
+    if (!db) {
+
+        return;
+
+    }
+
+
+    try {
+
+        db.channel(
+            "admin-orders-realtime"
+        )
+        .on(
+            "postgres_changes",
+            {
+                event: "*",
+                schema: "public",
+                table: "orders"
+            },
+            function(payload) {
+
+                console.log(
+                    "Order realtime update:",
+                    payload
+                );
+
+
+                loadAdminOrders();
+
+
+                /*
+                If currently opened order
+                was changed, refresh modal too.
+                */
+
+                if (
+                    currentOrder &&
+                    payload.new &&
+                    payload.new.id ===
+                    currentOrder.id
+                ) {
+
+                    currentOrder =
+                        payload.new;
+
+                    fillOrderModal(
+                        payload.new
+                    );
+
+                }
+
+            }
+        )
+        .subscribe();
+
+    } catch (error) {
+
+        console.error(
+            "Realtime setup error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   ESC CLOSE MODAL
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeOrderModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   PAGE LOAD
+========================================================= */
+
+window.addEventListener(
+    "DOMContentLoaded",
+    async function() {
+
+        console.log(
+            "ATHAQ Orders Page loading..."
+        );
+
+
+        const isAdmin =
+            await ensureAdmin();
+
+
+        if (!isAdmin) {
+
+            return;
+
+        }
+
+
+        await loadAdminOrders();
+
+
+        setupRealtime();
+
+
+        console.log(
+            "ATHAQ Orders Admin ready."
+        );
+
+    }
+);
+/* =========================================================
+   UPDATE ORDER STATUS
+========================================================= */
+
+async function updateOrderStatus(orderId, newStatus) {
+
+    if (!orderId) {
+        alert("Order ID not found.");
+        return;
+    }
+
+    if (!newStatus) {
+        return;
+    }
+
+    try {
+
+        const database = requireDB();
+
+        const {
+            data,
+            error
+        } = await database
+            .from("orders")
+            .update({
+                order_status: newStatus,
+                updated_at: new Date().toISOString()
+            })
+            .eq("id", orderId)
+            .select()
+            .single();
+
+        if (error) {
+            throw error;
+        }
+
+        console.log("Order status updated:", data);
+
+        // Reload orders table
+        await loadAdminOrders();
+
+        // Reload currently opened order if modal exists
+        if (typeof viewOrder === "function") {
+            await viewOrder(orderId);
+        }
+
+    } catch (error) {
+
+        console.error(
+            "UPDATE ORDER STATUS ERROR:",
+            error
+        );
+
+        alert(
+            "Unable to update order status.\n\n" +
+            (error.message || "Unknown Supabase error")
+        );
+    }
+}
+</script>
+
+</body>
+
+</html>
