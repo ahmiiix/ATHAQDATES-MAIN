@@ -52,7 +52,7 @@
   <div class="mt-6 text-center border-t border-gray-100 pt-4"><a href="../index.html" class="text-xs font-semibold text-gray-500 hover:text-[#004232] transition-colors">&larr; Back to Website</a></div>
 </div>
 <script>
-const db = window.ATHAQ_SUPABASE;
+const db = window.supabaseClient || window.ATHAQ_SUPABASE;
 const ADMIN_EMAIL = "xshazam023@gmail.com";
 function toggleForm(type){document.getElementById('loginForm').classList.toggle('hidden',type!=='login');document.getElementById('registerForm').classList.toggle('hidden',type!=='register');document.getElementById('formSubtitle').textContent=type==='login'?'Sign in to your account':'Create your account';}
 function showError(id,msg){const e=document.getElementById(id);e.textContent=msg;e.classList.remove('hidden');}
@@ -61,106 +61,183 @@ async function handleLogin(event) {
 
     const input = document.getElementById('loginInput').value.trim();
     const password = document.getElementById('loginPassword').value;
+    const errorBox = document.getElementById('errorMsg');
 
-    document.getElementById('errorMsg').classList.add('hidden');
+    errorBox.classList.add('hidden');
 
-    if (!db) {
+    if (!window.ATHAQ_SUPABASE) {
         showError('errorMsg', 'Supabase is not configured yet.');
         return;
     }
 
-    const email = input.toLowerCase() === 'admin'
-        ? ADMIN_EMAIL
-        : input;
+    if (!input || !password) {
+        showError('errorMsg', 'Please enter username/email and password.');
+        return;
+    }
 
-    const { data, error } = await db.auth.signInWithPassword({
-        email: email,
-        password: password
-    });
+    let email = input;
+
+    // =========================================
+    // USERNAME LOGIN
+    // =========================================
+    if (!input.includes('@')) {
+
+        const { data: usernameEmail, error: usernameError } =
+            await window.ATHAQ_SUPABASE.rpc(
+                'get_email_by_username',
+                {
+                    p_username: input
+                }
+            );
+
+        console.log('Username:', input);
+        console.log('Email found:', usernameEmail);
+        console.log('Username error:', usernameError);
+
+        if (usernameError) {
+            console.error(usernameError);
+
+            showError(
+                'errorMsg',
+                'Username login error. Please try again.'
+            );
+
+            return;
+        }
+
+        if (!usernameEmail) {
+            showError(
+                'errorMsg',
+                'Invalid username/email or password!'
+            );
+
+            return;
+        }
+
+        email = usernameEmail;
+    }
+
+    // =========================================
+    // EMAIL / USERNAME BOTH LOGIN THROUGH EMAIL
+    // =========================================
+    const { data, error } =
+        await window.ATHAQ_SUPABASE.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+    console.log('Login email:', email);
+    console.log('Login data:', data);
+    console.log('Login error:', error);
 
     if (error) {
-        showError('errorMsg', 'Invalid username/email or password!');
+        showError(
+            'errorMsg',
+            'Invalid username/email or password!'
+        );
+
+        return;
+    }
+
+    if (!data || !data.user) {
+        showError(
+            'errorMsg',
+            'Login failed. Please try again.'
+        );
+
         return;
     }
 
     const user = data.user;
 
-    if (!user) {
-        showError('errorMsg', 'Login failed. User not found.');
+    // =========================================
+    // EMAIL VERIFICATION CHECK
+    // =========================================
+    if (!user.email_confirmed_at) {
+
+        await window.ATHAQ_SUPABASE.auth.signOut();
+
+        showError(
+            'errorMsg',
+            'Please verify your email before logging in.'
+        );
+
         return;
     }
+
+    // =========================================
+    // USER INFORMATION
+    // =========================================
+    const username =
+        user.user_metadata?.username || '';
+
+    const fullName =
+        user.user_metadata?.full_name ||
+        user.email;
 
     const isAdmin =
-        user.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+        user.email?.toLowerCase() ===
+        'xshazam023@gmail.com';
 
-    /* =========================
-       ADMIN LOGIN
-    ========================= */
-
-    if (isAdmin) {
-
-        const adminUser = {
-            name: 'Admin',
-            email: user.email,
-            role: 'admin'
-        };
-
-        sessionStorage.setItem('isLoggedIn', 'true');
-        sessionStorage.setItem('userRole', 'admin');
-        sessionStorage.setItem('userName', 'Admin');
-        sessionStorage.setItem('userEmail', user.email);
-
-        localStorage.setItem(
-            'loggedInUser',
-            JSON.stringify(adminUser)
-        );
-
-        localStorage.setItem('userRole', 'admin');
-
-        localStorage.setItem(
-            'user',
-            JSON.stringify(adminUser)
-        );
-
-        window.location.href = '../admin/index.html';
-
-        return;
-    }
-
-    /* =========================
-       CUSTOMER LOGIN
-    ========================= */
-
-    const customerUser = {
-        name: user.user_metadata?.full_name || user.email,
-        email: user.email,
-        role: 'customer'
-    };
-
+    // =========================================
+    // SAVE LOGIN SESSION
+    // =========================================
     sessionStorage.setItem('isLoggedIn', 'true');
-    sessionStorage.setItem('userRole', 'customer');
+    sessionStorage.setItem(
+        'userRole',
+        isAdmin ? 'admin' : 'customer'
+    );
+
     sessionStorage.setItem(
         'userName',
-        customerUser.name
+        isAdmin ? 'Admin' : fullName
     );
+
+    sessionStorage.setItem(
+        'userUsername',
+        username
+    );
+
     sessionStorage.setItem(
         'userEmail',
-        customerUser.email
+        user.email
     );
+
+    const loggedUser = {
+        name: isAdmin ? 'Admin' : fullName,
+        username: username,
+        email: user.email,
+        role: isAdmin ? 'admin' : 'customer'
+    };
 
     localStorage.setItem(
         'loggedInUser',
-        JSON.stringify(customerUser)
+        JSON.stringify(loggedUser)
     );
 
-    localStorage.setItem('userRole', 'customer');
+    localStorage.setItem(
+        'userRole',
+        isAdmin ? 'admin' : 'customer'
+    );
 
     localStorage.setItem(
         'user',
-        JSON.stringify(customerUser)
+        JSON.stringify(loggedUser)
     );
 
-    window.location.href = '../customer-profile/profile.html';
+    // =========================================
+    // REDIRECT
+    // =========================================
+    if (isAdmin) {
+
+        window.location.href =
+            '../admin/index.html';
+
+    } else {
+
+        window.location.href =
+            '../customer-profile/profile.html';
+    }
 }
 async function handleRegister(event) {
     event.preventDefault();
