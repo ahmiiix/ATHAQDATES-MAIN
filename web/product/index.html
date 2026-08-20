@@ -47,6 +47,62 @@
     body { -webkit-text-size-adjust: 100%; }
     img { max-width: 100%; height: auto; display: block; }
 
+
+    /* ================= PREMIUM TOAST NOTIFICATIONS ================= */
+    #athaqToastContainer {
+      position: fixed;
+      top: 96px;
+      right: 24px;
+      z-index: 20000;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      pointer-events: none;
+    }
+    .athaq-toast {
+      width: min(380px, calc(100vw - 32px));
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: rgba(255,255,255,.97);
+      border: 1px solid rgba(0,66,50,.12);
+      border-radius: 16px;
+      box-shadow: 0 18px 45px rgba(0,0,0,.14), 0 4px 14px rgba(0,66,50,.08);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      transform: translateX(30px) scale(.97);
+      transition: opacity .3s ease, transform .3s cubic-bezier(.2,.8,.2,1);
+      overflow: hidden;
+    }
+    .athaq-toast.show { opacity: 1; transform: translateX(0) scale(1); }
+    .athaq-toast.hide { opacity: 0; transform: translateX(30px) scale(.97); }
+    .athaq-toast-icon {
+      width: 42px; height: 42px; min-width: 42px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      background: #e8f7ef; color: #004232;
+      font-size: 16px;
+    }
+    .athaq-toast-content { min-width: 0; flex: 1; }
+    .athaq-toast-title {
+      color: #004232; font-size: 12px; font-weight: 800;
+      letter-spacing: .04em; text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .athaq-toast-message { color: #56635d; font-size: 12px; line-height: 1.45; }
+    .athaq-toast-close {
+      width: 28px; height: 28px; min-width: 28px; border: 0;
+      background: transparent; color: #7b8781; cursor: pointer;
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    }
+    .athaq-toast-close:hover { background: #f3f5f3; color: #004232; }
+    @media (max-width: 640px) {
+      #athaqToastContainer { top: 88px; right: 16px; left: 16px; }
+      .athaq-toast { width: 100%; }
+    }
+
     /* =====================================================
        PREMIUM SIDEBAR
     ===================================================== */
@@ -400,6 +456,8 @@ html[dir="rtl"] #side-menu.active {
 </style>
 </head>
 <body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+  <div id="athaqToastContainer" aria-live="polite" aria-atomic="true"></div>
 
 <!-- =========================================================
      PREMIUM HEADER / NAVBAR
@@ -1154,6 +1212,36 @@ html[dir="rtl"] #side-menu.active {
       }[char]));
     }
 
+    /* ================= PREMIUM TOAST ================= */
+    function showAthaqToast(type, title, message) {
+      const container = document.getElementById("athaqToastContainer");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "athaq-toast";
+      const icon = type === "wishlist" ? "fa-heart" : "fa-bag-shopping";
+
+      toast.innerHTML = `
+        <div class="athaq-toast-icon"><i class="fa-solid ${icon}"></i></div>
+        <div class="athaq-toast-content">
+          <div class="athaq-toast-title">${escapeHtml(title)}</div>
+          <div class="athaq-toast-message">${escapeHtml(message)}</div>
+        </div>
+        <button type="button" class="athaq-toast-close" aria-label="Close notification">
+          <i class="fa-solid fa-xmark"></i>
+        </button>`;
+
+      container.appendChild(toast);
+      const close = () => {
+        toast.classList.remove("show");
+        toast.classList.add("hide");
+        setTimeout(() => toast.remove(), 300);
+      };
+      toast.querySelector(".athaq-toast-close")?.addEventListener("click", close);
+      requestAnimationFrame(() => toast.classList.add("show"));
+      setTimeout(close, 3500);
+    }
+
     /* ================= WISHLIST ================= */
     function toggleWishlist(event, id, name, image, price) {
       event?.stopPropagation();
@@ -1168,6 +1256,12 @@ html[dir="rtl"] #side-menu.active {
 
       localStorage.setItem("athaqWishlist", JSON.stringify(wishlist));
       updateWishlistUI();
+
+      if (index > -1) {
+        showAthaqToast("wishlist", currentLang === "ar" ? "تمت الإزالة من المفضلة" : "Removed from Wishlist", currentLang === "ar" ? `تمت إزالة ${name} من قائمتك المفضلة.` : `${name} has been removed from your wishlist.`);
+      } else {
+        showAthaqToast("wishlist", currentLang === "ar" ? "تمت الإضافة إلى المفضلة" : "Added to Wishlist", currentLang === "ar" ? `تمت إضافة ${name} إلى قائمتك المفضلة.` : `${name} has been added to your wishlist.`);
+      }
     }
 
     function updateWishlistUI() {
@@ -1234,12 +1328,12 @@ html[dir="rtl"] #side-menu.active {
 
       localStorage.setItem("athaqCart", JSON.stringify(cart));
       updateCartUI();
-      alert(currentLang === 'ar' ? "تم إضافته إلى السلة!" : name + " has been added to your cart!");
+      showAthaqToast('cart', currentLang === 'ar' ? 'تمت الإضافة إلى السلة' : 'Added to Cart', currentLang === 'ar' ? `تمت إضافة ${name} إلى سلة التسوق.` : `${name} has been added to your cart.`);
     }
 
     function buyNow(id, name, price, image) {
       addToCart(id, name, price, image);
-      window.location.href = "/admin/checkout.html";
+      window.location.href = "/ordercheckout/checkout.html";
     }
 
 /* =========================================================

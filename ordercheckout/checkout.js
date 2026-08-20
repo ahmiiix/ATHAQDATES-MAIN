@@ -96,7 +96,7 @@ function renderCheckoutSummary() {
                     <i class="fa-solid fa-cart-shopping text-gray-400"></i>
                 </div>
                 <p class="text-sm font-semibold text-gray-500">Your cart is empty.</p>
-                <a href="index.html" class="inline-flex mt-4 px-4 py-2 rounded-lg bg-[#004232] text-white text-xs font-bold hover:bg-[#002e23] transition">
+                <a href="/web/product/index.html" class="inline-flex mt-4 px-4 py-2 rounded-lg bg-[#004232] text-white text-xs font-bold hover:bg-[#002e23] transition">
                     Continue Shopping
                 </a>
             </div>
