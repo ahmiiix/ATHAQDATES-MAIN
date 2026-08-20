@@ -1,0 +1,2183 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" dir="ltr" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="ATHAQ Dates Industry Policies — Privacy Policy, Terms & Conditions, Shipping, Returns, Refunds and Cookies."
+  >
+
+  <title>ATHAQ Dates | Policies</title>
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  >
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Material Symbols -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
+    rel="stylesheet"
+  >
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+
+      theme: {
+        extend: {
+
+          colors: {
+            primary: "#004232",
+            "primary-container": "#005c46",
+            "primary-fixed": "#a6f2d4",
+            "on-primary-fixed": "#002117",
+
+            secondary: "#3e6653",
+            "secondary-container": "#c0edd4",
+            "on-secondary-container": "#446d59",
+
+            tertiary: "#735c00",
+            "tertiary-container": "#cca830",
+
+            surface: "#faf9f4",
+            "surface-container": "#efeee9",
+            "surface-container-high": "#e9e8e3",
+            "surface-container-highest": "#e3e3de",
+
+            "on-surface": "#1b1c19",
+            "on-surface-variant": "#3f4944",
+
+            outline: "#6f7974",
+            "outline-variant": "#bec9c3"
+          },
+
+          fontFamily: {
+            body: ["Manrope"],
+            headline: ["Be Vietnam Pro"],
+            label: ["IBM Plex Sans"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      -webkit-text-size-adjust: 100%;
+      background: #faf9f4;
+      color: #1b1c19;
+      font-family: "Manrope", sans-serif;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+    }
+
+    /* =====================================================
+       SIDEBAR
+    ===================================================== */
+
+    #sidebar-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+
+      background: rgba(0, 0, 0, .48);
+      backdrop-filter: blur(5px);
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition:
+        opacity .3s ease,
+        visibility .3s ease;
+    }
+
+    #sidebar-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #side-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 9999;
+
+      width: min(390px, 88vw);
+      height: 100dvh;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(250, 249, 244, .99),
+          rgba(245, 244, 239, .99)
+        );
+
+      transform: translateX(105%);
+
+      transition:
+        transform .32s cubic-bezier(.4, 0, .2, 1);
+
+      box-shadow:
+        -18px 0 55px rgba(0, 0, 0, .18);
+
+      display: flex;
+      flex-direction: column;
+
+      overflow: hidden;
+    }
+
+    #side-menu.active {
+      transform: translateX(0);
+    }
+
+    .sidebar-action {
+      min-height: 64px;
+
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      padding: 0 14px;
+
+      border-radius: 14px;
+
+      border: 1px solid rgba(190, 201, 195, .45);
+
+      background: rgba(255, 255, 255, .55);
+
+      transition:
+        transform .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+    }
+
+    .sidebar-action:hover {
+      transform: translateY(-2px);
+      background: #fff;
+      border-color: rgba(0, 66, 50, .18);
+    }
+
+    .sidebar-action-icon,
+    .sidebar-nav-icon {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 12px;
+
+      background: rgba(0, 66, 50, .07);
+      color: #004232;
+    }
+
+    .sidebar-nav-icon {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      border-radius: 11px;
+    }
+
+    .sidebar-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      min-height: 52px;
+
+      padding: 0 16px;
+
+      color: #3f4944;
+
+      border-radius: 14px;
+
+      text-decoration: none;
+
+      transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
+    }
+
+    .sidebar-nav-link:hover {
+      background: rgba(192, 237, 212, .55);
+      color: #004232;
+      transform: translateX(4px);
+    }
+
+    .sidebar-nav-link.active {
+      background: #004232;
+      color: #fff;
+
+      box-shadow:
+        0 8px 20px rgba(0, 66, 50, .16);
+    }
+
+    .sidebar-nav-link.active .sidebar-nav-icon {
+      background: rgba(255, 255, 255, .14);
+      color: #fff;
+    }
+
+    .counter-badge {
+      min-width: 21px;
+      height: 21px;
+
+      padding: 0 6px;
+
+      border-radius: 999px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #004232;
+      color: #fff;
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    /* =====================================================
+       POLICY CONTENT
+    ===================================================== */
+
+    .policy-card {
+      background: #fff;
+
+      border: 1px solid rgba(190, 201, 195, .35);
+
+      border-radius: 24px;
+
+      padding: 32px;
+
+      box-shadow:
+        0 8px 30px rgba(0, 66, 50, .04);
+    }
+
+    .policy-card h2 {
+      color: #004232;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .policy-card h3 {
+      color: #004232;
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 24px;
+      margin-bottom: 10px;
+    }
+
+    .policy-card p {
+      color: #3f4944;
+      line-height: 1.8;
+      margin-bottom: 14px;
+      font-size: 15px;
+    }
+
+    .policy-card ul {
+      color: #3f4944;
+      line-height: 1.8;
+      margin: 12px 0 18px 22px;
+      list-style: disc;
+    }
+
+    .policy-card li {
+      margin-bottom: 7px;
+    }
+
+    .policy-nav {
+      position: sticky;
+      top: 105px;
+    }
+
+    .policy-nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      padding: 11px 14px;
+
+      color: #3f4944;
+
+      border-radius: 12px;
+
+      font-size: 13px;
+      font-weight: 600;
+
+      transition: all .2s ease;
+    }
+
+    .policy-nav a:hover {
+      background: #c0edd4;
+      color: #004232;
+    }
+
+    @media (max-width: 768px) {
+
+      .policy-card {
+        padding: 24px;
+        border-radius: 20px;
+      }
+
+      .policy-card h2 {
+        font-size: 22px;
+      }
+
+      .policy-nav {
+        position: static;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      #side-menu {
+        width: 88vw;
+        max-width: 360px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <!-- =====================================================
+       HEADER
+  ===================================================== -->
+
+  <nav
+    class="fixed top-0 left-0 w-full z-[100] bg-white/85 backdrop-blur-xl border-b border-[#bec9c3]/20"
+    style="height:80px;"
+  >
+
+    <div
+      class="w-full h-20 px-5 sm:px-6 md:px-10 lg:px-16 flex items-center justify-between"
+    >
+
+      <a
+        href="/index.html"
+        class="flex items-center group"
+        aria-label="ATHAQ Home"
+      >
+
+        <div
+          class="w-[200px] h-[70px] flex items-center justify-center overflow-visible group-hover:scale-[1.03] transition-transform duration-300"
+        >
+
+          <img
+            src="/database/logo.png"
+            alt="ATHAQ Industrial Factory"
+            class="w-full h-full object-contain"
+          >
+
+        </div>
+
+      </a>
+
+
+      <button
+        id="menu-btn"
+        type="button"
+        class="w-10 h-10 rounded-full border border-[#bec9c3]/45 bg-white/70 backdrop-blur-sm flex items-center justify-center text-[#004232] hover:bg-white hover:border-[#004232]/20 hover:shadow-sm transition-all focus:outline-none"
+        aria-label="Open Menu"
+        aria-controls="side-menu"
+        aria-expanded="false"
+      >
+
+        <i class="fa-solid fa-bars text-sm"></i>
+
+      </button>
+
+    </div>
+
+  </nav>
+
+
+  <div id="sidebar-overlay"></div>
+
+
+  <!-- =====================================================
+       SIDEBAR
+  ===================================================== -->
+
+  <aside
+    id="side-menu"
+    aria-hidden="true"
+    aria-label="Main Navigation"
+  >
+
+    <!-- SIDEBAR HEADER -->
+
+    <div class="px-5 pt-5 pb-4">
+
+      <div class="flex items-center justify-between">
+
+        <a
+          href="/index.html"
+          onclick="closeSideMenu()"
+          class="flex items-center gap-3"
+        >
+
+          <img
+            src="/database/logo(2).png"
+            alt="ATHAQ"
+            class="w-10 h-10 object-contain scale-125"
+          >
+
+          <div>
+
+            <div
+              class="text-[#004232] font-bold tracking-[0.16em] text-sm"
+            >
+              ATHAQ DATES
+            </div>
+
+            <div
+              class="text-[9px] text-[#3f4944] uppercase tracking-[0.22em] mt-1"
+            >
+              Industrial Factory
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <button
+          id="close-menu"
+          type="button"
+          aria-label="Close Menu"
+          class="w-10 h-10 rounded-full border border-[#bec9c3]/50 bg-white flex items-center justify-center text-[#004232] hover:bg-[#e9e8e3] transition-all"
+        >
+
+          <i class="fa-solid fa-xmark text-lg"></i>
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="h-px bg-[#bec9c3]/30 mx-5"></div>
+
+
+    <!-- SIDEBAR CONTENT -->
+
+    <div class="flex-1 overflow-y-auto px-5 py-5">
+
+      <!-- QUICK ACCESS -->
+
+      <div class="mb-7">
+
+        <p
+          class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1"
+        >
+          Quick Access
+        </p>
+
+
+        <div class="grid grid-cols-2 gap-3">
+
+
+
+
+          <button
+            type="button"
+            onclick="toggleLanguage()"
+            class="sidebar-action text-left"
+          >
+
+            <span class="sidebar-action-icon">
+              <i class="fa-solid fa-globe"></i>
+            </span>
+
+            <span>
+
+              <span class="block text-xs font-bold text-[#004232]">
+                Language
+              </span>
+
+              <span
+                id="languageLabel"
+                class="block text-[10px] text-[#3f4944] mt-1"
+              >
+                English
+              </span>
+
+            </span>
+
+          </button>
+
+
+          <a
+            href="/web/product/wishlist.html"
+            onclick="closeSideMenu()"
+            class="sidebar-action"
+          >
+
+            <span class="sidebar-action-icon">
+              <i class="fa-regular fa-heart"></i>
+            </span>
+
+            <span class="min-w-0 flex-1">
+
+              <span class="block text-xs font-bold text-[#004232]">
+                Wishlist
+              </span>
+
+              <span class="block text-[10px] text-[#3f4944] mt-1">
+                Saved items
+              </span>
+
+            </span>
+
+            <span
+              id="sidebarWishlistCount"
+              class="counter-badge"
+            >
+              0
+            </span>
+
+          </a>
+
+
+          <a
+            href="/admin/checkout.html"
+            onclick="closeSideMenu()"
+            class="sidebar-action"
+          >
+
+            <span class="sidebar-action-icon">
+              <i class="fa-solid fa-bag-shopping"></i>
+            </span>
+
+            <span class="min-w-0 flex-1">
+
+              <span class="block text-xs font-bold text-[#004232]">
+                Cart
+              </span>
+
+              <span class="block text-[10px] text-[#3f4944] mt-1">
+                Your items
+              </span>
+
+            </span>
+
+            <span
+              id="sidebarCartCount"
+              class="counter-badge"
+            >
+              0
+            </span>
+
+          </a>
+
+
+          <button
+            type="button"
+            onclick="shareWebsite()"
+            class="sidebar-action text-left"
+          >
+
+            <span class="sidebar-action-icon">
+              <i class="fa-solid fa-share-nodes"></i>
+            </span>
+
+            <span>
+
+              <span class="block text-xs font-bold text-[#004232]">
+                Share
+              </span>
+
+              <span class="block text-[10px] text-[#3f4944] mt-1">
+                Share website
+              </span>
+
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
+
+
+      <!-- NAVIGATION -->
+
+      <div class="mb-7">
+
+        <p
+          class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1"
+        >
+          Navigation
+        </p>
+
+
+        <div class="space-y-2">
+
+          <a
+            href="/index.html"
+            data-nav="home"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link"
+          >
+
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-house"></i>
+            </span>
+
+            <span>Home</span>
+
+            <i
+              class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"
+            ></i>
+
+          </a>
+
+
+          <a
+            href="/web/about/index.html"
+            data-nav="about"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link"
+          >
+
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-circle-info"></i>
+            </span>
+
+            <span>About</span>
+
+            <i
+              class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"
+            ></i>
+
+          </a>
+
+
+          <a
+            href="/web/product/index.html"
+            data-nav="products"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link"
+          >
+
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-box-open"></i>
+            </span>
+
+            <span>Products</span>
+
+            <i
+              class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"
+            ></i>
+
+          </a>
+
+
+          <a
+            href="/web/gallery/index.html"
+            data-nav="gallery"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link"
+          >
+
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-images"></i>
+            </span>
+
+            <span>Gallery</span>
+
+            <i
+              class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"
+            ></i>
+
+          </a>
+
+
+          <a
+            href="/web/contact/index.html"
+            data-nav="contact"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link"
+          >
+
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-envelope"></i>
+            </span>
+
+            <span>Contact</span>
+
+            <i
+              class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"
+            ></i>
+
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
+
+
+      <!-- CONTACT -->
+
+      <div class="mb-6">
+
+        <p
+          class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1"
+        >
+          Contact
+        </p>
+
+
+        <div class="space-y-2">
+
+          <a
+            href="tel:+966581818482"
+            class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors"
+          >
+
+            <span
+              class="w-9 h-9 rounded-lg bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center"
+            >
+              <i class="fa-solid fa-phone text-xs"></i>
+            </span>
+
+            <span>
+
+              <span
+                class="block text-[9px] uppercase tracking-wider text-[#3f4944]"
+              >
+                Phone
+              </span>
+
+              <span
+                class="block text-xs font-semibold text-[#004232] mt-0.5"
+              >
+                +966 58 181 8482
+              </span>
+
+            </span>
+
+          </a>
+
+
+          <a
+            href="mailto:info@athaqdates.com"
+            class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors"
+          >
+
+            <span
+              class="w-9 h-9 rounded-lg bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center"
+            >
+              <i class="fa-solid fa-envelope text-xs"></i>
+            </span>
+
+            <span class="min-w-0">
+
+              <span
+                class="block text-[9px] uppercase tracking-wider text-[#3f4944]"
+              >
+                Email
+              </span>
+
+              <span
+                class="block text-xs font-semibold text-[#004232] mt-0.5 truncate"
+              >
+                info@athaqdates.com
+              </span>
+
+            </span>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- SIDEBAR FOOTER -->
+
+    <div
+      class="border-t border-[#bec9c3]/30 px-5 py-4 bg-white/45"
+    >
+
+      <div class="flex items-center justify-between gap-4">
+
+        <div>
+
+          <p
+            class="text-[9px] uppercase tracking-[0.16em] text-[#3f4944]"
+          >
+            Touseef Ahmad
+          </p>
+
+          <p
+            class="text-[9px] text-[#3f4944]/70 mt-1"
+          >
+            DESIGNED & DEVELOPED BY 
+          </p>
+
+        </div>
+
+        <div
+          class="text-[#004232]/70 text-[10px] font-semibold whitespace-nowrap"
+        >
+          ©2026
+        </div>
+
+      </div>
+
+    </div>
+
+  </aside>
+
+
+  <!-- =====================================================
+       MAIN
+  ===================================================== -->
+
+  <main class="pt-20">
+
+
+    <!-- HERO -->
+
+    <section
+      class="relative bg-[#004232] overflow-hidden"
+    >
+
+      <div
+        class="absolute inset-0 opacity-10"
+        style="
+          background-image:
+          radial-gradient(circle at 20% 20%, #a6f2d4 0, transparent 30%),
+          radial-gradient(circle at 80% 80%, #c0edd4 0, transparent 30%);
+        "
+      ></div>
+
+
+      <div
+        class="relative z-10 max-w-[1280px] mx-auto px-5 md:px-10 lg:px-16 py-20 md:py-28"
+      >
+
+        <div class="max-w-3xl">
+
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 text-[#a6f2d4] text-xs font-bold uppercase tracking-[.16em] mb-6"
+          >
+
+            <span class="material-symbols-outlined text-[17px]">
+              verified_user
+            </span>
+
+            ATHAQ Policies
+
+          </div>
+
+
+          <h1
+            class="text-white text-4xl md:text-6xl font-bold leading-tight mb-6"
+            style="font-family:Georgia,serif;"
+          >
+            Policies &amp; Guidelines
+          </h1>
+
+
+          <p
+            class="text-white/80 text-base md:text-lg leading-relaxed max-w-2xl"
+          >
+            Our policies explain how ATHAQ Dates Industry handles
+            customer information, orders, payments, deliveries,
+            returns, refunds, and website usage.
+          </p>
+
+
+          <p class="text-white/50 text-xs mt-6">
+            Last updated: August 2026
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- POLICY CONTENT -->
+
+    <section
+      class="py-16 md:py-24 px-5 md:px-10 lg:px-16"
+    >
+
+      <div
+        class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-10 lg:gap-14"
+      >
+
+
+        <!-- POLICY NAV -->
+
+        <aside class="policy-nav">
+
+          <div
+            class="bg-[#efeee9] rounded-2xl p-4 border border-[#bec9c3]/25"
+          >
+
+            <p
+              class="text-[10px] uppercase tracking-[.18em] font-bold text-[#3f4944]/70 px-3 pb-3"
+            >
+              On this page
+            </p>
+
+
+            <nav class="space-y-1">
+
+              <a href="#privacy">
+                <i class="fa-solid fa-shield-halved text-[#004232] text-xs"></i>
+                Privacy Policy
+              </a>
+
+              <a href="#terms">
+                <i class="fa-solid fa-file-contract text-[#004232] text-xs"></i>
+                Terms &amp; Conditions
+              </a>
+
+              <a href="#shipping">
+                <i class="fa-solid fa-truck text-[#004232] text-xs"></i>
+                Shipping &amp; Delivery
+              </a>
+
+              <a href="#returns">
+                <i class="fa-solid fa-rotate-left text-[#004232] text-xs"></i>
+                Returns &amp; Refunds
+              </a>
+
+              <a href="#cookies">
+                <i class="fa-solid fa-cookie-bite text-[#004232] text-xs"></i>
+                Cookies Policy
+              </a>
+
+              <a href="#contact-policy">
+                <i class="fa-solid fa-envelope text-[#004232] text-xs"></i>
+                Contact
+              </a>
+
+            </nav>
+
+          </div>
+
+        </aside>
+
+
+        <!-- POLICIES -->
+
+        <div class="space-y-8">
+
+
+          <!-- PRIVACY -->
+
+          <article
+            id="privacy"
+            class="policy-card scroll-mt-28"
+          >
+
+            <div class="flex items-center gap-4 mb-5">
+
+              <div
+                class="w-12 h-12 rounded-xl bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center"
+              >
+
+                <i class="fa-solid fa-shield-halved text-lg"></i>
+
+              </div>
+
+              <div>
+
+                <p
+                  class="text-[10px] uppercase tracking-[.16em] font-bold text-[#3f4944]/60"
+                >
+                  Policy 01
+                </p>
+
+                <h2 class="!mb-0">
+                  Privacy Policy
+                </h2>
+
+              </div>
+
+            </div>
+
+
+            <p>
+              At ATHAQ Dates Industry, we respect your privacy and
+              are committed to protecting the information you provide
+              when using our website or contacting our team.
+            </p>
+
+
+            <h3>Information We May Collect</h3>
+
+            <p>
+              Depending on how you interact with our website, we may
+              receive information such as your name, email address,
+              phone number, delivery information, order details, and
+              messages submitted through our contact channels.
+            </p>
+
+
+            <h3>How We Use Information</h3>
+
+            <ul>
+              <li>To process and manage customer orders.</li>
+              <li>To communicate about orders or enquiries.</li>
+              <li>To provide customer support.</li>
+              <li>To improve our products and website experience.</li>
+              <li>To maintain website security and prevent misuse.</li>
+            </ul>
+
+
+            <h3>Information Protection</h3>
+
+            <p>
+              We take reasonable administrative and technical steps
+              to protect information against unauthorized access,
+              misuse, alteration, or disclosure.
+            </p>
+
+
+            <h3>Third-Party Services</h3>
+
+            <p>
+              Some website functions may rely on third-party services
+              such as payment, hosting, analytics, communication, or
+              delivery providers. Information shared with such
+              providers is handled according to the relevant service
+              requirements and applicable policies.
+            </p>
+
+          </article>
+
+
+          <!-- TERMS -->
+
+          <article
+            id="terms"
+            class="policy-card scroll-mt-28"
+          >
+
+            <div class="flex items-center gap-4 mb-5">
+
+              <div
+                class="w-12 h-12 rounded-xl bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center"
+              >
+
+                <i class="fa-solid fa-file-contract text-lg"></i>
+
+              </div>
+
+              <div>
+
+                <p
+                  class="text-[10px] uppercase tracking-[.16em] font-bold text-[#3f4944]/60"
+                >
+                  Policy 02
+                </p>
+
+                <h2 class="!mb-0">
+                  Terms &amp; Conditions
+                </h2>
+
+              </div>
+
+            </div>
+
+
+            <p>
+              By using the ATHAQ Dates Industry website, you agree to
+              use the website responsibly and in accordance with these
+              terms.
+            </p>
+
+
+            <h3>Website Use</h3>
+
+            <p>
+              Website content is provided for general information
+              about ATHAQ products, services, and operations. Users
+              should not misuse the website, attempt unauthorized
+              access, or interfere with its normal operation.
+            </p>
+
+
+            <h3>Product Information</h3>
+
+            <p>
+              We aim to keep product descriptions, availability,
+              packaging information, and prices accurate. However,
+              product availability and other details may change
+              without prior notice.
+            </p>
+
+
+            <h3>Orders</h3>
+
+            <p>
+              An order or enquiry may be subject to confirmation by
+              ATHAQ Dates Industry. We reserve the right to correct
+              obvious pricing or product information errors and to
+              decline an order where necessary.
+            </p>
+
+
+            <h3>Intellectual Property</h3>
+
+            <p>
+              Website content, branding, logos, images, graphics,
+              text, and other materials belonging to ATHAQ Dates
+              Industry may not be copied, reproduced, or used
+              commercially without permission.
+            </p>
+
+          </article>
+
+
+          <!-- SHIPPING -->
+
+          <article
+            id="shipping"
+            class="policy-card scroll-mt-28"
+          >
+
+            <div class="flex items-center gap-4 mb-5">
+
+              <div
+                class="w-12 h-12 rounded-xl bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center"
+              >
+
+                <i class="fa-solid fa-truck text-lg"></i>
+
+              </div>
+
+              <div>
+
+                <p
+                  class="text-[10px] uppercase tracking-[.16em] font-bold text-[#3f4944]/60"
+                >
+                  Policy 03
+                </p>
+
+                <h2 class="!mb-0">
+                  Shipping &amp; Delivery
+                </h2>
+
+              </div>
+
+            </div>
+
+
+            <p>
+              We work to process and prepare confirmed orders
+              carefully so that products reach customers in suitable
+              condition.
+            </p>
+
+
+            <h3>Order Processing</h3>
+
+            <p>
+              Processing times may vary depending on product
+              availability, order quantity, packaging requirements,
+              destination, and other operational factors.
+            </p>
+
+
+            <h3>Delivery Times</h3>
+
+            <p>
+              Delivery estimates may vary by destination and courier.
+              Any delivery timeframe provided at checkout or during
+              order confirmation should be treated as an estimate
+              rather than an absolute guarantee.
+            </p>
+
+
+            <h3>Delivery Information</h3>
+
+            <p>
+              Customers are responsible for providing accurate
+              delivery details, including the recipient name, phone
+              number, and delivery address.
+            </p>
+
+
+            <h3>Delivery Delays</h3>
+
+            <p>
+              Delays may occur because of courier operations,
+              weather, public holidays, incorrect delivery details,
+              customs procedures, or circumstances outside our
+              reasonable control.
+            </p>
+
+          </article>
+
+
+          <!-- RETURNS -->
+
+          <article
+            id="returns"
+            class="policy-card scroll-mt-28"
+          >
+
+            <div class="flex items-center gap-4 mb-5">
+
+              <div
+                class="w-12 h-12 rounded-xl bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center"
+              >
+
+                <i class="fa-solid fa-rotate-left text-lg"></i>
+
+              </div>
+
+              <div>
+
+                <p
+                  class="text-[10px] uppercase tracking-[.16em] font-bold text-[#3f4944]/60"
+                >
+                  Policy 04
+                </p>
+
+                <h2 class="!mb-0">
+                  Returns &amp; Refunds
+                </h2>
+
+              </div>
+
+            </div>
+
+
+            <p>
+              Because dates are food products, returns and refunds
+              may be subject to product condition, order type, and
+              applicable requirements.
+            </p>
+
+
+            <h3>Damaged or Incorrect Orders</h3>
+
+            <p>
+              If an order arrives damaged, incorrect, or otherwise
+              has a significant issue, please contact ATHAQ Dates
+              Industry as soon as reasonably possible after delivery.
+            </p>
+
+
+            <h3>Order Review</h3>
+
+            <p>
+              We may request order details, photographs, delivery
+              information, or other reasonable evidence to assess a
+              return, replacement, or refund request.
+            </p>
+
+
+            <h3>Refunds</h3>
+
+            <p>
+              Where a refund is approved, the refund method and
+              processing time may depend on the original payment
+              method and the applicable payment provider.
+            </p>
+
+
+            <h3>Non-Returnable Situations</h3>
+
+            <p>
+              Products that have been improperly stored, opened,
+              damaged after delivery, or otherwise handled contrary
+              to product storage instructions may not qualify for
+              return or refund.
+            </p>
+
+
+            <p class="text-sm !text-[#735c00] !font-semibold">
+              Specific return and refund terms may vary depending on
+              the order and applicable Saudi regulations.
+            </p>
+
+          </article>
+
+
+          <!-- COOKIES -->
+
+          <article
+            id="cookies"
+            class="policy-card scroll-mt-28"
+          >
+
+            <div class="flex items-center gap-4 mb-5">
+
+              <div
+                class="w-12 h-12 rounded-xl bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center"
+              >
+
+                <i class="fa-solid fa-cookie-bite text-lg"></i>
+
+              </div>
+
+              <div>
+
+                <p
+                  class="text-[10px] uppercase tracking-[.16em] font-bold text-[#3f4944]/60"
+                >
+                  Policy 05
+                </p>
+
+                <h2 class="!mb-0">
+                  Cookies Policy
+                </h2>
+
+              </div>
+
+            </div>
+
+
+            <p>
+              Our website may use cookies or similar technologies to
+              help provide essential functionality and improve the
+              browsing experience.
+            </p>
+
+
+            <h3>What Cookies Do</h3>
+
+            <p>
+              Cookies may remember certain preferences, support
+              website functionality, maintain session information,
+              or help us understand how visitors interact with the
+              website.
+            </p>
+
+
+            <h3>Managing Cookies</h3>
+
+            <p>
+              Most modern web browsers allow users to control or
+              delete cookies through their browser settings.
+              Disabling certain cookies may affect some website
+              functionality.
+            </p>
+
+          </article>
+
+
+          <!-- CONTACT -->
+
+          <article
+            id="contact-policy"
+            class="policy-card scroll-mt-28"
+          >
+
+            <div class="flex items-center gap-4 mb-5">
+
+              <div
+                class="w-12 h-12 rounded-xl bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center"
+              >
+
+                <i class="fa-solid fa-envelope text-lg"></i>
+
+              </div>
+
+              <div>
+
+                <p
+                  class="text-[10px] uppercase tracking-[.16em] font-bold text-[#3f4944]/60"
+                >
+                  Policy 06
+                </p>
+
+                <h2 class="!mb-0">
+                  Contact Us
+                </h2>
+
+              </div>
+
+            </div>
+
+
+            <p>
+              If you have a question about our policies, an order,
+              delivery, product, privacy request, or another matter,
+              please contact our team.
+            </p>
+
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+
+              <a
+                href="tel:+966581818482"
+                class="flex items-center gap-4 p-5 rounded-2xl bg-[#efeee9] hover:bg-[#c0edd4]/50 transition-colors"
+              >
+
+                <span
+                  class="w-11 h-11 rounded-xl bg-white text-[#004232] flex items-center justify-center"
+                >
+                  <i class="fa-solid fa-phone"></i>
+                </span>
+
+                <span>
+
+                  <span
+                    class="block text-[10px] uppercase tracking-wider text-[#3f4944]"
+                  >
+                    Phone
+                  </span>
+
+                  <span
+                    class="block text-sm font-bold text-[#004232] mt-1"
+                  >
+                    +966 58 181 8482
+                  </span>
+
+                </span>
+
+              </a>
+
+
+              <a
+                href="mailto:info@athaqdates.com"
+                class="flex items-center gap-4 p-5 rounded-2xl bg-[#efeee9] hover:bg-[#c0edd4]/50 transition-colors"
+              >
+
+                <span
+                  class="w-11 h-11 rounded-xl bg-white text-[#004232] flex items-center justify-center"
+                >
+                  <i class="fa-solid fa-envelope"></i>
+                </span>
+
+                <span>
+
+                  <span
+                    class="block text-[10px] uppercase tracking-wider text-[#3f4944]"
+                  >
+                    Email
+                  </span>
+
+                  <span
+                    class="block text-sm font-bold text-[#004232] mt-1 break-all"
+                  >
+                    info@athaqdates.com
+                  </span>
+
+                </span>
+
+              </a>
+
+            </div>
+
+
+<div 
+  class="mt-6 p-5 rounded-2xl bg-[#004232]"
+  style="font-family:'Manrope', sans-serif;"
+>
+
+  <p 
+    class="text-xs font-bold uppercase tracking-wider mb-2"
+    style="color:#FFFFFF !important; font-family:'Manrope', sans-serif;"
+  >
+    Address
+  </p>
+<a href="https://maps.app.goo.gl/2xr8cy6nbb7knATL7">
+   <p 
+    class="text-sm leading-relaxed"
+    style="color:#FFFFFF !important; font-family:'Manrope', sans-serif; font-weight:600; letter-spacing:0.02em;"
+  >
+    King Salman Road, Al Bukayriyah,<br>
+    Saudi Arabia
+  </p>
+</a>
+</div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="pb-20 px-5 md:px-10 lg:px-16">
+
+      <div
+        class="max-w-[1280px] mx-auto bg-[#004232] rounded-3xl px-7 md:px-14 py-12 md:py-16 text-center"
+      >
+
+        <p
+          class="text-[#a6f2d4] text-xs font-bold uppercase tracking-[.18em] mb-4"
+        >
+          Need Assistance?
+        </p>
+
+        <h2
+          class="text-white text-3xl md:text-4xl font-bold mb-5"
+        >
+          Have a Question About Our Policies?
+        </h2>
+
+        <p
+          class="text-white/75 max-w-2xl mx-auto leading-relaxed mb-8"
+        >
+          Our team is available to help with questions about orders,
+          products, delivery, returns, or other matters.
+        </p>
+
+        <a
+          href="/web/contact/index.html"
+          class="inline-flex items-center justify-center gap-2 bg-[#a6f2d4] text-[#002117] font-semibold px-8 py-4 rounded-xl hover:bg-white transition-colors"
+        >
+
+          Contact ATHAQ
+
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+  ===================================================== -->
+
+  <footer
+    class="bg-[#e3e3de] border-t border-[#735c00]/20 pt-16 pb-12 px-4 md:px-16"
+  >
+
+    <div
+      class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-16"
+    >
+
+      <!-- BRAND -->
+
+      <div class="space-y-4">
+
+        <div class="text-lg font-bold text-[#004232]">
+          ATHAQ DATES INDUSTRY
+        </div>
+
+        <p class="text-[#3f4944]/80 text-sm leading-relaxed">
+          Pioneering the future of Saudi agriculture through premium
+          industrial processing.
+        </p>
+
+      </div>
+
+
+      <!-- QUICK LINKS -->
+
+      <div>
+
+        <h4
+          class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider"
+        >
+          Quick Links
+        </h4>
+
+        <ul class="space-y-3 text-sm">
+
+          <li>
+            <a
+              class="text-[#3f4944] hover:text-[#004232]"
+              href="/index.html"
+            >
+              Home
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="text-[#3f4944] hover:text-[#004232]"
+              href="/web/about/index.html"
+            >
+              About
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="text-[#3f4944] hover:text-[#004232]"
+              href="/web/product/index.html"
+            >
+              Products
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="text-[#3f4944] hover:text-[#004232]"
+              href="/web/gallery/index.html"
+            >
+              Gallery
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="text-[#3f4944] hover:text-[#004232]"
+              href="/web/contact/index.html"
+            >
+              Contact
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <!-- LEGAL -->
+
+      <div>
+
+        <h4
+          class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider"
+        >
+          Legal
+        </h4>
+
+        <ul class="space-y-3 text-sm">
+
+          <li>
+            <a
+              class="text-[#004232] font-semibold"
+              href="/web/policies/index.html"
+            >
+              Policies
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="text-[#3f4944] hover:text-[#004232]"
+              href="#terms"
+            >
+              Terms &amp; Conditions
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="text-[#3f4944] hover:text-[#004232]"
+              href="#privacy"
+            >
+              Privacy Policy
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <!-- CONTACT -->
+
+      <div>
+
+        <h4
+          class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider"
+        >
+          Contact
+        </h4>
+
+        <ul class="space-y-3 text-[#3f4944] text-sm">
+
+          <li>
+            King Salman Road, Al Bukayriyah
+          </li>
+
+          <li>
+            <a
+              href="tel:+966581818482"
+              class="hover:text-[#004232]"
+            >
+              +966 58 181 8482
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="mailto:info@athaqdates.com"
+              class="hover:text-[#004232]"
+            >
+              info@athaqdates.com
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+
+    <!-- COPYRIGHT -->
+
+    <div
+      class="max-w-[1280px] mx-auto text-center border-t border-[#6f7974]/20 pt-6 text-xs text-[#3f4944]"
+    >
+
+      &copy; DESIGNED & DEVELOPED BY TOUSEEF AHMAD 
+
+    </div>
+
+  </footer>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ===================================================== -->
+
+  <script>
+
+    /* =====================================================
+       AUTH
+    ===================================================== */
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const accountName =
+        document.getElementById("accountName");
+
+      const accountStatus =
+        document.getElementById("accountStatus");
+
+      const accountLink =
+        document.getElementById("accountLink");
+
+
+      let activeUser = null;
+
+
+      try {
+
+        const storedUser =
+          localStorage.getItem("loggedInUser");
+
+        if (storedUser) {
+
+          const parsedUser =
+            JSON.parse(storedUser);
+
+          if (
+            parsedUser &&
+            typeof parsedUser === "object" &&
+            (parsedUser.name || parsedUser.email)
+          ) {
+
+            activeUser = parsedUser;
+
+          }
+
+        }
+
+      }
+
+      catch (error) {
+
+        activeUser = null;
+
+        console.error(
+          "Invalid loggedInUser:",
+          error
+        );
+
+      }
+
+
+      const userRole =
+        localStorage.getItem("userRole");
+
+
+      if (activeUser) {
+
+        const userName =
+          activeUser.name ||
+          activeUser.username ||
+          "User";
+
+
+        if (
+          userRole === "admin" ||
+          activeUser.role === "admin"
+        ) {
+
+          accountName.textContent =
+            userName;
+
+          accountStatus.textContent =
+            "Admin Panel";
+
+          accountLink.href =
+            "/admin/index.html";
+
+        }
+
+        else {
+
+          accountName.textContent =
+            userName;
+
+          accountStatus.textContent =
+            "My Profile";
+
+          accountLink.href =
+            "/customer-profile/profile.html";
+
+        }
+
+      }
+
+      else {
+
+        accountName.textContent =
+          "Login";
+
+        accountStatus.textContent =
+          "Sign In";
+
+        accountLink.href =
+          "/login/index.html";
+
+      }
+
+
+      updateSidebarCounts();
+
+    });
+
+
+    /* =====================================================
+       SIDEBAR COUNTS
+    ===================================================== */
+
+    function updateSidebarCounts() {
+
+      let wishlist = [];
+      let cart = [];
+
+
+      try {
+
+        wishlist =
+          JSON.parse(
+            localStorage.getItem("athaqWishlist")
+          ) || [];
+
+        cart =
+          JSON.parse(
+            localStorage.getItem("athaqCart")
+          ) || [];
+
+      }
+
+      catch (error) {
+
+        wishlist = [];
+        cart = [];
+
+      }
+
+
+      const wishlistCount =
+        document.getElementById(
+          "sidebarWishlistCount"
+        );
+
+      const cartCount =
+        document.getElementById(
+          "sidebarCartCount"
+        );
+
+
+      if (wishlistCount) {
+
+        wishlistCount.textContent =
+          wishlist.length;
+
+      }
+
+
+      if (cartCount) {
+
+        cartCount.textContent =
+          cart.length;
+
+      }
+
+    }
+
+
+    /* =====================================================
+       SIDEBAR
+    ===================================================== */
+
+    const menuBtn =
+      document.getElementById("menu-btn");
+
+    const closeMenuBtn =
+      document.getElementById("close-menu");
+
+    const sideMenu =
+      document.getElementById("side-menu");
+
+    const sidebarOverlay =
+      document.getElementById("sidebar-overlay");
+
+
+    function openSideMenu() {
+
+      sideMenu.classList.add("active");
+
+      sidebarOverlay.classList.add("active");
+
+      document.body.classList.add("menu-open");
+
+
+      menuBtn.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+      sideMenu.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+    }
+
+
+    function closeSideMenu() {
+
+      sideMenu.classList.remove("active");
+
+      sidebarOverlay.classList.remove("active");
+
+      document.body.classList.remove("menu-open");
+
+
+      menuBtn.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      sideMenu.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+    }
+
+
+    menuBtn.addEventListener(
+      "click",
+      function () {
+
+        if (
+          sideMenu.classList.contains("active")
+        ) {
+
+          closeSideMenu();
+
+        }
+
+        else {
+
+          openSideMenu();
+
+        }
+
+      }
+    );
+
+
+    closeMenuBtn.addEventListener(
+      "click",
+      closeSideMenu
+    );
+
+
+    sidebarOverlay.addEventListener(
+      "click",
+      closeSideMenu
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      function (event) {
+
+        if (event.key === "Escape") {
+
+          closeSideMenu();
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       LANGUAGE
+    ===================================================== */
+
+    function toggleLanguage() {
+
+      const label =
+        document.getElementById(
+          "languageLabel"
+        );
+
+
+      const isEnglish =
+        label.textContent.trim() ===
+        "English";
+
+
+      label.textContent =
+        isEnglish
+          ? "العربية"
+          : "English";
+
+
+      document.documentElement.lang =
+        isEnglish
+          ? "ar"
+          : "en";
+
+
+      /*
+        Direction is intentionally not changed
+        here so the sidebar/page does not jump.
+      */
+
+    }
+
+
+    /* =====================================================
+       SHARE
+    ===================================================== */
+
+    async function shareWebsite() {
+
+      const shareData = {
+
+        title:
+          "ATHAQ Dates Industry",
+
+        text:
+          "Premium Saudi Dates",
+
+        url:
+          window.location.origin
+
+      };
+
+
+      try {
+
+        if (navigator.share) {
+
+          await navigator.share(
+            shareData
+          );
+
+        }
+
+        else if (navigator.clipboard) {
+
+          await navigator.clipboard.writeText(
+            window.location.href
+          );
+
+          alert(
+            "Website link copied."
+          );
+
+        }
+
+      }
+
+      catch (error) {
+
+        /* User cancelled sharing */
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
