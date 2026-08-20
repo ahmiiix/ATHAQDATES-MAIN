@@ -1,50 +1,80 @@
 <!DOCTYPE html>
 <html class="scroll-smooth" dir="ltr" lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ATHAQ Dates Industry — premium Saudi dates, modern processing, trusted quality.">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="description"
+    content="ATHAQ Dates Industry — premium Saudi dates, modern processing, trusted quality.">
+
+  <title>ATHAQ Dates Industry | About Us</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@500;600;700&family=Be+Vietnam+Pro:wght@500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
+    rel="stylesheet">
 
   <script>
     tailwind.config = {
       darkMode: "class",
+
       theme: {
         extend: {
+
           colors: {
             primary: "#004232",
             "primary-container": "#005c46",
             "primary-fixed": "#a6f2d4",
             "on-primary-fixed": "#002117",
+
             secondary: "#3e6653",
             "secondary-container": "#c0edd4",
             "on-secondary-container": "#446d59",
+
             tertiary: "#735c00",
             "tertiary-container": "#cca830",
+
             surface: "#faf9f4",
             "surface-container": "#efeee9",
             "surface-container-high": "#e9e8e3",
             "surface-container-highest": "#e3e3de",
+
             "on-surface": "#1b1c19",
             "on-surface-variant": "#3f4944",
+
             outline: "#6f7974",
             "outline-variant": "#bec9c3"
           },
+
           spacing: {
             "section-gap": "120px",
             "margin-mobile": "16px",
             "margin-desktop": "64px",
             "container-max": "1280px"
           },
+
           fontFamily: {
-            body: ["Manrope"],
-            headline: ["Be Vietnam Pro"],
-            label: ["IBM Plex Sans"]
+            body: ["Manrope", "sans-serif"],
+            headline: ["Be Vietnam Pro", "sans-serif"],
+            label: ["IBM Plex Sans", "sans-serif"],
+            display: ["Playfair Display", "serif"]
+          },
+
+          boxShadow: {
+            luxury: "0 24px 70px rgba(0,66,50,.12)",
+            soft: "0 12px 35px rgba(0,0,0,.08)",
+            card: "0 10px 35px rgba(0,66,50,.08)"
           }
         }
       }
@@ -52,839 +82,2993 @@
   </script>
 
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html, body { width:100%; overflow-x:hidden; }
-    body { -webkit-text-size-adjust:100%; background:#faf9f4; color:#1b1c19; }
-    img { max-width:100%; height:auto; display:block; }
-    .material-symbols-outlined {
-      font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
+
+    /* =========================================================
+       GLOBAL
+    ========================================================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
+
+    html,
+    body {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      -webkit-text-size-adjust: 100%;
+      background: #faf9f4;
+      color: #1b1c19;
+      font-family: "Manrope", sans-serif;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    ::selection {
+      background: #004232;
+      color: #ffffff;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+    }
+
+    /* =========================================================
+       PREMIUM SCROLLBAR
+    ========================================================= */
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #efeee9;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #004232;
+      border-radius: 20px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #005c46;
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .athaq-header {
+      height: 80px;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.94),
+          rgba(250,249,244,.88)
+        );
+
+      border-bottom: 1px solid rgba(190,201,195,.30);
+
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+
+      box-shadow:
+        0 8px 35px rgba(0,66,50,.045);
+    }
+
+    .logo-wrap {
+      transition:
+        transform .35s cubic-bezier(.2,.8,.2,1),
+        filter .35s ease;
+    }
+
+    .logo-wrap:hover {
+      transform: scale(1.025);
+      filter: drop-shadow(0 8px 18px rgba(0,66,50,.10));
+    }
+
+    .header-icon-btn {
+      position: relative;
+
+      width: 44px;
+      height: 44px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      color: #004232;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.95),
+          rgba(239,238,233,.75)
+        );
+
+      border: 1px solid rgba(190,201,195,.45);
+
+      transition:
+        transform .25s ease,
+        background .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+    }
+
+    .header-icon-btn:hover {
+      transform: translateY(-2px);
+      background: #ffffff;
+      border-color: rgba(0,66,50,.20);
+      box-shadow: 0 10px 25px rgba(0,66,50,.10);
+    }
+
+    /* =========================================================
+       SIDEBAR OVERLAY
+    ========================================================= */
 
     #sidebar-overlay {
-      position:fixed; inset:0; z-index:9998;
-      background:rgba(0,0,0,.48);
-      backdrop-filter:blur(5px);
-      opacity:0; visibility:hidden;
-      transition:opacity .3s ease, visibility .3s ease;
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+
+      background: rgba(0,0,0,.52);
+
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition:
+        opacity .3s ease,
+        visibility .3s ease;
     }
-    #sidebar-overlay.active { opacity:1; visibility:visible; }
+
+    #sidebar-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* =========================================================
+       SIDEBAR
+    ========================================================= */
 
     #side-menu {
-      position:fixed; top:0; right:0; z-index:9999;
-      width:min(390px,88vw); height:100dvh;
-      background:linear-gradient(180deg,rgba(250,249,244,.99),rgba(245,244,239,.99));
-      transform:translateX(105%);
-      transition:transform .32s cubic-bezier(.4,0,.2,1);
-      box-shadow:-18px 0 55px rgba(0,0,0,.18);
-      display:flex; flex-direction:column; overflow:hidden;
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 9999;
+
+      width: min(410px, 91vw);
+      height: 100dvh;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(250,249,244,.99),
+          rgba(244,243,238,.99)
+        );
+
+      transform: translateX(105%);
+
+      transition:
+        transform .38s cubic-bezier(.4,0,.2,1);
+
+      box-shadow:
+        -25px 0 80px rgba(0,0,0,.20);
+
+      display: flex;
+      flex-direction: column;
+
+      overflow: hidden;
     }
-    #side-menu.active { transform:translateX(0); }
-    /* Support for RTL Sidebar sliding */
+
+    #side-menu.active {
+      transform: translateX(0);
+    }
+
     html[dir="rtl"] #side-menu {
       right: auto;
       left: 0;
-      transform:translateX(-105%);
-      box-shadow:18px 0 55px rgba(0,0,0,.18);
+
+      transform: translateX(-105%);
+
+      box-shadow:
+        25px 0 80px rgba(0,0,0,.20);
     }
-    html[dir="rtl"] #side-menu.active { transform:translateX(0); }
+
+    html[dir="rtl"] #side-menu.active {
+      transform: translateX(0);
+    }
 
     .sidebar-action {
-      min-height:64px; display:flex; align-items:center; gap:14px;
-      padding:0 14px; border-radius:14px;
-      border:1px solid rgba(190,201,195,.45);
-      background:rgba(255,255,255,.55);
-      transition:transform .2s ease, background .2s ease, border-color .2s ease;
-    }
-    .sidebar-action:hover { transform:translateY(-2px); background:#fff; border-color:rgba(0,66,50,.18); }
-    .sidebar-action-icon,.sidebar-nav-icon {
-      width:42px; height:42px; min-width:42px;
-      display:flex; align-items:center; justify-content:center;
-      border-radius:12px; background:rgba(0,66,50,.07); color:#004232;
-    }
-    .sidebar-nav-icon { width:38px; height:38px; min-width:38px; border-radius:11px; }
-    .sidebar-nav-link {
-      display:flex; align-items:center; gap:14px; min-height:52px;
-      padding:0 16px; color:#3f4944; border-radius:14px;
-      text-decoration:none; transition:background .2s ease,color .2s ease,transform .2s ease;
-    }
-    .sidebar-nav-link:hover { background:rgba(192,237,212,.55); color:#004232; transform:translateX(4px); }
-    html[dir="rtl"] .sidebar-nav-link:hover { transform:translateX(-4px); }
-    .sidebar-nav-link.active { background:#004232; color:#fff; box-shadow:0 8px 20px rgba(0,66,50,.16); }
-    .sidebar-nav-link.active .sidebar-nav-icon { background:rgba(255,255,255,.14); color:#fff; }
+      min-height: 66px;
 
-    .desktop-nav-link.active { background:#004232; color:#fff; box-shadow:0 2px 8px rgba(0,66,50,.10); }
-    .desktop-nav-link.active:hover { background:#00513d; color:#fff; }
-    .counter-badge {
-      min-width:21px; height:21px; padding:0 6px; border-radius:999px;
-      display:inline-flex; align-items:center; justify-content:center;
-      background:#004232; color:#fff; font-size:10px; font-weight:800;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      padding: 10px 13px;
+
+      border-radius: 16px;
+
+      border: 1px solid rgba(190,201,195,.40);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.80),
+          rgba(255,255,255,.48)
+        );
+
+      transition:
+        transform .22s ease,
+        background .22s ease,
+        border-color .22s ease,
+        box-shadow .22s ease;
     }
-    body.menu-open { overflow:hidden; }
-    @media (max-width:480px) { #side-menu { width:88vw; max-width:360px; } }
+
+    .sidebar-action:hover {
+      transform: translateY(-2px);
+
+      background: #ffffff;
+
+      border-color: rgba(0,66,50,.18);
+
+      box-shadow:
+        0 12px 28px rgba(0,66,50,.08);
+    }
+
+    .sidebar-action-icon,
+    .sidebar-nav-icon {
+      width: 43px;
+      height: 43px;
+      min-width: 43px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 13px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(0,66,50,.10),
+          rgba(192,237,212,.38)
+        );
+
+      color: #004232;
+
+      transition:
+        background .25s ease,
+        color .25s ease;
+    }
+
+    .sidebar-nav-icon {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      border-radius: 12px;
+    }
+
+    .sidebar-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      min-height: 56px;
+
+      padding: 0 15px;
+
+      color: #3f4944;
+
+      border-radius: 15px;
+
+      text-decoration: none;
+
+      transition:
+        background .22s ease,
+        color .22s ease,
+        transform .22s ease,
+        box-shadow .22s ease;
+    }
+
+    .sidebar-nav-link:hover {
+      background: rgba(192,237,212,.48);
+      color: #004232;
+      transform: translateX(4px);
+    }
+
+    html[dir="rtl"] .sidebar-nav-link:hover {
+      transform: translateX(-4px);
+    }
+
+    .sidebar-nav-link.active {
+      background:
+        linear-gradient(
+          135deg,
+          #004232,
+          #005c46
+        );
+
+      color: #ffffff;
+
+      box-shadow:
+        0 12px 28px rgba(0,66,50,.20);
+    }
+
+    .sidebar-nav-link.active .sidebar-nav-icon {
+      background: rgba(255,255,255,.15);
+      color: #ffffff;
+    }
+
+    .counter-badge {
+      min-width: 22px;
+      height: 22px;
+
+      padding: 0 6px;
+
+      border-radius: 999px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #004232;
+      color: #ffffff;
+
+      font-size: 10px;
+      font-weight: 800;
+
+      box-shadow:
+        0 5px 14px rgba(0,66,50,.18);
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero-section {
+      position: relative;
+      min-height: clamp(560px, 76vh, 760px);
+
+      overflow: hidden;
+
+      background: #00382b;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      object-position: center;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0,32,24,.80) 0%,
+          rgba(0,66,50,.58) 40%,
+          rgba(0,66,50,.18) 75%,
+          rgba(0,0,0,.10) 100%
+        );
+    }
+
+    .hero-bottom-fade {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      height: 170px;
+
+      background:
+        linear-gradient(
+          to top,
+          rgba(0,0,0,.28),
+          transparent
+        );
+
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+
+      max-width: 790px;
+
+      animation:
+        heroReveal .9s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    @keyframes heroReveal {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      padding: 9px 15px;
+
+      border: 1px solid rgba(255,255,255,.24);
+
+      background: rgba(255,255,255,.12);
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      border-radius: 999px;
+
+      color: #ffffff;
+
+      box-shadow:
+        0 10px 30px rgba(0,0,0,.10);
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", Georgia, serif;
+
+      font-size: clamp(
+        2.8rem,
+        7vw,
+        5.4rem
+      );
+
+      font-weight: 700;
+
+      line-height: .98;
+
+      letter-spacing: .015em;
+
+      text-shadow:
+        0 8px 30px rgba(0,0,0,.28);
+    }
+
+    .hero-subtitle {
+      font-family: "Manrope", sans-serif;
+
+      letter-spacing: .14em;
+
+      font-size: clamp(
+        .95rem,
+        2vw,
+        1.25rem
+      );
+    }
+
+    .hero-description {
+      max-width: 720px;
+
+      color: rgba(255,255,255,.90);
+
+      font-size: clamp(
+        1rem,
+        2vw,
+        1.18rem
+      );
+
+      line-height: 1.9;
+    }
+
+    /* =========================================================
+       SECTION LABELS
+    ========================================================= */
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      color: #446d59;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(192,237,212,.65),
+          rgba(192,237,212,.25)
+        );
+
+      border: 1px solid rgba(0,66,50,.06);
+
+      padding: 8px 14px;
+
+      border-radius: 999px;
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      text-transform: uppercase;
+
+      letter-spacing: .16em;
+    }
+
+    .section-title {
+      font-family: "Be Vietnam Pro", sans-serif;
+
+      color: #004232;
+
+      font-weight: 800;
+
+      letter-spacing: -.025em;
+
+      line-height: 1.08;
+    }
+
+    /* =========================================================
+       STORY IMAGE
+    ========================================================= */
+
+    .story-image-wrapper {
+      position: relative;
+
+      border-radius: 30px;
+
+      overflow: hidden;
+
+      background: #e9e8e3;
+
+      box-shadow:
+        0 25px 70px rgba(0,66,50,.13);
+    }
+
+    .story-image-wrapper::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      border:
+        1px solid rgba(255,255,255,.32);
+
+      border-radius: inherit;
+
+      pointer-events: none;
+    }
+
+    .story-image {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      transition:
+        transform .8s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .story-image-wrapper:hover .story-image {
+      transform: scale(1.035);
+    }
+
+    .quality-card {
+      position: absolute;
+
+      top: 22px;
+      left: 22px;
+
+      min-width: 150px;
+
+      padding: 17px 18px;
+
+      border-radius: 18px;
+
+      background:
+        rgba(255,255,255,.91);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      box-shadow:
+        0 18px 45px rgba(0,0,0,.15);
+
+      border:
+        1px solid rgba(255,255,255,.65);
+    }
+
+    /* =========================================================
+       STORY LINK
+    ========================================================= */
+
+    .luxury-link {
+      position: relative;
+
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      color: #004232;
+
+      font-weight: 800;
+
+      padding-bottom: 7px;
+    }
+
+    .luxury-link::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      height: 1px;
+
+      background: #004232;
+
+      transform-origin: left;
+
+      transform: scaleX(.35);
+
+      transition:
+        transform .3s ease;
+    }
+
+    .luxury-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* =========================================================
+       VALUES
+    ========================================================= */
+
+    .values-section {
+      position: relative;
+
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(192,237,212,.34),
+          transparent 35%
+        ),
+        #efeee9;
+    }
+
+    .value-card {
+      position: relative;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          145deg,
+          #ffffff,
+          #f9faf7
+        );
+
+      border:
+        1px solid rgba(190,201,195,.30);
+
+      border-radius: 24px;
+
+      padding: 32px;
+
+      box-shadow:
+        0 10px 35px rgba(0,66,50,.055);
+
+      transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease;
+    }
+
+    .value-card::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 4px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #004232,
+          #cca830,
+          #a6f2d4
+        );
+
+      opacity: 0;
+
+      transition: opacity .3s ease;
+    }
+
+    .value-card:hover {
+      transform: translateY(-8px);
+
+      border-color:
+        rgba(0,66,50,.14);
+
+      box-shadow:
+        0 25px 55px rgba(0,66,50,.11);
+    }
+
+    .value-card:hover::before {
+      opacity: 1;
+    }
+
+    .value-icon {
+      width: 58px;
+      height: 58px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 17px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(0,66,50,.10),
+          rgba(192,237,212,.55)
+        );
+
+      color: #004232;
+    }
+
+    /* =========================================================
+       CTA
+    ========================================================= */
+
+    .cta-box {
+      position: relative;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(166,242,212,.20),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 10% 90%,
+          rgba(204,168,48,.13),
+          transparent 25%
+        ),
+        linear-gradient(
+          135deg,
+          #00372a,
+          #004f3c 60%,
+          #004232
+        );
+
+      border:
+        1px solid rgba(166,242,212,.10);
+
+      box-shadow:
+        0 30px 80px rgba(0,66,50,.20);
+    }
+
+    .cta-box::before {
+      content: "";
+
+      position: absolute;
+
+      width: 250px;
+      height: 250px;
+
+      top: -120px;
+      right: -80px;
+
+      border:
+        1px solid rgba(255,255,255,.10);
+
+      border-radius: 50%;
+    }
+
+    .cta-box::after {
+      content: "";
+
+      position: absolute;
+
+      width: 180px;
+      height: 180px;
+
+      bottom: -100px;
+      left: -60px;
+
+      border:
+        1px solid rgba(255,255,255,.08);
+
+      border-radius: 50%;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      background: #a6f2d4;
+      color: #002117;
+
+      font-weight: 800;
+
+      padding: 15px 25px;
+
+      border-radius: 14px;
+
+      transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-3px);
+
+      background: #ffffff;
+
+      box-shadow:
+        0 14px 30px rgba(0,0,0,.16);
+    }
+
+    .secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      background: rgba(255,255,255,.08);
+
+      border:
+        1px solid rgba(255,255,255,.24);
+
+      color: #ffffff;
+
+      font-weight: 800;
+
+      padding: 15px 25px;
+
+      border-radius: 14px;
+
+      transition:
+        transform .25s ease,
+        background .25s ease;
+    }
+
+    .secondary-btn:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,.16);
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .site-footer {
+      background:
+        linear-gradient(
+          180deg,
+          #e3e3de,
+          #dcddd7
+        );
+
+      border-top:
+        1px solid rgba(115,92,0,.18);
+    }
+
+    .footer-heading {
+      color: #004232;
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      letter-spacing: .16em;
+
+      text-transform: uppercase;
+    }
+
+    .footer-link {
+      position: relative;
+
+      color: #3f4944;
+
+      transition:
+        color .2s ease,
+        padding-left .2s ease;
+    }
+
+    .footer-link:hover {
+      color: #004232;
+      padding-left: 4px;
+    }
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 768px) {
+
+      .athaq-header {
+        height: 72px;
+      }
+
+      .hero-section {
+        min-height: 610px;
+      }
+
+      .hero-overlay {
+        background:
+          linear-gradient(
+            90deg,
+            rgba(0,32,24,.80),
+            rgba(0,66,50,.45)
+          );
+      }
+
+      .hero-content {
+        max-width: 100%;
+      }
+
+      .quality-card {
+        top: 15px;
+        left: 15px;
+
+        min-width: 135px;
+
+        padding: 13px;
+      }
+
+      .value-card {
+        padding: 25px;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      #side-menu {
+        width: 90vw;
+        max-width: 370px;
+      }
+
+      .hero-section {
+        min-height: 640px;
+      }
+
+      .hero-description {
+        line-height: 1.75;
+      }
+
+      .quality-card {
+        transform: scale(.92);
+        transform-origin: top left;
+      }
+    }
+
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
   </style>
 </head>
 
+
 <body>
-<!-- HEADER -->
-<nav class="fixed top-0 left-0 w-full z-[100] bg-white/85 backdrop-blur-xl border-b border-[#bec9c3]/20" style="height:80px;">
 
-  <div class="w-full h-20 px-5 sm:px-6 md:px-10 lg:px-16 flex items-center justify-between">
+  <!-- =========================================================
+       HEADER
+  ========================================================= -->
 
-    <a href="/index.html" class="flex items-center group" aria-label="ATHAQ Home">
-      
-<!-- COMPLETE ATHAQ LOGO -->
-<div class="w-[200px] h-[70px] flex items-center justify-center overflow-visible group-hover:scale-[1.03] transition-transform duration-300">
-  <img 
-    src="/database/logo.png"
-    alt="ATHAQ Industrial Factory"
-    class="w-full h-full object-contain"
-  >
-</div>
+  <nav
+    class="athaq-header fixed top-0 left-0 w-full z-[100]"
+    aria-label="Main Header">
 
-</a>
+    <div
+      class="w-full h-full px-5 sm:px-6 md:px-10 lg:px-16 flex items-center justify-between">
+
+      <!-- LOGO -->
+
+      <a
+        href="/index.html"
+        class="flex items-center group"
+        aria-label="ATHAQ Home">
+
+        <div
+          class="logo-wrap w-[180px] sm:w-[200px] h-[65px] flex items-center justify-center overflow-visible">
+
+          <img
+            src="/database/logo.png"
+            alt="ATHAQ Industrial Factory"
+            class="w-full h-full object-contain">
+
+        </div>
+
+      </a>
+
+
+      <!-- HEADER ACTIONS -->
 
       <div class="flex items-center gap-3">
-        <button type="button" onclick="toggleLanguage()" class="sidebar-action text-left !min-h-[46px] !py-1 !px-2.5">
-            <span class="sidebar-action-icon !w-8 !h-8 !min-w-[32px] !rounded-lg text-xs"><i class="fa-solid fa-globe"></i></span>
-            <span class="min-w-0 pr-1">
-                <span class="block text-[11px] font-bold text-[#004232]" data-en="Language" data-ar="اللغة">Language</span>
-                <span id="languageLabel" class="block text-[9px] text-[#3f4944] mt-0.5">English</span>
+
+        <button
+          type="button"
+          onclick="toggleLanguage()"
+          class="hidden sm:flex items-center gap-2 min-h-[46px] py-1 px-3 rounded-xl border border-[#bec9c3]/45 bg-white/65 backdrop-blur-sm hover:bg-white hover:border-[#004232]/20 hover:shadow-sm transition-all"
+          aria-label="Change Language">
+
+          <span
+            class="w-8 h-8 rounded-lg flex items-center justify-center bg-[#004232]/[.07] text-[#004232]">
+
+            <i class="fa-solid fa-globe text-xs"></i>
+
+          </span>
+
+          <span class="min-w-0 text-left">
+
+            <span
+              class="block text-[10px] font-bold text-[#004232]"
+              data-en="Language"
+              data-ar="اللغة">
+              Language
             </span>
+
+            <span
+              id="languageLabel"
+              class="block text-[9px] text-[#3f4944] mt-0.5">
+              English
+            </span>
+
+          </span>
+
         </button>
 
-        <button id="menu-btn" type="button"
-          class="w-10 h-10 rounded-full border border-[#bec9c3]/45 bg-white/70 backdrop-blur-sm flex items-center justify-center text-[#004232] hover:bg-white hover:border-[#004232]/20 hover:shadow-sm transition-all focus:outline-none"
-          aria-label="Open Menu" aria-controls="side-menu" aria-expanded="false">
+
+        <!-- MOBILE LANGUAGE -->
+
+        <button
+          type="button"
+          onclick="toggleLanguage()"
+          class="sm:hidden header-icon-btn"
+          aria-label="Change Language">
+
+          <i class="fa-solid fa-globe text-sm"></i>
+
+        </button>
+
+
+        <!-- MENU -->
+
+        <button
+          id="menu-btn"
+          type="button"
+          class="header-icon-btn"
+          aria-label="Open Menu"
+          aria-controls="side-menu"
+          aria-expanded="false">
+
           <i class="fa-solid fa-bars text-sm"></i>
-        </button> 
+
+        </button>
+
       </div>
-      
+
     </div>
+
   </nav>
+
+
+  <!-- =========================================================
+       OVERLAY
+  ========================================================= -->
 
   <div id="sidebar-overlay"></div>
 
-  <!-- SIDEBAR -->
-  <aside id="side-menu" aria-hidden="true" aria-label="Main Navigation">
+
+  <!-- =========================================================
+       SIDEBAR
+  ========================================================= -->
+
+  <aside
+    id="side-menu"
+    aria-hidden="true"
+    aria-label="Main Navigation">
+
+    <!-- SIDEBAR HEADER -->
+
     <div class="px-5 pt-5 pb-4">
+
       <div class="flex items-center justify-between">
-        <a href="/index.html" onclick="closeSideMenu()" class="flex items-center gap-3">
-        <img 
-  src="/database/logo(2).png"
-  alt="ATHAQ"
-  class="w-10 h-10 object-contain scale-125"
->
-          <div>
-            <div class="text-[#004232] font-bold tracking-[0.16em] text-sm" data-en="ATHAQ DATES" data-ar="تمور أثاق">ATHAQ DATES</div>
-            <div class="text-[9px] text-[#3f4944] uppercase tracking-[0.22em] mt-1" data-en="Industrial Factory" data-ar="المصنع الصناعي">Industrial Factory</div>
+
+        <a
+          href="/index.html"
+          onclick="closeSideMenu()"
+          class="flex items-center gap-3">
+
+          <div
+            class="w-11 h-11 rounded-xl bg-white border border-[#bec9c3]/35 flex items-center justify-center shadow-sm">
+
+            <img
+              src="/database/logo(2).png"
+              alt="ATHAQ"
+              class="w-10 h-10 object-contain">
+
           </div>
+
+          <div>
+
+            <div
+              class="text-[#004232] font-bold tracking-[0.16em] text-sm"
+              data-en="ATHAQ DATES"
+              data-ar="تمور أثاق">
+              ATHAQ DATES
+            </div>
+
+            <div
+              class="text-[9px] text-[#3f4944] uppercase tracking-[0.22em] mt-1"
+              data-en="Industrial Factory"
+              data-ar="المصنع الصناعي">
+              Industrial Factory
+            </div>
+
+          </div>
+
         </a>
-        <button id="close-menu" type="button" aria-label="Close Menu"
-          class="w-10 h-10 rounded-full border border-[#bec9c3]/50 bg-white flex items-center justify-center text-[#004232] hover:bg-[#e9e8e3] transition-all">
+
+
+        <button
+          id="close-menu"
+          type="button"
+          aria-label="Close Menu"
+          class="header-icon-btn">
+
           <i class="fa-solid fa-xmark text-lg"></i>
+
         </button>
+
       </div>
+
     </div>
+
 
     <div class="h-px bg-[#bec9c3]/30 mx-5"></div>
 
+
+    <!-- SIDEBAR CONTENT -->
+
     <div class="flex-1 overflow-y-auto px-5 py-5">
+
+      <!-- QUICK ACCESS -->
+
       <div class="mb-7">
-        <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1" data-en="Quick Access" data-ar="الوصول السريع">Quick Access</p>
+
+        <p
+          class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1"
+          data-en="Quick Access"
+          data-ar="الوصول السريع">
+          Quick Access
+        </p>
+
+
         <div class="grid grid-cols-2 gap-3">
 
-      <a id="accountLink" href="/login/index.html" onclick="closeSideMenu()" class="sidebar-action">
-    <span class="sidebar-action-icon">
-        <i class="fa-regular fa-user"></i>
-    </span>
+          <!-- ACCOUNT -->
 
-    <span class="min-w-0">
-        <span id="accountName"
-              class="block text-xs font-bold text-[#004232]" data-en="Account" data-ar="الحساب">
-            Account
-        </span>
+          <a
+            id="accountLink"
+            href="/login/index.html"
+            onclick="closeSideMenu()"
+            class="sidebar-action">
 
-        <span id="accountStatus"
-              class="block text-[10px] text-[#3f4944] mt-1" data-en="Sign in" data-ar="تسجيل الدخول">
-            Sign in
-        </span>
-    </span>
-</a>
-          <a href="/web/product/wishlist.html" onclick="closeSideMenu()" class="sidebar-action">
-            <span class="sidebar-action-icon"><i class="fa-regular fa-heart"></i></span>
-            <span class="min-w-0 flex-1"><span class="block text-xs font-bold text-[#004232]" data-en="Wishlist" data-ar="المفضلة">Wishlist</span><span class="block text-[10px] text-[#3f4944] mt-1" data-en="Saved items" data-ar="العناصر المحفوظة">Saved items</span></span>
-            <span id="sidebarWishlistCount" class="counter-badge">0</span>
+            <span class="sidebar-action-icon">
+              <i class="fa-regular fa-user"></i>
+            </span>
+
+            <span class="min-w-0">
+
+              <span
+                id="accountName"
+                class="block text-xs font-bold text-[#004232]"
+                data-en="Account"
+                data-ar="الحساب">
+                Account
+              </span>
+
+              <span
+                id="accountStatus"
+                class="block text-[10px] text-[#3f4944] mt-1"
+                data-en="Sign in"
+                data-ar="تسجيل الدخول">
+                Sign in
+              </span>
+
+            </span>
+
           </a>
 
-          <a href="/admin/checkout.html" onclick="closeSideMenu()" class="sidebar-action">
-            <span class="sidebar-action-icon"><i class="fa-solid fa-bag-shopping"></i></span>
-            <span class="min-w-0 flex-1"><span class="block text-xs font-bold text-[#004232]" data-en="Cart" data-ar="السلة">Cart</span><span class="block text-[10px] text-[#3f4944] mt-1" data-en="Your items" data-ar="عناصرك">Your items</span></span>
-            <span id="sidebarCartCount" class="counter-badge">0</span>
+
+          <!-- WISHLIST -->
+
+          <a
+            href="/web/product/wishlist.html"
+            onclick="closeSideMenu()"
+            class="sidebar-action">
+
+            <span class="sidebar-action-icon">
+              <i class="fa-regular fa-heart"></i>
+            </span>
+
+            <span class="min-w-0 flex-1">
+
+              <span
+                class="block text-xs font-bold text-[#004232]"
+                data-en="Wishlist"
+                data-ar="المفضلة">
+                Wishlist
+              </span>
+
+              <span
+                class="block text-[10px] text-[#3f4944] mt-1"
+                data-en="Saved items"
+                data-ar="العناصر المحفوظة">
+                Saved items
+              </span>
+
+            </span>
+
+            <span
+              id="sidebarWishlistCount"
+              class="counter-badge">
+              0
+            </span>
+
           </a>
 
-          <button type="button" onclick="shareWebsite()" class="sidebar-action text-left">
-            <span class="sidebar-action-icon"><i class="fa-solid fa-share-nodes"></i></span>
-            <span><span class="block text-xs font-bold text-[#004232]" data-en="Share" data-ar="مشاركة">Share</span><span class="block text-[10px] text-[#3f4944] mt-1" data-en="Share website" data-ar="مشاركة الموقع">Share website</span></span>
+
+          <!-- CART -->
+
+          <a
+            href="/admin/checkout.html"
+            onclick="closeSideMenu()"
+            class="sidebar-action">
+
+            <span class="sidebar-action-icon">
+              <i class="fa-solid fa-bag-shopping"></i>
+            </span>
+
+            <span class="min-w-0 flex-1">
+
+              <span
+                class="block text-xs font-bold text-[#004232]"
+                data-en="Cart"
+                data-ar="السلة">
+                Cart
+              </span>
+
+              <span
+                class="block text-[10px] text-[#3f4944] mt-1"
+                data-en="Your items"
+                data-ar="عناصرك">
+                Your items
+              </span>
+
+            </span>
+
+            <span
+              id="sidebarCartCount"
+              class="counter-badge">
+              0
+            </span>
+
+          </a>
+
+
+          <!-- SHARE -->
+
+          <button
+            type="button"
+            onclick="shareWebsite()"
+            class="sidebar-action text-left">
+
+            <span class="sidebar-action-icon">
+              <i class="fa-solid fa-share-nodes"></i>
+            </span>
+
+            <span>
+
+              <span
+                class="block text-xs font-bold text-[#004232]"
+                data-en="Share"
+                data-ar="مشاركة">
+                Share
+              </span>
+
+              <span
+                class="block text-[10px] text-[#3f4944] mt-1"
+                data-en="Share website"
+                data-ar="مشاركة الموقع">
+                Share website
+              </span>
+
+            </span>
+
           </button>
+
         </div>
+
       </div>
 
+
       <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
+
+
+      <!-- NAVIGATION -->
 
       <div class="mb-7">
-        <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1" data-en="Navigation" data-ar="التنقل">Navigation</p>
+
+        <p
+          class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1"
+          data-en="Navigation"
+          data-ar="التنقل">
+          Navigation
+        </p>
+
+
         <div class="space-y-2">
-          <a href="/index.html" data-nav="home" onclick="closeSideMenu()" class="sidebar-nav-link">
-            <span class="sidebar-nav-icon"><i class="fa-solid fa-house"></i></span><span data-en="Home" data-ar="الرئيسية">Home</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
+          <a
+            href="/index.html"
+            data-nav="home"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link">
+
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-house"></i>
+            </span>
+
+            <span
+              data-en="Home"
+              data-ar="الرئيسية">
+              Home
+            </span>
+
+            <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
           </a>
-          <a href="/web/about/index.html" data-nav="about" onclick="closeSideMenu()" class="sidebar-nav-link">
-            <span class="sidebar-nav-icon"><i class="fa-solid fa-circle-info"></i></span><span data-en="About" data-ar="من نحن">About</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
+
+          <a
+            href="/web/about/index.html"
+            data-nav="about"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link">
+
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-circle-info"></i>
+            </span>
+
+            <span
+              data-en="About"
+              data-ar="من نحن">
+              About
+            </span>
+
+            <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
           </a>
-          <a href="/web/product/index.html" data-nav="products" onclick="closeSideMenu()" class="sidebar-nav-link">
-            <span class="sidebar-nav-icon"><i class="fa-solid fa-box-open"></i></span><span data-en="Products" data-ar="المنتجات">Products</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
+
+          <a
+            href="/web/product/index.html"
+            data-nav="products"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link">
+
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-box-open"></i>
+            </span>
+
+            <span
+              data-en="Products"
+              data-ar="المنتجات">
+              Products
+            </span>
+
+            <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
           </a>
-          <a href="/web/gallery/index.html" data-nav="gallery" onclick="closeSideMenu()" class="sidebar-nav-link">
-            <span class="sidebar-nav-icon"><i class="fa-solid fa-images"></i></span><span data-en="Gallery" data-ar="المعرض">Gallery</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
+
+          <a
+            href="/web/gallery/index.html"
+            data-nav="gallery"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link">
+
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-images"></i>
+            </span>
+
+            <span
+              data-en="Gallery"
+              data-ar="المعرض">
+              Gallery
+            </span>
+
+            <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
           </a>
-          <a href="/web/contact/index.html" data-nav="contact" onclick="closeSideMenu()" class="sidebar-nav-link">
-            <span class="sidebar-nav-icon"><i class="fa-solid fa-envelope"></i></span><span data-en="Contact" data-ar="اتصل بنا">Contact</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
+
+          <a
+            href="/web/contact/index.html"
+            data-nav="contact"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link">
+
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-envelope"></i>
+            </span>
+
+            <span
+              data-en="Contact"
+              data-ar="اتصل بنا">
+              Contact
+            </span>
+
+            <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
           </a>
-          <a href="/web/meet-team/meet-team.html" data-nav="team" onclick="closeSideMenu()" class="sidebar-nav-link">
-            <span class="sidebar-nav-icon"><i class="fa-solid fa-users"></i></span><span data-en="OUR TEAM" data-ar="فريقنا">OUR TEAM</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
+
+          <a
+            href="/web/meet-team/meet-team.html"
+            data-nav="team"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link">
+
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-users"></i>
+            </span>
+
+            <span
+              data-en="OUR TEAM"
+              data-ar="فريقنا">
+              OUR TEAM
+            </span>
+
+            <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+
           </a>
+
         </div>
+
       </div>
+
 
       <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
 
+
+      <!-- CONTACT -->
+
       <div class="mb-6">
-        <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1" data-en="Contact" data-ar="اتصل بنا">Contact</p>
+
+        <p
+          class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1"
+          data-en="Contact"
+          data-ar="اتصل بنا">
+          Contact
+        </p>
+
+
         <div class="space-y-2">
-          <a href="tel:+966581818482" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors">
-            <span class="w-9 h-9 rounded-lg bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center"><i class="fa-solid fa-phone text-xs"></i></span>
-            <span><span class="block text-[9px] uppercase tracking-wider text-[#3f4944]" data-en="Phone" data-ar="الهاتف">Phone</span><span class="block text-xs font-semibold text-[#004232] mt-0.5">+966 58 181 8482</span></span>
+
+          <a
+            href="tel:+966581818482"
+            class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors">
+
+            <span
+              class="w-9 h-9 rounded-lg bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center">
+
+              <i class="fa-solid fa-phone text-xs"></i>
+
+            </span>
+
+            <span>
+
+              <span
+                class="block text-[9px] uppercase tracking-wider text-[#3f4944]"
+                data-en="Phone"
+                data-ar="الهاتف">
+                Phone
+              </span>
+
+              <span
+                class="block text-xs font-semibold text-[#004232] mt-0.5">
+                +966 58 181 8482
+              </span>
+
+            </span>
+
           </a>
-          <a href="mailto:info@athaqdates.com" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors">
-            <span class="w-9 h-9 rounded-lg bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center"><i class="fa-solid fa-envelope text-xs"></i></span>
-            <span class="min-w-0"><span class="block text-[9px] uppercase tracking-wider text-[#3f4944]" data-en="Email" data-ar="البريد الإلكتروني">Email</span><span class="block text-xs font-semibold text-[#004232] mt-0.5 truncate">info@athaqdates.com</span></span>
+
+
+          <a
+            href="mailto:info@athaqdates.com"
+            class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors">
+
+            <span
+              class="w-9 h-9 rounded-lg bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center">
+
+              <i class="fa-solid fa-envelope text-xs"></i>
+
+            </span>
+
+            <span class="min-w-0">
+
+              <span
+                class="block text-[9px] uppercase tracking-wider text-[#3f4944]"
+                data-en="Email"
+                data-ar="البريد الإلكتروني">
+                Email
+              </span>
+
+              <span
+                class="block text-xs font-semibold text-[#004232] mt-0.5 truncate">
+                info@athaqdates.com
+              </span>
+
+            </span>
+
           </a>
+
         </div>
+
       </div>
+
     </div>
 
-    <div class="border-t border-[#bec9c3]/30 px-5 py-4 bg-white/45">
+
+    <!-- SIDEBAR FOOTER -->
+
+    <div
+      class="border-t border-[#bec9c3]/30 px-5 py-4 bg-white/45">
+
       <div class="flex items-center justify-between gap-4">
+
         <div>
-          <p class="text-[9px] uppercase tracking-[0.16em] text-[#3f4944]" data-en="ATHAQ DATES INDUSTRY" data-ar="توصيف احمد">TOUSEEF AHMAD</p>
-          <p class="text-[9px] text-[#3f4944]/70 mt-1" data-en="Premium Saudi Dates" data-ar="تم التصميم والتطوير">DESIGNED & DEVELOPED BY </p>
+
+          <p
+            class="text-[9px] uppercase tracking-[0.16em] text-[#3f4944]"
+            data-en="ATHAQ DATES INDUSTRY"
+            data-ar="صناعة تمور أثاق">
+            ATHAQ DATES INDUSTRY
+          </p>
+
+          <p
+            class="text-[9px] text-[#3f4944]/70 mt-1"
+            data-en="DESIGNED & DEVELOPED BY TOUSEEF AHMAD"
+            data-ar="تم التصميم والتطوير بواسطة توظيف أحمد">
+            DESIGNED & DEVELOPED BY TOUSEEF AHMAD
+          </p>
+
         </div>
-        <div class="text-[#004232]/70 text-[10px] font-semibold whitespace-nowrap">©2026</div>
+
+        <div
+          class="text-[#004232]/70 text-[10px] font-semibold whitespace-nowrap">
+          ©2026
+        </div>
+
       </div>
+
     </div>
+
   </aside>
+
+
+  <!-- =========================================================
+       MAIN
+  ========================================================= -->
 
   <main class="pt-20">
 
-    <!-- ABOUT HERO -->
-    <!-- ABOUT HERO -->
-<header class="relative w-full overflow-hidden">
 
-  <!-- FULL BACKGROUND IMAGE -->
-  <div class="relative w-full">
-    <img
-      src="/database/background.jpg"
-      alt="ATHAQ Dates Factory"
-      class="w-full h-auto object-contain"
-    >
+    <!-- =======================================================
+         HERO
+    ======================================================= -->
 
-    <!-- Image Overlay -->
-    <div class="absolute inset-0 bg-[#004232]/20"></div>
-  </div>
+    <header class="hero-section">
 
-  <!-- HERO TEXT -->
-  <div class="absolute inset-0 z-10 w-full h-full flex items-center px-6 md:px-12 lg:px-24 xl:px-32">
+      <img
+        src="/database/background.jpg"
+        alt="ATHAQ Dates Factory"
+        class="hero-image">
 
-    <div class="max-w-[760px]">
+      <div class="hero-overlay"></div>
 
-      <div class="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-lg text-white text-xs font-bold tracking-wider mb-6"
-        data-en="ESTABLISHED 2023"
-        data-ar="تأسست عام 2023">
-        ESTABLISHED 2023
+      <div class="hero-bottom-fade"></div>
+
+
+      <div
+        class="absolute inset-0 z-10 flex items-center px-6 md:px-12 lg:px-20 xl:px-32">
+
+        <div class="hero-content">
+
+          <!-- BADGE -->
+
+          <div
+            class="hero-badge mb-7"
+            data-en="ESTABLISHED 2023"
+            data-ar="تأسست عام 2023">
+
+            <span
+              class="w-2 h-2 rounded-full bg-[#a6f2d4] shadow-[0_0_12px_rgba(166,242,212,.8)]">
+            </span>
+
+            ESTABLISHED 2023
+
+          </div>
+
+
+          <!-- TITLE -->
+
+          <h1 class="hero-title text-white uppercase mb-7">
+
+            <span
+              data-en="ATHAQ DATES"
+              data-ar="تمور أثاق">
+              ATHAQ DATES
+            </span>
+
+            <br>
+
+            <span
+              class="hero-subtitle font-normal lowercase opacity-90"
+              data-en="INDUSTRIAL FACTORY."
+              data-ar="المصنع الصناعي.">
+              INDUSTRIAL FACTORY.
+            </span>
+
+          </h1>
+
+
+          <!-- DESCRIPTION -->
+
+          <p
+            class="hero-description"
+            data-en="ATHAQ Dates Industry brings the heritage of Saudi dates together with disciplined modern manufacturing, careful processing, and a commitment to consistent quality."
+            data-ar="تجمع صناعة تمور أثاق بين تراث التمور السعودية والتصنيع الحديث والانضباط، والمعالجة الدقيقة، والالتزام بالجودة الثابتة.">
+
+            ATHAQ Dates Industry brings the heritage of Saudi dates together with disciplined modern manufacturing, careful processing, and a commitment to consistent quality.
+
+          </p>
+
+        </div>
+
       </div>
 
-      <h1
-        class="text-white uppercase mb-6"
-        style="font-family:Georgia,serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;line-height:1.1;letter-spacing:.05em;"
-      >
-        <span data-en="ATHAQ DATES" data-ar="تمور أثاق">
-          ATHAQ DATES
-        </span>
-        <br>
+    </header>
 
-        <span
-          class="text-xl md:text-2xl lg:text-3xl font-normal tracking-normal lowercase opacity-90"
-          data-en="INDUSTRIAL FACTORY."
-          data-ar="المصنع الصناعي."
-        >
-          INDUSTRIAL FACTORY.
-        </span>
-      </h1>
 
-      <p
-        class="text-lg md:text-xl text-white/95 max-w-2xl leading-relaxed"
-        data-en="ATHAQ Dates Industry brings the heritage of Saudi dates together with disciplined modern manufacturing, careful processing, and a commitment to consistent quality."
-        data-ar="تجمع صناعة تمور أثاق بين تراث التمور السعودية والتصنيع الحديث والانضباط، والمعالجة الدقيقة، والالتزام بالجودة الثابتة."
-      >
-        ATHAQ Dates Industry brings the heritage of Saudi dates together with disciplined modern manufacturing, careful processing, and a commitment to consistent quality.
-      </p>
+    <!-- =======================================================
+         OUR STORY
+    ======================================================= -->
 
-    </div>
-  </div>
+    <section
+      class="py-20 md:py-[120px] px-5 sm:px-8 md:px-16 max-w-[1280px] mx-auto">
 
-</header>
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-    <!-- OUR STORY -->
-    <section class="py-20 md:py-[120px] px-4 md:px-16 max-w-[1280px] mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- IMAGE -->
+
         <div class="relative">
-          <div class="aspect-[4/5] bg-[#e9e8e3] rounded-3xl overflow-hidden shadow-2xl">
-            <img src="/database/production.jpg" alt="ATHAQ Dates processing facility" class="w-full h-full object-cover">
+
+          <div
+            class="story-image-wrapper aspect-[4/5]">
+
+            <img
+              src="/database/production.jpg"
+              alt="ATHAQ Dates processing facility"
+              class="story-image w-full h-full object-cover">
+
           </div>
-          <div class="absolute top-6 left-6 bg-white p-5 rounded-2xl shadow-xl">
-            <span class="material-symbols-outlined text-[#004232] text-[38px]">verified</span>
-            <p class="font-bold text-[#004232] leading-tight mt-1"><span data-en="Trusted" data-ar="موثوقة">Trusted</span><br><span class="text-[#3f4944] font-normal text-sm" data-en="Saudi Quality" data-ar="الجودة السعودية">Saudi Quality</span></p>
+
+
+          <!-- QUALITY CARD -->
+
+          <div class="quality-card">
+
+            <span
+              class="material-symbols-outlined text-[#004232] text-[36px]">
+              verified
+            </span>
+
+            <p
+              class="font-bold text-[#004232] leading-tight mt-1">
+
+              <span
+                data-en="Trusted"
+                data-ar="موثوقة">
+                Trusted
+              </span>
+
+              <br>
+
+              <span
+                class="text-[#3f4944] font-normal text-sm"
+                data-en="Saudi Quality"
+                data-ar="الجودة السعودية">
+                Saudi Quality
+              </span>
+
+            </p>
+
           </div>
+
         </div>
 
-        <div class="space-y-6">
-          <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#c0edd4]/50 text-[#446d59] rounded-full">
-            <span class="material-symbols-outlined text-[20px]">workspace_premium</span>
-            <span class="font-semibold text-xs uppercase tracking-wider" data-en="Our Story" data-ar="قصتنا">Our Story</span>
+
+        <!-- CONTENT -->
+
+        <div class="space-y-7">
+
+          <div class="section-eyebrow">
+
+            <span
+              class="material-symbols-outlined text-[18px]">
+              workspace_premium
+            </span>
+
+            <span
+              data-en="Our Story"
+              data-ar="قصتنا">
+              Our Story
+            </span>
+
           </div>
-          
-          <h2 class="text-[#004232] font-bold text-4xl md:text-5xl leading-tight" data-en="A Legacy of Quality" data-ar="إرث من الجودة">A Legacy of Quality</h2>
 
-          <p class="text-[#3f4944] text-lg leading-relaxed" data-en="At ATHAQ, we do more than process dates. We respect a product deeply connected to Saudi culture and agriculture while building the systems required for modern, reliable production." data-ar="في أثاق، نحن نقوم بأكثر من مجرد معالجة التمور. نحن نحترم منتجًا يرتبط ارتباطًا وثيقًا بالثقافة والزراعة السعودية بينما نبني الأنظمة اللازمة لإنتاج حديث وموثوق.">
-            At ATHAQ, we do more than process dates. We respect a product deeply connected to Saudi culture and agriculture while building the systems required for modern, reliable production.
-          </p>
 
-          <p class="text-[#3f4944] text-lg leading-relaxed" data-en="From careful handling and sorting to packaging and delivery, our approach is built around consistency, cleanliness, presentation, and customer trust." data-ar="من المعالجة والفرز الدقيق إلى التعبئة والتسليم، تم بناء نهجنا حول الاتساق والنظافة والعرض وثقة العملاء.">
-            From careful handling and sorting to packaging and delivery, our approach is built around consistency, cleanliness, presentation, and customer trust.
-          </p>
+          <h2
+            class="section-title text-4xl md:text-5xl lg:text-[3.4rem]"
+            data-en="A Legacy of Quality"
+            data-ar="إرث من الجودة">
 
-          <a href="/web/product/index.html" class="inline-flex items-center gap-2 font-semibold text-[#004232] border-b border-[#004232]/40 pb-1 hover:border-[#004232] transition-all">
-            <span data-en="Explore our products" data-ar="استكشف منتجاتنا">Explore our products</span>
-            <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+            A Legacy of Quality
+
+          </h2>
+
+
+          <div class="space-y-5">
+
+            <p
+              class="text-[#3f4944] text-base md:text-lg leading-[1.9]"
+              data-en="At ATHAQ, we do more than process dates. We respect a product deeply connected to Saudi culture and agriculture while building the systems required for modern, reliable production."
+              data-ar="في أثاق، نحن نقوم بأكثر من مجرد معالجة التمور. نحن نحترم منتجًا يرتبط ارتباطًا وثيقًا بالثقافة والزراعة السعودية بينما نبني الأنظمة اللازمة لإنتاج حديث وموثوق.">
+
+              At ATHAQ, we do more than process dates. We respect a product deeply connected to Saudi culture and agriculture while building the systems required for modern, reliable production.
+
+            </p>
+
+
+            <p
+              class="text-[#3f4944] text-base md:text-lg leading-[1.9]"
+              data-en="From careful handling and sorting to packaging and delivery, our approach is built around consistency, cleanliness, presentation, and customer trust."
+              data-ar="من المعالجة والفرز الدقيق إلى التعبئة والتسليم، تم بناء نهجنا حول الاتساق والنظافة والعرض وثقة العملاء.">
+
+              From careful handling and sorting to packaging and delivery, our approach is built around consistency, cleanliness, presentation, and customer trust.
+
+            </p>
+
+          </div>
+
+
+          <a
+            href="/web/product/index.html"
+            class="luxury-link">
+
+            <span
+              data-en="Explore our products"
+              data-ar="استكشف منتجاتنا">
+              Explore our products
+            </span>
+
+            <span
+              class="material-symbols-outlined text-[18px]">
+              arrow_forward
+            </span>
+
           </a>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- VALUES -->
-    <section class="bg-[#efeee9] py-20 md:py-[100px] px-4 md:px-16">
+
+    <!-- =======================================================
+         VALUES
+    ======================================================= -->
+
+    <section
+      class="values-section py-20 md:py-[110px] px-5 sm:px-8 md:px-16">
+
       <div class="max-w-[1280px] mx-auto">
+
         <div class="max-w-2xl mb-12">
-          <p class="text-xs font-bold uppercase tracking-[.18em] text-[#3f4944]/70 mb-3" data-en="What guides us" data-ar="ما يوجهنا">What guides us</p>
-          <h2 class="text-[#004232] font-bold text-4xl md:text-5xl" data-en="Our Core Values" data-ar="قيمنا الجوهرية">Our Core Values</h2>
+
+          <p
+            class="text-xs font-bold uppercase tracking-[.18em] text-[#3f4944]/70 mb-3"
+            data-en="What guides us"
+            data-ar="ما يوجهنا">
+
+            What guides us
+
+          </p>
+
+
+          <h2
+            class="section-title text-4xl md:text-5xl"
+            data-en="Our Core Values"
+            data-ar="قيمنا الجوهرية">
+
+            Our Core Values
+
+          </h2>
+
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <article class="bg-white rounded-2xl p-7 shadow-sm border border-[#bec9c3]/20">
-            <span class="material-symbols-outlined text-[#004232] text-[38px]">verified</span>
-            <h3 class="text-[#004232] text-xl font-bold mt-5 mb-3" data-en="Consistent Quality" data-ar="جودة ثابتة">Consistent Quality</h3>
-            <p class="text-[#3f4944] leading-relaxed" data-en="Every stage is approached with care so our customers can expect dependable quality and presentation." data-ar="نتناول كل مرحلة بعناية لكي يتوقع عملاؤنا جودة وعرضًا يمكن الاعتماد عليهما.">Every stage is approached with care so our customers can expect dependable quality and presentation.</p>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+
+          <!-- VALUE 1 -->
+
+          <article class="value-card">
+
+            <div class="value-icon">
+
+              <span
+                class="material-symbols-outlined text-[30px]">
+                verified
+              </span>
+
+            </div>
+
+
+            <h3
+              class="text-[#004232] text-xl font-bold mt-6 mb-3"
+              data-en="Consistent Quality"
+              data-ar="جودة ثابتة">
+
+              Consistent Quality
+
+            </h3>
+
+
+            <p
+              class="text-[#3f4944] leading-relaxed"
+              data-en="Every stage is approached with care so our customers can expect dependable quality and presentation."
+              data-ar="نتناول كل مرحلة بعناية لكي يتوقع عملاؤنا جودة وعرضًا يمكن الاعتماد عليهما.">
+
+              Every stage is approached with care so our customers can expect dependable quality and presentation.
+
+            </p>
+
           </article>
 
-          <article class="bg-white rounded-2xl p-7 shadow-sm border border-[#bec9c3]/20">
-            <span class="material-symbols-outlined text-[#004232] text-[38px]">factory</span>
-            <h3 class="text-[#004232] text-xl font-bold mt-5 mb-3" data-en="Modern Manufacturing" data-ar="تصنيع حديث">Modern Manufacturing</h3>
-            <p class="text-[#3f4944] leading-relaxed" data-en="We combine practical industrial processes with the character and heritage of Saudi dates." data-ar="نجمع بين العمليات الصناعية العملية وطابع وتراث التمور السعودية.">We combine practical industrial processes with the character and heritage of Saudi dates.</p>
+
+          <!-- VALUE 2 -->
+
+          <article class="value-card">
+
+            <div class="value-icon">
+
+              <span
+                class="material-symbols-outlined text-[30px]">
+                factory
+              </span>
+
+            </div>
+
+
+            <h3
+              class="text-[#004232] text-xl font-bold mt-6 mb-3"
+              data-en="Modern Manufacturing"
+              data-ar="تصنيع حديث">
+
+              Modern Manufacturing
+
+            </h3>
+
+
+            <p
+              class="text-[#3f4944] leading-relaxed"
+              data-en="We combine practical industrial processes with the character and heritage of Saudi dates."
+              data-ar="نجمع بين العمليات الصناعية العملية وطابع وتراث التمور السعودية.">
+
+              We combine practical industrial processes with the character and heritage of Saudi dates.
+
+            </p>
+
           </article>
 
-          <article class="bg-white rounded-2xl p-7 shadow-sm border border-[#bec9c3]/20">
-            <span class="material-symbols-outlined text-[#004232] text-[38px]">handshake</span>
-            <h3 class="text-[#004232] text-xl font-bold mt-5 mb-3" data-en="Trusted Partnerships" data-ar="شراكات موثوقة">Trusted Partnerships</h3>
-            <p class="text-[#3f4944] leading-relaxed" data-en="We build long-term relationships through clear communication, reliable service, and professional standards." data-ar="نبني علاقات طويلة الأمد من خلال التواصل الواضح والخدمة الموثوقة والمعايير المهنية.">We build long-term relationships through clear communication, reliable service, and professional standards.</p>
+
+          <!-- VALUE 3 -->
+
+          <article class="value-card">
+
+            <div class="value-icon">
+
+              <span
+                class="material-symbols-outlined text-[30px]">
+                handshake
+              </span>
+
+            </div>
+
+
+            <h3
+              class="text-[#004232] text-xl font-bold mt-6 mb-3"
+              data-en="Trusted Partnerships"
+              data-ar="شراكات موثوقة">
+
+              Trusted Partnerships
+
+            </h3>
+
+
+            <p
+              class="text-[#3f4944] leading-relaxed"
+              data-en="We build long-term relationships through clear communication, reliable service, and professional standards."
+              data-ar="نبني علاقات طويلة الأمد من خلال التواصل الواضح والخدمة الموثوقة والمعايير المهنية.">
+
+              We build long-term relationships through clear communication, reliable service, and professional standards.
+
+            </p>
+
           </article>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- CTA -->
-    <section class="py-20 md:py-[100px] px-4 md:px-16">
-      <div class="max-w-[1280px] mx-auto bg-[#004232] rounded-3xl px-7 md:px-14 py-12 md:py-16 text-center">
-        <p class="text-[#a6f2d4] text-xs font-bold uppercase tracking-[.18em] mb-4" data-en="Work with ATHAQ" data-ar="اعمل مع أثاق">Work with ATHAQ</p>
-        <h2 class="text-white text-3xl md:text-5xl font-bold mb-5" data-en="Premium Dates. Modern Manufacturing. Trusted Quality." data-ar="تمور فاخرة. تصنيع حديث. جودة موثوقة.">Premium Dates. Modern Manufacturing. Trusted Quality.</h2>
-        <p class="text-white/80 max-w-2xl mx-auto leading-relaxed mb-8" data-en="Discover our products or contact our team to discuss your requirements." data-ar="اكتشف منتجاتنا أو تواصل مع فريقنا لمناقشة متطلباتك.">Discover our products or contact our team to discuss your requirements.</p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <a href="/web/product/index.html" class="inline-flex items-center justify-center bg-[#a6f2d4] text-[#002117] font-semibold px-8 py-4 rounded-xl hover:bg-white transition-colors" data-en="Explore Products" data-ar="استكشف المنتجات">Explore Products</a>
-          <a href="/web/contact/index.html" class="inline-flex items-center justify-center bg-white/10 border border-white/25 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/20 transition-colors" data-en="Contact Us" data-ar="اتصل بنا">Contact Us</a>
+
+    <!-- =======================================================
+         CTA
+    ======================================================= -->
+
+    <section
+      class="py-20 md:py-[110px] px-5 sm:px-8 md:px-16">
+
+      <div
+        class="cta-box max-w-[1280px] mx-auto rounded-[30px] px-7 md:px-14 py-14 md:py-20 text-center">
+
+        <div class="cta-content">
+
+          <p
+            class="text-[#a6f2d4] text-xs font-bold uppercase tracking-[.18em] mb-5"
+            data-en="Work with ATHAQ"
+            data-ar="اعمل مع أثاق">
+
+            Work with ATHAQ
+
+          </p>
+
+
+          <h2
+            class="text-white text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-5 max-w-4xl mx-auto"
+            data-en="Premium Dates. Modern Manufacturing. Trusted Quality."
+            data-ar="تمور فاخرة. تصنيع حديث. جودة موثوقة.">
+
+            Premium Dates. Modern Manufacturing. Trusted Quality.
+
+          </h2>
+
+
+          <p
+            class="text-white/75 max-w-2xl mx-auto leading-relaxed mb-9"
+            data-en="Discover our products or contact our team to discuss your requirements."
+            data-ar="اكتشف منتجاتنا أو تواصل مع فريقنا لمناقشة متطلباتك.">
+
+            Discover our products or contact our team to discuss your requirements.
+
+          </p>
+
+
+          <div
+            class="flex flex-col sm:flex-row justify-center gap-4">
+
+            <a
+              href="/web/product/index.html"
+              class="primary-btn"
+              data-en="Explore Products"
+              data-ar="استكشف المنتجات">
+
+              Explore Products
+
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+
+            </a>
+
+
+            <a
+              href="/web/contact/index.html"
+              class="secondary-btn"
+              data-en="Contact Us"
+              data-ar="اتصل بنا">
+
+              Contact Us
+
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+
+            </a>
+
+          </div>
+
         </div>
+
       </div>
+
     </section>
+
   </main>
 
-  <!-- FOOTER -->
-  <footer class="bg-[#e3e3de] border-t border-[#735c00]/20 pt-16 pb-12 px-4 md:px-16">
-    <div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-16">
-      <div class="space-y-4">
-        <div class="text-lg font-bold text-[#004232]" data-en="ATHAQ DATES INDUSTRY" data-ar="صناعة تمور أثاق">ATHAQ DATES INDUSTRY</div>
-        <p class="text-[#3f4944]/80 text-sm" data-en="Pioneering the future of Saudi agriculture through premium industrial processing." data-ar="ريادة مستقبل الزراعة السعودية من خلال المعالجة الصناعية الفاخرة.">Pioneering the future of Saudi agriculture through premium industrial processing.</p>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================= -->
+
+  <footer
+    class="site-footer pt-16 pb-12 px-5 sm:px-8 md:px-16">
+
+    <div
+      class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-16">
+
+
+      <!-- BRAND -->
+
+      <div class="space-y-5">
+
+        <div
+          class="flex items-center gap-3">
+
+          <img
+            src="/database/logo(2).png"
+            alt="ATHAQ"
+            class="w-12 h-12 object-contain">
+
+          <div>
+
+            <div
+              class="text-lg font-bold text-[#004232]"
+              data-en="ATHAQ DATES INDUSTRY"
+              data-ar="صناعة تمور أثاق">
+
+              ATHAQ DATES INDUSTRY
+
+            </div>
+
+            <div
+              class="text-[9px] tracking-[.18em] text-[#3f4944]/70 uppercase mt-1">
+
+              Saudi Dates
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <p
+          class="text-[#3f4944]/80 text-sm leading-relaxed"
+          data-en="Pioneering the future of Saudi agriculture through premium industrial processing."
+          data-ar="ريادة مستقبل الزراعة السعودية من خلال المعالجة الصناعية الفاخرة.">
+
+          Pioneering the future of Saudi agriculture through premium industrial processing.
+
+        </p>
+
       </div>
 
+
+      <!-- QUICK LINKS -->
+
       <div>
-        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider" data-en="Quick Links" data-ar="روابط سريعة">Quick Links</h4>
+
+        <h4
+          class="footer-heading mb-5"
+          data-en="Quick Links"
+          data-ar="روابط سريعة">
+
+          Quick Links
+
+        </h4>
+
+
         <ul class="space-y-3 text-sm">
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/about/index.html" data-en="Our Process" data-ar="عملياتنا">Our Process</a></li>
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/product/index.html" data-en="Products" data-ar="المنتجات">Products</a></li>
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/gallery/index.html" data-en="Gallery" data-ar="المعرض">Gallery</a></li>
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="/web/contact/index.html" data-en="Contact" data-ar="اتصل بنا">Contact</a></li>
+
+          <li>
+            <a
+              class="footer-link"
+              href="/web/about/index.html"
+              data-en="Our Process"
+              data-ar="عملياتنا">
+              Our Process
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="footer-link"
+              href="/web/product/index.html"
+              data-en="Products"
+              data-ar="المنتجات">
+              Products
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="footer-link"
+              href="/web/gallery/index.html"
+              data-en="Gallery"
+              data-ar="المعرض">
+              Gallery
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="footer-link"
+              href="/web/contact/index.html"
+              data-en="Contact"
+              data-ar="اتصل بنا">
+              Contact
+            </a>
+          </li>
+
         </ul>
+
       </div>
 
+
+      <!-- LEGAL -->
+
       <div>
-        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider" data-en="Legal" data-ar="قانوني">Legal</h4>
+
+        <h4
+          class="footer-heading mb-5"
+          data-en="Legal"
+          data-ar="قانوني">
+
+          Legal
+
+        </h4>
+
+
         <ul class="space-y-3 text-sm">
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="#" data-en="Privacy Policy" data-ar="سياسة الخصوصية">Privacy Policy</a></li>
-          <li><a class="text-[#3f4944] hover:text-[#004232]" href="#" data-en="Terms of Service" data-ar="شروط الخدمة">Terms of Service</a></li>
+
+          <li>
+            <a
+              class="footer-link"
+              href="#"
+              data-en="Privacy Policy"
+              data-ar="سياسة الخصوصية">
+              Privacy Policy
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="footer-link"
+              href="#"
+              data-en="Terms of Service"
+              data-ar="شروط الخدمة">
+              Terms of Service
+            </a>
+          </li>
+
         </ul>
+
       </div>
 
+
+      <!-- CONTACT -->
+
       <div>
-        <h4 class="text-xs uppercase text-[#004232] mb-4 font-bold tracking-wider" data-en="Contact" data-ar="اتصل بنا">Contact</h4>
-        <ul class="space-y-3 text-[#3f4944] text-sm">
-          <li data-en="King Salman Road, Al Bukayriyah" data-ar="طريق الملك سلمان، البكيرية">King Salman Road, Al Bukayriyah</li>
-          <li><a href="tel:+966581818482">+966 58 181 8482</a></li>
-          <li><a href="mailto:info@athaqdates.com">aathaqq3@gmail.com</a></li>
+
+        <h4
+          class="footer-heading mb-5"
+          data-en="Contact"
+          data-ar="اتصل بنا">
+
+          Contact
+
+        </h4>
+
+
+        <ul
+          class="space-y-4 text-[#3f4944] text-sm">
+
+          <li
+            class="flex items-start gap-3">
+
+            <i class="fa-solid fa-location-dot text-[#004232] mt-1"></i>
+
+            <span
+              data-en="King Salman Road, Al Bukayriyah"
+              data-ar="طريق الملك سلمان، البكيرية">
+
+              King Salman Road, Al Bukayriyah
+
+            </span>
+
+          </li>
+
+
+          <li>
+
+            <a
+              href="tel:+966581818482"
+              class="hover:text-[#004232] transition-colors">
+
+              <i class="fa-solid fa-phone text-[#004232] mr-2"></i>
+
+              +966 58 181 8482
+
+            </a>
+
+          </li>
+
+
+          <li>
+
+            <a
+              href="mailto:info@athaqdates.com"
+              class="hover:text-[#004232] transition-colors">
+
+              <i class="fa-solid fa-envelope text-[#004232] mr-2"></i>
+
+              aathaqq3@gmail.com
+
+            </a>
+
+          </li>
+
         </ul>
+
       </div>
+
     </div>
 
-    <div class="max-w-[1280px] mx-auto text-center border-t border-[#6f7974]/20 pt-6 text-xs text-[#3f4944]" data-en="&copy; 2023–2026 ATHAQ Dates Industry. All rights reserved." data-ar="&copy; 2023–2026 صناعة تمور أثاق. جميع الحقوق محفوظة.">
-      &copy; DESIGNED & DEVELOPED BY TOUSEEF AHMAD 
+
+    <!-- COPYRIGHT -->
+
+    <div
+      class="max-w-[1280px] mx-auto text-center border-t border-[#6f7974]/20 pt-6 text-xs text-[#3f4944]">
+
+      <span
+        data-en="© 2023–2026 ATHAQ Dates Industry. All rights reserved."
+        data-ar="© 2023–2026 صناعة تمور أثاق. جميع الحقوق محفوظة.">
+
+        © 2023–2026 ATHAQ Dates Industry. All rights reserved.
+
+      </span>
+
+      <span class="mx-2 opacity-30">|</span>
+
+      <span
+        class="font-semibold text-[#004232]"
+        data-en="DESIGNED & DEVELOPED BY TOUSEEF AHMAD"
+        data-ar="تم التصميم والتطوير بواسطة توظيف أحمد">
+
+        DESIGNED & DEVELOPED BY TOUSEEF AHMAD
+
+      </span>
+
     </div>
+
   </footer>
 
-<script>
-/* =========================================================
-   AUTH / PROFILE
-   ONLY loggedInUser = ACTIVE LOGIN SESSION
-========================================================= */
 
-function getActiveUser() {
-    let user = null;
+  <!-- =========================================================
+       JAVASCRIPT
+  ========================================================= -->
 
-    try {
-        const storedUser = localStorage.getItem("loggedInUser");
+  <script>
+
+    /* =========================================================
+       AUTH / PROFILE
+       ONLY loggedInUser = ACTIVE LOGIN SESSION
+    ========================================================= */
+
+    function getActiveUser() {
+
+      let user = null;
+
+      try {
+
+        const storedUser =
+          localStorage.getItem("loggedInUser");
 
         if (storedUser) {
-            user = JSON.parse(storedUser);
+          user = JSON.parse(storedUser);
         }
-    } catch (error) {
-        console.error("Invalid loggedInUser:", error);
+
+      } catch (error) {
+
+        console.error(
+          "Invalid loggedInUser:",
+          error
+        );
+
         user = null;
+      }
+
+      return user;
     }
 
-    return user;
-}
 
+    function updateAccountUI() {
 
-function updateAccountUI() {
+      const accountName =
+        document.getElementById("accountName");
 
-    const accountName = document.getElementById("accountName");
-    const accountStatus = document.getElementById("accountStatus");
-    const accountLink = document.getElementById("accountLink");
+      const accountStatus =
+        document.getElementById("accountStatus");
 
-    if (!accountName || !accountStatus || !accountLink) {
+      const accountLink =
+        document.getElementById("accountLink");
+
+      if (
+        !accountName ||
+        !accountStatus ||
+        !accountLink
+      ) {
         return;
-    }
+      }
 
-    const activeUser = getActiveUser();
-    const userRole = localStorage.getItem("userRole");
 
-    /* =====================================================
-       NO ACTIVE SESSION
-    ===================================================== */
+      const activeUser =
+        getActiveUser();
 
-    if (!activeUser || typeof activeUser !== "object") {
+      const userRole =
+        localStorage.getItem("userRole");
 
-        accountName.dataset.en = "Account";
-        accountName.dataset.ar = "الحساب";
-        accountStatus.dataset.en = "Sign in";
-        accountStatus.dataset.ar = "تسجيل الدخول";
 
-        const isArabic = document.documentElement.lang === "ar";
-        accountName.textContent = isArabic ? "الحساب" : "Account";
-        accountStatus.textContent = isArabic ? "تسجيل الدخول" : "Sign in";
-        accountLink.href = "/login/index.html";
+      /* =====================================================
+         NO ACTIVE SESSION
+      ===================================================== */
+
+      if (
+        !activeUser ||
+        typeof activeUser !== "object"
+      ) {
+
+        accountName.dataset.en =
+          "Account";
+
+        accountName.dataset.ar =
+          "الحساب";
+
+        accountStatus.dataset.en =
+          "Sign in";
+
+        accountStatus.dataset.ar =
+          "تسجيل الدخول";
+
+
+        const isArabic =
+          document.documentElement.lang === "ar";
+
+
+        accountName.textContent =
+          isArabic
+            ? "الحساب"
+            : "Account";
+
+
+        accountStatus.textContent =
+          isArabic
+            ? "تسجيل الدخول"
+            : "Sign in";
+
+
+        accountLink.href =
+          "/login/index.html";
 
         return;
-    }
+      }
 
 
-    /* =====================================================
-       ACTIVE USER
-    ===================================================== */
+      /* =====================================================
+         ACTIVE USER
+      ===================================================== */
 
-    const userName =
+      const userName =
         activeUser.name ||
         activeUser.username ||
         activeUser.fullName ||
         "User";
 
 
-    /* =====================================================
-       ADMIN
-    ===================================================== */
+      /* =====================================================
+         ADMIN
+      ===================================================== */
 
-    if (
+      if (
         userRole === "admin" ||
         activeUser.role === "admin"
-    ) {
+      ) {
 
-        accountName.textContent = userName;
-        accountStatus.dataset.en = "Admin Panel";
-        accountStatus.dataset.ar = "لوحة التحكم";
-        const isArabic = document.documentElement.lang === "ar";
-        accountStatus.textContent = isArabic ? "لوحة التحكم" : "Admin Panel";
-        accountLink.href = "/admin/index.html";
+        accountName.textContent =
+          userName;
+
+
+        accountStatus.dataset.en =
+          "Admin Panel";
+
+        accountStatus.dataset.ar =
+          "لوحة التحكم";
+
+
+        const isArabic =
+          document.documentElement.lang === "ar";
+
+
+        accountStatus.textContent =
+          isArabic
+            ? "لوحة التحكم"
+            : "Admin Panel";
+
+
+        accountLink.href =
+          "/admin/index.html";
 
         return;
+      }
+
+
+      /* =====================================================
+         CUSTOMER
+      ===================================================== */
+
+      accountName.textContent =
+        userName;
+
+
+      accountStatus.dataset.en =
+        "My Profile";
+
+      accountStatus.dataset.ar =
+        "ملفي الشخصي";
+
+
+      const isArabic =
+        document.documentElement.lang === "ar";
+
+
+      accountStatus.textContent =
+        isArabic
+          ? "ملفي الشخصي"
+          : "My Profile";
+
+
+      accountLink.href =
+        "/customer-profile/profile.html";
     }
 
 
-    /* =====================================================
-       CUSTOMER
-    ===================================================== */
+    /* =========================================================
+       LOGOUT
+    ========================================================= */
 
-    accountName.textContent = userName;
-    accountStatus.dataset.en = "My Profile";
-    accountStatus.dataset.ar = "ملفي الشخصي";
-    const isArabic = document.documentElement.lang === "ar";
-    accountStatus.textContent = isArabic ? "ملفي الشخصي" : "My Profile";
-    accountLink.href = "/customer-profile/profile.html";
-}
+    function logout() {
 
+      localStorage.removeItem(
+        "loggedInUser"
+      );
 
-/* =========================================================
-   LOGOUT
-========================================================= */
+      localStorage.removeItem(
+        "user"
+      );
 
-function logout() {
-    localStorage.removeItem("loggedInUser");
-    localStorage.removeItem("user");
-    localStorage.removeItem("userRole");
+      localStorage.removeItem(
+        "userRole"
+      );
 
-    sessionStorage.removeItem("loggedInUser");
-    sessionStorage.removeItem("user");
-    sessionStorage.removeItem("userRole");
+      sessionStorage.removeItem(
+        "loggedInUser"
+      );
 
-    window.location.replace("/login/index.html");
-}
+      sessionStorage.removeItem(
+        "user"
+      );
 
-
-/* =========================================================
-   CHECK LOGIN WHEN PAGE LOADS
-========================================================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-    updateAccountUI();
-});
+      sessionStorage.removeItem(
+        "userRole"
+      );
 
 
-window.addEventListener("pageshow", function () {
-    updateAccountUI();
-});
-
-
-/* =========================================================
-   AUTO ACTIVE NAVIGATION
-========================================================= */
-
-(function setCurrentPageNav() {
-
-    const path = window.location.pathname
-        .replace(/\\/g, "/")
-        .toLowerCase();
-
-    let currentPage = "home";
-
-    if (path.includes("/web/about/")) {
-        currentPage = "about";
+      window.location.replace(
+        "/login/index.html"
+      );
     }
 
-    else if (path.includes("/web/product/")) {
-        currentPage = "products";
-    }
 
-    else if (path.includes("/web/gallery/")) {
-        currentPage = "gallery";
-    }
+    /* =========================================================
+       AUTO ACTIVE NAVIGATION
+    ========================================================= */
 
-    else if (path.includes("/web/contact/")) {
-        currentPage = "contact";
-    }
+    function setCurrentPageNav() {
 
-    else if (
+      const path =
+        window.location.pathname
+          .replace(/\\/g, "/")
+          .toLowerCase();
+
+
+      let currentPage =
+        "home";
+
+
+      if (
+        path.includes("/web/about/")
+      ) {
+
+        currentPage =
+          "about";
+
+      }
+
+      else if (
+        path.includes("/web/product/")
+      ) {
+
+        currentPage =
+          "products";
+
+      }
+
+      else if (
+        path.includes("/web/gallery/")
+      ) {
+
+        currentPage =
+          "gallery";
+
+      }
+
+      else if (
+        path.includes("/web/contact/")
+      ) {
+
+        currentPage =
+          "contact";
+
+      }
+
+      else if (
+        path.includes("/web/meet-team/")
+      ) {
+
+        currentPage =
+          "team";
+
+      }
+
+      else if (
         path.endsWith("/index.html") ||
         path === "/" ||
         path === ""
-    ) {
-        currentPage = "home";
-    }
+      ) {
 
-    document.querySelectorAll("[data-nav]").forEach(function (link) {
+        currentPage =
+          "home";
 
-        const isActive =
-            link.dataset.nav === currentPage;
+      }
 
-        link.classList.toggle(
+
+      document
+        .querySelectorAll("[data-nav]")
+        .forEach(function (link) {
+
+          const isActive =
+            link.dataset.nav ===
+            currentPage;
+
+
+          link.classList.toggle(
             "active",
             isActive
+          );
+
+        });
+    }
+
+
+    /* =========================================================
+       SIDEBAR
+    ========================================================= */
+
+    const menuBtn =
+      document.getElementById(
+        "menu-btn"
+      );
+
+    const closeMenuBtn =
+      document.getElementById(
+        "close-menu"
+      );
+
+    const sideMenu =
+      document.getElementById(
+        "side-menu"
+      );
+
+    const sidebarOverlay =
+      document.getElementById(
+        "sidebar-overlay"
+      );
+
+
+    function openSideMenu() {
+
+      if (!sideMenu) return;
+
+      sideMenu.classList.add(
+        "active"
+      );
+
+      sidebarOverlay.classList.add(
+        "active"
+      );
+
+      document.body.classList.add(
+        "menu-open"
+      );
+
+      menuBtn.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+      sideMenu.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+    }
+
+
+    function closeSideMenu() {
+
+      if (!sideMenu) return;
+
+      sideMenu.classList.remove(
+        "active"
+      );
+
+      sidebarOverlay.classList.remove(
+        "active"
+      );
+
+      document.body.classList.remove(
+        "menu-open"
+      );
+
+      menuBtn.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      sideMenu.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+    }
+
+
+    if (menuBtn) {
+
+      menuBtn.addEventListener(
+        "click",
+        function () {
+
+          if (
+            sideMenu.classList.contains(
+              "active"
+            )
+          ) {
+
+            closeSideMenu();
+
+          } else {
+
+            openSideMenu();
+
+          }
+
+        }
+      );
+
+    }
+
+
+    if (closeMenuBtn) {
+
+      closeMenuBtn.addEventListener(
+        "click",
+        closeSideMenu
+      );
+
+    }
+
+
+    if (sidebarOverlay) {
+
+      sidebarOverlay.addEventListener(
+        "click",
+        closeSideMenu
+      );
+
+    }
+
+
+    document.addEventListener(
+      "keydown",
+      function (e) {
+
+        if (e.key === "Escape") {
+          closeSideMenu();
+        }
+
+      }
+    );
+
+
+    /* =========================================================
+       LANGUAGE
+       Keeps layout LTR while translating content.
+    ========================================================= */
+
+    function toggleLanguage() {
+
+      const label =
+        document.getElementById(
+          "languageLabel"
         );
 
-        if (link.classList.contains("desktop-nav-link")) {
 
-            link.classList.toggle(
-                "bg-[#004232]",
-                isActive
-            );
-
-            link.classList.toggle(
-                "text-white",
-                isActive
-            );
-
-            link.classList.toggle(
-                "shadow-sm",
-                isActive
-            );
-
-            link.classList.toggle(
-                "text-[#004232]",
-                !isActive
-            );
-        }
-
-    });
-
-})();
-
-
-/* =========================================================
-   SIDEBAR
-========================================================= */
-
-const menuBtn =
-    document.getElementById("menu-btn");
-
-const closeMenuBtn =
-    document.getElementById("close-menu");
-
-const sideMenu =
-    document.getElementById("side-menu");
-
-const sidebarOverlay =
-    document.getElementById("sidebar-overlay");
-
-
-function openSideMenu() {
-    sideMenu.classList.add("active");
-    sidebarOverlay.classList.add("active");
-    document.body.classList.add("menu-open");
-    menuBtn.setAttribute("aria-expanded", "true");
-    sideMenu.setAttribute("aria-hidden", "false");
-}
-
-
-function closeSideMenu() {
-    sideMenu.classList.remove("active");
-    sidebarOverlay.classList.remove("active");
-    document.body.classList.remove("menu-open");
-    menuBtn.setAttribute("aria-expanded", "false");
-    sideMenu.setAttribute("aria-hidden", "true");
-}
-
-
-menuBtn.addEventListener(
-    "click",
-    function () {
-        if (sideMenu.classList.contains("active")) {
-            closeSideMenu();
-        } else {
-            openSideMenu();
-        }
-    }
-);
-
-
-closeMenuBtn.addEventListener(
-    "click",
-    closeSideMenu
-);
-
-
-sidebarOverlay.addEventListener(
-    "click",
-    closeSideMenu
-);
-
-
-document.addEventListener(
-    "keydown",
-    function (e) {
-        if (e.key === "Escape") {
-            closeSideMenu();
-        }
-    }
-);
-
-
-/* =========================================================
-   LANGUAGE (UPDATED FOR FULL PAGE TRANSLATION)
-========================================================= */
-
-function toggleLanguage() {
-    const label = document.getElementById("languageLabel");
-    const isEnglish = label.textContent.trim() === "English";
-    
-    const targetLang = isEnglish ? "ar" : "en";
-    const targetDir = isEnglish ? "rtl" : "ltr";
-
-    label.textContent = isEnglish ? "العربية" : "English";
-    document.documentElement.lang = targetLang;
-    document.documentElement.dir = targetDir;
-
-    // Translate all elements with data-en and data-ar attributes
-    document.querySelectorAll("[data-en][data-ar]").forEach(function(el) {
-        const text = el.getAttribute(`data-${targetLang}`);
-        if (text) {
-            el.textContent = text;
-        }
-    });
-}
-
-
-/* =========================================================
-   SHARE WEBSITE
-========================================================= */
-
-async function shareWebsite() {
-
-    const shareData = {
-        title: "ATHAQ Dates Industry",
-        text: "Premium Saudi Dates",
-        url: window.location.origin
-    };
-
-    try {
-        if (navigator.share) {
-            await navigator.share(shareData);
-        } else if (navigator.clipboard) {
-            await navigator.clipboard.writeText(
-                window.location.href
-            );
-            alert("Website link copied.");
-        }
-    } catch (error) {
-        /* User cancelled sharing */
-    }
-}
-</script>
-<script>
-/* =========================================================
-   LANGUAGE
-   FIXED — NO SIDEBAR JUMP + MENU BUTTON WORKS
-========================================================= */
-
-function toggleLanguage() {
-
-    const label = document.getElementById("languageLabel");
-
-    if (!label) {
+      if (!label) {
         return;
-    }
-
-    /* Current language */
-    const isEnglish =
-        label.textContent.trim() === "English";
-
-    /* Target language */
-    const targetLang =
-        isEnglish ? "ar" : "en";
+      }
 
 
-    /*
-       Save current scroll position.
-       This prevents the page from jumping when
-       the language changes.
-    */
-    const scrollX = window.scrollX;
-    const scrollY = window.scrollY;
+      const isEnglish =
+        label.textContent.trim() ===
+        "English";
 
 
-    /*
-       Change language label
-    */
-    label.textContent =
-        isEnglish ? "العربية" : "English";
+      const targetLang =
+        isEnglish
+          ? "ar"
+          : "en";
 
 
-    /*
-       IMPORTANT:
-       Only change LANG.
+      const scrollX =
+        window.scrollX;
 
-       DO NOT change:
-       document.documentElement.dir
+      const scrollY =
+        window.scrollY;
 
-       This keeps the complete layout LTR,
-       so the sidebar stays on the RIGHT.
-    */
-    document.documentElement.lang =
+
+      label.textContent =
+        isEnglish
+          ? "العربية"
+          : "English";
+
+
+      document.documentElement.lang =
         targetLang;
 
 
-    /*
-       Translate all elements having:
-       data-en="..."
-       data-ar="..."
-    */
-    document
-        .querySelectorAll("[data-en][data-ar]")
+      document
+        .querySelectorAll(
+          "[data-en][data-ar]"
+        )
         .forEach(function (el) {
 
-            const text =
-                el.getAttribute("data-" + targetLang);
+          const text =
+            el.getAttribute(
+              "data-" + targetLang
+            );
 
-            if (text !== null) {
-                el.textContent = text;
-            }
+
+          if (
+            text !== null
+          ) {
+
+            el.textContent =
+              text;
+
+          }
 
         });
 
 
-    /*
-       Update Account information after translation.
-    */
-    if (typeof updateAccountUI === "function") {
+      if (
+        typeof updateAccountUI ===
+        "function"
+      ) {
+
         updateAccountUI();
+
+      }
+
+
+      requestAnimationFrame(
+        function () {
+
+          window.scrollTo(
+            scrollX,
+            scrollY
+          );
+
+        }
+      );
     }
 
 
-    /*
-       Restore scroll position after browser
-       finishes updating the text.
-    */
-    requestAnimationFrame(function () {
+    /* =========================================================
+       SHARE WEBSITE
+    ========================================================= */
 
-        window.scrollTo(
-            scrollX,
-            scrollY
-        );
+    async function shareWebsite() {
 
-    });
+      const shareData = {
 
-}
-</script>
+        title:
+          "ATHAQ Dates Industry",
+
+        text:
+          "Premium Saudi Dates",
+
+        url:
+          window.location.origin
+
+      };
+
+
+      try {
+
+        if (
+          navigator.share
+        ) {
+
+          await navigator.share(
+            shareData
+          );
+
+        }
+
+        else if (
+          navigator.clipboard
+        ) {
+
+          await navigator.clipboard.writeText(
+            window.location.href
+          );
+
+
+          alert(
+            "Website link copied."
+          );
+
+        }
+
+      }
+
+      catch (error) {
+
+        /* User cancelled sharing */
+
+      }
+    }
+
+
+    /* =========================================================
+       PAGE INITIALIZATION
+    ========================================================= */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+        updateAccountUI();
+
+        setCurrentPageNav();
+
+      }
+    );
+
+
+    window.addEventListener(
+      "pageshow",
+      function () {
+
+        updateAccountUI();
+
+        setCurrentPageNav();
+
+      }
+    );
+
+  </script>
+
 </body>
+
 </html>
