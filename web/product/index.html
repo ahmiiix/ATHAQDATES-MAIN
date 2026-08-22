@@ -1,19 +1,36 @@
 <!DOCTYPE html>
 <html class="scroll-smooth" dir="ltr" lang="en">
-<header
-    class="px-4 md:px-16 max-w-7xl mx-auto mb-12"
-    style="background-image: url('/database/harvest.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"
->
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-en="ATHAQ | Our Harvest Portfolio" data-ar="أثاق | محفظة حصادنا">ATHAQ | Our Harvest Portfolio</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title data-en="ATHAQ | Our Harvest Portfolio" data-ar="أثاق | محفظة حصادنا">
+    ATHAQ | Our Harvest Portfolio
+  </title>
+
+  <!-- Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  >
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../../supabase-config.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@600&family=Be+Vietnam+Pro:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
+    rel="stylesheet"
+  >
 
   <script>
     tailwind.config = {
@@ -24,12 +41,12 @@
             primary: "#004232",
             "primary-hover": "#002e23",
             secondary: "#3e6653",
-            surface: "#faf9f4",
-            "on-surface-variant": "#3f4944",
-            "outline-variant": "#bec9c3",
-            "secondary-container": "#c0edd4",
-            "on-secondary-container": "#446d59",
-            tertiary: "#735c00"
+            surface: "#f8f5ed",
+            ivory: "#fbfaf6",
+            gold: "#b68a3a",
+            "gold-light": "#d8bd7b",
+            "on-surface-variant": "#56635d",
+            "outline-variant": "#d7d2c5"
           },
           fontFamily: {
             body: ["Manrope", "sans-serif"],
@@ -41,20 +58,333 @@
   </script>
 
   <style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    /* =========================================================
+       GLOBAL
+    ========================================================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; overflow-x: hidden; }
-    body { -webkit-text-size-adjust: 100%; }
-    img { max-width: 100%; height: auto; display: block; }
+    html,
+    body {
+      width: 100%;
+      overflow-x: hidden;
+    }
 
+    html {
+      scrollbar-gutter: stable;
+    }
 
-    /* ================= PREMIUM TOAST NOTIFICATIONS ================= */
+    body {
+      background: #f8f5ed;
+      color: #18352d;
+      font-family: "Manrope", sans-serif;
+      -webkit-text-size-adjust: 100%;
+      direction: ltr !important;
+    }
+
+    html[dir="rtl"],
+    html[dir="ltr"] {
+      direction: ltr !important;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button,
+    a,
+    input {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    ::selection {
+      background: #004232;
+      color: white;
+    }
+
+    /* =========================================================
+       PREMIUM SCROLLBAR
+    ========================================================= */
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1eee5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 66, 50, 0.35);
+      border-radius: 999px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #004232;
+    }
+
+    /* =========================================================
+       NAVBAR
+    ========================================================= */
+
+    .luxury-nav {
+      height: 82px;
+      background: rgba(251, 250, 246, 0.82);
+      border-bottom: 1px solid rgba(0, 66, 50, 0.09);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      box-shadow: 0 8px 35px rgba(0, 38, 28, 0.04);
+    }
+
+    .nav-logo {
+      width: 205px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+      transition: transform 350ms cubic-bezier(.2,.8,.2,1);
+    }
+
+    .nav-logo:hover {
+      transform: scale(1.025);
+    }
+
+    .nav-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .nav-language {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 12px 5px 6px;
+      border: 1px solid rgba(0, 66, 50, 0.10);
+      border-radius: 999px;
+      background: rgba(255,255,255,.7);
+      transition: all 250ms ease;
+    }
+
+    .nav-language:hover {
+      background: white;
+      border-color: rgba(0, 66, 50, 0.2);
+      box-shadow: 0 10px 25px rgba(0, 66, 50, 0.08);
+    }
+
+    .nav-language-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #004232;
+      background: #edf5ef;
+    }
+
+    .menu-button {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 66, 50, 0.12);
+      background: rgba(255,255,255,.72);
+      color: #004232;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 250ms ease;
+    }
+
+    .menu-button:hover {
+      background: #004232;
+      color: white;
+      transform: rotate(4deg);
+      box-shadow: 0 12px 25px rgba(0,66,50,.18);
+    }
+
+    /* =========================================================
+       SIDEBAR
+    ========================================================= */
+
+    #sidebar-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.48);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+      z-index: 9998;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 300ms ease, visibility 300ms ease;
+    }
+
+    #sidebar-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #side-menu {
+      position: fixed;
+      top: 0;
+      right: 0 !important;
+      left: auto !important;
+      width: min(400px, 90vw);
+      height: 100dvh;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(251,250,246,.99) 0%,
+          rgba(244,241,232,.99) 100%
+        );
+      z-index: 9999;
+      transform: translateX(105%);
+      transition: transform 340ms cubic-bezier(.4,0,.2,1);
+      box-shadow: -22px 0 70px rgba(0,0,0,.2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    #side-menu.active {
+      transform: translateX(0);
+    }
+
+    html[dir="rtl"] #side-menu {
+      right: 0 !important;
+      left: auto !important;
+    }
+
+    html[dir="rtl"] #side-menu.active {
+      transform: translateX(0);
+    }
+
+    html[dir="rtl"] #side-menu:not(.active) {
+      transform: translateX(105%);
+    }
+
+    .sidebar-scroll {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0,66,50,.25) transparent;
+    }
+
+    .sidebar-link,
+    .sidebar-nav-link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 54px;
+      padding: 0 15px;
+      color: #3f4944;
+      border-radius: 15px;
+      text-decoration: none;
+      transition: all 220ms ease;
+    }
+
+    .sidebar-link:hover,
+    .sidebar-nav-link:hover {
+      background: rgba(192,237,212,.55);
+      color: #004232;
+      transform: translateX(4px);
+    }
+
+    .sidebar-link.active,
+    .sidebar-nav-link.active {
+      background: #004232;
+      color: white;
+      box-shadow: 0 12px 25px rgba(0,66,50,.16);
+    }
+
+    .sidebar-nav-icon,
+    .sidebar-link-icon {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,66,50,.07);
+      transition: all 200ms ease;
+    }
+
+    .sidebar-nav-link.active .sidebar-nav-icon,
+    .sidebar-link.active .sidebar-link-icon {
+      background: rgba(255,255,255,.14);
+    }
+
+    .sidebar-action {
+      min-height: 67px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 12px;
+      border-radius: 15px;
+      border: 1px solid rgba(190,201,195,.45);
+      background: rgba(255,255,255,.55);
+      transition: all 220ms ease;
+    }
+
+    .sidebar-action:hover {
+      transform: translateY(-2px);
+      background: white;
+      border-color: rgba(0,66,50,.18);
+      box-shadow: 0 10px 25px rgba(0,66,50,.07);
+    }
+
+    .sidebar-action-icon {
+      width: 43px;
+      height: 43px;
+      min-width: 43px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 13px;
+      background: rgba(0,66,50,.07);
+      color: #004232;
+    }
+
+    .counter-badge {
+      min-width: 22px;
+      height: 22px;
+      padding: 0 6px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #004232;
+      color: white;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    /* =========================================================
+       TOAST
+    ========================================================= */
+
     #athaqToastContainer {
       position: fixed;
-      top: 96px;
+      top: 98px;
       right: 24px;
       z-index: 20000;
       display: flex;
@@ -62,6 +392,7 @@
       gap: 12px;
       pointer-events: none;
     }
+
     .athaq-toast {
       width: min(380px, calc(100vw - 32px));
       display: flex;
@@ -70,2072 +401,3562 @@
       padding: 14px 16px;
       background: rgba(255,255,255,.97);
       border: 1px solid rgba(0,66,50,.12);
-      border-radius: 16px;
-      box-shadow: 0 18px 45px rgba(0,0,0,.14), 0 4px 14px rgba(0,66,50,.08);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      border-radius: 17px;
+      box-shadow:
+        0 22px 55px rgba(0,0,0,.15),
+        0 4px 14px rgba(0,66,50,.08);
+      backdrop-filter: blur(15px);
       opacity: 0;
       transform: translateX(30px) scale(.97);
       transition: opacity .3s ease, transform .3s cubic-bezier(.2,.8,.2,1);
       overflow: hidden;
     }
-    .athaq-toast.show { opacity: 1; transform: translateX(0) scale(1); }
-    .athaq-toast.hide { opacity: 0; transform: translateX(30px) scale(.97); }
-    .athaq-toast-icon {
-      width: 42px; height: 42px; min-width: 42px;
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      background: #e8f7ef; color: #004232;
-      font-size: 16px;
+
+    .athaq-toast.show {
+      opacity: 1;
+      transform: translateX(0) scale(1);
     }
-    .athaq-toast-content { min-width: 0; flex: 1; }
+
+    .athaq-toast.hide {
+      opacity: 0;
+      transform: translateX(30px) scale(.97);
+    }
+
+    .athaq-toast-icon {
+      width: 43px;
+      height: 43px;
+      min-width: 43px;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e8f7ef;
+      color: #004232;
+    }
+
     .athaq-toast-title {
-      color: #004232; font-size: 12px; font-weight: 800;
-      letter-spacing: .04em; text-transform: uppercase;
+      color: #004232;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
       margin-bottom: 3px;
     }
-    .athaq-toast-message { color: #56635d; font-size: 12px; line-height: 1.45; }
+
+    .athaq-toast-message {
+      color: #56635d;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
     .athaq-toast-close {
-      width: 28px; height: 28px; min-width: 28px; border: 0;
-      background: transparent; color: #7b8781; cursor: pointer;
-      border-radius: 8px; display: flex; align-items: center; justify-content: center;
-    }
-    .athaq-toast-close:hover { background: #f3f5f3; color: #004232; }
-    @media (max-width: 640px) {
-      #athaqToastContainer { top: 88px; right: 16px; left: 16px; }
-      .athaq-toast { width: 100%; }
-    }
-
-    /* =====================================================
-       PREMIUM SIDEBAR
-    ===================================================== */
-
-    #sidebar-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.48);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        z-index: 9998;
-        opacity: 0;
-        visibility: hidden;
-        transition:
-            opacity 300ms ease,
-            visibility 300ms ease;
+      width: 28px;
+      height: 28px;
+      border: 0;
+      background: transparent;
+      color: #7b8781;
+      cursor: pointer;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    #sidebar-overlay.active {
-        opacity: 1;
-        visibility: visible;
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero-shell {
+      position: relative;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0;
     }
 
-/* =====================================================
-   PREMIUM RIGHT SIDEBAR
-===================================================== */
+    /*
+      OUR HARVEST PORTFOLIO HERO
+      Matches the wide, full-width factory-image box from the reference:
+      no outer card margin, no rounded corners, full-width image,
+      teal photographic overlay and left-aligned content.
+    */
 
-#side-menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: auto;
+    .hero-card {
+      position: relative;
+      width: 100%;
+      min-height: 650px;
+      border-radius: 0;
+      overflow: hidden;
 
-    width: min(390px, 88vw);
-    height: 100dvh;
-
-    background:
+      background-image:
         linear-gradient(
-            180deg,
-            rgba(250, 249, 244, 0.99) 0%,
-            rgba(245, 244, 239, 0.99) 100%
+          90deg,
+          rgba(0, 72, 60, .58) 0%,
+          rgba(0, 72, 60, .44) 48%,
+          rgba(0, 72, 60, .28) 100%
+        ),
+        url("/database/background.png");
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+      box-shadow: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      min-height: 650px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 64px 84px;
+      max-width: 900px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #dbc28b;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .24em;
+      margin-bottom: 20px;
+    }
+
+    .hero-eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: #d8bd7b;
+    }
+
+    .hero-title {
+      color: white;
+      font-family: "Be Vietnam Pro", sans-serif;
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: .98;
+      letter-spacing: -.045em;
+      font-weight: 800;
+      margin-bottom: 24px;
+    }
+
+    .hero-description {
+      max-width: 620px;
+      color: rgba(255,255,255,.78);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 34px;
+    }
+
+    .hero-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 13px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.07);
+      color: rgba(255,255,255,.88);
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-meta-item i {
+      color: #d8bd7b;
+    }
+
+    /* =========================================================
+       SECTION HEADING
+    ========================================================= */
+
+    .portfolio-section {
+      position: relative;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 95px 24px 45px;
+
+      background-image: url("/database/backgrounf.png");
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+      border-radius: 32px;
+      overflow: hidden;
+    }
+
+    .section-kicker {
+      color: #a57b31;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      margin-bottom: 11px;
+    }
+
+    .section-title {
+      color: #004232;
+      font-family: "Be Vietnam Pro", sans-serif;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+      font-weight: 800;
+    }
+
+    .section-description {
+      color: #69756f;
+      font-size: 13px;
+      line-height: 1.8;
+      max-width: 610px;
+      margin-top: 14px;
+    }
+
+    .portfolio-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 30px;
+      margin-bottom: 35px;
+    }
+
+    /* =========================================================
+       FILTER / SORT
+    ========================================================= */
+
+    .control-button {
+      height: 46px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 0 17px;
+      border: 1px solid rgba(0,66,50,.13);
+      border-radius: 999px;
+      background: rgba(255,255,255,.65);
+      color: #385149;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      transition: all 220ms ease;
+    }
+
+    .control-button:hover {
+      background: #004232;
+      border-color: #004232;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,66,50,.15);
+    }
+
+    .control-dropdown {
+      position: absolute;
+      top: 55px;
+      background: rgba(255,255,255,.98);
+      border: 1px solid rgba(0,66,50,.10);
+      border-radius: 16px;
+      padding: 7px;
+      box-shadow: 0 20px 45px rgba(0,0,0,.13);
+      z-index: 80;
+      min-width: 185px;
+      backdrop-filter: blur(15px);
+    }
+
+    .control-dropdown div {
+      padding: 10px 12px;
+      border-radius: 10px;
+      color: #53615b;
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 700;
+      transition: all 180ms ease;
+    }
+
+    .control-dropdown div:hover {
+      background: #edf5ef;
+      color: #004232;
+    }
+
+    /* =========================================================
+       PRODUCT GRID
+    ========================================================= */
+
+    #productGrid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 25px;
+    }
+
+    /* =========================================================
+       PREMIUM PRODUCT CARD
+    ========================================================= */
+
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      background: #fffdf8;
+      border: 1px solid rgba(0,66,50,.09);
+      border-radius: 25px;
+      box-shadow: 0 12px 35px rgba(0,45,34,.055);
+      transition:
+        transform 420ms cubic-bezier(.2,.8,.2,1),
+        box-shadow 420ms ease,
+        border-color 300ms ease;
+      animation: productReveal .65s both;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(182,138,58,.28);
+      box-shadow:
+        0 30px 60px rgba(0,45,34,.12),
+        0 5px 20px rgba(182,138,58,.06);
+    }
+
+    @keyframes productReveal {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .product-image-wrap {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: #eee9dc;
+    }
+
+    .product-image-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0,0,0,0) 58%,
+          rgba(0,35,26,.13) 100%
         );
-
-    z-index: 9999;
-
-    /* CLOSED = outside RIGHT */
-    transform: translateX(105%);
-
-    transition:
-        transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
-
-    box-shadow:
-        -18px 0 55px rgba(0, 0, 0, 0.18);
-
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-
-    will-change: transform;
-}
-
-/* OPEN = RIGHT SIDE */
-#side-menu.active {
-    transform: translateX(0);
-}
-
-/* RTL Support overrides */
-html[dir="rtl"] #side-menu {
-    right: auto;
-    left: 0;
-    transform: translateX(-105%);
-    box-shadow: 18px 0 55px rgba(0, 0, 0, 0.18);
-}
-html[dir="rtl"] #side-menu.active {
-    transform: translateX(0);
-}
-
-    .sidebar-scroll {
-        flex: 1;
-        overflow-y: auto;
-        overflow-x: hidden;
-        scrollbar-width: thin;
-        scrollbar-color: rgba(0, 66, 50, 0.25) transparent;
+      pointer-events: none;
     }
 
-    .sidebar-scroll::-webkit-scrollbar {
-        width: 4px;
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 700ms cubic-bezier(.2,.8,.2,1);
     }
 
-    .sidebar-scroll::-webkit-scrollbar-track {
-        background: transparent;
+    .product-card:hover .product-image {
+      transform: scale(1.07);
     }
 
-    .sidebar-scroll::-webkit-scrollbar-thumb {
-        background: rgba(0, 66, 50, 0.25);
-        border-radius: 20px;
+    .product-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 4;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(0,66,50,.92);
+      color: white;
+      font-size: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,.12);
     }
 
-    .sidebar-link {
-        position: relative;
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        min-height: 52px;
-        padding: 0 16px;
-        color: #3f4944;
-        border-radius: 14px;
-        transition:
-            background 200ms ease,
-            color 200ms ease,
-            transform 200ms ease;
+    .product-badge.limited {
+      background: rgba(166,121,42,.95);
     }
 
-    .sidebar-link:hover {
-        background: rgba(192, 237, 212, 0.55);
-        color: #004232;
-        transform: translateX(4px);
-    }
-    
-    html[dir="rtl"] .sidebar-link:hover {
-        transform: translateX(-4px);
+    .product-badge::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #d8bd7b;
     }
 
-    .sidebar-link.active {
-        background: #004232;
-        color: white;
-        box-shadow: 0 8px 20px rgba(0, 66, 50, 0.16);
+    .wishlist-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      z-index: 5;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255,255,255,.5);
+      border-radius: 50%;
+      background: rgba(255,255,255,.88);
+      color: #40524b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,.10);
+      backdrop-filter: blur(9px);
+      transition: all 220ms ease;
     }
 
-    .sidebar-link.active:hover {
-        background: #00513d;
-        color: white;
+    .wishlist-btn:hover {
+      background: white;
+      color: #b04747;
+      transform: scale(1.08);
     }
 
-    /* Sidebar main navigation — matches the reference menu */
-    .sidebar-nav-link {
-        position: relative;
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        min-height: 52px;
-        padding: 0 16px;
-        color: #3f4944;
-        border-radius: 14px;
-        text-decoration: none;
-        transition:
-            background 200ms ease,
-            color 200ms ease,
-            transform 200ms ease;
+    .wishlist-btn.bg-rose-50 {
+      background: #fff0f0 !important;
+      color: #b04747 !important;
     }
 
-    .sidebar-nav-link:hover {
-        background: rgba(192, 237, 212, 0.55);
-        color: #004232;
-        transform: translateX(4px);
-    }
-    
-    html[dir="rtl"] .sidebar-nav-link:hover {
-        transform: translateX(-4px);
+    .product-content {
+      padding: 24px;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
     }
 
-    .sidebar-nav-link.active {
-        background: #004232;
-        color: white;
-        box-shadow: 0 8px 20px rgba(0, 66, 50, 0.16);
+    .product-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 9px;
     }
 
-    .sidebar-nav-link.active:hover {
-        background: #00513d;
-        color: white;
+    .product-title {
+      color: #004232;
+      font-family: "Be Vietnam Pro", sans-serif;
+      font-size: 21px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -.025em;
     }
 
-    .sidebar-nav-icon {
-        width: 38px;
-        height: 38px;
-        min-width: 38px;
-        border-radius: 11px;
-        display: flex;
-        align-items: center;
+    .product-price {
+      color: #a27730;
+      font-size: 17px;
+      line-height: 1.1;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .product-description {
+      color: #7a847f;
+      font-size: 11px;
+      line-height: 1.7;
+      min-height: 38px;
+      margin-bottom: 20px;
+    }
+
+    .product-divider {
+      height: 1px;
+      background: rgba(0,66,50,.08);
+      margin-bottom: 15px;
+    }
+
+    .product-actions {
+      display: grid;
+      grid-template-columns: 1fr 48px;
+      gap: 9px;
+      margin-top: auto;
+    }
+
+    .buy-button {
+      min-height: 48px;
+      border-radius: 13px;
+      background: #004232;
+      color: white;
+      border: 1px solid #004232;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      box-shadow: 0 9px 22px rgba(0,66,50,.14);
+      transition: all 220ms ease;
+    }
+
+    .buy-button:hover {
+      background: #002e23;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(0,66,50,.20);
+    }
+
+    .cart-button {
+      min-height: 48px;
+      border-radius: 13px;
+      border: 1px solid rgba(0,66,50,.14);
+      background: #f8f5ed;
+      color: #004232;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 220ms ease;
+    }
+
+    .cart-button:hover {
+      background: #004232;
+      color: white;
+      border-color: #004232;
+      transform: translateY(-2px);
+    }
+
+    /* =========================================================
+       LOADING
+    ========================================================= */
+
+    .loading-box {
+      grid-column: 1 / -1;
+      min-height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 15px;
+      color: #68756f;
+    }
+
+    .loading-ring {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid rgba(0,66,50,.12);
+      border-top-color: #004232;
+      animation: spin 800ms linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================================================
+       BULK SECTION
+    ========================================================= */
+
+    .bulk-section {
+      max-width: 1440px;
+      margin: 105px auto 0;
+      padding: 0 24px;
+    }
+
+    .bulk-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 30px;
+      padding: 70px 30px;
+      background:
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(216,189,123,.17),
+          transparent 25%
+        ),
+        linear-gradient(135deg,#003a2c,#00513e);
+      border: 1px solid rgba(216,189,123,.25);
+      box-shadow: 0 25px 70px rgba(0,55,41,.16);
+    }
+
+    .bulk-card::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border: 1px solid rgba(216,189,123,.14);
+      right: -80px;
+      bottom: -130px;
+    }
+
+    .bulk-kicker {
+      color: #d8bd7b;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .23em;
+      text-transform: uppercase;
+      margin-bottom: 13px;
+    }
+
+    .bulk-title {
+      color: white;
+      font-family: "Be Vietnam Pro", sans-serif;
+      font-size: clamp(28px,4vw,45px);
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -.035em;
+      margin-bottom: 15px;
+    }
+
+    .bulk-description {
+      color: rgba(255,255,255,.68);
+      font-size: 12px;
+      line-height: 1.8;
+      max-width: 650px;
+      margin: 0 auto 30px;
+    }
+
+    .bulk-form {
+      display: flex;
+      justify-content: center;
+      gap: 9px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .bulk-input {
+      width: min(370px,100%);
+      height: 49px;
+      padding: 0 17px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.1);
+      color: white;
+      outline: none;
+      font-size: 11px;
+      backdrop-filter: blur(8px);
+    }
+
+    .bulk-input::placeholder {
+      color: rgba(255,255,255,.48);
+    }
+
+    .bulk-input:focus {
+      border-color: rgba(216,189,123,.7);
+      box-shadow: 0 0 0 3px rgba(216,189,123,.08);
+    }
+
+    .bulk-button {
+      height: 49px;
+      padding: 0 22px;
+      border-radius: 12px;
+      background: #d8bd7b;
+      color: #17372d;
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      border: 0;
+      transition: all 220ms ease;
+    }
+
+    .bulk-button:hover {
+      background: #ead49c;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(0,0,0,.15);
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .luxury-footer {
+      margin-top: 105px;
+      background: #ebe8de;
+      border-top: 1px solid rgba(0,66,50,.08);
+    }
+
+    .footer-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 65px 24px 35px;
+    }
+
+    .footer-brand {
+      color: #004232;
+      font-family: "Be Vietnam Pro", sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    .footer-description {
+      max-width: 300px;
+      color: #69746f;
+      font-size: 11px;
+      line-height: 1.8;
+      margin-top: 10px;
+    }
+
+    .footer-heading {
+      color: #004232;
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      margin-bottom: 15px;
+    }
+
+    .footer-link {
+      color: #69746f;
+      font-size: 10px;
+      transition: color 180ms ease;
+    }
+
+    .footer-link:hover {
+      color: #a27730;
+    }
+
+    /* =========================================================
+       SEARCH MODAL
+    ========================================================= */
+
+    #searchModal {
+      background: rgba(0,20,15,.55);
+      backdrop-filter: blur(10px);
+    }
+
+    .search-box {
+      width: min(560px,100%);
+      background: #fbfaf6;
+      border: 1px solid rgba(216,189,123,.35);
+      border-radius: 24px;
+      padding: 27px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.2);
+    }
+
+    .search-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      height: 52px;
+      padding: 0 15px;
+      border: 1px solid rgba(0,66,50,.13);
+      border-radius: 14px;
+      background: white;
+    }
+
+    .search-input-wrap input {
+      width: 100%;
+      outline: none;
+      border: 0;
+      background: transparent;
+      color: #18352d;
+      font-size: 12px;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 1024px) {
+      #productGrid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+      }
+
+      .hero-content {
+        padding: 50px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .luxury-nav {
+        height: 74px;
+      }
+
+      .nav-logo {
+        width: 160px;
+        height: 62px;
+      }
+
+      .hero-shell {
+        padding: 0;
+      }
+
+      .hero-card {
+        min-height: 560px;
+        border-radius: 0;
+        background-position: 62% center;
+      }
+
+      .hero-content {
+        min-height: 560px;
+        padding: 38px 27px;
+        justify-content: flex-end;
+
+        /*
+          Light readability layer only on mobile.
+          This does NOT change the actual background image.
+        */
+        background:
+          linear-gradient(
+            180deg,
+            rgba(0,36,27,.08) 10%,
+            rgba(0,36,27,.78) 78%
+          );
+      }
+
+      .hero-title {
+        font-size: 43px;
+      }
+
+      .portfolio-section,
+      .bulk-section {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .portfolio-section {
+        padding-top: 70px;
+      }
+
+      .portfolio-top {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .portfolio-controls {
+        width: 100%;
+      }
+
+      #productGrid {
+        grid-template-columns: 1fr;
+        gap: 19px;
+      }
+
+      .bulk-card {
+        padding: 52px 22px;
+        border-radius: 24px;
+      }
+
+      .bulk-form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .bulk-input {
+        width: 100%;
+      }
+
+      .bulk-button {
+        width: 100%;
+      }
+
+      .footer-inner {
+        padding: 50px 20px 30px;
+      }
+
+      #athaqToastContainer {
+        top: 88px;
+        left: 15px;
+        right: 15px;
+      }
+
+      .athaq-toast {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-language {
+        padding-right: 7px;
+      }
+
+      .nav-language .language-copy {
+        display: none;
+      }
+
+      .nav-language {
+        width: 43px;
+        padding: 3px;
         justify-content: center;
-        background: rgba(0, 66, 50, 0.07);
-        transition: 200ms ease;
-    }
+      }
 
-    .sidebar-nav-link.active .sidebar-nav-icon {
-        background: rgba(255, 255, 255, 0.14);
-    }
+      .nav-language-icon {
+        width: 35px;
+        height: 35px;
+      }
 
-    .sidebar-link-icon {
-        width: 38px;
-        height: 38px;
-        min-width: 38px;
-        border-radius: 11px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(0, 66, 50, 0.07);
-        transition: 200ms ease;
-    }
+      .hero-title {
+        font-size: 39px;
+      }
 
-    .sidebar-link.active .sidebar-link-icon {
-        background: rgba(255, 255, 255, 0.14);
-    }
+      .hero-description {
+        font-size: 12px;
+      }
 
-    .sidebar-action {
-        min-height: 64px;
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        padding: 0 14px;
-        border-radius: 14px;
-        border: 1px solid rgba(190, 201, 195, 0.45);
-        background: rgba(255, 255, 255, 0.55);
-        transition:
-            transform 200ms ease,
-            background 200ms ease,
-            border-color 200ms ease;
-    }
+      .hero-meta-item {
+        font-size: 8px;
+      }
 
-    .sidebar-action:hover {
-        transform: translateY(-2px);
-        background: white;
-        border-color: rgba(0, 66, 50, 0.18);
-    }
+      .product-content {
+        padding: 20px;
+      }
 
-    .sidebar-action-icon {
-        width: 42px;
-        height: 42px;
-        min-width: 42px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 12px;
-        background: rgba(0, 66, 50, 0.07);
-        color: #004232;
+      .product-title {
+        font-size: 19px;
+      }
     }
-
-    .counter-badge {
-        min-width: 21px;
-        height: 21px;
-        padding: 0 6px;
-        border-radius: 999px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: #004232;
-        color: white;
-        font-size: 10px;
-        line-height: 1;
-        font-weight: 800;
-    }
-
-    .sidebar-divider {
-        height: 1px;
-        background: rgba(190, 201, 195, 0.45);
-    }
-
-    .menu-toggle {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .menu-toggle i {
-        transition:
-            transform 250ms ease,
-            opacity 200ms ease;
-    }
-
-    .sidebar-logo-mark {
-        width: 44px;
-        height: 44px;
-        border-radius: 13px;
-        background: #004232;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 8px 20px rgba(0, 66, 50, 0.20);
-    }
-
-  @media (max-width: 480px) {
-    #side-menu {
-        width: 88vw;
-        max-width: 360px;
-    }
-}
-
-    /* Prevent page movement while sidebar is open */
-    body.menu-open {
-        overflow: hidden;
-    }
-
-    /* =====================================================
-       LANGUAGE SWITCH — KEEP PAGE POSITION 100% STABLE
-       ===================================================== */
-
-    html {
-        scrollbar-gutter: stable both-edges;
-        overflow-x: hidden;
-    }
-
-    /* Never let changing EN ↔ AR reverse the complete page layout.
-       Arabic text is translated, but the page/navbar/sidebar geometry
-       stays exactly where it was. */
-    html[dir="rtl"] {
-        direction: ltr !important;
-    }
-
-    html[dir="ltr"] {
-        direction: ltr !important;
-    }
-
-    body {
-        direction: ltr !important;
-        overflow-x: hidden;
-    }
-
-    /* Keep the premium sidebar on the RIGHT in both languages.
-       Do NOT move it to the left when Arabic is selected. */
-    #side-menu {
-        right: 0 !important;
-        left: auto !important;
-    }
-
-    html[dir="rtl"] #side-menu,
-    html[dir="rtl"] #side-menu.active {
-        right: 0 !important;
-        left: auto !important;
-        transform: translateX(0);
-    }
-
-    html[dir="rtl"] #side-menu:not(.active) {
-        transform: translateX(105%) !important;
-    }
-
-    /* Keep sidebar text direction natural for Arabic without moving
-       the sidebar itself. */
-    #side-menu .sidebar-link,
-    #side-menu .sidebar-nav-link,
-    #side-menu .sidebar-action,
-    #side-menu .sidebar-scroll {
-        direction: rtl;
-    }
-
-    html[dir="ltr"] #side-menu .sidebar-link,
-    html[dir="ltr"] #side-menu .sidebar-nav-link,
-    html[dir="ltr"] #side-menu .sidebar-action,
-    html[dir="ltr"] #side-menu .sidebar-scroll {
-        direction: ltr;
-    }
-</style>
+  </style>
 </head>
-<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+<body>
+
+  <!-- =======================================================
+       TOAST
+  ======================================================== -->
 
   <div id="athaqToastContainer" aria-live="polite" aria-atomic="true"></div>
 
-<!-- =========================================================
-     PREMIUM HEADER / NAVBAR
-========================================================= -->
+  <!-- =======================================================
+       NAVBAR
+  ======================================================== -->
 
-<!-- HEADER -->
-<nav class="fixed top-0 left-0 w-full z-[100] bg-white/85 backdrop-blur-xl border-b border-[#bec9c3]/20" style="height:80px;">
+  <nav class="luxury-nav fixed top-0 left-0 w-full z-[100]">
+    <div
+      dir="ltr"
+      class="w-full h-full px-5 sm:px-7 md:px-10 lg:px-16 flex items-center justify-between"
+    >
 
-  <div dir="ltr" class="w-full h-20 px-5 sm:px-6 md:px-10 lg:px-16 flex items-center justify-between">
-
-    <a href="/index.html" class="flex items-center group" aria-label="ATHAQ Home">
-      
-<!-- COMPLETE ATHAQ LOGO -->
-<div class="w-[200px] h-[70px] flex items-center justify-center overflow-visible group-hover:scale-[1.03] transition-transform duration-300">
-  <img 
-    src="/database/logo.png"
-    alt="ATHAQ Industrial Factory"
-    class="w-full h-full object-contain"
-  >
-</div>
-
-</a>
+      <a href="/index.html" aria-label="ATHAQ Home">
+        <div class="nav-logo">
+          <img
+            src="/database/logo.png"
+            alt="ATHAQ Industrial Factory"
+          >
+        </div>
+      </a>
 
       <div class="flex items-center gap-3">
-        <button type="button" onclick="toggleLanguage()" class="sidebar-action text-left !min-h-[46px] !py-1 !px-2.5">
-            <span class="sidebar-action-icon !w-8 !h-8 !min-w-[32px] !rounded-lg text-xs"><i class="fa-solid fa-globe"></i></span>
-            <span class="min-w-0 pr-1">
-                <span class="block text-[11px] font-bold text-[#004232]" data-en="Language" data-ar="اللغة">Language</span>
-                <span id="languageLabel" class="block text-[9px] text-[#3f4944] mt-0.5">English</span>
+
+        <button
+          type="button"
+          onclick="toggleLanguage()"
+          class="nav-language"
+        >
+          <span class="nav-language-icon">
+            <i class="fa-solid fa-globe text-xs"></i>
+          </span>
+
+          <span class="language-copy min-w-0 text-left">
+            <span
+              class="block text-[10px] font-bold text-[#004232]"
+              data-en="Language"
+              data-ar="اللغة"
+            >
+              Language
             </span>
+
+            <span
+              id="languageLabel"
+              class="block text-[9px] text-[#69746f] mt-0.5"
+            >
+              English
+            </span>
+          </span>
         </button>
 
-        <button id="menu-btn" type="button"
-          class="w-10 h-10 rounded-full border border-[#bec9c3]/45 bg-white/70 backdrop-blur-sm flex items-center justify-center text-[#004232] hover:bg-white hover:border-[#004232]/20 hover:shadow-sm transition-all focus:outline-none"
-          aria-label="Open Menu" aria-controls="side-menu" aria-expanded="false">
+        <button
+          id="menu-btn"
+          type="button"
+          class="menu-button"
+          aria-label="Open Menu"
+          aria-controls="side-menu"
+          aria-expanded="false"
+        >
           <i class="fa-solid fa-bars text-sm"></i>
-        </button> 
+        </button>
+
       </div>
-      
     </div>
   </nav>
 
+  <!-- =======================================================
+       SIDEBAR OVERLAY
+  ======================================================== -->
 
-<!-- =========================================================
-     DARK BLUR OVERLAY
-========================================================= -->
+  <div id="sidebar-overlay"></div>
 
-<div id="sidebar-overlay"
-     class="fixed inset-0 bg-black/40 backdrop-blur-[2px] z-[150]
-            opacity-0 invisible transition-all duration-300">
-</div>
+  <!-- =======================================================
+       SIDEBAR
+  ======================================================== -->
 
-
-<!-- =========================================================
-     RIGHT SLIDE SIDEBAR — REFERENCE MENU
-========================================================= -->
-
-<aside id="side-menu"
-       aria-hidden="true"
-       aria-label="Main Navigation"
-       class="fixed top-0 right-0 h-full w-[340px] max-w-[90vw] bg-[#faf9f4] z-[200] shadow-2xl translate-x-full transition-transform duration-300 ease-out flex flex-col">
-
-    <!-- ================= SIDEBAR TOP ================= -->
+  <aside
+    id="side-menu"
+    aria-hidden="true"
+    aria-label="Main Navigation"
+  >
 
     <div class="px-5 pt-5 pb-4">
+      <div class="flex items-center justify-between">
 
-        <div class="flex items-center justify-between">
+        <a
+          href="/index.html"
+          onclick="closeSideMenu()"
+          class="flex items-center gap-3"
+        >
+          <img
+            src="/database/logo(2).png"
+            alt="ATHAQ"
+            class="w-11 h-11 object-contain scale-125"
+          >
 
-            <!-- LOGO -->
+          <div>
+            <div
+              class="text-[#004232] font-bold tracking-[0.16em] text-sm"
+              data-en="ATHAQ DATES"
+              data-ar="تمور أثاق"
+            >
+              ATHAQ DATES
+            </div>
 
-            <a href="/index.html"
-               onclick="closeSideMenu()"
-               class="flex items-center gap-3">
+            <div
+              class="text-[9px] text-[#3f4944] uppercase tracking-[0.22em] mt-1"
+              data-en="Industrial Factory"
+              data-ar="المصنع الصناعي"
+            >
+              Industrial Factory
+            </div>
+          </div>
+        </a>
 
-              <img 
-  src="/database/logo(2).png"
-  alt="ATHAQ"
-  class="w-10 h-10 object-contain scale-125"
->
+        <button
+          id="close-menu"
+          type="button"
+          aria-label="Close Menu"
+          class="w-10 h-10 rounded-full border border-[#bec9c3]/50 bg-white flex items-center justify-center text-[#004232] hover:bg-[#e9e8e3] transition-all"
+        >
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
 
-                <div>
-
-                    <div class="text-[#004232] font-bold tracking-[0.16em] text-sm" data-en="ATHAQ DATES" data-ar="تمور أثاق">
-
-                        ATHAQ DATES
-
-                    </div>
-
-                    <div class="text-[9px] text-[#3f4944] uppercase tracking-[0.22em] mt-1" data-en="Industrial Factory" data-ar="المصنع الصناعي">
-
-                        Industrial Factory
-
-                    </div>
-
-                </div>
-
-            </a>
-
-
-            <!-- CLOSE BUTTON -->
-
-            <button id="close-menu"
-                    type="button"
-                    aria-label="Close Menu"
-                    class="w-10 h-10 rounded-full
-                           border border-[#bec9c3]/50
-                           bg-white
-                           flex items-center justify-center
-                           text-[#004232]
-                           hover:bg-[#e9e8e3]
-                           transition-all duration-200">
-
-                <i class="fa-solid fa-xmark text-lg"></i>
-
-            </button>
-
-        </div>
-
+      </div>
     </div>
-
 
     <div class="h-px bg-[#bec9c3]/30 mx-5"></div>
 
+    <div class="sidebar-scroll px-5 py-5">
 
-    <!-- ================= SIDEBAR CONTENT ================= -->
+      <div class="mb-7">
 
-    <div class="flex-1 overflow-y-auto px-5 py-5">
+        <p
+          class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1"
+          data-en="Quick Access"
+          data-ar="الوصول السريع"
+        >
+          Quick Access
+        </p>
 
+        <div class="grid grid-cols-2 gap-3">
 
-        <!-- ================= QUICK ACCESS ================= -->
+          <a
+            href="/web/product/wishlist.html"
+            onclick="closeSideMenu()"
+            class="sidebar-action"
+          >
+            <span class="sidebar-action-icon">
+              <i class="fa-regular fa-heart"></i>
+            </span>
 
-        <div class="mb-7">
+            <span class="min-w-0 flex-1">
+              <span
+                class="block text-xs font-bold text-[#004232]"
+                data-en="Wishlist"
+                data-ar="المفضلة"
+              >
+                Wishlist
+              </span>
 
-            <p class="text-[10px] font-bold uppercase
-                      tracking-[0.18em]
-                      text-[#3f4944]/70 mb-3 px-1" data-en="Quick Access" data-ar="الوصول السريع">
+              <span
+                class="block text-[10px] text-[#3f4944] mt-1"
+                data-en="Saved items"
+                data-ar="العناصر المحفوظة"
+              >
+                Saved items
+              </span>
+            </span>
 
-                Quick Access
+            <span id="sidebarWishlistCount" class="counter-badge">
+              0
+            </span>
+          </a>
 
-            </p>
+          <a
+            href="/ordercheckout/checkout.html"
+            onclick="closeSideMenu()"
+            class="sidebar-action"
+          >
+            <span class="sidebar-action-icon">
+              <i class="fa-solid fa-bag-shopping"></i>
+            </span>
 
+            <span class="min-w-0 flex-1">
+              <span
+                class="block text-xs font-bold text-[#004232]"
+                data-en="Cart"
+                data-ar="السلة"
+              >
+                Cart
+              </span>
 
-            <div class="grid grid-cols-2 gap-3">
+              <span
+                class="block text-[10px] text-[#3f4944] mt-1"
+                data-en="Your items"
+                data-ar="عناصرك"
+              >
+                Your items
+              </span>
+            </span>
 
+            <span id="sidebarCartCount" class="counter-badge">
+              0
+            </span>
+          </a>
 
-         
+          <button
+            type="button"
+            onclick="shareWebsite()"
+            class="sidebar-action text-left"
+          >
+            <span class="sidebar-action-icon">
+              <i class="fa-solid fa-share-nodes"></i>
+            </span>
 
+            <span class="min-w-0">
+              <span
+                class="block text-xs font-bold text-[#004232]"
+                data-en="Share"
+                data-ar="مشاركة"
+              >
+                Share
+              </span>
 
-
-
-                <!-- WISHLIST -->
-
-                <a href="/web/product/wishlist.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-action">
-
-                    <span class="sidebar-action-icon">
-                        <i class="fa-regular fa-heart"></i>
-                    </span>
-
-                    <span class="min-w-0 flex-1">
-
-                        <span class="block text-xs font-bold text-[#004232]" data-en="Wishlist" data-ar="المفضلة">
-                            Wishlist
-                        </span>
-
-                        <span class="block text-[10px] text-[#3f4944] mt-1" data-en="Saved items" data-ar="العناصر المحفوظة">
-
-                            Saved items
-
-                        </span>
-
-                    </span>
-
-                    <span id="sidebarWishlistCount"
-                          class="counter-badge">
-
-                        0
-
-                    </span>
-
-                </a>
-
-
-                <!-- CART -->
-
-                <a href="/ordercheckout/checkout.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-action">
-
-                    <span class="sidebar-action-icon">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                    </span>
-
-                    <span class="min-w-0 flex-1">
-
-                        <span class="block text-xs font-bold text-[#004232]" data-en="Cart" data-ar="السلة">
-                            Cart
-                        </span>
-
-                        <span class="block text-[10px] text-[#3f4944] mt-1" data-en="Your items" data-ar="عناصرك">
-
-                            Your items
-
-                        </span>
-
-                    </span>
-
-                    <span id="sidebarCartCount"
-                          class="counter-badge">
-
-                        0
-
-                    </span>
-
-                </a>
-
-
-                <!-- SHARE -->
-
-                <button type="button"
-                        onclick="shareWebsite()"
-                        class="sidebar-action text-left">
-
-                    <span class="sidebar-action-icon">
-                        <i class="fa-solid fa-share-nodes"></i>
-                    </span>
-
-                    <span class="min-w-0">
-
-                        <span class="block text-xs font-bold text-[#004232]" data-en="Share" data-ar="مشاركة">
-                            Share
-                        </span>
-
-                        <span class="block text-[10px] text-[#3f4944] mt-1" data-en="Share website" data-ar="مشاركة الموقع">
-
-                            Share website
-
-                        </span>
-
-                    </span>
-
-                </button>
-
-            </div>
+              <span
+                class="block text-[10px] text-[#3f4944] mt-1"
+                data-en="Share website"
+                data-ar="مشاركة الموقع"
+              >
+                Share website
+              </span>
+            </span>
+          </button>
 
         </div>
+      </div>
 
+      <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
 
-        <!-- ================= DIVIDER ================= -->
+      <div class="mb-7">
 
-        <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
+        <p
+          class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1"
+          data-en="Navigation"
+          data-ar="التنقل"
+        >
+          Navigation
+        </p>
 
+        <div class="space-y-2">
 
-        <!-- ================= MAIN NAVIGATION ================= -->
+          <a
+            href="/index.html"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link"
+          >
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-house"></i>
+            </span>
 
-        <div class="mb-7">
+            <span data-en="Home" data-ar="الرئيسية">
+              Home
+            </span>
 
-            <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1" data-en="Navigation" data-ar="التنقل">
+            <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+          </a>
 
-                Navigation
+          <a
+            href="/web/about/index.html"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link"
+          >
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-circle-info"></i>
+            </span>
 
-            </p>
+            <span data-en="About" data-ar="من نحن">
+              About
+            </span>
 
+            <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+          </a>
 
-            <div class="space-y-2">
+          <a
+            href="/web/product/index.html"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link active"
+          >
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-box-open"></i>
+            </span>
 
+            <span data-en="Products" data-ar="المنتجات">
+              Products
+            </span>
 
-                <!-- HOME -->
+            <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+          </a>
 
-                <a href="/index.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-nav-link">
+          <a
+            href="/web/gallery/index.html"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link"
+          >
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-images"></i>
+            </span>
 
-                    <span class="sidebar-nav-icon">
-                        <i class="fa-solid fa-house"></i>
-                    </span>
+            <span data-en="Gallery" data-ar="معرض الصور">
+              Gallery
+            </span>
 
-                    <span data-en="Home" data-ar="الرئيسية">Home</span>
+            <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+          </a>
 
-                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+          <a
+            href="/web/contact/index.html"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link"
+          >
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-envelope"></i>
+            </span>
 
-                </a>
+            <span data-en="Contact" data-ar="اتصل بنا">
+              Contact
+            </span>
 
+            <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+          </a>
 
-                <!-- ABOUT -->
+          <a
+            href="/web/meet-team/meet-team.html"
+            onclick="closeSideMenu()"
+            class="sidebar-nav-link"
+          >
+            <span class="sidebar-nav-icon">
+              <i class="fa-solid fa-users"></i>
+            </span>
 
-                <a href="/web/about/index.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-nav-link">
+            <span data-en="OUR TEAM" data-ar="فريقنا">
+              OUR TEAM
+            </span>
 
-                    <span class="sidebar-nav-icon">
-                        <i class="fa-solid fa-circle-info"></i>
-                    </span>
-
-                    <span data-en="About" data-ar="من نحن">About</span>
-
-                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
-
-                </a>
-
-
-                <!-- PRODUCTS -->
-
-                <a href="/web/product/index.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-nav-link active">
-
-                    <span class="sidebar-nav-icon">
-                        <i class="fa-solid fa-box-open"></i>
-                    </span>
-
-                    <span data-en="Products" data-ar="المنتجات">Products</span>
-
-                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
-
-                </a>
-
-
-                <!-- GALLERY -->
-
-                <a href="/web/gallery/index.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-nav-link">
-
-                    <span class="sidebar-nav-icon">
-                        <i class="fa-solid fa-images"></i>
-                    </span>
-
-                    <span data-en="Gallery" data-ar="معرض الصور">Gallery</span>
-
-                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
-
-                </a>
-
-
-                <!-- CONTACT -->
-
-                <a href="/web/contact/index.html"
-                   onclick="closeSideMenu()"
-                   class="sidebar-nav-link">
-
-                    <span class="sidebar-nav-icon">
-                        <i class="fa-solid fa-envelope"></i>
-                    </span>
-
-                    <span data-en="Contact" data-ar="اتصل بنا">Contact</span>
-
-                    <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
-
-                </a>
-
-                <!-- OUR TEAM-->
-
-                <a href="/web/meet-team/meet-team.html" data-nav="team" onclick="closeSideMenu()" class="sidebar-nav-link">
-
-                    <span class="sidebar-nav-icon"><i class="fa-solid fa-users"></i></span><span data-en="OUR TEAM" data-ar="فريقنا">OUR TEAM</span><i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
-                </a>
-
-            </div>
+            <i class="fa-solid fa-chevron-right ml-auto text-[9px] opacity-40"></i>
+          </a>
 
         </div>
+      </div>
 
+      <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
 
-        <!-- ================= CONTACT ================= -->
+      <div class="mb-6">
 
-        <div class="h-px bg-[#bec9c3]/30 mb-6"></div>
+        <p
+          class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1"
+          data-en="Contact"
+          data-ar="اتصل بنا"
+        >
+          Contact
+        </p>
 
-        <div class="mb-6">
+        <div class="space-y-2">
 
-            <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#3f4944]/70 mb-3 px-1" data-en="Contact" data-ar="اتصل بنا">
+          <a
+            href="tel:+966581818482"
+            class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors"
+          >
+            <span class="w-9 h-9 rounded-lg bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center">
+              <i class="fa-solid fa-phone text-xs"></i>
+            </span>
 
-                Contact
+            <span>
+              <span
+                class="block text-[9px] uppercase tracking-wider text-[#3f4944]"
+                data-en="Phone"
+                data-ar="الهاتف"
+              >
+                Phone
+              </span>
 
-            </p>
+              <span class="block text-xs font-semibold text-[#004232] mt-0.5">
+                +966 58 181 8482
+              </span>
+            </span>
+          </a>
 
+          <a
+            href="mailto:info@athaqdates.com"
+            class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors"
+          >
+            <span class="w-9 h-9 rounded-lg bg-[#c0edd4]/60 text-[#004232] flex items-center justify-center">
+              <i class="fa-solid fa-envelope text-xs"></i>
+            </span>
 
-            <div class="space-y-2">
+            <span class="min-w-0">
+              <span
+                class="block text-[9px] uppercase tracking-wider text-[#3f4944]"
+                data-en="Email"
+                data-ar="البريد الإلكتروني"
+              >
+                Email
+              </span>
 
-
-                <!-- PHONE -->
-
-                <a href="tel:+966581818482"
-                   class="flex items-center gap-3 px-3 py-3
-                          rounded-xl hover:bg-white
-                          transition-colors">
-
-                    <span class="w-9 h-9 rounded-lg
-                                 bg-[#c0edd4]/60
-                                 text-[#004232]
-                                 flex items-center justify-center">
-
-                        <i class="fa-solid fa-phone text-xs"></i>
-
-                    </span>
-
-                    <span>
-
-                        <span class="block text-[9px] uppercase tracking-wider text-[#3f4944]" data-en="Phone" data-ar="الهاتف">
-
-                            Phone
-
-                        </span>
-
-                        <span class="block text-xs font-semibold text-[#004232] mt-0.5">
-
-                            +966 58 181 8482
-
-                        </span>
-
-                    </span>
-
-                </a>
-
-
-                <!-- EMAIL -->
-
-                <a href="mailto:info@athaqdates.com"
-                   class="flex items-center gap-3 px-3 py-3
-                          rounded-xl hover:bg-white
-                          transition-colors">
-
-                    <span class="w-9 h-9 rounded-lg
-                                 bg-[#c0edd4]/60
-                                 text-[#004232]
-                                 flex items-center justify-center">
-
-                        <i class="fa-solid fa-envelope text-xs"></i>
-
-                    </span>
-
-                    <span class="min-w-0">
-
-                        <span class="block text-[9px] uppercase tracking-wider text-[#3f4944]" data-en="Email" data-ar="البريد الإلكتروني">
-
-                            Email
-
-                        </span>
-
-                        <span class="block text-xs font-semibold text-[#004232] mt-0.5 truncate">
-
-                            aathaqq3@gmail.com
-
-                        </span>
-
-                    </span>
-
-                </a>
-
-            </div>
+              <span class="block text-xs font-semibold text-[#004232] mt-0.5 truncate">
+                aathaqq3@gmail.com
+              </span>
+            </span>
+          </a>
 
         </div>
+      </div>
 
     </div>
-
-
-    <!-- ================= SIDEBAR FOOTER ================= -->
 
     <div class="border-t border-[#bec9c3]/30 px-5 py-4 bg-white/45">
 
-        <div class="flex items-center justify-between gap-4">
+      <div class="flex items-center justify-between gap-4">
 
-            <div>
+        <div>
 
-                <p class="text-[9px] uppercase tracking-[0.16em] text-[#3f4944]" data-en="ATHAQ DATES INDUSTRY" data-ar="صناعة تمور أثاق">
+          <p
+            class="text-[9px] uppercase tracking-[0.16em] text-[#3f4944]"
+            data-en="ATHAQ DATES INDUSTRY"
+            data-ar="صناعة تمور أثاق">
+            ATHAQ DATES INDUSTRY
+          </p>
 
-                    ATHAQ DATES INDUSTRY
-
-                </p>
-
-                <p class="text-[9px] text-[#3f4944]/70 mt-1" data-en="Premium Saudi Dates" data-ar="تمور سعودية فاخرة">
-
-                    Premium Saudi Dates
-
-                </p>
-
-            </div>
-
-            <div class="text-[#004232]/70 text-[10px] font-semibold whitespace-nowrap">
-
-                © 2023–2026
-
-            </div>
+          <p
+            class="text-[9px] text-[#3f4944]/70 mt-1"
+            data-en="DESIGNED & DEVELOPED BY TOUSEEF AHMAD"
+            data-ar="تم التصميم والتطوير بواسطة توظيف أحمد">
+            DESIGNED & DEVELOPED BY TOUSEEF AHMAD
+          </p>
 
         </div>
 
+        <div
+          class="text-[#004232]/70 text-[10px] font-semibold whitespace-nowrap">
+          ©2026
+        </div>
+
+      </div>
     </div>
 
-</aside>
+  </aside>
 
-<!-- =========================================================
-     MAIN CONTENT
-========================================================= -->
+  <!-- =======================================================
+       MAIN
+  ======================================================== -->
 
-<main class="pt-28 pb-20">
+  <main class="pt-[105px] pb-20">
 
-    <header class="px-4 md:px-16 max-w-7xl mx-auto mb-12">
-      <div class="flex flex-col md:flex-row justify-between items-end gap-6">
-        <div class="max-w-2xl">
-          <span class="text-xs font-bold text-emerald-800 uppercase tracking-[0.2em] mb-2 block" data-en="Premium Selection" data-ar="تشكيلة فاخرة">Premium Selection</span>
-          <h1 class="text-3xl md:text-5xl font-extrabold text-[#004232] mb-4" data-en="Our Harvest Portfolio" data-ar="محفظة حصادنا">Our Harvest Portfolio</h1>
-          <p class="text-base text-gray-600" data-en="Exploring the intersection of Saudi heritage and industrial precision. Each date variety is processed with global quality standards." data-ar="استكشاف تقاطع التراث السعودي والدقة الصناعية. تتم معالجة كل صنف من التتمور وفقاً لمعايير الجودة العالمية.">
-            Exploring the intersection of Saudi heritage and industrial precision.
-            Each date variety is processed with global quality standards.
+    <!-- HERO -->
+
+    <section class="hero-shell">
+
+      <div class="hero-card">
+
+        <div class="hero-content">
+
+          <span
+            class="hero-eyebrow"
+            data-en="Premium Saudi Dates"
+            data-ar="تمور سعودية فاخرة"
+          >
+            Premium Saudi Dates
+          </span>
+
+          <h1
+            class="hero-title"
+            data-en="Our Harvest Portfolio"
+            data-ar="محفظة حصادنا"
+          >
+            Our Harvest Portfolio
+          </h1>
+
+          <p
+            class="hero-description"
+            data-en="A refined collection of Saudi dates shaped by heritage, precision and uncompromising quality. Every variety is selected and processed to meet modern global standards."
+            data-ar="مجموعة مختارة من التمور السعودية تجمع بين التراث والدقة والجودة الاستثنائية. يتم اختيار ومعالجة كل صنف وفقاً لأعلى المعايير العالمية الحديثة."
+          >
+            A refined collection of Saudi dates shaped by heritage,
+            precision and uncompromising quality. Every variety is selected
+            and processed to meet modern global standards.
           </p>
-        </div>
 
-        <div class="flex gap-3 relative">
+          <div class="hero-meta">
 
-          <!-- Filter -->
-          <div class="relative">
-            <button onclick="toggleFilterMenu()" type="button"
-                    class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-white transition-colors text-xs font-bold">
-              <span class="material-symbols-outlined text-sm">filter_list</span>
-              <span data-en="Filter" data-ar="تصفية">Filter</span>
-            </button>
+            <span class="hero-meta-item">
+              <i class="fa-solid fa-certificate"></i>
+              <span
+                data-en="Premium Quality"
+                data-ar="جودة فاخرة"
+              >
+                Premium Quality
+              </span>
+            </span>
 
-            <div id="filterDropdown"
-                 class="hidden absolute top-12 left-0 bg-white shadow-xl rounded-xl border border-gray-100 p-3 z-30 w-40 text-xs font-semibold text-gray-700">
-              <div onclick="filterProducts('all')" class="p-2 hover:bg-gray-50 rounded cursor-pointer" data-en="All Products" data-ar="جميع المنتجات">All Products</div>
-              <div onclick="filterProducts('premium')" class="p-2 hover:bg-gray-50 rounded cursor-pointer" data-en="Premium Grade" data-ar="درجة ممتازة">Premium Grade</div>
-              <div onclick="filterProducts('limited')" class="p-2 hover:bg-gray-50 rounded cursor-pointer" data-en="Limited Harvest" data-ar="حصاد محدود">Limited Harvest</div>
-            </div>
+            <span class="hero-meta-item">
+              <i class="fa-solid fa-leaf"></i>
+              <span
+                data-en="Saudi Heritage"
+                data-ar="تراث سعودي"
+              >
+                Saudi Heritage
+              </span>
+            </span>
+
+            <span class="hero-meta-item">
+              <i class="fa-solid fa-globe"></i>
+              <span
+                data-en="Global Standards"
+                data-ar="معايير عالمية"
+              >
+                Global Standards
+              </span>
+            </span>
+
           </div>
 
-          <!-- Sort -->
-          <div class="relative">
-            <button onclick="toggleSortMenu()" type="button"
-                    class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-white transition-colors text-xs font-bold">
-              <span class="material-symbols-outlined text-sm">sort</span>
-              <span data-en="Sort By" data-ar="ترتيب حسب">Sort By</span>
-            </button>
-
-            <div id="sortDropdown"
-                 class="hidden absolute top-12 right-0 bg-white shadow-xl rounded-xl border border-gray-100 p-3 z-30 w-44 text-xs font-semibold text-gray-700">
-              <div onclick="sortProducts('low-high')" class="p-2 hover:bg-gray-50 rounded cursor-pointer" data-en="Price: Low to High" data-ar="السعر: من الأقل للأعلى">Price: Low to High</div>
-              <div onclick="sortProducts('high-low')" class="p-2 hover:bg-gray-50 rounded cursor-pointer" data-en="Price: High to Low" data-ar="السعر: من الأعلى للأقل">Price: High to Low</div>
-            </div>
-          </div>
         </div>
       </div>
 
-      <div class="w-full h-px bg-gray-200 mt-8"></div>
-    </header>
+    </section>
 
-    <section class="px-4 md:px-16 max-w-7xl mx-auto">
-  <div id="productGrid"
-       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- =====================================================
+         PORTFOLIO
+    ====================================================== -->
 
-    <div id="productsLoading"
-         class="col-span-full py-16 text-center text-gray-500">
-      Loading products...
-    </div>
+    <section class="portfolio-section">
 
-  </div>
-</section>
+      <div class="portfolio-top">
 
-  </div>
+        <div>
 
-            
+          <div
+            class="section-kicker"
+            data-en="The Collection"
+            data-ar="المجموعة"
+          >
+            The Collection
+          </div>
 
-    <!-- BULK INQUIRIES -->
-    <section class="mt-24 px-4 md:px-16 max-w-7xl mx-auto">
-      <div class="bg-emerald-100/60 rounded-3xl p-8 md:p-16 text-center relative overflow-hidden border border-emerald-200">
-        <div class="relative z-10 max-w-2xl mx-auto">
-          <h2 class="text-2xl md:text-4xl font-extrabold text-[#004232] mb-4" data-en="Bulk Industrial Inquiries" data-ar="استفسارات الصناعات بالجملة">Bulk Industrial Inquiries</h2>
-          <p class="text-sm text-gray-600 mb-8" data-en="We specialize in white-label production and international supply chains. Connect with our team for volume pricing." data-ar="نحن متخصصون في الإنتاج الخاص وسلاسل الإمداد الدولية. تواصل مع فريقنا لمعرفة أسعار الكميات.">We specialize in white-label production and international supply chains. Connect with our team for volume pricing.</p>
-          <div class="flex flex-col sm:flex-row justify-center gap-3">
-            <input class="px-5 py-3 rounded-xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#004232] text-sm min-w-[280px]"
-                   placeholder="Business Email Address" data-en-placeholder="Business Email Address" data-ar-placeholder="البريد الإلكتروني للعمل" type="email">
-            <button type="button"
-                    class="bg-[#004232] text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#002e23] transition-all shadow-md" data-en="Request Catalog" data-ar="طلب الكتالوج">
+          <h2
+            class="section-title"
+            data-en="Selected with purpose."
+            data-ar="مختارة بعناية."
+          >
+            Selected with purpose.
+          </h2>
+
+          <p
+            class="section-description"
+            data-en="Explore our current harvest selection. Products are updated directly from the ATHAQ production system."
+            data-ar="استكشف مجموعتنا الحالية من الحصاد. يتم تحديث المنتجات مباشرة من نظام إنتاج أثاق."
+          >
+            Explore our current harvest selection. Products are updated
+            directly from the ATHAQ production system.
+          </p>
+
+        </div>
+
+        <div class="portfolio-controls flex flex-wrap gap-2 relative">
+
+          <div class="relative">
+
+            <button
+              onclick="toggleFilterMenu()"
+              type="button"
+              class="control-button"
+            >
+              <i class="fa-solid fa-sliders"></i>
+
+              <span
+                data-en="Filter"
+                data-ar="تصفية"
+              >
+                Filter
+              </span>
+            </button>
+
+            <div
+              id="filterDropdown"
+              class="control-dropdown hidden left-0"
+            >
+              <div
+                onclick="filterProducts('all')"
+                data-en="All Products"
+                data-ar="جميع المنتجات"
+              >
+                All Products
+              </div>
+
+              <div
+                onclick="filterProducts('premium')"
+                data-en="Premium Grade"
+                data-ar="درجة ممتازة"
+              >
+                Premium Grade
+              </div>
+
+              <div
+                onclick="filterProducts('limited')"
+                data-en="Limited Harvest"
+                data-ar="حصاد محدود"
+              >
+                Limited Harvest
+              </div>
+            </div>
+
+          </div>
+
+          <div class="relative">
+
+            <button
+              onclick="toggleSortMenu()"
+              type="button"
+              class="control-button"
+            >
+              <i class="fa-solid fa-arrow-down-wide-short"></i>
+
+              <span
+                data-en="Sort By"
+                data-ar="ترتيب حسب"
+              >
+                Sort By
+              </span>
+            </button>
+
+            <div
+              id="sortDropdown"
+              class="control-dropdown hidden right-0"
+            >
+              <div
+                onclick="sortProducts('low-high')"
+                data-en="Price: Low to High"
+                data-ar="السعر: من الأقل للأعلى"
+              >
+                Price: Low to High
+              </div>
+
+              <div
+                onclick="sortProducts('high-low')"
+                data-en="Price: High to Low"
+                data-ar="السعر: من الأعلى للأقل"
+              >
+                Price: High to Low
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="productGrid">
+
+        <div
+          id="productsLoading"
+          class="loading-box"
+        >
+          <div class="loading-ring"></div>
+
+          <div
+            class="text-[10px] uppercase tracking-[0.15em] font-bold"
+            data-en="Loading our harvest"
+            data-ar="جاري تحميل منتجاتنا"
+          >
+            Loading our harvest
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         BULK INQUIRIES
+    ====================================================== -->
+
+    <section class="bulk-section">
+
+      <div class="bulk-card text-center">
+
+        <div class="relative z-10">
+
+          <div
+            class="bulk-kicker"
+            data-en="For Businesses & Partners"
+            data-ar="للشركات والشركاء"
+          >
+            For Businesses & Partners
+          </div>
+
+          <h2
+            class="bulk-title"
+            data-en="Built for larger harvests."
+            data-ar="مصمم للكميات الكبيرة."
+          >
+            Built for larger harvests.
+          </h2>
+
+          <p
+            class="bulk-description"
+            data-en="We specialize in white-label production and international supply chains. Connect with our team for volume pricing, private production and export opportunities."
+            data-ar="نحن متخصصون في الإنتاج الخاص وسلاسل الإمداد الدولية. تواصل مع فريقنا لمعرفة أسعار الكميات والإنتاج الخاص وفرص التصدير."
+          >
+            We specialize in white-label production and international
+            supply chains. Connect with our team for volume pricing,
+            private production and export opportunities.
+          </p>
+
+          <div class="bulk-form">
+
+            <input
+              id="businessEmail"
+              class="bulk-input"
+              type="email"
+              placeholder="Business Email Address"
+              data-en-placeholder="Business Email Address"
+              data-ar-placeholder="البريد الإلكتروني للعمل"
+            >
+
+            <button
+              type="button"
+              onclick="requestCatalog()"
+              class="bulk-button"
+              data-en="Request Catalog"
+              data-ar="طلب الكتالوج"
+            >
               Request Catalog
             </button>
+
           </div>
+
         </div>
       </div>
+
     </section>
+
   </main>
 
-  <!-- ================= FOOTER ================= -->
-  <footer class="w-full py-16 px-4 md:px-16 grid grid-cols-1 md:grid-cols-4 gap-8 bg-gray-200/50 border-t border-gray-200">
-    <div>
-      <div class="text-2xl font-bold font-serif text-[#004232] mb-3">ATHAQ</div>
-      <p class="text-xs text-gray-600" data-en="Pioneering the industrial future of Saudi dates with heritage and precision." data-ar="ريادة المستقبل الصناعي للتمور السعودية بالتراث والدقة.">Pioneering the industrial future of Saudi dates with heritage and precision.</p>
+  <!-- =======================================================
+       FOOTER
+  ======================================================== -->
+
+  <footer class="luxury-footer">
+
+    <div class="footer-inner">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+
+        <div>
+
+          <div class="footer-brand">
+            ATHAQ
+          </div>
+
+          <p
+            class="footer-description"
+            data-en="Pioneering the industrial future of Saudi dates through heritage, precision and modern production."
+            data-ar="ريادة المستقبل الصناعي للتمور السعودية من خلال التراث والدقة والإنتاج الحديث."
+          >
+            Pioneering the industrial future of Saudi dates through
+            heritage, precision and modern production.
+          </p>
+
+        </div>
+
+        <div>
+
+          <h4
+            class="footer-heading"
+            data-en="Navigation"
+            data-ar="التنقل"
+          >
+            Navigation
+          </h4>
+
+          <ul class="space-y-3">
+
+            <li>
+              <a
+                href="/web/about/index.html"
+                class="footer-link"
+                data-en="About ATHAQ"
+                data-ar="عن أثاق"
+              >
+                About ATHAQ
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="/web/product/index.html"
+                class="footer-link"
+                data-en="Our Products"
+                data-ar="منتجاتنا"
+              >
+                Our Products
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="/web/gallery/index.html"
+                class="footer-link"
+                data-en="Gallery"
+                data-ar="معرض الصور"
+              >
+                Gallery
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+        <div>
+
+          <h4
+            class="footer-heading"
+            data-en="Company"
+            data-ar="الشركة"
+          >
+            Company
+          </h4>
+
+          <ul class="space-y-3">
+
+            <li>
+              <a
+                href="/web/meet-team/meet-team.html"
+                class="footer-link"
+                data-en="Our Team"
+                data-ar="فريقنا"
+              >
+                Our Team
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="/web/contact/index.html"
+                class="footer-link"
+                data-en="Contact"
+                data-ar="اتصل بنا"
+              >
+                Contact
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#"
+                class="footer-link"
+                data-en="Sustainability"
+                data-ar="الاستدامة"
+              >
+                Sustainability
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+        <div>
+
+          <h4
+            class="footer-heading"
+            data-en="Contact"
+            data-ar="اتصل بنا"
+          >
+            Contact
+          </h4>
+
+          <ul class="space-y-4 text-[10px] text-[#69746f]">
+
+            <li class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-[#004232]">
+                <i class="fa-solid fa-location-dot"></i>
+              </span>
+
+              <span
+                data-en=" Al Qaseem Bukariyah"
+                data-ar="القصيم - البكيرية "
+              >
+                Al Qaseem Bukariyah 
+              </span>
+            </li>
+
+            <li class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-[#004232]">
+                <i class="fa-solid fa-phone"></i>
+              </span>
+
+              <a href="tel:+966581818482">
+                +966 58 181 8482
+              </a>
+            </li>
+
+            <li class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-[#004232]">
+                <i class="fa-solid fa-envelope"></i>
+              </span>
+
+              <a href="mailto:info@athaqdates.com">
+               aathaqq3@gmail.com
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div class="h-px bg-[#004232]/10 my-10"></div>
+
+      <div class="flex flex-col sm:flex-row justify-between gap-3 text-[9px] text-[#69746f]">
+
+        <span>
+          © 2026 Designed & Developed by Touseef Ahmad
+        </span>
+
+        <span
+          data-en="Premium Saudi Dates • Industrial Precision"
+          data-ar="تمور سعودية فاخرة • دقة صناعية"
+        >
+          Premium Saudi Dates • Industrial Precision
+        </span>
+
+      </div>
+
     </div>
 
-    <div>
-      <h4 class="text-xs font-bold text-[#004232] uppercase mb-4 tracking-widest" data-en="Navigation" data-ar="التنقل">Navigation</h4>
-      <ul class="space-y-2 text-xs text-gray-600">
-        <li><a class="hover:text-amber-800 transition-colors" href="#" data-en="Industrial Process" data-ar="العملية الصناعية">Industrial Process</a></li>
-        <li><a class="hover:text-amber-800 transition-colors" href="#" data-en="Certifications" data-ar="الشهادات">Certifications</a></li>
-        <li><a class="hover:text-amber-800 transition-colors" href="#" data-en="Sustainability" data-ar="الاستدامة">Sustainability</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h4 class="text-xs font-bold text-[#004232] uppercase mb-4 tracking-widest" data-en="Legal" data-ar="قانوني">Legal</h4>
-      <ul class="space-y-2 text-xs text-gray-600">
-        <li><a class="hover:text-amber-800 transition-colors" href="#" data-en="Privacy Policy" data-ar="سياسة الخصوصية">Privacy Policy</a></li>
-        <li><a class="hover:text-amber-800 transition-colors" href="#" data-en="Terms of Service" data-ar="شروط الخدمة">Terms of Service</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h4 class="text-xs font-bold text-[#004232] uppercase mb-4 tracking-widest" data-en="Contact" data-ar="اتصل">Contact</h4>
-      <ul class="space-y-2 text-xs text-gray-600">
-        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">location_on</span> <span data-en="Riyadh Industrial City" data-ar="مدينة الرياض الصناعية">Riyadh Industrial City</span></li>
-        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">mail</span> inquiry@athaq.sa</li>
-      </ul>
-    </div>
   </footer>
 
-  <!-- ================= SEARCH MODAL ================= -->
-  <div id="searchModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[10000] hidden items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
-      <div class="flex justify-between items-center mb-4">
-        <h3 class="text-lg font-bold text-[#004232]" data-en="Search Products" data-ar="بحث المنتجات">Search Products</h3>
-        <button onclick="closeSearchModal()" type="button" class="text-gray-500 hover:text-gray-700 font-bold text-xl">&times;</button>
+  <!-- =======================================================
+       SEARCH MODAL
+  ======================================================== -->
+
+  <div
+    id="searchModal"
+    class="fixed inset-0 z-[10000] hidden items-center justify-center p-4"
+  >
+
+    <div class="search-box">
+
+      <div class="flex justify-between items-center mb-5">
+
+        <div>
+          <div
+            class="text-[9px] uppercase tracking-[.2em] text-[#a27730] font-bold mb-1"
+            data-en="ATHAQ"
+            data-ar="أثاق"
+          >
+            ATHAQ
+          </div>
+
+          <h3
+            class="text-xl font-bold text-[#004232]"
+            data-en="Search Products"
+            data-ar="بحث المنتجات"
+          >
+            Search Products
+          </h3>
+        </div>
+
+        <button
+          onclick="closeSearchModal()"
+          type="button"
+          class="w-9 h-9 rounded-full bg-[#f2efe7] text-[#004232] hover:bg-[#004232] hover:text-white transition-all"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
       </div>
-      <div class="flex items-center gap-2 border border-gray-300 rounded-xl px-3 py-2">
-        <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
-        <input type="text" id="searchInput" placeholder="Type to search dates..." data-en-placeholder="Type to search dates..." data-ar-placeholder="اكتب للبحث عن التمور..."
-               class="w-full focus:outline-none text-sm" oninput="handleSearch(this.value)">
+
+      <div class="search-input-wrap">
+
+        <i class="fa-solid fa-magnifying-glass text-[#a27730]"></i>
+
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Type to search dates..."
+          data-en-placeholder="Type to search dates..."
+          data-ar-placeholder="اكتب للبحث عن التمور..."
+          oninput="handleSearch(this.value)"
+        >
+
       </div>
+
     </div>
+
   </div>
 
-  <!-- ================= SCRIPTS ================= -->
+  <!-- =======================================================
+       JAVASCRIPT
+  ======================================================== -->
+
   <script>
-    let wishlist = JSON.parse(localStorage.getItem("athaqWishlist")) || [];
-    let cart = JSON.parse(localStorage.getItem("athaqCart")) || [];
-    let currentLang = localStorage.getItem("athaqLang") || "en";
+
+    /* =======================================================
+       STORAGE
+    ======================================================== */
+
+    let wishlist =
+      JSON.parse(localStorage.getItem("athaqWishlist")) || [];
+
+    let cart =
+      JSON.parse(localStorage.getItem("athaqCart")) || [];
+
+    let currentLang =
+      localStorage.getItem("athaqLang") || "en";
+
+    let activeProductCategory = "all";
+    let activeProductSearch = "";
+
+    /* =======================================================
+       DOM READY
+    ======================================================== */
 
     document.addEventListener("DOMContentLoaded", () => {
+
       updateWishlistUI();
       updateCartUI();
       checkAuthHeader();
       setupMenu();
       applyLanguage(currentLang);
       loadLiveProducts();
+
     });
 
-    /* ================= SIDEBAR ================= */
-    function setupMenu() {
-      const menuBtn = document.getElementById("menu-btn");
-      const closeBtn = document.getElementById("close-menu");
-      const overlay = document.getElementById("sidebar-overlay");
+    /* =======================================================
+       SIDEBAR
+    ======================================================== */
 
-      menuBtn?.addEventListener("click", function (e) {
-        e.preventDefault();
-        const menu = document.getElementById("side-menu");
+    function setupMenu() {
+
+      const menuBtn =
+        document.getElementById("menu-btn");
+
+      const closeBtn =
+        document.getElementById("close-menu");
+
+      const overlay =
+        document.getElementById("sidebar-overlay");
+
+      menuBtn?.addEventListener("click", (event) => {
+
+        event.preventDefault();
+
+        const menu =
+          document.getElementById("side-menu");
+
         if (menu?.classList.contains("active")) {
           closeSideMenu();
         } else {
           openSideMenu();
         }
+
       });
 
-      closeBtn?.addEventListener("click", closeSideMenu);
-      overlay?.addEventListener("click", closeSideMenu);
+      closeBtn?.addEventListener(
+        "click",
+        closeSideMenu
+      );
+
+      overlay?.addEventListener(
+        "click",
+        closeSideMenu
+      );
 
       document.addEventListener("keydown", (event) => {
+
         if (event.key === "Escape") {
+
           closeSideMenu();
           closeSearchModal();
+
         }
+
       });
+
     }
 
     function openSideMenu() {
-      const menu = document.getElementById("side-menu");
-      const overlay = document.getElementById("sidebar-overlay");
-      const button = document.getElementById("menu-btn");
+
+      const menu =
+        document.getElementById("side-menu");
+
+      const overlay =
+        document.getElementById("sidebar-overlay");
+
+      const button =
+        document.getElementById("menu-btn");
+
       if (!menu) return;
 
-      /*
-       * Sidebar is permanently anchored to the RIGHT.
-       * Language changes must never move it to the left.
-       */
       menu.style.right = "0";
       menu.style.left = "auto";
-      menu.classList.remove("-translate-x-full", "translate-x-full");
-      menu.classList.add("translate-x-0", "active");
 
-      overlay?.classList.remove("opacity-0", "invisible");
-      overlay?.classList.add("opacity-100", "visible", "active");
+      menu.classList.add("active");
+
+      overlay?.classList.add("active");
+
       document.body.classList.add("menu-open");
-      button?.setAttribute("aria-expanded", "true");
-      menu.setAttribute("aria-hidden", "false");
+
+      button?.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+      menu.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
     }
 
     function closeSideMenu() {
-      const menu = document.getElementById("side-menu");
-      const overlay = document.getElementById("sidebar-overlay");
-      const button = document.getElementById("menu-btn");
-      /*
-       * Sidebar always closes toward the RIGHT.
-       */
-      menu?.classList.remove("translate-x-0", "active", "-translate-x-full");
-      menu?.classList.add("translate-x-full");
+
+      const menu =
+        document.getElementById("side-menu");
+
+      const overlay =
+        document.getElementById("sidebar-overlay");
+
+      const button =
+        document.getElementById("menu-btn");
 
       if (menu) {
+
+        menu.classList.remove("active");
+
         menu.style.right = "0";
         menu.style.left = "auto";
+
       }
 
-      overlay?.classList.remove("opacity-100", "visible", "active");
-      overlay?.classList.add("opacity-0", "invisible");
+      overlay?.classList.remove("active");
+
       document.body.classList.remove("menu-open");
-      button?.setAttribute("aria-expanded", "false");
-      menu?.setAttribute("aria-hidden", "true");
+
+      button?.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      menu?.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
     }
 
-    /* ================= AUTH ================= */
+    /* =======================================================
+       AUTH
+    ======================================================== */
+
     function checkAuthHeader() {
-      const isLoggedIn = sessionStorage.getItem("isLoggedIn");
-      const userRole = sessionStorage.getItem("userRole");
-      const userName = sessionStorage.getItem("userName") || "My Profile";
-      const authContainer = document.getElementById("authHeaderBtn");
-      const sidebarAuth = document.getElementById("sidebarAuthArea");
 
-      if (authContainer) {
-        if (isLoggedIn === "true") {
-          if (userRole === "admin") {
-            authContainer.innerHTML = `
-              <a href="/admin/index.html"
-                 class="flex items-center gap-2 bg-[#004232] text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#002e23] transition-colors whitespace-nowrap shadow-sm">
-                <i class="fa-solid fa-gauge"></i> Admin
-              </a>`;
-          } else {
-            authContainer.innerHTML = `
-              <a href="/customer-profile/profile.html"
-                 class="flex items-center gap-2 bg-emerald-50 text-[#004232] border border-emerald-200 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-emerald-100 transition-colors whitespace-nowrap shadow-sm">
-                <i class="fa-regular fa-user"></i> ${escapeHtml(userName)}
-              </a>`;
-          }
-        } else {
+      const isLoggedIn =
+        sessionStorage.getItem("isLoggedIn");
+
+      const userRole =
+        sessionStorage.getItem("userRole");
+
+      const userName =
+        sessionStorage.getItem("userName") ||
+        "My Profile";
+
+      const authContainer =
+        document.getElementById("authHeaderBtn");
+
+      if (!authContainer) return;
+
+      if (isLoggedIn === "true") {
+
+        if (userRole === "admin") {
+
           authContainer.innerHTML = `
-            <a href="/login/index.html"
-               class="w-10 h-10 rounded-full border border-[#bec9c3]/40 flex items-center justify-center cursor-pointer hover:bg-[#faf9f4] transition-colors flex-shrink-0"
-               title="Login">
-              <i class="fa-regular fa-user text-[#004232]"></i>
-            </a>`;
+            <a
+              href="/admin/index.html"
+              class="flex items-center gap-2 bg-[#004232] text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider"
+            >
+              <i class="fa-solid fa-gauge"></i>
+              Admin
+            </a>
+          `;
+
+        } else {
+
+          authContainer.innerHTML = `
+            <a
+              href="/customer-profile/profile.html"
+              class="flex items-center gap-2 bg-emerald-50 text-[#004232] border border-emerald-200 px-4 py-2 rounded-full text-xs font-bold"
+            >
+              <i class="fa-regular fa-user"></i>
+              ${escapeHtml(userName)}
+            </a>
+          `;
+
         }
+
+      } else {
+
+        authContainer.innerHTML = `
+          <a
+            href="/login/index.html"
+            class="w-10 h-10 rounded-full border border-[#bec9c3]/40 flex items-center justify-center"
+          >
+            <i class="fa-regular fa-user text-[#004232]"></i>
+          </a>
+        `;
+
       }
+
     }
+
+    /* =======================================================
+       ESCAPE
+    ======================================================== */
 
     function escapeHtml(value) {
-      return String(value).replace(/[&<>"']/g, char => ({
-        "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
-      }[char]));
+
+      return String(value ?? "")
+        .replace(/[&<>"']/g, char => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+        }[char]));
+
     }
 
-    /* ================= PREMIUM TOAST ================= */
-    function showAthaqToast(type, title, message) {
-      const container = document.getElementById("athaqToastContainer");
+    function escapeHTML(value) {
+      return escapeHtml(value);
+    }
+
+    /* =======================================================
+       TOAST
+    ======================================================== */
+
+    function showAthaqToast(
+      type,
+      title,
+      message
+    ) {
+
+      const container =
+        document.getElementById(
+          "athaqToastContainer"
+        );
+
       if (!container) return;
 
-      const toast = document.createElement("div");
-      toast.className = "athaq-toast";
-      const icon = type === "wishlist" ? "fa-heart" : "fa-bag-shopping";
+      const toast =
+        document.createElement("div");
+
+      toast.className =
+        "athaq-toast";
+
+      const icon =
+        type === "wishlist"
+          ? "fa-heart"
+          : "fa-bag-shopping";
 
       toast.innerHTML = `
-        <div class="athaq-toast-icon"><i class="fa-solid ${icon}"></i></div>
-        <div class="athaq-toast-content">
-          <div class="athaq-toast-title">${escapeHtml(title)}</div>
-          <div class="athaq-toast-message">${escapeHtml(message)}</div>
+        <div class="athaq-toast-icon">
+          <i class="fa-solid ${icon}"></i>
         </div>
-        <button type="button" class="athaq-toast-close" aria-label="Close notification">
+
+        <div class="flex-1 min-w-0">
+          <div class="athaq-toast-title">
+            ${escapeHtml(title)}
+          </div>
+
+          <div class="athaq-toast-message">
+            ${escapeHtml(message)}
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="athaq-toast-close"
+        >
           <i class="fa-solid fa-xmark"></i>
-        </button>`;
+        </button>
+      `;
 
       container.appendChild(toast);
+
       const close = () => {
+
         toast.classList.remove("show");
         toast.classList.add("hide");
-        setTimeout(() => toast.remove(), 300);
+
+        setTimeout(
+          () => toast.remove(),
+          300
+        );
+
       };
-      toast.querySelector(".athaq-toast-close")?.addEventListener("click", close);
-      requestAnimationFrame(() => toast.classList.add("show"));
+
+      toast
+        .querySelector(".athaq-toast-close")
+        ?.addEventListener(
+          "click",
+          close
+        );
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
       setTimeout(close, 3500);
+
     }
 
-    /* ================= WISHLIST ================= */
-    function toggleWishlist(event, id, name, image, price) {
+    /* =======================================================
+       WISHLIST
+    ======================================================== */
+
+    function toggleWishlist(
+      event,
+      id,
+      name,
+      image,
+      price
+    ) {
+
       event?.stopPropagation();
 
-      const index = wishlist.findIndex(item => item.id === id);
+      const index =
+        wishlist.findIndex(
+          item => item.id === id
+        );
 
       if (index > -1) {
+
         wishlist.splice(index, 1);
+
       } else {
-        wishlist.push({ id, name, image, price });
+
+        wishlist.push({
+          id,
+          name,
+          image,
+          price
+        });
+
       }
 
-      localStorage.setItem("athaqWishlist", JSON.stringify(wishlist));
+      localStorage.setItem(
+        "athaqWishlist",
+        JSON.stringify(wishlist)
+      );
+
       updateWishlistUI();
 
       if (index > -1) {
-        showAthaqToast("wishlist", currentLang === "ar" ? "تمت الإزالة من المفضلة" : "Removed from Wishlist", currentLang === "ar" ? `تمت إزالة ${name} من قائمتك المفضلة.` : `${name} has been removed from your wishlist.`);
+
+        showAthaqToast(
+          "wishlist",
+          currentLang === "ar"
+            ? "تمت الإزالة من المفضلة"
+            : "Removed from Wishlist",
+          currentLang === "ar"
+            ? `${name} تمت إزالته من قائمتك المفضلة.`
+            : `${name} has been removed from your wishlist.`
+        );
+
       } else {
-        showAthaqToast("wishlist", currentLang === "ar" ? "تمت الإضافة إلى المفضلة" : "Added to Wishlist", currentLang === "ar" ? `تمت إضافة ${name} إلى قائمتك المفضلة.` : `${name} has been added to your wishlist.`);
+
+        showAthaqToast(
+          "wishlist",
+          currentLang === "ar"
+            ? "تمت الإضافة إلى المفضلة"
+            : "Added to Wishlist",
+          currentLang === "ar"
+            ? `${name} تمت إضافته إلى قائمتك المفضلة.`
+            : `${name} has been added to your wishlist.`
+        );
+
       }
+
     }
 
     function updateWishlistUI() {
-      const count = wishlist.length;
 
-      const badge = document.getElementById("wishlistCount");
-      const sidebarBadge = document.getElementById("sidebarWishlistCount");
+      const count =
+        wishlist.length;
+
+      const badge =
+        document.getElementById(
+          "wishlistCount"
+        );
+
+      const sidebarBadge =
+        document.getElementById(
+          "sidebarWishlistCount"
+        );
 
       if (badge) {
+
         badge.innerText = count;
-        badge.classList.toggle("hidden", count === 0);
+
+        badge.classList.toggle(
+          "hidden",
+          count === 0
+        );
+
       }
 
       if (sidebarBadge) {
         sidebarBadge.innerText = count;
       }
 
-      document.querySelectorAll(".product-card").forEach(card => {
-        const id = card.getAttribute("data-id");
-        const btn = card.querySelector(".wishlist-btn");
+      document
+        .querySelectorAll(".product-card")
+        .forEach(card => {
 
-        if (!btn) return;
+          const id =
+            card.getAttribute("data-id");
 
-        const icon = btn.querySelector("i");
-        const isFav = wishlist.some(item => item.id === id);
+          const btn =
+            card.querySelector(
+              ".wishlist-btn"
+            );
 
-        if (isFav) {
-          btn.classList.add("bg-rose-50", "text-rose-600");
-          icon.classList.remove("fa-regular");
-          icon.classList.add("fa-solid");
-        } else {
-          btn.classList.remove("bg-rose-50", "text-rose-600");
-          icon.classList.remove("fa-solid");
-          icon.classList.add("fa-regular");
-        }
-      });
+          if (!btn) return;
+
+          const icon =
+            btn.querySelector("i");
+
+          const isFav =
+            wishlist.some(
+              item => item.id === id
+            );
+
+          if (isFav) {
+
+            btn.classList.add(
+              "bg-rose-50",
+              "text-rose-600"
+            );
+
+            icon.classList.remove(
+              "fa-regular"
+            );
+
+            icon.classList.add(
+              "fa-solid"
+            );
+
+          } else {
+
+            btn.classList.remove(
+              "bg-rose-50",
+              "text-rose-600"
+            );
+
+            icon.classList.remove(
+              "fa-solid"
+            );
+
+            icon.classList.add(
+              "fa-regular"
+            );
+
+          }
+
+        });
+
     }
 
-    /* ================= CART ================= */
-    function updateCartUI() {
-      const totalCount = cart.reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
+    /* =======================================================
+       CART
+    ======================================================== */
 
-      const badge = document.getElementById("cartCount");
-      const sidebarBadge = document.getElementById("sidebarCartCount");
+    function updateCartUI() {
+
+      const totalCount =
+        cart.reduce(
+          (sum, item) =>
+            sum + (Number(item.quantity) || 0),
+          0
+        );
+
+      const badge =
+        document.getElementById(
+          "cartCount"
+        );
+
+      const sidebarBadge =
+        document.getElementById(
+          "sidebarCartCount"
+        );
 
       if (badge) {
-        badge.innerText = totalCount;
-        badge.classList.toggle("hidden", totalCount === 0);
+
+        badge.innerText =
+          totalCount;
+
+        badge.classList.toggle(
+          "hidden",
+          totalCount === 0
+        );
+
       }
 
       if (sidebarBadge) {
-        sidebarBadge.innerText = totalCount;
-      }
-    }
-
-    function addToCart(id, name, price, image) {
-      const existing = cart.find(item => item.id === id);
-
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        cart.push({ id, name, price, image, quantity: 1 });
+        sidebarBadge.innerText =
+          totalCount;
       }
 
-      localStorage.setItem("athaqCart", JSON.stringify(cart));
-      updateCartUI();
-      showAthaqToast('cart', currentLang === 'ar' ? 'تمت الإضافة إلى السلة' : 'Added to Cart', currentLang === 'ar' ? `تمت إضافة ${name} إلى سلة التسوق.` : `${name} has been added to your cart.`);
     }
 
-    function buyNow(id, name, price, image) {
-      addToCart(id, name, price, image);
-      window.location.href = "/ordercheckout/checkout.html";
-    }
-
-/* =========================================================
-   ATHAQ LIVE SUPABASE PRODUCTS
-   ADMIN → SUPABASE → PRODUCT PAGE
-========================================================= */
-
-function getProductDB() {
-  return window.ATHAQ_SUPABASE || null;
-}
-
-
-/* ================= SAFE TEXT ================= */
-
-function escapeHTML(value) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
-
-/* ================= CATEGORY ================= */
-
-function normalizeCategory(category) {
-  return String(category || "")
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, "-");
-}
-
-
-function getCategoryBadge(category) {
-
-  const raw = String(category || "").trim();
-  const normalized = normalizeCategory(raw);
-
-  if (
-    normalized.includes("limited") ||
-    normalized.includes("harvest")
-  ) {
-    return `
-      <span
-        class="absolute top-4 left-4 bg-amber-700 text-white
-               px-3 py-1 rounded-full text-[10px] font-bold
-               uppercase tracking-wider"
-        data-en="Limited Harvest"
-        data-ar="حصاد محدود">
-        Limited Harvest
-      </span>
-    `;
-  }
-
-  return `
-    <span
-      class="absolute top-4 left-4 bg-[#004232] text-white
-             px-3 py-1 rounded-full text-[10px] font-bold
-             uppercase tracking-wider"
-      data-en="Premium Grade"
-      data-ar="درجة ممتازة">
-      Premium Grade
-    </span>
-  `;
-}
-
-
-/* =========================================================
-   RENDER PRODUCT
-========================================================= */
-
-function renderLiveProduct(product) {
-
-  const id = escapeHTML(product.id);
-  const name = escapeHTML(
-    product.name || "ATHAQ Product"
-  );
-
-  const description = escapeHTML(
-    product.description || ""
-  );
-
-  const image = escapeHTML(
-    product.image_url ||
-    product.image ||
-    "https://via.placeholder.com/600x600?text=ATHAQ"
-  );
-
-  const price = Number(product.price) || 0;
-
-  const category = normalizeCategory(
-    product.category || "premium"
-  );
-
-  return `
-    <div
-      class="product-card bg-white rounded-2xl border border-gray-100
-             shadow-sm hover:shadow-lg transition-all duration-300
-             flex flex-col group overflow-hidden"
-      data-id="${id}"
-      data-price="${price}"
-      data-category="${category}"
-      data-search="${name.toLowerCase()} ${description.toLowerCase()}">
-
-      <div class="relative aspect-square overflow-hidden bg-gray-50">
-
-        <img
-          class="w-full h-full object-cover
-                 group-hover:scale-105 transition-transform duration-500"
-          src="${image}"
-          alt="${name}"
-          loading="lazy"
-          onerror="this.src='https://via.placeholder.com/600x600?text=ATHAQ';">
-
-        ${getCategoryBadge(category)}
-
-        <button
-          type="button"
-          class="wishlist-btn absolute top-4 right-4
-                 w-9 h-9 bg-white/90 rounded-full
-                 flex items-center justify-center
-                 text-gray-700 shadow-md hover:bg-white transition-all"
-          data-wishlist-id="${id}"
-          data-wishlist-name="${name}"
-          data-wishlist-price="${price}"
-          data-wishlist-image="${image}"
-          onclick="handleProductWishlist(event, this)">
-
-          <i class="fa-regular fa-heart"></i>
-
-        </button>
-
-      </div>
-
-
-      <div class="p-6 flex-grow flex flex-col justify-between">
-
-        <div>
-
-          <div class="flex justify-between items-start
-                      mb-2 gap-4">
-
-            <h3 class="text-xl font-bold text-[#004232]">
-              ${name}
-            </h3>
-
-            <span
-              class="product-price text-xl font-bold
-                     text-[#004232] whitespace-nowrap">
-              SAR ${price.toFixed(2)}
-            </span>
-
-          </div>
-
-          <p class="text-xs text-gray-500 mb-6 line-clamp-2">
-            ${description}
-          </p>
-
-        </div>
-
-
-        <div
-          class="flex items-center gap-3
-                 pt-4 border-t border-gray-100">
-
-          <button
-            type="button"
-            class="flex-1 bg-[#004232] text-white
-                   py-3 px-4 rounded-xl font-bold
-                   text-xs uppercase tracking-wider
-                   hover:bg-[#002e23] transition-colors
-                   flex items-center justify-center gap-2
-                   shadow-md"
-            onclick="handleProductBuyNow(this)">
-
-            <i class="fa-solid fa-bolt"></i>
-
-            <span
-              data-en="Buy Now"
-              data-ar="اشتري الآن">
-              Buy Now
-            </span>
-
-          </button>
-
-
-          <button
-            type="button"
-            class="p-3 border border-gray-300
-                   rounded-xl hover:bg-gray-50
-                   transition-colors text-gray-700"
-            onclick="handleProductAddToCart(this)">
-
-            <i class="fa-solid fa-cart-shopping"></i>
-
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-  `;
-}
-
-
-/* =========================================================
-   WISHLIST
-========================================================= */
-
-function handleProductWishlist(event, button) {
-
-  event.preventDefault();
-  event.stopPropagation();
-
-  const id =
-    button.dataset.wishlistId;
-
-  const name =
-    button.dataset.wishlistName ||
-    "ATHAQ Product";
-
-  const price =
-    Number(button.dataset.wishlistPrice) || 0;
-
-  const image =
-    button.dataset.wishlistImage || "";
-
-  if (typeof toggleWishlist === "function") {
-
-    toggleWishlist(
-      event,
-      id,
-      name,
-      image,
-      price
-    );
-
-  } else {
-
-    console.error(
-      "ATHAQ: toggleWishlist() is not available."
-    );
-
-  }
-}
-
-
-/* =========================================================
-   ADD TO CART
-========================================================= */
-
-function handleProductAddToCart(button) {
-
-  const card =
-    button.closest(".product-card");
-
-  if (!card) return;
-
-  const id =
-    card.dataset.id;
-
-  const price =
-    Number(card.dataset.price) || 0;
-
-  const name =
-    card.querySelector("h3")?.innerText?.trim() ||
-    "ATHAQ Product";
-
-  const image =
-    card.querySelector("img")?.src || "";
-
-  if (typeof addToCart === "function") {
-
-    addToCart(
+    function addToCart(
       id,
       name,
       price,
       image
-    );
-
-  } else {
-
-    console.error(
-      "ATHAQ: addToCart() is not available."
-    );
-
-  }
-}
-
-
-/* =========================================================
-   BUY NOW
-========================================================= */
-
-function handleProductBuyNow(button) {
-
-  const card =
-    button.closest(".product-card");
-
-  if (!card) return;
-
-  const id =
-    card.dataset.id;
-
-  const price =
-    Number(card.dataset.price) || 0;
-
-  const name =
-    card.querySelector("h3")?.innerText?.trim() ||
-    "ATHAQ Product";
-
-  const image =
-    card.querySelector("img")?.src || "";
-
-  if (typeof buyNow === "function") {
-
-    buyNow(
-      id,
-      name,
-      price,
-      image
-    );
-
-  } else {
-
-    console.error(
-      "ATHAQ: buyNow() is not available."
-    );
-
-  }
-}
-
-
-/* =========================================================
-   LOAD PRODUCTS FROM SUPABASE
-========================================================= */
-
-async function loadLiveProducts() {
-
-  const grid =
-    document.getElementById("productGrid");
-
-  const loading =
-    document.getElementById("productsLoading");
-
-  if (!grid) {
-
-    console.error(
-      "ATHAQ: #productGrid not found."
-    );
-
-    return;
-  }
-
-
-  const db =
-    getProductDB();
-
-
-  if (!db) {
-
-    console.error(
-      "ATHAQ: window.ATHAQ_SUPABASE is not available."
-    );
-
-    grid.innerHTML = `
-      <div class="col-span-full py-16 text-center">
-
-        <div class="text-red-600 font-bold mb-2">
-          Unable to connect to product database.
-        </div>
-
-        <div class="text-sm text-gray-500">
-          Supabase configuration was not loaded.
-        </div>
-
-      </div>
-    `;
-
-    return;
-  }
-
-
-  if (loading) {
-    loading.style.display = "block";
-  }
-
-
-  try {
-
-    const response =
-      await db
-        .from("products")
-        .select("*")
-        .order("created_at", {
-          ascending: false
-        });
-
-
-    const data =
-      response.data;
-
-    const error =
-      response.error;
-
-
-    if (error) {
-      throw error;
-    }
-
-
-    console.log(
-      "ATHAQ Supabase products:",
-      data
-    );
-
-
-    if (!Array.isArray(data) || data.length === 0) {
-
-      grid.innerHTML = `
-        <div class="col-span-full py-16 text-center">
-
-          <div
-            class="text-[#004232] text-lg font-bold mb-2">
-            No Products Available
-          </div>
-
-          <div class="text-sm text-gray-500">
-            Products added from the Admin Panel
-            will appear here.
-          </div>
-
-        </div>
-      `;
-
-      return;
-    }
-
-
-    grid.innerHTML =
-      data
-        .map(renderLiveProduct)
-        .join("");
-
-
-    updateWishlistUI();
-
-    if (
-      typeof applyLanguage === "function" &&
-      typeof currentLang !== "undefined"
     ) {
-      applyLanguage(currentLang);
-    }
 
-
-    /*
-     * Re-apply current filter/search state
-     * after Supabase products are rendered.
-     */
-
-    applyProductVisibility();
-
-
-  } catch (error) {
-
-    console.error(
-      "ATHAQ Product Loading Error:",
-      error
-    );
-
-
-    grid.innerHTML = `
-      <div class="col-span-full py-16 text-center">
-
-        <div class="text-red-600 font-bold mb-2">
-          Unable to load products.
-        </div>
-
-        <div class="text-sm text-gray-500">
-          ${escapeHTML(
-            error?.message ||
-            "Please check your Supabase connection."
-          )}
-        </div>
-
-      </div>
-    `;
-
-  } finally {
-
-    if (loading) {
-      loading.style.display = "none";
-    }
-
-  }
-}
-
-
-/* =========================================================
-   FILTER STATE
-========================================================= */
-
-let activeProductCategory = "all";
-let activeProductSearch = "";
-
-
-/* =========================================================
-   APPLY FILTER + SEARCH TOGETHER
-========================================================= */
-
-function applyProductVisibility() {
-
-  const query =
-    activeProductSearch
-      .toLowerCase()
-      .trim();
-
-
-  document
-    .querySelectorAll(".product-card")
-    .forEach(card => {
-
-      const category =
-        card.dataset.category || "";
-
-      const searchableText =
-        (
-          card.dataset.search ||
-          card.innerText ||
-          ""
-        ).toLowerCase();
-
-
-      const categoryMatch =
-        activeProductCategory === "all" ||
-        category === normalizeCategory(
-          activeProductCategory
+      const existing =
+        cart.find(
+          item => item.id === id
         );
 
+      if (existing) {
 
-      const searchMatch =
-        !query ||
-        searchableText.includes(query);
+        existing.quantity += 1;
 
+      } else {
 
-      card.style.display =
-        categoryMatch && searchMatch
-          ? ""
-          : "none";
+        cart.push({
+          id,
+          name,
+          price,
+          image,
+          quantity: 1
+        });
 
-    });
-}
+      }
 
+      localStorage.setItem(
+        "athaqCart",
+        JSON.stringify(cart)
+      );
 
-/* ================= FILTER ================= */
+      updateCartUI();
 
-function toggleFilterMenu() {
+      showAthaqToast(
+        "cart",
+        currentLang === "ar"
+          ? "تمت الإضافة إلى السلة"
+          : "Added to Cart",
+        currentLang === "ar"
+          ? `تمت إضافة ${name} إلى سلة التسوق.`
+          : `${name} has been added to your cart.`
+      );
 
-  const dropdown =
-    document.getElementById("filterDropdown");
+    }
 
-  document
-    .getElementById("sortDropdown")
-    ?.classList.add("hidden");
+    function buyNow(
+      id,
+      name,
+      price,
+      image
+    ) {
 
-  dropdown?.classList.toggle("hidden");
-}
+      addToCart(
+        id,
+        name,
+        price,
+        image
+      );
 
+      window.location.href =
+        "/ordercheckout/checkout.html";
 
-function filterProducts(category) {
+    }
 
-  activeProductCategory =
-    category || "all";
+    /* =======================================================
+       SUPABASE
+    ======================================================== */
 
-  applyProductVisibility();
+    function getProductDB() {
 
-  document
-    .getElementById("filterDropdown")
-    ?.classList.add("hidden");
-}
+      return window.ATHAQ_SUPABASE || null;
 
+    }
 
-/* ================= SORT ================= */
+    /* =======================================================
+       CATEGORY
+    ======================================================== */
 
-function toggleSortMenu() {
+    function normalizeCategory(category) {
 
-  const dropdown =
-    document.getElementById("sortDropdown");
+      return String(category || "")
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "-");
 
-  document
-    .getElementById("filterDropdown")
-    ?.classList.add("hidden");
+    }
 
-  dropdown?.classList.toggle("hidden");
-}
+    function getCategoryBadge(category) {
 
+      const raw =
+        String(category || "").trim();
 
-function sortProducts(order) {
+      const normalized =
+        normalizeCategory(raw);
 
-  const grid =
-    document.getElementById("productGrid");
+      const limited =
+        normalized.includes("limited") ||
+        normalized.includes("harvest");
 
-  if (!grid) return;
+      return `
+        <span
+          class="product-badge ${limited ? "limited" : ""}"
+          data-en="${limited ? "Limited Harvest" : "Premium Grade"}"
+          data-ar="${limited ? "حصاد محدود" : "درجة ممتازة"}"
+        >
+          ${limited ? "Limited Harvest" : "Premium Grade"}
+        </span>
+      `;
 
+    }
 
-  const cards =
-    [...grid.querySelectorAll(".product-card")];
+    /* =======================================================
+       PRODUCT RENDER
+    ======================================================== */
 
+    function renderLiveProduct(product) {
 
-  cards.sort((a, b) => {
+      const id =
+        escapeHTML(product.id);
 
-    const priceA =
-      Number(a.dataset.price) || 0;
+      const name =
+        escapeHTML(
+          product.name ||
+          "ATHAQ Product"
+        );
 
-    const priceB =
-      Number(b.dataset.price) || 0;
+      const description =
+        escapeHTML(
+          product.description || ""
+        );
 
+      const image =
+        escapeHTML(
+          product.image_url ||
+          product.image ||
+          "https://via.placeholder.com/700x700?text=ATHAQ"
+        );
 
-    return order === "low-high"
-      ? priceA - priceB
-      : priceB - priceA;
+      const price =
+        Number(product.price) || 0;
 
-  });
+      const category =
+        normalizeCategory(
+          product.category ||
+          "premium"
+        );
 
+      return `
+        <article
+          class="product-card"
+          data-id="${id}"
+          data-price="${price}"
+          data-category="${category}"
+          data-search="${name.toLowerCase()} ${description.toLowerCase()}"
+        >
 
-  cards.forEach(card =>
-    grid.appendChild(card)
-  );
+          <div class="product-image-wrap">
 
+            <img
+              class="product-image"
+              src="${image}"
+              alt="${name}"
+              loading="lazy"
+              onerror="this.src='https://via.placeholder.com/700x700?text=ATHAQ';"
+            >
 
-  document
-    .getElementById("sortDropdown")
-    ?.classList.add("hidden");
+            ${getCategoryBadge(category)}
 
+            <button
+              type="button"
+              class="wishlist-btn"
+              data-wishlist-id="${id}"
+              data-wishlist-name="${name}"
+              data-wishlist-price="${price}"
+              data-wishlist-image="${image}"
+              onclick="handleProductWishlist(event,this)"
+              aria-label="Add to wishlist"
+            >
+              <i class="fa-regular fa-heart"></i>
+            </button>
 
-  applyProductVisibility();
+          </div>
 
-  updateWishlistUI();
-}
+          <div class="product-content">
 
-    /* ================= SEARCH ================= */
+            <div>
+
+              <div class="product-title-row">
+
+                <h3 class="product-title">
+                  ${name}
+                </h3>
+
+                <span class="product-price">
+                  SAR ${price.toFixed(2)}
+                </span>
+
+              </div>
+
+              <p class="product-description">
+                ${description}
+              </p>
+
+            </div>
+
+            <div class="product-divider"></div>
+
+            <div class="product-actions">
+
+              <button
+                type="button"
+                class="buy-button"
+                onclick="handleProductBuyNow(this)"
+              >
+
+                <i class="fa-solid fa-bolt"></i>
+
+                <span
+                  data-en="Buy Now"
+                  data-ar="اشتري الآن"
+                >
+                  Buy Now
+                </span>
+
+              </button>
+
+              <button
+                type="button"
+                class="cart-button"
+                onclick="handleProductAddToCart(this)"
+                aria-label="Add to cart"
+              >
+                <i class="fa-solid fa-bag-shopping"></i>
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+      `;
+
+    }
+
+    /* =======================================================
+       PRODUCT WISHLIST
+    ======================================================== */
+
+    function handleProductWishlist(
+      event,
+      button
+    ) {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const id =
+        button.dataset.wishlistId;
+
+      const name =
+        button.dataset.wishlistName ||
+        "ATHAQ Product";
+
+      const price =
+        Number(
+          button.dataset.wishlistPrice
+        ) || 0;
+
+      const image =
+        button.dataset.wishlistImage ||
+        "";
+
+      toggleWishlist(
+        event,
+        id,
+        name,
+        image,
+        price
+      );
+
+    }
+
+    /* =======================================================
+       PRODUCT CART
+    ======================================================== */
+
+    function handleProductAddToCart(
+      button
+    ) {
+
+      const card =
+        button.closest(".product-card");
+
+      if (!card) return;
+
+      const id =
+        card.dataset.id;
+
+      const price =
+        Number(
+          card.dataset.price
+        ) || 0;
+
+      const name =
+        card
+          .querySelector("h3")
+          ?.innerText
+          ?.trim() ||
+        "ATHAQ Product";
+
+      const image =
+        card
+          .querySelector("img")
+          ?.src ||
+        "";
+
+      addToCart(
+        id,
+        name,
+        price,
+        image
+      );
+
+    }
+
+    /* =======================================================
+       PRODUCT BUY NOW
+    ======================================================== */
+
+    function handleProductBuyNow(
+      button
+    ) {
+
+      const card =
+        button.closest(".product-card");
+
+      if (!card) return;
+
+      const id =
+        card.dataset.id;
+
+      const price =
+        Number(
+          card.dataset.price
+        ) || 0;
+
+      const name =
+        card
+          .querySelector("h3")
+          ?.innerText
+          ?.trim() ||
+        "ATHAQ Product";
+
+      const image =
+        card
+          .querySelector("img")
+          ?.src ||
+        "";
+
+      buyNow(
+        id,
+        name,
+        price,
+        image
+      );
+
+    }
+
+    /* =======================================================
+       LOAD LIVE PRODUCTS
+    ======================================================== */
+
+    async function loadLiveProducts() {
+
+      const grid =
+        document.getElementById(
+          "productGrid"
+        );
+
+      const loading =
+        document.getElementById(
+          "productsLoading"
+        );
+
+      if (!grid) return;
+
+      const db =
+        getProductDB();
+
+      if (!db) {
+
+        grid.innerHTML = `
+          <div class="loading-box">
+
+            <div class="text-[#b34848] text-sm font-bold">
+              Unable to connect to product database.
+            </div>
+
+            <div class="text-[11px] text-gray-500">
+              Supabase configuration was not loaded.
+            </div>
+
+          </div>
+        `;
+
+        return;
+
+      }
+
+      if (loading) {
+        loading.style.display = "flex";
+      }
+
+      try {
+
+        const response =
+          await db
+            .from("products")
+            .select("*")
+            .order(
+              "created_at",
+              {
+                ascending: false
+              }
+            );
+
+        const data =
+          response.data;
+
+        const error =
+          response.error;
+
+        if (error) {
+          throw error;
+        }
+
+        if (
+          !Array.isArray(data) ||
+          data.length === 0
+        ) {
+
+          grid.innerHTML = `
+            <div class="loading-box">
+
+              <div class="w-14 h-14 rounded-full bg-[#edf5ef] text-[#004232] flex items-center justify-center mb-2">
+                <i class="fa-solid fa-box-open"></i>
+              </div>
+
+              <div class="text-[#004232] text-lg font-bold">
+
+                <span
+                  data-en="No Products Available"
+                  data-ar="لا توجد منتجات"
+                >
+                  No Products Available
+                </span>
+
+              </div>
+
+              <div
+                class="text-[11px] text-gray-500"
+                data-en="Products added from the Admin Panel will appear here."
+                data-ar="ستظهر المنتجات المضافة من لوحة الإدارة هنا."
+              >
+                Products added from the Admin Panel will appear here.
+              </div>
+
+            </div>
+          `;
+
+          applyLanguage(currentLang);
+
+          return;
+
+        }
+
+        grid.innerHTML =
+          data
+            .map(renderLiveProduct)
+            .join("");
+
+        updateWishlistUI();
+
+        applyLanguage(
+          currentLang
+        );
+
+        applyProductVisibility();
+
+      } catch (error) {
+
+        console.error(
+          "ATHAQ Product Loading Error:",
+          error
+        );
+
+        grid.innerHTML = `
+          <div class="loading-box">
+
+            <div class="w-14 h-14 rounded-full bg-red-50 text-red-500 flex items-center justify-center mb-2">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+
+            <div
+              class="text-red-600 font-bold"
+              data-en="Unable to load products."
+              data-ar="تعذر تحميل المنتجات."
+            >
+              Unable to load products.
+            </div>
+
+            <div class="text-[11px] text-gray-500 max-w-md text-center">
+              ${escapeHTML(
+                error?.message ||
+                "Please check your Supabase connection."
+              )}
+            </div>
+
+          </div>
+        `;
+
+        applyLanguage(currentLang);
+
+      } finally {
+
+        if (loading) {
+          loading.style.display = "none";
+        }
+
+      }
+
+    }
+
+    /* =======================================================
+       FILTER
+    ======================================================== */
+
+    function applyProductVisibility() {
+
+      const query =
+        activeProductSearch
+          .toLowerCase()
+          .trim();
+
+      document
+        .querySelectorAll(".product-card")
+        .forEach(card => {
+
+          const category =
+            card.dataset.category || "";
+
+          const searchableText =
+            (
+              card.dataset.search ||
+              card.innerText ||
+              ""
+            ).toLowerCase();
+
+          const categoryMatch =
+            activeProductCategory === "all" ||
+            category === normalizeCategory(
+              activeProductCategory
+            );
+
+          const searchMatch =
+            !query ||
+            searchableText.includes(query);
+
+          card.style.display =
+            categoryMatch && searchMatch
+              ? ""
+              : "none";
+
+        });
+
+    }
+
+    function toggleFilterMenu() {
+
+      const dropdown =
+        document.getElementById(
+          "filterDropdown"
+        );
+
+      document
+        .getElementById(
+          "sortDropdown"
+        )
+        ?.classList.add("hidden");
+
+      dropdown?.classList.toggle(
+        "hidden"
+      );
+
+    }
+
+    function filterProducts(
+      category
+    ) {
+
+      activeProductCategory =
+        category || "all";
+
+      applyProductVisibility();
+
+      document
+        .getElementById(
+          "filterDropdown"
+        )
+        ?.classList.add("hidden");
+
+    }
+
+    /* =======================================================
+       SORT
+    ======================================================== */
+
+    function toggleSortMenu() {
+
+      const dropdown =
+        document.getElementById(
+          "sortDropdown"
+        );
+
+      document
+        .getElementById(
+          "filterDropdown"
+        )
+        ?.classList.add("hidden");
+
+      dropdown?.classList.toggle(
+        "hidden"
+      );
+
+    }
+
+    function sortProducts(order) {
+
+      const grid =
+        document.getElementById(
+          "productGrid"
+        );
+
+      if (!grid) return;
+
+      const cards =
+        [
+          ...grid.querySelectorAll(
+            ".product-card"
+          )
+        ];
+
+      cards.sort((a,b) => {
+
+        const priceA =
+          Number(
+            a.dataset.price
+          ) || 0;
+
+        const priceB =
+          Number(
+            b.dataset.price
+          ) || 0;
+
+        return order === "low-high"
+          ? priceA - priceB
+          : priceB - priceA;
+
+      });
+
+      cards.forEach(card => {
+        grid.appendChild(card);
+      });
+
+      document
+        .getElementById(
+          "sortDropdown"
+        )
+        ?.classList.add("hidden");
+
+      applyProductVisibility();
+      updateWishlistUI();
+
+    }
+
+    /* =======================================================
+       SEARCH
+    ======================================================== */
+
     function openSearchModal() {
-      const modal = document.getElementById("searchModal");
-      modal.classList.remove("hidden");
-      modal.classList.add("flex");
-      setTimeout(() => document.getElementById("searchInput")?.focus(), 50);
+
+      const modal =
+        document.getElementById(
+          "searchModal"
+        );
+
+      if (!modal) return;
+
+      modal.classList.remove(
+        "hidden"
+      );
+
+      modal.classList.add(
+        "flex"
+      );
+
+      setTimeout(() => {
+
+        document
+          .getElementById(
+            "searchInput"
+          )
+          ?.focus();
+
+      }, 60);
+
     }
 
     function closeSearchModal() {
-      const modal = document.getElementById("searchModal");
+
+      const modal =
+        document.getElementById(
+          "searchModal"
+        );
+
       if (!modal) return;
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
+
+      modal.classList.add(
+        "hidden"
+      );
+
+      modal.classList.remove(
+        "flex"
+      );
+
     }
 
     function handleSearch(value) {
 
-  activeProductSearch =
-    String(value || "");
+      activeProductSearch =
+        String(value || "");
 
-  applyProductVisibility();
-}
+      applyProductVisibility();
 
-    /* ================= LANGUAGE ================= */
+    }
+
+    /* =======================================================
+       LANGUAGE
+    ======================================================== */
 
     function toggleLanguage() {
-      /*
-       * IMPORTANT:
-       * Save the exact viewport position before changing language.
-       * Changing dir can otherwise make the browser recalculate the
-       * layout/scroll position and appear to "jump".
-       */
-      const savedX = window.scrollX;
-      const savedY = window.scrollY;
 
-      currentLang = currentLang === "en" ? "ar" : "en";
-      localStorage.setItem("athaqLang", currentLang);
+      const savedX =
+        window.scrollX;
 
-      applyLanguage(currentLang);
+      const savedY =
+        window.scrollY;
 
-      /*
-       * Restore the exact position after the DOM has updated.
-       * requestAnimationFrame is used twice so the browser has time
-       * to finish the language/layout repaint first.
-       */
-      window.scrollTo(savedX, savedY);
+      currentLang =
+        currentLang === "en"
+          ? "ar"
+          : "en";
+
+      localStorage.setItem(
+        "athaqLang",
+        currentLang
+      );
+
+      applyLanguage(
+        currentLang
+      );
+
+      window.scrollTo(
+        savedX,
+        savedY
+      );
 
       requestAnimationFrame(() => {
-        window.scrollTo(savedX, savedY);
+
+        window.scrollTo(
+          savedX,
+          savedY
+        );
 
         requestAnimationFrame(() => {
-          window.scrollTo(savedX, savedY);
+
+          window.scrollTo(
+            savedX,
+            savedY
+          );
+
         });
+
       });
+
     }
 
-    function applyLanguage(lang) {
-      const html = document.documentElement;
-      const body = document.body;
+    function applyLanguage(
+      lang
+    ) {
 
-      /*
-       * Keep document geometry LTR at all times.
-       * This is the key fix: Arabic content changes, but the page
-       * does NOT switch its complete layout direction.
-       */
-      html.setAttribute("lang", lang);
-      html.setAttribute("dir", "ltr");
+      const html =
+        document.documentElement;
 
-      /*
-       * Store the selected language separately so other scripts/pages
-       * can still know that Arabic is active.
-       */
-      html.dataset.language = lang;
-      body.dataset.language = lang;
+      const body =
+        document.body;
 
-      // Update Language button label
-      const langLabel = document.getElementById("languageLabel");
+      html.setAttribute(
+        "lang",
+        lang
+      );
+
+      html.setAttribute(
+        "dir",
+        "ltr"
+      );
+
+      html.dataset.language =
+        lang;
+
+      body.dataset.language =
+        lang;
+
+      const langLabel =
+        document.getElementById(
+          "languageLabel"
+        );
+
       if (langLabel) {
-        langLabel.innerText = lang === "ar" ? "العربية" : "English";
+
+        langLabel.innerText =
+          lang === "ar"
+            ? "العربية"
+            : "English";
+
       }
 
-      // Translate all tagged elements without changing their layout.
-      document.querySelectorAll("[data-en][data-ar]").forEach(el => {
-        const translated = el.getAttribute(`data-${lang}`);
-        if (translated !== null) {
-          el.innerText = translated;
-        }
+      document
+        .querySelectorAll(
+          "[data-en][data-ar]"
+        )
+        .forEach(el => {
 
-        // Arabic text reads correctly while the page geometry stays fixed.
-        if (lang === "ar") {
-          el.style.direction = "rtl";
-          el.style.textAlign = "right";
-        } else {
-          el.style.direction = "";
-          el.style.textAlign = "";
-        }
-      });
+          const translated =
+            el.getAttribute(
+              `data-${lang}`
+            );
 
-      // Translate placeholders
-      document.querySelectorAll("[data-en-placeholder][data-ar-placeholder]").forEach(el => {
-        const placeholder = el.getAttribute(`data-${lang}-placeholder`);
-        if (placeholder !== null) {
-          el.setAttribute("placeholder", placeholder);
-        }
+          if (
+            translated !== null
+          ) {
 
-        if (lang === "ar") {
-          el.style.direction = "rtl";
-          el.style.textAlign = "right";
-        } else {
-          el.style.direction = "";
-          el.style.textAlign = "";
-        }
-      });
+            el.innerText =
+              translated;
 
-      /*
-       * The sidebar must remain on the RIGHT in Arabic too.
-       * Do not change its physical position when the language changes.
-       */
-      const menu = document.getElementById("side-menu");
+          }
+
+          if (lang === "ar") {
+
+            el.style.direction =
+              "rtl";
+
+            el.style.textAlign =
+              "right";
+
+          } else {
+
+            el.style.direction =
+              "";
+
+            el.style.textAlign =
+              "";
+
+          }
+
+        });
+
+      document
+        .querySelectorAll(
+          "[data-en-placeholder][data-ar-placeholder]"
+        )
+        .forEach(el => {
+
+          const placeholder =
+            el.getAttribute(
+              `data-${lang}-placeholder`
+            );
+
+          if (
+            placeholder !== null
+          ) {
+
+            el.setAttribute(
+              "placeholder",
+              placeholder
+            );
+
+          }
+
+          if (lang === "ar") {
+
+            el.style.direction =
+              "rtl";
+
+            el.style.textAlign =
+              "right";
+
+          } else {
+
+            el.style.direction =
+              "";
+
+            el.style.textAlign =
+              "";
+
+          }
+
+        });
+
+      const menu =
+        document.getElementById(
+          "side-menu"
+        );
+
       if (menu) {
-        menu.style.right = "0";
-        menu.style.left = "auto";
+
+        menu.style.right =
+          "0";
+
+        menu.style.left =
+          "auto";
+
       }
+
     }
 
-    /* ================= SHARE ================= */
+    /* =======================================================
+       SHARE
+    ======================================================== */
+
     function shareWebsite() {
-      const url = window.location.href;
+
+      const url =
+        window.location.href;
 
       if (navigator.share) {
+
         navigator.share({
           title: "ATHAQ",
-          text: "Discover ATHAQ premium Saudi dates.",
+          text:
+            currentLang === "ar"
+              ? "اكتشف تمور أثاق السعودية الفاخرة."
+              : "Discover ATHAQ premium Saudi dates.",
           url
         }).catch(() => {});
-      } else if (navigator.clipboard) {
-        navigator.clipboard.writeText(url)
-          .then(() => alert(currentLang === 'ar' ? "تم نسخ الرابط!" : "Link copied!"))
-          .catch(() => alert("Unable to copy the link."));
+
+      } else if (
+        navigator.clipboard
+      ) {
+
+        navigator.clipboard
+          .writeText(url)
+          .then(() => {
+
+            showAthaqToast(
+              "cart",
+              currentLang === "ar"
+                ? "تم نسخ الرابط"
+                : "Link Copied",
+              currentLang === "ar"
+                ? "تم نسخ رابط الموقع بنجاح."
+                : "The website link has been copied."
+            );
+
+          })
+          .catch(() => {
+
+            alert(
+              currentLang === "ar"
+                ? "تعذر نسخ الرابط."
+                : "Unable to copy the link."
+            );
+
+          });
+
       } else {
+
         alert(url);
+
       }
+
     }
 
-    /* ================= OUTSIDE DROPDOWNS ================= */
-    document.addEventListener("click", (event) => {
-      const filter = document.getElementById("filterDropdown");
-      const sort = document.getElementById("sortDropdown");
+    /* =======================================================
+       CATALOG REQUEST
+    ======================================================== */
 
-      if (!event.target.closest("#filterDropdown") && !event.target.closest("[onclick='toggleFilterMenu()']")) {
-        filter?.classList.add("hidden");
+    function requestCatalog() {
+
+      const input =
+        document.getElementById(
+          "businessEmail"
+        );
+
+      const email =
+        input?.value.trim();
+
+      if (!email) {
+
+        showAthaqToast(
+          "cart",
+          currentLang === "ar"
+            ? "البريد الإلكتروني مطلوب"
+            : "Email Required",
+          currentLang === "ar"
+            ? "يرجى إدخال بريدك الإلكتروني."
+            : "Please enter your business email address."
+        );
+
+        input?.focus();
+
+        return;
+
       }
 
-      if (!event.target.closest("#sortDropdown") && !event.target.closest("[onclick='toggleSortMenu()']")) {
-        sort?.classList.add("hidden");
+      if (
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+      ) {
+
+        showAthaqToast(
+          "cart",
+          currentLang === "ar"
+            ? "بريد إلكتروني غير صالح"
+            : "Invalid Email",
+          currentLang === "ar"
+            ? "يرجى إدخال بريد إلكتروني صالح."
+            : "Please enter a valid business email."
+        );
+
+        input?.focus();
+
+        return;
+
       }
-    });
+
+      const subject =
+        encodeURIComponent(
+          "ATHAQ Bulk Catalog Request"
+        );
+
+      const body =
+        encodeURIComponent(
+          `Hello ATHAQ,\n\nI would like to request the bulk product catalog.\n\nBusiness Email: ${email}\n\nThank you.`
+        );
+
+      window.location.href =
+        `mailto:info@athaqdates.com?subject=${subject}&body=${body}`;
+
+    }
+
+    /* =======================================================
+       OUTSIDE DROPDOWN
+    ======================================================== */
+
+    document.addEventListener(
+      "click",
+      event => {
+
+        const filter =
+          document.getElementById(
+            "filterDropdown"
+          );
+
+        const sort =
+          document.getElementById(
+            "sortDropdown"
+          );
+
+        if (
+          !event.target.closest(
+            "#filterDropdown"
+          ) &&
+          !event.target.closest(
+            "[onclick='toggleFilterMenu()']"
+          )
+        ) {
+
+          filter?.classList.add(
+            "hidden"
+          );
+
+        }
+
+        if (
+          !event.target.closest(
+            "#sortDropdown"
+          ) &&
+          !event.target.closest(
+            "[onclick='toggleSortMenu()']"
+          )
+        ) {
+
+          sort?.classList.add(
+            "hidden"
+          );
+
+        }
+
+      }
+    );
+
   </script>
+
 </body>
 </html>
