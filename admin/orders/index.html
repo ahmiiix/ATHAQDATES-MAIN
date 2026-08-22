@@ -112,10 +112,316 @@
 
     </script>
 
+
+<style id="athaq-professional-toast">
+/* =========================================================
+   ATHAQ PROFESSIONAL NOTIFICATIONS
+========================================================= */
+.athaq-toast-wrap {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: min(390px, calc(100vw - 32px));
+    pointer-events: none;
+}
+
+.athaq-toast {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    padding: 16px 17px 17px;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 16px;
+    background: rgba(15, 23, 42, .96);
+    color: #fff;
+    box-shadow: 0 18px 45px rgba(0,0,0,.24);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    pointer-events: auto;
+    animation: athaqToastIn .38s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.athaq-toast.is-leaving {
+    animation: athaqToastOut .28s ease forwards;
+}
+
+.athaq-toast-icon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.athaq-toast.success .athaq-toast-icon {
+    background: rgba(34,197,94,.16);
+    color: #86efac;
+}
+
+.athaq-toast.error .athaq-toast-icon {
+    background: rgba(239,68,68,.16);
+    color: #fca5a5;
+}
+
+.athaq-toast.info .athaq-toast-icon {
+    background: rgba(59,130,246,.16);
+    color: #93c5fd;
+}
+
+.athaq-toast-content {
+    min-width: 0;
+    flex: 1;
+    padding-top: 1px;
+}
+
+.athaq-toast-title {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 800;
+    letter-spacing: .01em;
+}
+
+.athaq-toast-message {
+    margin: 3px 0 0;
+    color: rgba(255,255,255,.72);
+    font-size: 13px;
+    line-height: 19px;
+    word-break: break-word;
+}
+
+.athaq-toast-close {
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: rgba(255,255,255,.58);
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+}
+
+.athaq-toast-close:hover {
+    background: rgba(255,255,255,.08);
+    color: #fff;
+}
+
+.athaq-toast-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    transform-origin: left;
+    animation: athaqToastProgress 4.2s linear forwards;
+}
+
+.athaq-toast.success .athaq-toast-progress {
+    background: #22c55e;
+}
+
+.athaq-toast.error .athaq-toast-progress {
+    background: #ef4444;
+}
+
+.athaq-toast.info .athaq-toast-progress {
+    background: #3b82f6;
+}
+
+@keyframes athaqToastIn {
+    from { opacity: 0; transform: translate3d(35px,-8px,0) scale(.96); }
+    to   { opacity: 1; transform: translate3d(0,0,0) scale(1); }
+}
+
+@keyframes athaqToastOut {
+    from { opacity: 1; transform: translate3d(0,0,0) scale(1); }
+    to   { opacity: 0; transform: translate3d(35px,-5px,0) scale(.96); }
+}
+
+@keyframes athaqToastProgress {
+    from { transform: scaleX(1); }
+    to   { transform: scaleX(0); }
+}
+
+@media (max-width: 640px) {
+    .athaq-toast-wrap {
+        top: 14px;
+        right: 14px;
+        left: 14px;
+        width: auto;
+    }
+}
+</style>
+
+
+<style id="athaq-professional-confirm">
+.athaq-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(2, 6, 23, .52);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    animation: athaqConfirmFade .2s ease both;
+}
+
+.athaq-confirm-card {
+    width: min(430px, calc(100vw - 32px));
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 22px;
+    background: rgba(15, 23, 42, .98);
+    color: #fff;
+    box-shadow: 0 28px 80px rgba(0,0,0,.38);
+    padding: 25px;
+    animation: athaqConfirmIn .28s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.athaq-confirm-icon {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 15px;
+    margin-bottom: 16px;
+    background: rgba(34,197,94,.14);
+    color: #86efac;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.athaq-confirm-title {
+    margin: 0;
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 800;
+}
+
+.athaq-confirm-message {
+    margin: 7px 0 0;
+    color: rgba(255,255,255,.68);
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.athaq-confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 23px;
+}
+
+.athaq-confirm-btn {
+    min-width: 92px;
+    height: 42px;
+    padding: 0 17px;
+    border-radius: 11px;
+    border: 1px solid rgba(255,255,255,.12);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .16s ease, opacity .16s ease, background .16s ease;
+}
+
+.athaq-confirm-btn:hover {
+    transform: translateY(-1px);
+}
+
+.athaq-confirm-cancel {
+    background: rgba(255,255,255,.07);
+    color: rgba(255,255,255,.82);
+}
+
+.athaq-confirm-cancel:hover {
+    background: rgba(255,255,255,.11);
+}
+
+.athaq-confirm-ok {
+    border-color: rgba(34,197,94,.35);
+    background: #22c55e;
+    color: #052e16;
+}
+
+.athaq-confirm-ok:hover {
+    background: #16a34a;
+}
+
+@keyframes athaqConfirmFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes athaqConfirmIn {
+    from { opacity: 0; transform: translateY(12px) scale(.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+</style>
+
 </head>
 
 
 <body class="bg-[#faf9f4] text-gray-900 min-h-screen flex">
+<div id="athaqToastWrap" class="athaq-toast-wrap" aria-live="polite" aria-atomic="true"></div>
+
+<script>
+/* =========================================================
+   ATHAQ PROFESSIONAL TOAST NOTIFICATION
+========================================================= */
+function showAthaqToast(message, type = "success", title = "") {
+
+    const wrap = document.getElementById("athaqToastWrap");
+
+    if (!wrap) {
+        return;
+    }
+
+    const settings = {
+        success: { title: title || "Order Updated", icon: "✓" },
+        error: { title: title || "Update Failed", icon: "!" },
+        info: { title: title || "Information", icon: "i" }
+    };
+
+    const config = settings[type] || settings.info;
+    const toast = document.createElement("div");
+    toast.className = "athaq-toast " + type;
+
+    toast.innerHTML = `
+        <div class="athaq-toast-icon">${config.icon}</div>
+        <div class="athaq-toast-content">
+            <p class="athaq-toast-title">${escapeHTML(config.title)}</p>
+            <p class="athaq-toast-message">${escapeHTML(String(message))}</p>
+        </div>
+        <button type="button" class="athaq-toast-close" aria-label="Close notification">&times;</button>
+        <div class="athaq-toast-progress"></div>
+    `;
+
+    wrap.appendChild(toast);
+
+    const closeToast = () => {
+        if (toast.classList.contains("is-leaving")) return;
+        toast.classList.add("is-leaving");
+        setTimeout(() => toast.remove(), 300);
+    };
+
+    toast.querySelector(".athaq-toast-close").addEventListener("click", closeToast);
+    setTimeout(closeToast, 4200);
+}
+</script>
+
 
 
 <!-- =========================================================
@@ -477,16 +783,6 @@
                 </div>
 
 
-<select
-    onchange="updateOrderStatus('ORDER_ID', this.value)"
->
-    <option value="new">New</option>
-    <option value="confirmed">Confirmed</option>
-    <option value="preparing">Preparing</option>
-    <option value="out_for_delivery">Out for Delivery</option>
-    <option value="delivered">Delivered</option>
-    <option value="cancelled">Cancelled</option>
-</select>
 
             </div>
 
@@ -1749,7 +2045,6 @@ function updateStats() {
             allOrders.filter(
                 order =>
                     normalizeStatus(
-                        order.status ||
                         order.order_status
                     ) === "new"
             ).length;
@@ -1763,7 +2058,6 @@ function updateStats() {
             allOrders.filter(
                 order =>
                     normalizeStatus(
-                        order.status ||
                         order.order_status
                     ) === "delivered"
             ).length;
@@ -1828,7 +2122,6 @@ function filterOrders() {
 
                 const currentStatus =
                     normalizeStatus(
-                        order.status ||
                         order.order_status
                     );
 
@@ -1946,7 +2239,6 @@ function renderOrders(orders) {
 
                 const status =
                     normalizeStatus(
-                        order.status ||
                         order.order_status
                     );
 
@@ -2506,7 +2798,6 @@ async function changeOrderStatus() {
 
     const oldStatus =
         normalizeStatus(
-            currentOrder.status ||
             currentOrder.order_status
         );
 
@@ -2519,10 +2810,11 @@ async function changeOrderStatus() {
 
 
     const confirmed =
-        confirm(
-            "Change order status to \"" +
+        await showAthaqConfirm(
+            "Are you sure you want to change the order status to \"" +
             statusLabel(newStatus) +
-            "\"?"
+            "\"?",
+            "Change Order Status"
         );
 
 
@@ -2545,11 +2837,7 @@ async function changeOrderStatus() {
             error
         } = await requireDB()
             .from("orders")
-            .update({
-
-                status: newStatus
-
-            })
+            .update({ order_status: newStatus })
             .eq(
                 "id",
                 currentOrder.id
@@ -2563,7 +2851,7 @@ async function changeOrderStatus() {
         }
 
 
-        currentOrder.status =
+        currentOrder.order_status =
             newStatus;
 
 
@@ -2581,7 +2869,7 @@ async function changeOrderStatus() {
 
         if (index !== -1) {
 
-            allOrders[index].status =
+            allOrders[index].order_status =
                 newStatus;
 
         }
@@ -2592,8 +2880,12 @@ async function changeOrderStatus() {
         filterOrders();
 
 
-        alert(
-            "Order status updated successfully."
+        showAthaqToast(
+            "The order status has been changed to " +
+            statusLabel(newStatus) +
+            ".",
+            "success",
+            "Order Status Updated"
         );
 
 
@@ -2609,12 +2901,11 @@ async function changeOrderStatus() {
             oldStatus;
 
 
-        alert(
-            "Unable to update order status.\n\n" +
-            (
-                error.message ||
-                "Supabase update failed"
-            )
+        showAthaqToast(
+            error.message ||
+            "Supabase update failed",
+            "error",
+            "Unable to Update Order"
         );
 
     } finally {
@@ -2790,6 +3081,8 @@ async function updateOrderStatus(orderId, newStatus) {
         return;
     }
 
+    newStatus = normalizeStatus(newStatus);
+
     try {
 
         const database = requireDB();
@@ -2804,7 +3097,7 @@ async function updateOrderStatus(orderId, newStatus) {
                 updated_at: new Date().toISOString()
             })
             .eq("id", orderId)
-            .select()
+            .select("id, order_status, updated_at")
             .single();
 
         if (error) {
@@ -2828,11 +3121,77 @@ async function updateOrderStatus(orderId, newStatus) {
             error
         );
 
-        alert(
-            "Unable to update order status.\n\n" +
-            (error.message || "Unknown Supabase error")
+        showAthaqToast(
+            error.message || "Unknown Supabase error",
+            "error",
+            "Unable to Update Order"
         );
     }
+}
+</script>
+
+
+<script>
+/* =========================================================
+   ATHAQ PROFESSIONAL STATUS CONFIRMATION
+========================================================= */
+function showAthaqConfirm(message, title = "Change Order Status?") {
+    return new Promise((resolve) => {
+        const overlay = document.createElement("div");
+        overlay.className = "athaq-confirm-overlay";
+        overlay.setAttribute("role", "dialog");
+        overlay.setAttribute("aria-modal", "true");
+
+        overlay.innerHTML = `
+            <div class="athaq-confirm-card">
+                <div class="athaq-confirm-icon">✓</div>
+                <h3 class="athaq-confirm-title">${escapeHTML(title)}</h3>
+                <p class="athaq-confirm-message">${escapeHTML(String(message))}</p>
+
+                <div class="athaq-confirm-actions">
+                    <button type="button" class="athaq-confirm-btn athaq-confirm-cancel">
+                        Cancel
+                    </button>
+                    <button type="button" class="athaq-confirm-btn athaq-confirm-ok">
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(overlay);
+
+        const close = (result) => {
+            overlay.style.opacity = "0";
+            setTimeout(() => overlay.remove(), 180);
+            resolve(result);
+        };
+
+        overlay.querySelector(".athaq-confirm-cancel")
+            .addEventListener("click", () => close(false));
+
+        overlay.querySelector(".athaq-confirm-ok")
+            .addEventListener("click", () => close(true));
+
+        overlay.addEventListener("click", (event) => {
+            if (event.target === overlay) {
+                close(false);
+            }
+        });
+
+        const onKey = (event) => {
+            if (event.key === "Escape") {
+                document.removeEventListener("keydown", onKey);
+                close(false);
+            }
+        };
+
+        document.addEventListener("keydown", onKey);
+
+        requestAnimationFrame(() => {
+            overlay.querySelector(".athaq-confirm-ok")?.focus();
+        });
+    });
 }
 </script>
 
