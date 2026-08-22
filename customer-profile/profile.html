@@ -15,6 +15,116 @@
     <!-- Custom CSS File -->
     <link rel="stylesheet" href="profile.css">
 
+
+<style id="athaq-orders-tracking-styles">
+    .athaq-order-card {
+        border: 1px solid #e8ece8;
+        background: linear-gradient(180deg, #ffffff 0%, #fbfdfb 100%);
+        border-radius: 22px;
+        padding: 18px;
+        transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .athaq-order-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(0, 66, 50, .08);
+        border-color: #cfe5dc;
+    }
+    .athaq-status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        border-radius: 999px;
+        padding: 7px 11px;
+        font-size: 11px;
+        font-weight: 800;
+        white-space: nowrap;
+    }
+    .athaq-status-new { background:#f3f4f6; color:#374151; }
+    .athaq-status-confirmed { background:#ecfdf5; color:#047857; }
+    .athaq-status-preparing { background:#fffbeb; color:#b45309; }
+    .athaq-status-out_for_delivery { background:#eff6ff; color:#1d4ed8; }
+    .athaq-status-delivered { background:#dcfce7; color:#15803d; }
+    .athaq-status-cancelled { background:#fef2f2; color:#b91c1c; }
+
+    .athaq-track-line {
+        position: absolute;
+        left: 17px;
+        top: 34px;
+        bottom: 34px;
+        width: 2px;
+        background: #e5e7eb;
+    }
+    .athaq-track-step {
+        position: relative;
+        display: flex;
+        gap: 14px;
+        min-height: 68px;
+    }
+    .athaq-track-dot {
+        position: relative;
+        z-index: 2;
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        border: 4px solid #fff;
+        box-shadow: 0 0 0 1px #e5e7eb;
+        background: #f3f4f6;
+        color: #9ca3af;
+        font-size: 12px;
+    }
+    .athaq-track-step.done .athaq-track-dot,
+    .athaq-track-step.current .athaq-track-dot {
+        background: #004232;
+        color: #fff;
+        box-shadow: 0 0 0 1px #004232;
+    }
+    .athaq-track-step.current .athaq-track-dot {
+        box-shadow: 0 0 0 5px rgba(0,66,50,.10);
+    }
+    .athaq-track-step.done .athaq-track-label,
+    .athaq-track-step.current .athaq-track-label {
+        color: #004232;
+    }
+    .athaq-track-step.current .athaq-track-label {
+        font-weight: 800;
+    }
+
+    .athaq-modal-backdrop {
+        background: rgba(15, 23, 42, .50);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+    .athaq-toast-wrap {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 99999;
+        width: min(390px, calc(100vw - 30px));
+    }
+    .athaq-toast {
+        display:flex;
+        align-items:flex-start;
+        gap:12px;
+        background:#0f172a;
+        color:#fff;
+        border-radius:16px;
+        padding:15px 16px;
+        margin-bottom:10px;
+        box-shadow:0 18px 45px rgba(0,0,0,.22);
+        animation:athaqToastIn .28s ease both;
+    }
+    @keyframes athaqToastIn {
+        from { opacity:0; transform:translateY(-10px) translateX(12px); }
+        to { opacity:1; transform:translateY(0) translateX(0); }
+    }
+    @media(max-width:640px){
+        .athaq-toast-wrap { top:12px; right:12px; left:12px; width:auto; }
+    }
+</style>
+
 </head>
 <body class="bg-[#faf9f4] text-[#1b1c19] font-['Manrope',sans-serif] min-h-screen flex flex-col">
 
@@ -54,11 +164,17 @@
                 </div>
             </div>
 
-            <!-- Account Type Box -->
-            <div onclick="document.getElementById('profileImageInput').click()" class="bg-white/10 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20 text-center cursor-pointer hover:bg-white/20 transition-colors" title="Click to change profile picture">
-                <span class="block text-xs text-emerald-200 uppercase tracking-wider font-semibold">Account Type</span>
-                <span class="text-lg font-bold uppercase" id="profileRole">Valued Customer</span>
-            </div>
+<!-- Track My Orders -->
+<a
+    href="/customer-profile/track.html"
+    class="bg-white/10 backdrop-blur-md px-7 py-4 rounded-2xl border border-white/20 text-center cursor-pointer hover:bg-white/20 transition-all duration-200 hover:scale-[1.02] inline-block"
+>
+    <i class="fa-solid fa-location-dot text-2xl text-emerald-200"></i>
+
+    <span class="block text-lg font-bold mt-1">
+        Track My Orders
+    </span>
+</a>
 
             <input type="file" id="profileImageInput" accept="image/*" class="hidden" onchange="uploadProfilePic(event)">
         </div>
@@ -228,37 +344,623 @@
 
     </div>
 </div>
+
+    <!-- ATHAQ ORDER TRACKING MODAL -->
+    <div id="orderTrackingModal"
+         class="hidden fixed inset-0 z-[200] athaq-modal-backdrop items-center justify-center p-4">
+        <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-[28px] shadow-2xl border border-white/50">
+            <div class="sticky top-0 bg-white/95 backdrop-blur-md border-b border-gray-100 px-6 py-5 flex items-center justify-between z-10">
+                <div>
+                    <p class="text-[10px] uppercase tracking-[.18em] text-gray-400 font-bold">Order Tracking</p>
+                    <h3 id="trackingModalTitle" class="text-xl font-bold text-[#004232] mt-1">Order</h3>
+                </div>
+                <button type="button" onclick="closeOrderTracking()"
+                        class="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-6">
+                <div id="trackingSummary" class="mb-7"></div>
+
+                <div class="relative pl-1">
+                    <div class="athaq-track-line"></div>
+                    <div id="trackingTimeline" class="space-y-1"></div>
+                </div>
+
+                <div id="trackingUpdatedAt"
+                     class="mt-5 text-[11px] text-gray-400 text-center"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="athaqCustomerToastWrap" class="athaq-toast-wrap" aria-live="polite"></div>
+
     <!-- Footer -->
     <footer class="text-center py-6 text-xs text-gray-500 border-t border-gray-200 bg-white">
         &copy; 2023 ATHAQ Dates Industry. All rights reserved.
     </footer>
 
-    <!-- Profile Data & Authentication Verification Script -->
+    <!-- Profile Data, Orders & Realtime Tracking -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Check session from localStorage (supporting both 'loggedInUser' and 'user')
-            const currentUser = JSON.parse(localStorage.getItem("loggedInUser")) || JSON.parse(localStorage.getItem("user"));
+        let athaqCurrentUser = null;
+        let athaqAuthUser = null;
+        let athaqSupabase = null;
+        let athaqOrders = [];
+        let athaqOrdersChannel = null;
+        let athaqOrdersPollTimer = null;
+        let athaqLastStatusSnapshot = {};
 
-            if (!currentUser) {
-                // Agar user login nahi hai toh login page par redirect kar dein
+        const ATHAQ_STATUS_FLOW = [
+            "new",
+            "confirmed",
+            "preparing",
+            "out_for_delivery",
+            "delivered"
+        ];
+
+        const ATHAQ_STATUS_LABELS = {
+            new: "New",
+            confirmed: "Confirmed",
+            preparing: "Preparing",
+            out_for_delivery: "Out for Delivery",
+            delivered: "Delivered",
+            cancelled: "Cancelled"
+        };
+
+        function escapeHTML(value) {
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function getStoredUser() {
+            try {
+                return JSON.parse(localStorage.getItem("loggedInUser"))
+                    || JSON.parse(localStorage.getItem("user"))
+                    || null;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function getCustomerId(user) {
+            // Orders are linked to the authenticated Supabase user's UUID.
+            if (athaqAuthUser?.id) return athaqAuthUser.id;
+
+            if (!user) return null;
+
+            return user.id
+                || user.user_id
+                || user.customer_id
+                || user.uuid
+                || user.userId
+                || null;
+        }
+
+        function resolveSupabaseClient() {
+            if (window.athaqSupabase) return window.athaqSupabase;
+            if (window.supabaseClient) return window.supabaseClient;
+            if (window.supabase && typeof window.supabase.from === "function") return window.supabase;
+
+            const url =
+                window.SUPABASE_URL ||
+                window.supabaseUrl ||
+                window.ATHAQ_SUPABASE_URL;
+
+            const key =
+                window.SUPABASE_ANON_KEY ||
+                window.SUPABASE_KEY ||
+                window.supabaseAnonKey ||
+                window.ATHAQ_SUPABASE_ANON_KEY;
+
+            if (url && key && window.supabase && typeof window.supabase.createClient === "function") {
+                window.athaqSupabase = window.supabase.createClient(url, key);
+                return window.athaqSupabase;
+            }
+
+            return null;
+        }
+
+        function formatMoney(value) {
+            const amount = Number(value || 0);
+            return "SAR " + amount.toFixed(2);
+        }
+
+        function formatDate(value) {
+            if (!value) return "-";
+            const date = new Date(value);
+            if (Number.isNaN(date.getTime())) return "-";
+
+            return date.toLocaleDateString("en-SA", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            });
+        }
+
+        function formatDateTime(value) {
+            if (!value) return "";
+            const date = new Date(value);
+            if (Number.isNaN(date.getTime())) return "";
+
+            return date.toLocaleString("en-SA", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+        }
+
+        function statusLabel(status) {
+            return ATHAQ_STATUS_LABELS[status] || status || "Unknown";
+        }
+
+        function statusClass(status) {
+            return "athaq-status-" + (status || "new").replace(/[^a-z_]/g, "_");
+        }
+
+        function showCustomerToast(title, message, type = "success") {
+            const wrap = document.getElementById("athaqCustomerToastWrap");
+            if (!wrap) return;
+
+            const icon = type === "success" ? "✓" : type === "error" ? "!" : "i";
+            const toast = document.createElement("div");
+            toast.className = "athaq-toast";
+
+            toast.innerHTML = `
+                <div class="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center font-extrabold">${icon}</div>
+                <div class="min-w-0 flex-1">
+                    <div class="font-bold text-sm">${escapeHTML(title)}</div>
+                    <div class="text-xs text-white/70 mt-1">${escapeHTML(message)}</div>
+                </div>
+                <button type="button" class="text-white/50 hover:text-white text-xl leading-none" aria-label="Close">&times;</button>
+            `;
+
+            wrap.appendChild(toast);
+
+            const close = () => toast.remove();
+            toast.querySelector("button").addEventListener("click", close);
+            setTimeout(close, 4200);
+        }
+
+        function renderOrdersLoading() {
+            const container = document.getElementById("ordersContainer");
+            if (!container) return;
+
+            container.innerHTML = `
+                <div class="space-y-3">
+                    ${[1,2].map(() => `
+                        <div class="animate-pulse border border-gray-100 rounded-2xl p-5">
+                            <div class="flex justify-between gap-4">
+                                <div class="space-y-2 flex-1">
+                                    <div class="h-4 bg-gray-100 rounded w-1/3"></div>
+                                    <div class="h-3 bg-gray-100 rounded w-1/2"></div>
+                                </div>
+                                <div class="h-7 bg-gray-100 rounded-full w-24"></div>
+                            </div>
+                            <div class="h-3 bg-gray-100 rounded w-2/3 mt-5"></div>
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+        }
+
+        function renderOrdersEmpty() {
+            const container = document.getElementById("ordersContainer");
+            if (!container) return;
+
+            container.innerHTML = `
+                <div class="text-center py-12 px-5">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-emerald-50 text-[#004232] flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <h4 class="mt-4 font-bold text-gray-800">No orders yet</h4>
+                    <p class="text-xs text-gray-500 mt-1">Your orders will appear here as soon as you place one.</p>
+                    <a href="/web/product/index.html"
+                       class="inline-flex items-center gap-2 mt-5 bg-[#004232] text-white px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-[#002e23] transition">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        Start Shopping
+                    </a>
+                </div>
+            `;
+        }
+
+        function renderOrders() {
+            const container = document.getElementById("ordersContainer");
+            if (!container) return;
+
+            if (!athaqOrders.length) {
+                renderOrdersEmpty();
+                return;
+            }
+
+            container.innerHTML = athaqOrders.map(order => {
+                const status = order.order_status || "new";
+                const orderRef = order.order_ref || String(order.id || "").slice(0, 8).toUpperCase();
+
+                return `
+                    <div class="athaq-order-card">
+                        <div class="text-[9px] uppercase tracking-[.18em] font-extrabold text-gray-400 mb-3">
+                            Order Receipt
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                            <div class="min-w-0">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-8 h-8 rounded-lg bg-emerald-50 text-[#004232] flex items-center justify-center text-xs">
+                                        <i class="fa-solid fa-receipt"></i>
+                                    </span>
+                                    <div>
+                                        <p class="text-sm font-extrabold text-[#004232]">#${escapeHTML(orderRef)}</p>
+                                        <p class="text-[11px] text-gray-400">${escapeHTML(formatDate(order.created_at))}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="athaq-status-pill ${statusClass(status)}">
+                                <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
+                                ${escapeHTML(statusLabel(status))}
+                            </span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 mt-5">
+                            <div class="rounded-xl bg-gray-50 px-3 py-3">
+                                <p class="text-[10px] uppercase tracking-wider font-bold text-gray-400">Total</p>
+                                <p class="text-sm font-extrabold text-gray-800 mt-1">${escapeHTML(formatMoney(order.total_amount))}</p>
+                            </div>
+                            <div class="rounded-xl bg-gray-50 px-3 py-3">
+                                <p class="text-[10px] uppercase tracking-wider font-bold text-gray-400">Payment</p>
+                                <p class="text-sm font-extrabold text-gray-800 mt-1">${escapeHTML(order.payment_method || "COD")}</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 rounded-xl border border-gray-100 bg-white px-3 py-3">
+                            <p class="text-[10px] uppercase tracking-wider font-bold text-gray-400">Delivery</p>
+                            <p class="text-xs font-semibold text-gray-700 mt-1">
+                                ${escapeHTML(order.shipping_address || "-")}${order.shipping_city ? ", " + escapeHTML(order.shipping_city) : ""}
+                            </p>
+                        </div>
+
+                        <div class="mt-4 flex flex-col sm:flex-row gap-2">
+                            <button type="button"
+                                    onclick="openOrderTracking('${escapeHTML(order.id)}')"
+                                    class="flex-1 bg-[#004232] text-white py-2.5 rounded-xl text-xs font-bold hover:bg-[#002e23] transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-location-dot"></i>
+                                Track Order
+                            </button>
+                            <button type="button"
+                                    onclick="openOrderTracking('${escapeHTML(order.id)}')"
+                                    class="sm:w-auto px-4 border border-gray-200 text-gray-700 py-2.5 rounded-xl text-xs font-bold hover:bg-gray-50 transition">
+                                View Status
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        async function getAuthenticatedCustomerForProfile() {
+            if (!athaqSupabase) return null;
+
+            const { data, error } = await athaqSupabase.auth.getUser();
+
+            if (error) {
+                console.warn("ATHAQ auth user lookup:", error.message);
+                return null;
+            }
+
+            return data?.user || null;
+        }
+
+        async function loadCustomerOrders(options = {}) {
+            const silent = options.silent === true;
+
+            if (!athaqSupabase) {
+                if (!silent) {
+                    const container = document.getElementById("ordersContainer");
+                    if (container) {
+                        container.innerHTML = `
+                            <div class="rounded-2xl border border-red-100 bg-red-50 p-5">
+                                <p class="font-bold text-red-700 text-sm">Orders are unavailable</p>
+                                <p class="text-xs text-red-600 mt-1">Supabase configuration was not found on this page.</p>
+                            </div>
+                        `;
+                    }
+                }
+                return;
+            }
+
+            const customerId = getCustomerId(athaqCurrentUser);
+
+            if (!customerId) {
+                const container = document.getElementById("ordersContainer");
+                if (container) {
+                    container.innerHTML = `
+                        <div class="rounded-2xl border border-amber-100 bg-amber-50 p-5">
+                            <p class="font-bold text-amber-800 text-sm">Customer ID not available</p>
+                            <p class="text-xs text-amber-700 mt-1">
+                                Please log in again so your orders can be securely linked to your account.
+                            </p>
+                        </div>
+                    `;
+                }
+                return;
+            }
+
+            if (!silent) renderOrdersLoading();
+
+            const { data, error } = await athaqSupabase
+                .from("orders")
+                .select(`
+                    id,
+                    order_ref,
+                    customer_id,
+                    customer_name,
+                    customer_phone,
+                    customer_email,
+                    shipping_address,
+                    shipping_city,
+                    payment_method,
+                    payment_status,
+                    order_status,
+                    subtotal,
+                    shipping_amount,
+                    total_amount,
+                    created_at,
+                    updated_at
+                `)
+                .or(
+                    `customer_id.eq.${customerId},customer_email.eq.${athaqAuthUser?.email || athaqCurrentUser?.email || ""}`
+                )
+                .order("created_at", { ascending: false });
+
+            if (error) {
+                console.error("ATHAQ customer orders error:", error);
+
+                if (!silent) {
+                    const container = document.getElementById("ordersContainer");
+                    if (container) {
+                        container.innerHTML = `
+                            <div class="rounded-2xl border border-red-100 bg-red-50 p-5">
+                                <p class="font-bold text-red-700 text-sm">Unable to load your orders</p>
+                                <p class="text-xs text-red-600 mt-1">${escapeHTML(error.message)}</p>
+                            </div>
+                        `;
+                    }
+                }
+                return;
+            }
+
+            const oldSnapshot = { ...athaqLastStatusSnapshot };
+
+            athaqOrders = data || [];
+            athaqLastStatusSnapshot = {};
+
+            athaqOrders.forEach(order => {
+                athaqLastStatusSnapshot[order.id] = order.order_status || "new";
+            });
+
+            renderOrders();
+
+            if (silent && Object.keys(oldSnapshot).length) {
+                athaqOrders.forEach(order => {
+                    const previous = oldSnapshot[order.id];
+                    const current = order.order_status || "new";
+
+                    if (previous && previous !== current) {
+                        showCustomerToast(
+                            "Order Status Updated",
+                            `Order #${order.order_ref || order.id.slice(0, 8)} is now ${statusLabel(current)}.`,
+                            "success"
+                        );
+                    }
+                });
+            }
+        }
+
+        function subscribeToCustomerOrders() {
+            if (!athaqSupabase) return;
+
+            const customerId = getCustomerId(athaqCurrentUser);
+            if (!customerId) return;
+
+            if (athaqOrdersChannel) {
+                athaqSupabase.removeChannel(athaqOrdersChannel);
+                athaqOrdersChannel = null;
+            }
+
+            athaqOrdersChannel = athaqSupabase
+                .channel("athaq-customer-orders-" + customerId)
+                .on(
+                    "postgres_changes",
+                    {
+                        event: "*",
+                        schema: "public",
+                        table: "orders",
+                        filter: "customer_id=eq." + customerId
+                    },
+                    async (payload) => {
+                        console.log("ATHAQ order realtime event:", payload.eventType, payload);
+
+                        await loadCustomerOrders({ silent: true });
+
+                        if (payload.eventType === "INSERT") {
+                            showCustomerToast(
+                                "Order Placed",
+                                `Your order #${payload.new?.order_ref || ""} has been added to My Orders.`,
+                                "success"
+                            );
+                        }
+                    }
+                )
+                .subscribe((status) => {
+                    console.log("ATHAQ customer order realtime:", status);
+                });
+
+            // Fallback polling keeps the customer page updated even if
+            // Realtime is not enabled for public.orders.
+            if (athaqOrdersPollTimer) {
+                clearInterval(athaqOrdersPollTimer);
+            }
+
+            athaqOrdersPollTimer = setInterval(() => {
+                loadCustomerOrders({ silent: true });
+            }, 10000);
+        }
+
+        function openOrderTracking(orderId) {
+            const order = athaqOrders.find(item => String(item.id) === String(orderId));
+            if (!order) return;
+
+            const modal = document.getElementById("orderTrackingModal");
+            const title = document.getElementById("trackingModalTitle");
+            const summary = document.getElementById("trackingSummary");
+            const timeline = document.getElementById("trackingTimeline");
+            const updatedAt = document.getElementById("trackingUpdatedAt");
+
+            const status = order.order_status || "new";
+            const ref = order.order_ref || String(order.id).slice(0, 8).toUpperCase();
+
+            title.textContent = "#" + ref;
+
+            summary.innerHTML = `
+                <div class="rounded-2xl bg-gradient-to-r from-[#004232] to-[#005c46] text-white p-5">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-[.18em] text-emerald-200 font-bold">Current Status</p>
+                            <p class="text-2xl font-extrabold mt-1">${escapeHTML(statusLabel(status))}</p>
+                            <p class="text-xs text-emerald-100 mt-1">
+                                Last update ${escapeHTML(formatDateTime(order.updated_at || order.created_at))}
+                            </p>
+                        </div>
+                        <div class="text-left sm:text-right">
+                            <p class="text-[10px] uppercase tracking-wider text-emerald-200 font-bold">Order Total</p>
+                            <p class="text-lg font-extrabold mt-1">${escapeHTML(formatMoney(order.total_amount))}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            if (status === "cancelled") {
+                timeline.innerHTML = `
+                    <div class="athaq-track-step current">
+                        <div class="athaq-track-dot"><i class="fa-solid fa-xmark"></i></div>
+                        <div class="pb-5">
+                            <p class="athaq-track-label text-sm font-bold text-gray-500">Order Cancelled</p>
+                            <p class="text-xs text-gray-400 mt-1">This order has been cancelled.</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                const currentIndex = Math.max(0, ATHAQ_STATUS_FLOW.indexOf(status));
+
+                timeline.innerHTML = ATHAQ_STATUS_FLOW.map((step, index) => {
+                    const done = index < currentIndex;
+                    const current = index === currentIndex;
+
+                    return `
+                        <div class="athaq-track-step ${done ? "done" : ""} ${current ? "current" : ""}">
+                            <div class="athaq-track-dot">
+                                <i class="fa-solid ${done || current ? "fa-check" : "fa-circle"}"></i>
+                            </div>
+                            <div class="pb-5">
+                                <p class="athaq-track-label text-sm font-semibold text-gray-400">
+                                    ${escapeHTML(statusLabel(step))}
+                                    ${current ? '<span class="ml-2 text-[9px] uppercase tracking-wider text-emerald-600">Current</span>' : ""}
+                                </p>
+                                <p class="text-xs text-gray-400 mt-1">
+                                    ${
+                                        step === "new" ? "Your order has been received." :
+                                        step === "confirmed" ? "Your order has been confirmed by ATHAQ." :
+                                        step === "preparing" ? "Your order is being prepared." :
+                                        step === "out_for_delivery" ? "Your order is on the way." :
+                                        "Your order has been delivered."
+                                    }
+                                </p>
+                            </div>
+                        </div>
+                    `;
+                }).join("");
+            }
+
+            updatedAt.textContent = "Updated " + formatDateTime(order.updated_at || order.created_at);
+
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+            document.body.classList.add("overflow-hidden");
+        }
+
+        function closeOrderTracking() {
+            const modal = document.getElementById("orderTrackingModal");
+            if (!modal) return;
+
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+            document.body.classList.remove("overflow-hidden");
+        }
+
+        // Close tracking modal when clicking its backdrop.
+        document.getElementById("orderTrackingModal")?.addEventListener("click", function (event) {
+            if (event.target === this) closeOrderTracking();
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                closeOrderTracking();
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", async function () {
+            athaqCurrentUser = getStoredUser();
+            athaqSupabase = resolveSupabaseClient();
+
+            // Use the real Supabase Auth user ID for secure order ownership.
+            athaqAuthUser = await getAuthenticatedCustomerForProfile();
+
+            if (!athaqAuthUser && !athaqCurrentUser) {
                 window.location.href = "/login/index.html";
                 return;
             }
 
-            // Navbar aur Profile elements update karna
+            // If a local profile exists but Supabase session is missing,
+            // do not pretend that orders can be securely loaded.
+            if (!athaqAuthUser) {
+                const ordersBox = document.getElementById("ordersContainer");
+                if (ordersBox) {
+                    ordersBox.innerHTML = `
+                        <div class="rounded-2xl border border-amber-100 bg-amber-50 p-5">
+                            <p class="font-bold text-amber-800 text-sm">Please log in again</p>
+                            <p class="text-xs text-amber-700 mt-1">
+                                Your secure customer session is not available, so your orders cannot be loaded.
+                            </p>
+                        </div>
+                    `;
+                }
+                return;
+            }
+
             const navUserName = document.getElementById("navUserName");
             const profileFullName = document.getElementById("profileFullName");
             const profileEmail = document.getElementById("profileEmail");
             const profilePhone = document.getElementById("profilePhone");
             const profileRole = document.getElementById("profileRole");
             const profileAddress = document.getElementById("profileAddress");
+            const profileJoinDate = document.getElementById("profileJoinDate");
             const userAvatarText = document.getElementById("userAvatarText");
 
-            const userName = currentUser.name || currentUser.username || "Customer";
-            const userEmail = currentUser.email || "customer@example.com";
-            const userPhone = currentUser.phone || "+966 58 181 8482";
-            const userRole = localStorage.getItem("userRole") || currentUser.role || "Customer";
-            const userAddress = currentUser.address || "King Salman Road, Al Bukayriyah";
+            const userName = athaqCurrentUser.name
+                || athaqCurrentUser.username
+                || athaqCurrentUser.full_name
+                || "Customer";
+
+            const userEmail = athaqCurrentUser.email || "customer@example.com";
+            const userPhone = athaqCurrentUser.phone || "-";
+            const userRole = localStorage.getItem("userRole") || athaqCurrentUser.role || "Customer";
+            const userAddress = athaqCurrentUser.address || "-";
 
             if (navUserName) navUserName.textContent = userName;
             if (profileFullName) profileFullName.textContent = userName;
@@ -266,23 +968,41 @@
             if (profilePhone) profilePhone.textContent = userPhone;
             if (profileRole) profileRole.textContent = userRole;
             if (profileAddress) profileAddress.textContent = userAddress;
+            if (profileJoinDate) profileJoinDate.textContent = formatDate(
+                athaqCurrentUser.created_at || athaqCurrentUser.createdAt
+            );
             if (userAvatarText) userAvatarText.textContent = userName.charAt(0).toUpperCase();
+
+            await loadCustomerOrders();
+            subscribeToCustomerOrders();
         });
 
-    function logout() {
+        function logoutUser() {
+            localStorage.removeItem("loggedInUser");
+            localStorage.removeItem("user");
+            localStorage.removeItem("userRole");
 
-    localStorage.removeItem("loggedInUser");
-    localStorage.removeItem("user");
-    localStorage.removeItem("userRole");
+            sessionStorage.removeItem("loggedInUser");
+            sessionStorage.removeItem("userRole");
+            sessionStorage.removeItem("isLoggedIn");
+            sessionStorage.removeItem("userName");
+            sessionStorage.removeItem("userEmail");
 
-    sessionStorage.removeItem("loggedInUser");
-    sessionStorage.removeItem("userRole");
-    sessionStorage.removeItem("isLoggedIn");
-    sessionStorage.removeItem("userName");
-    sessionStorage.removeItem("userEmail");
+            if (athaqOrdersChannel && athaqSupabase) {
+                athaqSupabase.removeChannel(athaqOrdersChannel);
+            }
 
-    window.location.href = "/login/index.html";
-}
+            if (athaqOrdersPollTimer) {
+                clearInterval(athaqOrdersPollTimer);
+            }
+
+            window.location.href = "/login/index.html";
+        }
+
+        // Keep compatibility with any existing logoutUser() / logout() calls.
+        function logout() {
+            logoutUser();
+        }
 
         function openEditModal() {
             alert("Edit profile feature coming soon.");
@@ -290,17 +1010,21 @@
 
         function uploadProfilePic(event) {
             const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.getElementById("userAvatarImg");
-                    const text = document.getElementById("userAvatarText");
-                    img.src = e.target.result;
-                    img.classList.remove("hidden");
-                    text.classList.add("hidden");
-                }
-                reader.readAsDataURL(file);
-            }
+
+            if (!file) return;
+
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const img = document.getElementById("userAvatarImg");
+                const text = document.getElementById("userAvatarText");
+
+                img.src = e.target.result;
+                img.classList.remove("hidden");
+                text.classList.add("hidden");
+            };
+
+            reader.readAsDataURL(file);
         }
     </script>
 

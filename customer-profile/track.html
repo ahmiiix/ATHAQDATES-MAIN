@@ -1,0 +1,1849 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ATHAQ DATES | Track Your Order</title>
+
+    <!-- GOOGLE FONT -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- FONT AWESOME -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #faf9f5;
+            color: #163d32;
+            min-height: 100vh;
+        }
+
+
+        /* ========================================
+           HEADER
+        ======================================== */
+
+        header {
+            height: 84px;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+        }
+
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #004c3b;
+            letter-spacing: .5px;
+        }
+
+
+        .store-link {
+            color: #667085;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: .2s;
+        }
+
+
+        .store-link:hover {
+            color: #004c3b;
+        }
+
+
+        /* ========================================
+           MAIN
+        ======================================== */
+
+        main {
+            max-width: 900px;
+            margin: auto;
+            padding: 55px 20px 80px;
+        }
+
+
+        .hero {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+
+        .hero-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #d9fae8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            color: #00634e;
+            font-size: 22px;
+        }
+
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: 40px;
+            line-height: 1.2;
+            color: #004c3b;
+            margin-bottom: 8px;
+        }
+
+
+        .hero p {
+            color: #7b8492;
+            font-size: 15px;
+        }
+
+
+        /* ========================================
+           SEARCH CARD
+        ======================================== */
+
+        .search-card {
+            background: white;
+            border: 1px solid #e0e5e8;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0, 50, 40, .05);
+            margin: 0 auto 32px;
+        }
+
+
+        .field-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #344054;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+
+        .phone-wrapper {
+            position: relative;
+        }
+
+
+        .phone-icon {
+            position: absolute;
+            left: 17px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+        }
+
+
+        #phoneInput {
+            width: 100%;
+            height: 54px;
+            border: 1px solid #cfd6dc;
+            border-radius: 13px;
+            padding: 0 16px 0 47px;
+            font-size: 15px;
+            outline: none;
+            transition: .2s;
+            color: #1f2937;
+        }
+
+
+        #phoneInput:focus {
+            border-color: #00634e;
+            box-shadow: 0 0 0 4px rgba(0, 99, 78, .08);
+        }
+
+
+        .search-btn {
+            width: 100%;
+            height: 54px;
+            margin-top: 14px;
+            border: none;
+            border-radius: 13px;
+            background: #004c3b;
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+
+        .search-btn:hover {
+            background: #003a2d;
+            transform: translateY(-1px);
+        }
+
+
+        .search-btn:disabled {
+            opacity: .65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+
+        /* ========================================
+           LOADING
+        ======================================== */
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+
+
+        .loading.show {
+            display: block;
+        }
+
+
+        .spinner {
+            width: 38px;
+            height: 38px;
+            border: 4px solid #dcefe8;
+            border-top-color: #00634e;
+            border-radius: 50%;
+            animation: spin .8s linear infinite;
+            margin: auto;
+        }
+
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        /* ========================================
+           MESSAGE
+        ======================================== */
+
+        .message {
+            display: none;
+            border-radius: 14px;
+            padding: 15px 17px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+
+        .message.show {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .message.error {
+            background: #fff1f2;
+            color: #b42318;
+            border: 1px solid #fecdd3;
+        }
+
+
+        .message.info {
+            background: #eff8ff;
+            color: #175cd3;
+            border: 1px solid #b2ddff;
+        }
+
+
+        /* ========================================
+           RESULTS
+        ======================================== */
+
+        #results {
+            display: none;
+        }
+
+
+        #results.show {
+            display: block;
+        }
+
+
+        .results-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            gap: 15px;
+        }
+
+
+        .results-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #123f34;
+        }
+
+
+        .results-count {
+            background: #e5f8ef;
+            color: #00634e;
+            padding: 7px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+
+        /* ========================================
+           ORDER CARD
+        ======================================== */
+
+        .order-card {
+            background: #ffffff;
+            border: 1px solid #e1e6e9;
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 22px;
+            box-shadow: 0 8px 28px rgba(0, 50, 40, .045);
+        }
+
+
+        .order-top {
+            padding: 26px 30px;
+            border-bottom: 1px solid #edf0f2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+
+        .order-reference-label {
+            color: #98a2b3;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+
+        .order-reference {
+            color: #004c3b;
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: .3px;
+        }
+
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+
+        .status-new {
+            background: #eef4ff;
+            color: #3157d5;
+        }
+
+
+        .status-confirmed {
+            background: #eef4ff;
+            color: #3157d5;
+        }
+
+
+        .status-preparing {
+            background: #fff7e6;
+            color: #b7791f;
+        }
+
+
+        .status-out_for_delivery {
+            background: #eef8ff;
+            color: #0277bd;
+        }
+
+
+        .status-delivered {
+            background: #e9f9f0;
+            color: #07864b;
+        }
+
+
+        .status-cancelled {
+            background: #fff0f0;
+            color: #d92d20;
+        }
+
+
+        /* ========================================
+           ORDER INFO
+        ======================================== */
+
+        .order-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            padding: 28px 30px;
+        }
+
+
+        .info-box {
+            background: #fafbfc;
+            border-radius: 15px;
+            padding: 17px;
+        }
+
+
+        .info-label {
+            color: #98a2b3;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+        }
+
+
+        .info-value {
+            color: #123f34;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+
+        /* ========================================
+           PROGRESS
+        ======================================== */
+
+        .progress-section {
+            padding: 5px 30px 32px;
+        }
+
+
+        .progress-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #123f34;
+            margin-bottom: 25px;
+        }
+
+
+        .progress {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+
+        .progress-line {
+            position: absolute;
+            left: 10%;
+            right: 10%;
+            top: 10px;
+            height: 4px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            z-index: 0;
+        }
+
+
+        .progress-line-active {
+            position: absolute;
+            left: 10%;
+            top: 10px;
+            height: 4px;
+            background: #00634e;
+            border-radius: 20px;
+            z-index: 1;
+            transition: width .5s ease;
+        }
+
+
+        .progress-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+
+        .progress-circle {
+            width: 22px;
+            height: 22px;
+            background: #e5e7eb;
+            border: 4px solid white;
+            border-radius: 50%;
+            margin: 0 auto 9px;
+            box-shadow: 0 0 0 1px #e5e7eb;
+        }
+
+
+        .progress-step.active .progress-circle,
+        .progress-step.completed .progress-circle {
+            background: #00634e;
+            box-shadow: 0 0 0 1px #00634e;
+        }
+
+
+        .progress-step.current .progress-circle {
+            box-shadow:
+                0 0 0 4px rgba(0, 99, 78, .12),
+                0 0 0 1px #00634e;
+        }
+
+
+        .progress-label {
+            font-size: 10px;
+            color: #a0a7b1;
+            font-weight: 700;
+        }
+
+
+        .progress-step.active .progress-label,
+        .progress-step.completed .progress-label {
+            color: #00634e;
+        }
+
+
+        /* ========================================
+           ORDER FOOTER
+        ======================================== */
+
+        .order-footer {
+            border-top: 1px solid #edf0f2;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+
+        .payment-text {
+            font-size: 13px;
+            color: #667085;
+        }
+
+
+        .payment-text strong {
+            color: #123f34;
+        }
+
+
+        .total-text {
+            font-size: 19px;
+            font-weight: 800;
+            color: #004c3b;
+        }
+
+
+        /* ========================================
+           EMPTY
+        ======================================== */
+
+        .empty-state {
+            background: white;
+            border: 1px solid #e1e6e9;
+            border-radius: 24px;
+            text-align: center;
+            padding: 50px 25px;
+        }
+
+
+        .empty-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #f2f4f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: #98a2b3;
+            font-size: 22px;
+        }
+
+
+        .empty-state h3 {
+            color: #344054;
+            margin-bottom: 7px;
+            font-size: 18px;
+        }
+
+
+        .empty-state p {
+            color: #98a2b3;
+            font-size: 14px;
+        }
+
+
+        /* ========================================
+           RESPONSIVE
+        ======================================== */
+
+        @media (max-width: 650px) {
+
+            header {
+                height: 70px;
+                padding: 0 20px;
+            }
+
+
+            .logo {
+                font-size: 22px;
+            }
+
+
+            main {
+                padding: 35px 14px 60px;
+            }
+
+
+            .hero h1 {
+                font-size: 31px;
+            }
+
+
+            .search-card {
+                padding: 20px;
+                border-radius: 19px;
+            }
+
+
+            .order-top {
+                padding: 22px 20px;
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+
+            .order-info {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+
+            .progress-section {
+                padding: 5px 20px 25px;
+                overflow-x: auto;
+            }
+
+
+            .progress {
+                min-width: 540px;
+            }
+
+
+            .order-footer {
+                padding: 18px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ========================================
+     HEADER
+======================================== -->
+
+<header>
+
+    <div class="logo">
+        ATHAQ DATES
+    </div>
+
+
+    <a
+        href="/web/product/index.html"
+        class="store-link"
+    >
+        Store
+    </a>
+
+</header>
+
+
+
+<!-- ========================================
+     MAIN
+======================================== -->
+
+<main>
+
+
+    <section class="hero">
+
+        <div class="hero-icon">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+        </div>
+
+
+        <h1>
+            Track Your Order
+        </h1>
+
+
+        <p>
+            Enter your mobile number to see your orders and track their status.
+        </p>
+
+    </section>
+
+
+
+    <!-- ====================================
+         SEARCH
+    ===================================== -->
+
+    <section class="search-card">
+
+        <label
+            class="field-label"
+            for="phoneInput"
+        >
+            Mobile Number
+        </label>
+
+
+        <div class="phone-wrapper">
+
+            <i class="fa-solid fa-phone phone-icon"></i>
+
+
+            <input
+                id="phoneInput"
+                type="tel"
+                placeholder="+966 5XXXXXXXX"
+                autocomplete="tel"
+            >
+
+        </div>
+
+
+        <button
+            id="searchBtn"
+            class="search-btn"
+            type="button"
+        >
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            &nbsp;
+
+            Search My Orders
+
+        </button>
+
+    </section>
+
+
+
+    <!-- ====================================
+         MESSAGE
+    ===================================== -->
+
+    <div
+        id="message"
+        class="message"
+    ></div>
+
+
+
+    <!-- ====================================
+         LOADING
+    ===================================== -->
+
+    <div
+        id="loading"
+        class="loading"
+    >
+
+        <div class="spinner"></div>
+
+    </div>
+
+
+
+    <!-- ====================================
+         RESULTS
+    ===================================== -->
+
+    <section id="results">
+
+        <div class="results-header">
+
+            <div class="results-title">
+                Your Orders
+            </div>
+
+
+            <div
+                id="resultsCount"
+                class="results-count"
+            >
+                0 Orders
+            </div>
+
+        </div>
+
+
+        <div id="ordersContainer"></div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ========================================
+     SUPABASE
+======================================== -->
+
+<script src="../supabase-config.js"></script>
+
+
+<script>
+
+    // ==========================================
+    // ATHAQ TRACK ORDER
+    // ==========================================
+
+    const supabase =
+        window.ATHAQ_SUPABASE;
+
+
+    const phoneInput =
+        document.getElementById(
+            "phoneInput"
+        );
+
+
+    const searchBtn =
+        document.getElementById(
+            "searchBtn"
+        );
+
+
+    const loading =
+        document.getElementById(
+            "loading"
+        );
+
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    const results =
+        document.getElementById(
+            "results"
+        );
+
+
+    const ordersContainer =
+        document.getElementById(
+            "ordersContainer"
+        );
+
+
+    const resultsCount =
+        document.getElementById(
+            "resultsCount"
+        );
+
+
+    let currentPhone = "";
+
+    let refreshTimer = null;
+
+
+
+    // ==========================================
+    // CHECK SUPABASE
+    // ==========================================
+
+    if (!supabase) {
+
+        showMessage(
+            "Supabase is not configured. Please check supabase-config.js.",
+            "error"
+        );
+
+    }
+
+
+
+    // ==========================================
+    // SEARCH BUTTON
+    // ==========================================
+
+    searchBtn.addEventListener(
+        "click",
+        searchOrders
+    );
+
+
+    phoneInput.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                searchOrders();
+
+            }
+
+        }
+    );
+
+
+
+    // ==========================================
+    // SEARCH ORDERS
+    // ==========================================
+
+    async function searchOrders() {
+
+        const phone =
+            phoneInput.value.trim();
+
+
+        if (!phone) {
+
+            showMessage(
+                "Please enter your mobile number.",
+                "error"
+            );
+
+            phoneInput.focus();
+
+            return;
+
+        }
+
+
+        if (
+            normalizePhone(phone).length < 7
+        ) {
+
+            showMessage(
+                "Please enter a valid mobile number.",
+                "error"
+            );
+
+            phoneInput.focus();
+
+            return;
+
+        }
+
+
+        currentPhone =
+            phone;
+
+
+        stopAutoRefresh();
+
+
+        results.classList.remove(
+            "show"
+        );
+
+
+        ordersContainer.innerHTML =
+            "";
+
+
+        hideMessage();
+
+
+        loading.classList.add(
+            "show"
+        );
+
+
+        searchBtn.disabled =
+            true;
+
+
+        try {
+
+            await loadOrders(phone);
+
+
+            startAutoRefresh();
+
+
+        } catch (error) {
+
+            console.error(
+                "Track order error:",
+                error
+            );
+
+
+            showMessage(
+                error.message ||
+                "Unable to find your orders.",
+                "error"
+            );
+
+        } finally {
+
+            loading.classList.remove(
+                "show"
+            );
+
+
+            searchBtn.disabled =
+                false;
+
+        }
+
+    }
+
+
+
+    // ==========================================
+    // LOAD ORDERS
+    // ==========================================
+
+    async function loadOrders(phone) {
+
+        if (!supabase) {
+
+            throw new Error(
+                "Supabase connection is not available."
+            );
+
+        }
+
+
+        const {
+            data,
+            error
+        } = await supabase.rpc(
+            "track_orders_by_phone",
+            {
+                p_phone: phone
+            }
+        );
+
+
+        if (error) {
+
+            console.error(
+                "Supabase tracking error:",
+                error
+            );
+
+
+            throw new Error(
+                error.message
+            );
+
+        }
+
+
+        const orders =
+            Array.isArray(data)
+                ? data
+                : [];
+
+
+        renderOrders(
+            orders
+        );
+
+    }
+
+
+
+    // ==========================================
+    // RENDER ORDERS
+    // ==========================================
+
+    function renderOrders(orders) {
+
+        if (!orders.length) {
+
+            results.classList.add(
+                "show"
+            );
+
+
+            resultsCount.textContent =
+                "0 Orders";
+
+
+            ordersContainer.innerHTML = `
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+
+                        <i class="fa-solid fa-box-open"></i>
+
+                    </div>
+
+                    <h3>
+                        No orders found
+                    </h3>
+
+                    <p>
+                        We couldn't find any orders for this mobile number.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        results.classList.add(
+            "show"
+        );
+
+
+        resultsCount.textContent =
+            `${orders.length} ${
+                orders.length === 1
+                    ? "Order"
+                    : "Orders"
+            }`;
+
+
+        ordersContainer.innerHTML =
+            orders
+                .map(
+                    order =>
+                        renderOrderCard(order)
+                )
+                .join("");
+
+    }
+
+
+
+    // ==========================================
+    // ORDER CARD
+    // ==========================================
+
+    function renderOrderCard(order) {
+
+        const status =
+            normalizeStatus(
+                order.order_status
+            );
+
+
+        const statusLabel =
+            getStatusLabel(
+                status
+            );
+
+
+        const progress =
+            getProgress(
+                status
+            );
+
+
+        const payment =
+            formatPayment(
+                order.payment_method
+            );
+
+
+        const date =
+            formatDate(
+                order.created_at
+            );
+
+
+        const total =
+            Number(
+                order.total_amount
+            ) || 0;
+
+
+        return `
+
+            <article
+                class="order-card"
+                data-order-id="${escapeHTML(
+                    order.id
+                )}"
+            >
+
+                <!-- TOP -->
+
+                <div class="order-top">
+
+                    <div>
+
+                        <div class="order-reference-label">
+                            Order Reference
+                        </div>
+
+                        <div class="order-reference">
+
+                            #${escapeHTML(
+                                order.order_ref || "N/A"
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="status-badge status-${status}"
+                    >
+
+                        <span class="status-dot"></span>
+
+                        ${statusLabel}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- INFO -->
+
+                <div class="order-info">
+
+                    <div class="info-box">
+
+                        <div class="info-label">
+                            Payment
+                        </div>
+
+                        <div class="info-value">
+                            ${escapeHTML(payment)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <div class="info-label">
+                            Order Date
+                        </div>
+
+                        <div class="info-value">
+                            ${escapeHTML(date)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <div class="info-label">
+                            Total
+                        </div>
+
+                        <div class="info-value">
+                            SAR ${total.toFixed(2)}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PROGRESS -->
+
+                <div class="progress-section">
+
+                    <div class="progress-title">
+                        Order Progress
+                    </div>
+
+
+                    <div class="progress">
+
+                        <div class="progress-line"></div>
+
+
+                        <div
+                            class="progress-line-active"
+                            style="width: ${progress.lineWidth}%"
+                        ></div>
+
+
+
+                        <div
+                            class="progress-step ${
+                                progress.index >= 0
+                                    ? "completed"
+                                    : ""
+                            } ${
+                                progress.index === 0
+                                    ? "current"
+                                    : ""
+                            }"
+                        >
+
+                            <div class="progress-circle">
+
+                            </div>
+
+                            <div class="progress-label">
+                                Order Received
+                            </div>
+
+                        </div>
+
+
+
+                        <div
+                            class="progress-step ${
+                                progress.index >= 1
+                                    ? "completed"
+                                    : ""
+                            } ${
+                                progress.index === 1
+                                    ? "current"
+                                    : ""
+                            }"
+                        >
+
+                            <div class="progress-circle">
+
+                            </div>
+
+                            <div class="progress-label">
+                                Confirmed
+                            </div>
+
+                        </div>
+
+
+
+                        <div
+                            class="progress-step ${
+                                progress.index >= 2
+                                    ? "completed"
+                                    : ""
+                            } ${
+                                progress.index === 2
+                                    ? "current"
+                                    : ""
+                            }"
+                        >
+
+                            <div class="progress-circle">
+
+                            </div>
+
+                            <div class="progress-label">
+                                Preparing
+                            </div>
+
+                        </div>
+
+
+
+                        <div
+                            class="progress-step ${
+                                progress.index >= 3
+                                    ? "completed"
+                                    : ""
+                            } ${
+                                progress.index === 3
+                                    ? "current"
+                                    : ""
+                            }"
+                        >
+
+                            <div class="progress-circle">
+
+                            </div>
+
+                            <div class="progress-label">
+                                Out for Delivery
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FOOTER -->
+
+                <div class="order-footer">
+
+                    <div class="payment-text">
+
+                        <strong>
+                            Status:
+                        </strong>
+
+                        ${statusLabel}
+
+                    </div>
+
+
+                    <div class="total-text">
+
+                        SAR ${total.toFixed(2)}
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        `;
+
+    }
+
+
+
+    // ==========================================
+    // STATUS
+    // ==========================================
+
+    function normalizeStatus(status) {
+
+        const value =
+            String(
+                status || "new"
+            )
+            .trim()
+            .toLowerCase();
+
+
+        const allowed = [
+            "new",
+            "confirmed",
+            "preparing",
+            "out_for_delivery",
+            "delivered",
+            "cancelled"
+        ];
+
+
+        return allowed.includes(value)
+            ? value
+            : "new";
+
+    }
+
+
+
+    function getStatusLabel(status) {
+
+        const labels = {
+
+            new:
+                "Order Received",
+
+            confirmed:
+                "Confirmed",
+
+            preparing:
+                "Preparing",
+
+            out_for_delivery:
+                "Out for Delivery",
+
+            delivered:
+                "Delivered",
+
+            cancelled:
+                "Cancelled"
+
+        };
+
+
+        return labels[status] ||
+            "Order Received";
+
+    }
+
+
+
+    // ==========================================
+    // PROGRESS
+    // ==========================================
+
+    function getProgress(status) {
+
+        const indexes = {
+
+            new: 0,
+
+            confirmed: 1,
+
+            preparing: 2,
+
+            out_for_delivery: 3,
+
+            delivered: 3,
+
+            cancelled: 0
+
+        };
+
+
+        const index =
+            indexes[status] ?? 0;
+
+
+        let lineWidth = 0;
+
+
+        if (index === 0) {
+
+            lineWidth = 0;
+
+        } else if (index === 1) {
+
+            lineWidth = 27;
+
+        } else if (index === 2) {
+
+            lineWidth = 54;
+
+        } else {
+
+            lineWidth = 80;
+
+        }
+
+
+        return {
+
+            index,
+
+            lineWidth
+
+        };
+
+    }
+
+
+
+    // ==========================================
+    // PAYMENT
+    // ==========================================
+
+    function formatPayment(method) {
+
+        const value =
+            String(
+                method || ""
+            ).toUpperCase();
+
+
+        if (
+            value === "COD" ||
+            value === "CASH_ON_DELIVERY"
+        ) {
+
+            return "Cash on Delivery";
+
+        }
+
+
+        if (
+            value === "ONLINE_CARD"
+        ) {
+
+            return "Paid Online";
+
+        }
+
+
+        return method ||
+            "Payment";
+
+    }
+
+
+
+    // ==========================================
+    // DATE
+    // ==========================================
+
+    function formatDate(value) {
+
+        if (!value) {
+
+            return "N/A";
+
+        }
+
+
+        const date =
+            new Date(value);
+
+
+        if (
+            Number.isNaN(
+                date.getTime()
+            )
+        ) {
+
+            return "N/A";
+
+        }
+
+
+        return date.toLocaleString(
+            "en-GB",
+            {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
+
+    }
+
+
+
+    // ==========================================
+    // PHONE NORMALIZATION
+    // ==========================================
+
+    function normalizePhone(phone) {
+
+        return String(
+            phone || ""
+        )
+        .replace(
+            /\D/g,
+            ""
+        );
+
+    }
+
+
+
+    // ==========================================
+    // MESSAGE
+    // ==========================================
+
+    function showMessage(
+        text,
+        type = "info"
+    ) {
+
+        message.className =
+            `message show ${type}`;
+
+
+        const icon =
+            type === "error"
+                ? "fa-circle-exclamation"
+                : "fa-circle-info";
+
+
+        message.innerHTML = `
+
+            <i class="fa-solid ${icon}"></i>
+
+            <span>
+                ${escapeHTML(text)}
+            </span>
+
+        `;
+
+    }
+
+
+
+    function hideMessage() {
+
+        message.className =
+            "message";
+
+
+        message.innerHTML =
+            "";
+
+    }
+
+
+
+    // ==========================================
+    // AUTO REFRESH
+    //
+    // Admin status update ke baad page
+    // automatically latest status fetch karega.
+    // ==========================================
+
+    function startAutoRefresh() {
+
+        stopAutoRefresh();
+
+
+        refreshTimer =
+            setInterval(
+                async function () {
+
+                    if (!currentPhone) {
+                        return;
+                    }
+
+
+                    try {
+
+                        await loadOrders(
+                            currentPhone
+                        );
+
+                    } catch (error) {
+
+                        console.warn(
+                            "Automatic order refresh failed:",
+                            error
+                        );
+
+                    }
+
+                },
+                5000
+            );
+
+    }
+
+
+
+    function stopAutoRefresh() {
+
+        if (refreshTimer) {
+
+            clearInterval(
+                refreshTimer
+            );
+
+            refreshTimer =
+                null;
+
+        }
+
+    }
+
+
+
+    // ==========================================
+    // ESCAPE HTML
+    // ==========================================
+
+    function escapeHTML(value) {
+
+        const div =
+            document.createElement(
+                "div"
+            );
+
+
+        div.textContent =
+            value ?? "";
+
+
+        return div.innerHTML;
+
+    }
+
+
+
+    // ==========================================
+    // CLEANUP
+    // ==========================================
+
+    window.addEventListener(
+        "beforeunload",
+        stopAutoRefresh
+    );
+
+</script>
+
+
+</body>
+
+</html>
