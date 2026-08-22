@@ -321,7 +321,7 @@ function renderCheckoutSummary() {
                     Your cart is empty.
                 </p>
 
-                <a href="index.html"
+                <a href="/index.html"
                    class="inline-flex mt-4 px-4 py-2
                           rounded-lg bg-[#004232]
                           text-white text-xs font-bold">

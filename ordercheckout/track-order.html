@@ -1,196 +1,1641 @@
 <!DOCTYPE html>
 <html lang="en" class="light">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>Track Order - ATHAQ DATES</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  >
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="supabase-config.js"></script>
+
+  <!-- ATHAQ Supabase Config -->
+  <script src="../supabase-config.js"></script>
+
   <script>
-    tailwind.config = { theme: { extend: { colors: { primary: '#004232', surface: '#faf9f4' }, fontFamily: { serif: ['Playfair Display','serif'], sans: ['Manrope','sans-serif'] } } } };
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#004232',
+            surface: '#faf9f4'
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Manrope', 'sans-serif']
+          }
+        }
+      }
+    };
   </script>
+
 </head>
+
 <body class="bg-[#faf9f4] text-gray-800 font-sans min-h-screen">
+
+  <!-- HEADER -->
   <header class="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+
     <div class="max-w-5xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
-      <a href="index.html" class="text-2xl font-bold font-serif text-[#004232] tracking-wider">ATHAQ DATES</a>
-      <a href="index.html" class="text-xs sm:text-sm font-bold text-gray-500 hover:text-[#004232]">Store</a>
+
+      <a
+        href="/index.html"
+        class="text-2xl font-bold font-serif text-[#004232] tracking-wider"
+      >
+        ATHAQ DATES
+      </a>
+
+      <a
+        href="/index.html"
+        class="text-xs sm:text-sm font-bold text-gray-500 hover:text-[#004232]"
+      >
+        Store
+      </a>
+
     </div>
+
   </header>
 
+
+  <!-- MAIN -->
   <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 md:py-14">
+
+    <!-- TITLE -->
     <div class="max-w-xl mx-auto text-center mb-8">
-      <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-green-100 text-[#004232] flex items-center justify-center text-2xl">
+
+      <div
+        class="w-14 h-14 mx-auto mb-4 rounded-full bg-green-100 text-[#004232] flex items-center justify-center text-2xl"
+      >
         <i class="fa-solid fa-location-dot"></i>
       </div>
-      <h1 class="text-3xl md:text-4xl font-extrabold font-serif text-[#004232]">Track Your Order</h1>
-      <p class="text-sm text-gray-500 mt-2">Enter your order reference and the phone number used at checkout.</p>
+
+      <h1 class="text-3xl md:text-4xl font-extrabold font-serif text-[#004232]">
+        Track Your Order
+      </h1>
+
+      <p class="text-sm text-gray-500 mt-2">
+        Enter your order reference and the phone number used at checkout.
+      </p>
+
     </div>
 
-    <section class="max-w-xl mx-auto bg-white rounded-3xl border border-gray-200 shadow-sm p-6 md:p-8">
-      <form id="trackForm" class="space-y-4">
+
+    <!-- SEARCH BOX -->
+    <section
+      class="max-w-xl mx-auto bg-white rounded-3xl border border-gray-200 shadow-sm p-6 md:p-8"
+    >
+
+      <form
+        id="trackForm"
+        class="space-y-4"
+      >
+
+        <!-- ORDER REFERENCE -->
         <div>
-          <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Order Reference *</label>
-          <input id="orderRef" required placeholder="ATH-12345678" class="w-full border border-gray-300 rounded-xl p-3.5 text-sm focus:ring-2 focus:ring-[#004232] focus:border-[#004232] outline-none uppercase">
+
+          <label
+            class="block text-xs font-bold uppercase text-gray-600 mb-1"
+          >
+            Order Reference *
+          </label>
+
+          <input
+            id="orderRef"
+            required
+            placeholder="ATH-12345678"
+            autocomplete="off"
+            class="w-full border border-gray-300 rounded-xl p-3.5 text-sm focus:ring-2 focus:ring-[#004232] focus:border-[#004232] outline-none uppercase"
+          >
+
         </div>
+
+
+        <!-- PHONE -->
         <div>
-          <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Phone Number *</label>
-          <input id="phone" required placeholder="+966 50 000 0000" class="w-full border border-gray-300 rounded-xl p-3.5 text-sm focus:ring-2 focus:ring-[#004232] focus:border-[#004232] outline-none">
+
+          <label
+            class="block text-xs font-bold uppercase text-gray-600 mb-1"
+          >
+            Phone Number *
+          </label>
+
+          <input
+            id="phone"
+            required
+            type="tel"
+            placeholder="+966 50 000 0000"
+            autocomplete="tel"
+            class="w-full border border-gray-300 rounded-xl p-3.5 text-sm focus:ring-2 focus:ring-[#004232] focus:border-[#004232] outline-none"
+          >
+
         </div>
-        <button id="trackBtn" type="submit" class="w-full bg-[#004232] text-white py-3.5 rounded-xl font-bold text-sm hover:bg-[#002e23] transition-colors">
-          <i class="fa-solid fa-magnifying-glass mr-2"></i> Track Order
+
+
+        <!-- BUTTON -->
+        <button
+          id="trackBtn"
+          type="submit"
+          class="w-full bg-[#004232] text-white py-3.5 rounded-xl font-bold text-sm hover:bg-[#002e23] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+
+          <i class="fa-solid fa-magnifying-glass mr-2"></i>
+
+          Track Order
+
         </button>
+
       </form>
-      <div id="trackError" class="hidden mt-4 rounded-xl border border-red-200 bg-red-50 text-red-700 p-4 text-sm"></div>
+
+
+      <!-- ERROR -->
+      <div
+        id="trackError"
+        class="hidden mt-4 rounded-xl border border-red-200 bg-red-50 text-red-700 p-4 text-sm"
+      ></div>
+
+
+      <!-- SUCCESS -->
+      <div
+        id="trackSuccess"
+        class="hidden mt-4 rounded-xl border border-green-200 bg-green-50 text-green-700 p-4 text-sm"
+      ></div>
+
     </section>
 
-    <section id="orderCard" class="hidden max-w-3xl mx-auto mt-8 bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+
+    <!-- ORDER CARD -->
+    <section
+      id="orderCard"
+      class="hidden max-w-3xl mx-auto mt-8 bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden"
+    >
+
+      <!-- ORDER HEADER -->
       <div class="p-6 md:p-8 border-b border-gray-100">
+
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+
           <div>
-            <p class="text-xs uppercase tracking-wider text-gray-400 font-bold">Order Reference</p>
-            <h2 id="displayOrderRef" class="text-2xl font-extrabold text-[#004232] font-mono mt-1"></h2>
+
+            <p class="text-xs uppercase tracking-wider text-gray-400 font-bold">
+              Order Reference
+            </p>
+
+            <h2
+              id="displayOrderRef"
+              class="text-2xl font-extrabold text-[#004232] font-mono mt-1"
+            ></h2>
+
           </div>
-          <div id="statusBadge" class="inline-flex self-start sm:self-auto items-center gap-2 px-3 py-2 rounded-full text-xs font-bold"></div>
+
+          <div
+            id="statusBadge"
+            class="inline-flex self-start sm:self-auto items-center gap-2 px-3 py-2 rounded-full text-xs font-bold"
+          ></div>
+
         </div>
+
       </div>
 
+
+      <!-- ORDER DETAILS -->
       <div class="p-6 md:p-8">
+
+        <!-- SUMMARY -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          <div class="rounded-2xl bg-gray-50 p-4"><p class="text-[10px] uppercase font-bold text-gray-400">Payment</p><p id="paymentText" class="font-bold text-sm mt-1"></p></div>
-          <div class="rounded-2xl bg-gray-50 p-4"><p class="text-[10px] uppercase font-bold text-gray-400">Order Date</p><p id="dateText" class="font-bold text-sm mt-1"></p></div>
-          <div class="rounded-2xl bg-gray-50 p-4"><p class="text-[10px] uppercase font-bold text-gray-400">Total</p><p id="totalText" class="font-extrabold text-[#004232] mt-1"></p></div>
+
+          <div class="rounded-2xl bg-gray-50 p-4">
+
+            <p class="text-[10px] uppercase font-bold text-gray-400">
+              Payment
+            </p>
+
+            <p
+              id="paymentText"
+              class="font-bold text-sm mt-1"
+            ></p>
+
+          </div>
+
+
+          <div class="rounded-2xl bg-gray-50 p-4">
+
+            <p class="text-[10px] uppercase font-bold text-gray-400">
+              Order Date
+            </p>
+
+            <p
+              id="dateText"
+              class="font-bold text-sm mt-1"
+            ></p>
+
+          </div>
+
+
+          <div class="rounded-2xl bg-gray-50 p-4">
+
+            <p class="text-[10px] uppercase font-bold text-gray-400">
+              Total
+            </p>
+
+            <p
+              id="totalText"
+              class="font-extrabold text-[#004232] mt-1"
+            ></p>
+
+          </div>
+
         </div>
 
+
+        <!-- PROGRESS -->
         <div class="mb-8">
-          <h3 class="font-bold text-gray-900 mb-3">Order Progress</h3>
-          <div id="progress" class="grid grid-cols-5 gap-1"></div>
+
+          <h3 class="font-bold text-gray-900 mb-3">
+            Order Progress
+          </h3>
+
+          <div
+            id="progress"
+            class="grid grid-cols-4 gap-2"
+          ></div>
+
         </div>
 
+
+        <!-- ITEMS + DELIVERY -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- ITEMS -->
           <div>
-            <h3 class="font-bold text-gray-900 mb-3">Items</h3>
-            <div id="items" class="space-y-3"></div>
+
+            <h3 class="font-bold text-gray-900 mb-3">
+              Items
+            </h3>
+
+            <div
+              id="items"
+              class="space-y-3"
+            ></div>
+
           </div>
+
+
+          <!-- DELIVERY -->
           <div>
-            <h3 class="font-bold text-gray-900 mb-3">Delivery Details</h3>
-            <div class="rounded-2xl bg-gray-50 p-4 text-sm space-y-2">
-              <p><span class="text-gray-400">Name:</span> <span id="customerName" class="font-bold"></span></p>
-              <p><span class="text-gray-400">Phone:</span> <span id="customerPhone" class="font-bold"></span></p>
-              <p><span class="text-gray-400">Address:</span> <span id="address" class="font-bold"></span></p>
-              <p><span class="text-gray-400">City:</span> <span id="city" class="font-bold"></span></p>
-              <p><span class="text-gray-400">Postal Code:</span> <span id="postal" class="font-bold"></span></p>
+
+            <h3 class="font-bold text-gray-900 mb-3">
+              Delivery Details
+            </h3>
+
+            <div
+              class="rounded-2xl bg-gray-50 p-4 text-sm space-y-2"
+            >
+
+              <p>
+                <span class="text-gray-400">
+                  Name:
+                </span>
+
+                <span
+                  id="customerName"
+                  class="font-bold"
+                ></span>
+              </p>
+
+
+              <p>
+                <span class="text-gray-400">
+                  Phone:
+                </span>
+
+                <span
+                  id="customerPhone"
+                  class="font-bold"
+                ></span>
+              </p>
+
+
+              <p>
+                <span class="text-gray-400">
+                  Address:
+                </span>
+
+                <span
+                  id="address"
+                  class="font-bold"
+                ></span>
+              </p>
+
+
+              <p>
+                <span class="text-gray-400">
+                  City:
+                </span>
+
+                <span
+                  id="city"
+                  class="font-bold"
+                ></span>
+              </p>
+
+
+              <p>
+                <span class="text-gray-400">
+                  Postal Code:
+                </span>
+
+                <span
+                  id="postal"
+                  class="font-bold"
+                ></span>
+              </p>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
 
-    <p class="text-center text-xs text-gray-400 mt-8"><a href="/web/product/index.html" class="font-bold text-[#004232] hover:underline">Back to Store</a></p>
+
+    <!-- STORE -->
+    <p class="text-center text-xs text-gray-400 mt-8">
+
+      <a
+        href="/web/product/index.html"
+        class="font-bold text-[#004232] hover:underline"
+      >
+        Back to Store
+      </a>
+
+    </p>
+
   </main>
 
+
 <script>
-const db = window.ATHAQ_SUPABASE;
+
+/* ============================================================
+   ATHAQ SUPABASE CONNECTION
+============================================================ */
+
+let db = null;
+
+
+/* ------------------------------------------------------------
+   Resolve Supabase Client
+------------------------------------------------------------ */
+
+function resolveSupabaseClient() {
+
+  try {
+
+    /* Existing ATHAQ client */
+    if (
+      window.athaqSupabase &&
+      typeof window.athaqSupabase.from === "function"
+    ) {
+      return window.athaqSupabase;
+    }
+
+
+    /* Existing Supabase client */
+    if (
+      window.supabaseClient &&
+      typeof window.supabaseClient.from === "function"
+    ) {
+      return window.supabaseClient;
+    }
+
+
+    /* ATHAQ_SUPABASE */
+    if (
+      window.ATHAQ_SUPABASE &&
+      typeof window.ATHAQ_SUPABASE.from === "function"
+    ) {
+      return window.ATHAQ_SUPABASE;
+    }
+
+
+    /* Generic Supabase client */
+    if (
+      window.supabaseClient &&
+      typeof window.supabaseClient.from === "function"
+    ) {
+      return window.supabaseClient;
+    }
+
+
+    /* Config variables */
+    const url =
+      window.SUPABASE_URL ||
+      window.supabaseUrl ||
+      window.ATHAQ_SUPABASE_URL;
+
+
+    const key =
+      window.SUPABASE_ANON_KEY ||
+      window.SUPABASE_KEY ||
+      window.supabaseAnonKey ||
+      window.ATHAQ_SUPABASE_ANON_KEY;
+
+
+    if (
+      url &&
+      key &&
+      window.supabase &&
+      typeof window.supabase.createClient === "function"
+    ) {
+
+      window.athaqSupabase =
+        window.supabase.createClient(url, key);
+
+      return window.athaqSupabase;
+
+    }
+
+
+    /* Sometimes config.js defines lexical variables */
+    try {
+
+      if (
+        typeof supabaseClient !== "undefined" &&
+        supabaseClient &&
+        typeof supabaseClient.from === "function"
+      ) {
+        return supabaseClient;
+      }
+
+    } catch (e) {}
+
+
+  } catch (error) {
+
+    console.error(
+      "ATHAQ Supabase resolver error:",
+      error
+    );
+
+  }
+
+
+  return null;
+
+}
+
+
+/* ============================================================
+   HELPERS
+============================================================ */
+
 const STATUS_STEPS = [
-  { key: 'new', label: 'Order Received', icon: 'fa-receipt' },
-  { key: 'processing', label: 'Confirmed', icon: 'fa-box-open' },
-  { key: 'shipped', label: 'Out for Delivery', icon: 'fa-truck' },
-  { key: 'delivered', label: 'Delivered', icon: 'fa-circle-check' },
-  { key: 'cancelled', label: 'Cancelled', icon: 'fa-xmark' }
+
+  {
+    key: "new",
+    label: "Order Received",
+    icon: "fa-receipt"
+  },
+
+  {
+    key: "confirmed",
+    label: "Confirmed",
+    icon: "fa-circle-check"
+  },
+
+  {
+    key: "preparing",
+    label: "Preparing",
+    icon: "fa-box-open"
+  },
+
+  {
+    key: "out_for_delivery",
+    label: "Out for Delivery",
+    icon: "fa-truck"
+  },
+
+  {
+    key: "delivered",
+    label: "Delivered",
+    icon: "fa-circle-check"
+  }
+
 ];
 
+
 function esc(value) {
-  const div = document.createElement('div');
-  div.textContent = value ?? '';
+
+  const div = document.createElement("div");
+
+  div.textContent = value ?? "";
+
   return div.innerHTML;
+
 }
+
+
+/* ============================================================
+   STATUS
+============================================================ */
+
+function normalizeStatus(status) {
+
+  const value =
+    String(status || "new")
+      .trim()
+      .toLowerCase();
+
+
+  /* Old status names compatibility */
+
+  if (value === "processing") {
+    return "preparing";
+  }
+
+  if (value === "shipped") {
+    return "out_for_delivery";
+  }
+
+
+  return value;
+
+}
+
 
 function statusMeta(status) {
+
+  status = normalizeStatus(status);
+
+
   const map = {
-    new: { label: 'Order Received', cls: 'bg-blue-50 text-blue-700 border border-blue-100' },
-    processing: { label: 'Confirmed / Preparing', cls: 'bg-amber-50 text-amber-700 border border-amber-100' },
-    shipped: { label: 'Out for Delivery', cls: 'bg-purple-50 text-purple-700 border border-purple-100' },
-    delivered: { label: 'Delivered', cls: 'bg-green-50 text-green-700 border border-green-100' },
-    cancelled: { label: 'Cancelled', cls: 'bg-red-50 text-red-700 border border-red-100' }
+
+    new: {
+      label: "Order Received",
+      cls: "bg-blue-50 text-blue-700 border border-blue-100"
+    },
+
+    confirmed: {
+      label: "Confirmed",
+      cls: "bg-emerald-50 text-emerald-700 border border-emerald-100"
+    },
+
+    preparing: {
+      label: "Preparing",
+      cls: "bg-amber-50 text-amber-700 border border-amber-100"
+    },
+
+    out_for_delivery: {
+      label: "Out for Delivery",
+      cls: "bg-purple-50 text-purple-700 border border-purple-100"
+    },
+
+    delivered: {
+      label: "Delivered",
+      cls: "bg-green-50 text-green-700 border border-green-100"
+    },
+
+    cancelled: {
+      label: "Cancelled",
+      cls: "bg-red-50 text-red-700 border border-red-100"
+    }
+
   };
+
+
   return map[status] || map.new;
+
 }
+
+
+/* ============================================================
+   PROGRESS
+============================================================ */
 
 function renderProgress(status) {
-  const box = document.getElementById('progress');
+
+  const box =
+    document.getElementById("progress");
+
   if (!box) return;
-  if (status === 'cancelled') {
-    box.innerHTML = `<div class="col-span-5 rounded-xl bg-red-50 text-red-700 p-4 text-center text-sm font-bold"><i class="fa-solid fa-circle-xmark mr-2"></i>This order has been cancelled.</div>`;
+
+
+  status = normalizeStatus(status);
+
+
+  /* CANCELLED */
+
+  if (status === "cancelled") {
+
+    box.className = "grid grid-cols-1 gap-2";
+
+    box.innerHTML = `
+
+      <div
+        class="rounded-xl bg-red-50 text-red-700 border border-red-100 p-4 text-center text-sm font-bold"
+      >
+
+        <i class="fa-solid fa-circle-xmark mr-2"></i>
+
+        This order has been cancelled.
+
+      </div>
+
+    `;
+
     return;
+
   }
-  const active = ['new','processing','shipped','delivered'].indexOf(status);
-  box.innerHTML = STATUS_STEPS.slice(0,4).map((step, i) => {
-    const done = i <= active;
-    return `<div class="text-center ${done ? 'text-[#004232]' : 'text-gray-300'}">
-      <div class="h-2 rounded-full ${done ? 'bg-[#004232]' : 'bg-gray-200'}"></div>
-      <div class="mt-2 text-[9px] sm:text-[10px] font-bold leading-tight"><i class="fa-solid ${step.icon} mr-1"></i>${step.label}</div>
-    </div>`;
-  }).join('');
+
+
+  box.className =
+    "grid grid-cols-5 gap-1";
+
+
+  const active =
+    STATUS_STEPS.findIndex(
+      step => step.key === status
+    );
+
+
+  box.innerHTML =
+    STATUS_STEPS.map((step, i) => {
+
+      const done =
+        i <= active;
+
+
+      return `
+
+        <div
+          class="text-center ${
+            done
+              ? "text-[#004232]"
+              : "text-gray-300"
+          }"
+        >
+
+          <div
+            class="h-2 rounded-full ${
+              done
+                ? "bg-[#004232]"
+                : "bg-gray-200"
+            }"
+          ></div>
+
+
+          <div
+            class="mt-2 text-[8px] sm:text-[10px] font-bold leading-tight"
+          >
+
+            <i
+              class="fa-solid ${step.icon} mr-1"
+            ></i>
+
+            ${step.label}
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
 }
+
+
+/* ============================================================
+   RENDER ORDER
+============================================================ */
 
 function renderOrder(result) {
-  const order = result.order;
-  const items = result.items || [];
-  const meta = statusMeta(order.order_status);
-  document.getElementById('orderCard').classList.remove('hidden');
-  document.getElementById('displayOrderRef').textContent = '#' + order.order_ref;
-  document.getElementById('statusBadge').className = 'inline-flex self-start sm:self-auto items-center gap-2 px-3 py-2 rounded-full text-xs font-bold ' + meta.cls;
-  document.getElementById('statusBadge').innerHTML = `<i class="fa-solid fa-circle"></i>${meta.label}`;
-  document.getElementById('paymentText').textContent = order.payment_method === 'COD' ? 'Cash on Delivery' : 'Paid Online';
-  document.getElementById('dateText').textContent = new Date(order.created_at).toLocaleString();
-  document.getElementById('totalText').textContent = 'SAR ' + Number(order.total_amount || 0).toFixed(2);
-  document.getElementById('customerName').textContent = order.customer_name || '';
-  document.getElementById('customerPhone').textContent = order.customer_phone || '';
-  document.getElementById('address').textContent = order.shipping_address || '';
-  document.getElementById('city').textContent = order.shipping_city || '';
-  document.getElementById('postal').textContent = order.shipping_postal_code || 'N/A';
-  document.getElementById('items').innerHTML = items.map(item => `<div class="flex justify-between gap-3 rounded-xl bg-gray-50 p-3 text-sm"><div><p class="font-bold">${esc(item.product_name)}</p><p class="text-xs text-gray-500">Qty: ${Number(item.quantity)} × SAR ${Number(item.unit_price).toFixed(2)}</p></div><p class="font-bold">SAR ${Number(item.line_total).toFixed(2)}</p></div>`).join('');
-  renderProgress(order.order_status);
-}
 
-async function loadOrder(orderRef, phone) {
-  const errorBox = document.getElementById('trackError');
-  const btn = document.getElementById('trackBtn');
-  errorBox.classList.add('hidden');
-  document.getElementById('orderCard').classList.add('hidden');
-  btn.disabled = true;
-  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Checking...';
-  try {
-    if (!db) throw new Error('Supabase is not configured.');
-    const { data, error } = await db.rpc('athaq_track_order', { p_order_ref: orderRef.trim().toUpperCase(), p_phone: phone.trim() });
-    if (error) throw error;
-    if (!data || !data.order) throw new Error('No order found. Please check your order reference and phone number.');
-    renderOrder(data);
-    localStorage.setItem('athaqLastOrder', JSON.stringify({ order_ref: data.order.order_ref, phone: phone.trim() }));
-  } catch (err) {
-    console.error(err);
-    errorBox.textContent = err.message || 'Unable to find this order.';
-    errorBox.classList.remove('hidden');
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fa-solid fa-magnifying-glass mr-2"></i> Track Order';
+  const order =
+    result?.order;
+
+
+  const items =
+    result?.items || [];
+
+
+  if (!order) {
+
+    throw new Error(
+      "Order data was not returned."
+    );
+
   }
+
+
+  const status =
+    normalizeStatus(order.order_status);
+
+
+  const meta =
+    statusMeta(status);
+
+
+  document
+    .getElementById("orderCard")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("displayOrderRef")
+    .textContent =
+      "#" + (
+        order.order_ref ||
+        ""
+      );
+
+
+  const badge =
+    document.getElementById(
+      "statusBadge"
+    );
+
+
+  badge.className =
+    "inline-flex self-start sm:self-auto items-center gap-2 px-3 py-2 rounded-full text-xs font-bold " +
+    meta.cls;
+
+
+  badge.innerHTML = `
+
+    <i class="fa-solid fa-circle"></i>
+
+    ${esc(meta.label)}
+
+  `;
+
+
+  document
+    .getElementById("paymentText")
+    .textContent =
+      order.payment_method === "COD"
+        ? "Cash on Delivery"
+        : (
+            order.payment_method ||
+            "Paid Online"
+          );
+
+
+  document
+    .getElementById("dateText")
+    .textContent =
+      order.created_at
+        ? new Date(
+            order.created_at
+          ).toLocaleString(
+            "en-SA"
+          )
+        : "-";
+
+
+  document
+    .getElementById("totalText")
+    .textContent =
+      "SAR " +
+      Number(
+        order.total_amount || 0
+      ).toFixed(2);
+
+
+  document
+    .getElementById("customerName")
+    .textContent =
+      order.customer_name || "-";
+
+
+  document
+    .getElementById("customerPhone")
+    .textContent =
+      order.customer_phone || "-";
+
+
+  document
+    .getElementById("address")
+    .textContent =
+      order.shipping_address || "-";
+
+
+  document
+    .getElementById("city")
+    .textContent =
+      order.shipping_city || "-";
+
+
+  document
+    .getElementById("postal")
+    .textContent =
+      order.shipping_postal_code || "N/A";
+
+
+  const itemsBox =
+    document.getElementById(
+      "items"
+    );
+
+
+  if (!items.length) {
+
+    itemsBox.innerHTML = `
+
+      <div
+        class="rounded-xl bg-gray-50 p-4 text-sm text-gray-500"
+      >
+        No item details available.
+      </div>
+
+    `;
+
+  } else {
+
+    itemsBox.innerHTML =
+      items.map(item => `
+
+        <div
+          class="flex justify-between gap-3 rounded-xl bg-gray-50 p-3 text-sm"
+        >
+
+          <div>
+
+            <p class="font-bold">
+              ${esc(
+                item.product_name ||
+                item.name ||
+                "Product"
+              )}
+            </p>
+
+            <p class="text-xs text-gray-500">
+
+              Qty:
+              ${Number(
+                item.quantity || 0
+              )}
+
+              × SAR
+
+              ${Number(
+                item.unit_price || 0
+              ).toFixed(2)}
+
+            </p>
+
+          </div>
+
+
+          <p class="font-bold">
+
+            SAR
+            ${Number(
+              item.line_total ||
+              (
+                Number(
+                  item.quantity || 0
+                ) *
+                Number(
+                  item.unit_price || 0
+                )
+              )
+            ).toFixed(2)}
+
+          </p>
+
+        </div>
+
+      `).join("");
+
+  }
+
+
+  renderProgress(status);
+
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const saved = JSON.parse(localStorage.getItem('athaqLastOrder') || 'null');
-  const params = new URLSearchParams(window.location.search);
-  document.getElementById('orderRef').value = params.get('order') || saved?.order_ref || '';
-  document.getElementById('phone').value = params.get('phone') || saved?.phone || '';
-  document.getElementById('trackForm').addEventListener('submit', e => {
-    e.preventDefault();
-    loadOrder(document.getElementById('orderRef').value, document.getElementById('phone').value);
-  });
-  if (params.get('order') && params.get('phone')) loadOrder(params.get('order'), params.get('phone'));
-});
+
+/* ============================================================
+   TRACK ORDER USING RPC
+============================================================ */
+
+async function trackUsingRPC(
+  orderRef,
+  phone
+) {
+
+  const { data, error } =
+    await db.rpc(
+      "athaq_track_order",
+      {
+        p_order_ref:
+          orderRef
+            .trim()
+            .toUpperCase(),
+
+        p_phone:
+          phone.trim()
+      }
+    );
+
+
+  if (error) {
+
+    console.error(
+      "ATHAQ RPC ERROR:",
+      error
+    );
+
+    throw error;
+
+  }
+
+
+  if (!data) {
+
+    throw new Error(
+      "No order found."
+    );
+
+  }
+
+
+  /*
+   * RPC may return JSON object
+   */
+  if (
+    data.order
+  ) {
+
+    return data;
+
+  }
+
+
+  /*
+   * Some RPC versions may return
+   * an array.
+   */
+
+  if (
+    Array.isArray(data) &&
+    data.length
+  ) {
+
+    return {
+      order:
+        data[0],
+      items:
+        []
+    };
+
+  }
+
+
+  throw new Error(
+    "No order found. Please check your order reference and phone number."
+  );
+
+}
+
+
+/* ============================================================
+   FALLBACK DIRECT SEARCH
+============================================================ */
+
+async function trackUsingDirectQuery(
+  orderRef,
+  phone
+) {
+
+  console.warn(
+    "Trying direct order lookup..."
+  );
+
+
+  const cleanRef =
+    orderRef
+      .trim()
+      .toUpperCase();
+
+
+  const cleanPhone =
+    phone
+      .trim();
+
+
+  const { data, error } =
+    await db
+      .from("orders")
+      .select(`
+        id,
+        order_ref,
+        customer_name,
+        customer_phone,
+        customer_email,
+        shipping_address,
+        shipping_city,
+        shipping_postal_code,
+        payment_method,
+        payment_status,
+        order_status,
+        subtotal,
+        shipping_amount,
+        total_amount,
+        created_at,
+        updated_at
+      `)
+      .eq(
+        "order_ref",
+        cleanRef
+      )
+      .limit(1);
+
+
+  if (error) {
+
+    console.error(
+      "Direct order lookup error:",
+      error
+    );
+
+    throw error;
+
+  }
+
+
+  if (!data || !data.length) {
+
+    throw new Error(
+      "No order found with this order reference."
+    );
+
+  }
+
+
+  const order =
+    data[0];
+
+
+  /*
+   * Normalize phone numbers
+   * before comparing.
+   */
+
+  const normalizePhone =
+    value =>
+      String(value || "")
+        .replace(/\D/g, "");
+
+
+  const dbPhone =
+    normalizePhone(
+      order.customer_phone
+    );
+
+
+  const searchPhone =
+    normalizePhone(
+      cleanPhone
+    );
+
+
+  if (
+    dbPhone &&
+    searchPhone &&
+    dbPhone !== searchPhone
+  ) {
+
+    throw new Error(
+      "The phone number does not match this order."
+    );
+
+  }
+
+
+  /*
+   * Load order items.
+   */
+
+  let items = [];
+
+
+  const itemsResponse =
+    await db
+      .from("order_items")
+      .select("*")
+      .eq(
+        "order_id",
+        order.id
+      );
+
+
+  if (
+    !itemsResponse.error &&
+    itemsResponse.data
+  ) {
+
+    items =
+      itemsResponse.data;
+
+  }
+
+
+  return {
+    order,
+    items
+  };
+
+}
+
+
+/* ============================================================
+   MAIN SEARCH
+============================================================ */
+
+async function loadOrder(
+  orderRef,
+  phone
+) {
+
+  const errorBox =
+    document.getElementById(
+      "trackError"
+    );
+
+
+  const successBox =
+    document.getElementById(
+      "trackSuccess"
+    );
+
+
+  const btn =
+    document.getElementById(
+      "trackBtn"
+    );
+
+
+  errorBox.classList.add(
+    "hidden"
+  );
+
+
+  successBox.classList.add(
+    "hidden"
+  );
+
+
+  document
+    .getElementById("orderCard")
+    .classList.add("hidden");
+
+
+  orderRef =
+    String(
+      orderRef || ""
+    ).trim();
+
+
+  phone =
+    String(
+      phone || ""
+    ).trim();
+
+
+  if (!orderRef) {
+
+    errorBox.textContent =
+      "Please enter your order reference.";
+
+    errorBox.classList.remove(
+      "hidden"
+    );
+
+    return;
+
+  }
+
+
+  if (!phone) {
+
+    errorBox.textContent =
+      "Please enter the phone number used at checkout.";
+
+    errorBox.classList.remove(
+      "hidden"
+    );
+
+    return;
+
+  }
+
+
+  btn.disabled = true;
+
+
+  btn.innerHTML = `
+
+    <i
+      class="fa-solid fa-spinner fa-spin mr-2"
+    ></i>
+
+    Checking...
+
+  `;
+
+
+  try {
+
+    /*
+     * Make sure Supabase is available.
+     */
+
+    if (!db) {
+
+      db =
+        resolveSupabaseClient();
+
+    }
+
+
+    if (!db) {
+
+      throw new Error(
+        "Supabase connection is not available. Please check supabase-config.js."
+      );
+
+    }
+
+
+    console.log(
+      "ATHAQ Supabase connected successfully."
+    );
+
+
+    let result;
+
+
+    /*
+     * First use secure RPC.
+     */
+
+    try {
+
+      result =
+        await trackUsingRPC(
+          orderRef,
+          phone
+        );
+
+    } catch (rpcError) {
+
+      console.warn(
+        "RPC tracking failed:",
+        rpcError
+      );
+
+
+      /*
+       * If RPC is missing or unavailable,
+       * try direct query.
+       */
+
+      result =
+        await trackUsingDirectQuery(
+          orderRef,
+          phone
+        );
+
+    }
+
+
+    if (
+      !result ||
+      !result.order
+    ) {
+
+      throw new Error(
+        "No order found. Please check your order reference and phone number."
+      );
+
+    }
+
+
+    renderOrder(
+      result
+    );
+
+
+    /*
+     * Save last tracked order.
+     */
+
+    localStorage.setItem(
+      "athaqLastOrder",
+      JSON.stringify({
+        order_ref:
+          result.order.order_ref,
+
+        phone:
+          phone
+      })
+    );
+
+
+    successBox.innerHTML = `
+
+      <i
+        class="fa-solid fa-circle-check mr-2"
+      ></i>
+
+      Order found successfully.
+
+    `;
+
+
+    successBox.classList.remove(
+      "hidden"
+    );
+
+
+    /*
+     * Scroll order into view.
+     */
+
+    setTimeout(() => {
+
+      document
+        .getElementById(
+          "orderCard"
+        )
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+    }, 150);
+
+
+  } catch (err) {
+
+    console.error(
+      "ATHAQ TRACK ERROR:",
+      err
+    );
+
+
+    let message =
+      err?.message ||
+      "Unable to find this order.";
+
+
+    /*
+     * Friendly messages
+     */
+
+    if (
+      message.includes(
+        "Failed to fetch"
+      )
+    ) {
+
+      message =
+        "Supabase connection failed. Please check your Supabase URL and key.";
+
+    }
+
+
+    if (
+      message.includes(
+        "athaq_track_order"
+      )
+    ) {
+
+      message =
+        "Order tracking function is not available in Supabase. Please run the tracking SQL function.";
+
+    }
+
+
+    errorBox.innerHTML = `
+
+      <div class="flex items-start gap-3">
+
+        <i
+          class="fa-solid fa-circle-exclamation mt-0.5"
+        ></i>
+
+        <div>
+
+          <p class="font-bold">
+            Unable to track order
+          </p>
+
+          <p class="mt-1">
+            ${esc(message)}
+          </p>
+
+        </div>
+
+      </div>
+
+    `;
+
+
+    errorBox.classList.remove(
+      "hidden"
+    );
+
+  } finally {
+
+    btn.disabled = false;
+
+
+    btn.innerHTML = `
+
+      <i
+        class="fa-solid fa-magnifying-glass mr-2"
+      ></i>
+
+      Track Order
+
+    `;
+
+  }
+
+}
+
+
+/* ============================================================
+   INITIALIZATION
+============================================================ */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    /*
+     * Resolve Supabase immediately.
+     */
+
+    db =
+      resolveSupabaseClient();
+
+
+    console.log(
+      "ATHAQ tracking Supabase:",
+      db
+    );
+
+
+    const form =
+      document.getElementById(
+        "trackForm"
+      );
+
+
+    const orderRefInput =
+      document.getElementById(
+        "orderRef"
+      );
+
+
+    const phoneInput =
+      document.getElementById(
+        "phone"
+      );
+
+
+    /*
+     * Get saved order.
+     */
+
+    let saved = null;
+
+
+    try {
+
+      saved =
+        JSON.parse(
+          localStorage.getItem(
+            "athaqLastOrder"
+          ) || "null"
+        );
+
+    } catch (e) {
+
+      saved = null;
+
+    }
+
+
+    /*
+     * Get URL parameters.
+     *
+     * Example:
+     *
+     * track.html?order=ATH-12345678&phone=+966501234567
+     */
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const urlOrder =
+      params.get(
+        "order"
+      );
+
+
+    const urlPhone =
+      params.get(
+        "phone"
+      );
+
+
+    /*
+     * Fill fields.
+     */
+
+    orderRefInput.value =
+      urlOrder ||
+      saved?.order_ref ||
+      "";
+
+
+    phoneInput.value =
+      urlPhone ||
+      saved?.phone ||
+      "";
+
+
+    /*
+     * Submit
+     */
+
+    form.addEventListener(
+      "submit",
+      event => {
+
+        event.preventDefault();
+
+
+        loadOrder(
+          orderRefInput.value,
+          phoneInput.value
+        );
+
+      }
+    );
+
+
+    /*
+     * Auto search if URL contains
+     * order + phone.
+     */
+
+    if (
+      urlOrder &&
+      urlPhone
+    ) {
+
+      loadOrder(
+        urlOrder,
+        urlPhone
+      );
+
+    }
+
+  }
+);
+
 </script>
+
 </body>
 </html>
